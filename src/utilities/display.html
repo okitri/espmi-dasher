@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @@include("../partials/head/head-meta.html")
+    <title>Display | Dasher - Responsive Bootstrap 5 Admin Dashboard</title>
+    <link href="@@webRoot/node_modules/prismjs/themes/prism-okaidia.min.css" rel="stylesheet" />
+    @@include("../partials/head/head-links.html")
+  </head>
+  <body class>
+    <!-- main -->
+    <div>
+      @@include("../partials/header.html") @@include("../partials/breadcrumb.html",{ "heading" : "Display", "pageFolder": "Utilities", "pageName": "Display", })
+      <div class="pt-lg-10 mt-10 position-relative">
+        <div class="container">
+          <div class="row">
+            <aside class="col-xl-2 col-lg-3 col-md-4 mb-6 mb-md-0 d-none d-lg-block">@@include("../partials/nav-sidebar.html")</aside>
+            <div class="col-xl-7 col-lg-9 col-md-12 mb-6 mb-md-0 mx-auto">
+              <div class="mb-12 product-content d-flex flex-column gap-8">
+                <div class="border rounded-3 overflow-hidden">
+                  <div class="row align-items-center py-2">
+                    <div class="mx-5 my-2">
+                      <h3 class="text-truncate h5 mb-0" id="notation">Notation</h3>
+                    </div>
+                    <div class="border-top px-8 py-6">
+                      <p>
+                        Display utility classes that apply to all breakpoints, from <code>xs </code>to <code>xxl </code>, have no breakpoint abbreviation in them. This is because those classes are
+                        applied from <code>min-width: 0;</code>and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+                      </p>
+                      <p class="mt-3">As such, the classes are named using the format:</p>
+                      <ul>
+                        <li><code>.d-{value} </code> for <code>xs </code></li>
+                        <li><code>.d-{breakpoint}-{value} </code> for <code> sm</code>,<code> md</code>,<code> lg</code>,<code> xl</code>, and<code> xxl</code>,</li>
+                      </ul>
+                      <p class="mt-3">Where value is one of:</p>
+                      <ul>
+                        <li><code>none</code></li>
+                        <li><code>inline</code></li>
+                        <li><code>inline-block</code></li>
+                        <li><code>block</code></li>
+                        <li><code>table</code></li>
+                        <li><code>table-cell</code></li>
+                        <li><code>table-row</code></li>
+                        <li><code>flex</code></li>
+                        <li><code>inline-flex</code></li>
+                      </ul>
+                      <p>The display values can be altered by changing the <code>$displays </code>variable and recompiling the SCSS.</p>
+                      <p>
+                        The media queries affect screen widths with the given breakpoint or larger. For example,<code>.d-lg-none </code>sets <code>display: none;</code>on both <code>lg </code>and
+                        <code>xl </code>screens.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="border rounded-3 overflow-hidden">
+                  <div class="row align-items-center py-2 px-5">
+                    <div class="col-lg-8 col-xl-8 col-7">
+                      <div>
+                        <h3 class="text-truncate h5 mb-0" id="examples">Examples</h3>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4 col-5 d-flex justify-content-end">
+                      <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a
+                            class="nav-link active"
+                            id="pills-DisplayExample-preview-tab"
+                            data-bs-toggle="pill"
+                            href="#pills-DisplayExample-preview"
+                            role="tab"
+                            aria-controls="pills-DisplayExample-preview"
+                            aria-selected="true"
+                          >
+                            <span class="lh-1">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                              >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                              </svg>
+                            </span>
+                            <span class="ms-1 d-none d-lg-block">Preview</span>
+                          </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a
+                            class="nav-link"
+                            id="pills-DisplayExample-code-tab"
+                            data-bs-toggle="pill"
+                            href="#pills-DisplayExample-code"
+                            role="tab"
+                            aria-controls="pills-DisplayExample-code"
+                            aria-selected="false"
+                            tabindex="-1"
+                          >
+                            <span class="lh-1">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-code"
+                              >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M7 8l-4 4l4 4" />
+                                <path d="M17 8l4 4l-4 4" />
+                                <path d="M14 4l-4 16" />
+                              </svg>
+                            </span>
+                            <span class="ms-1 d-none d-lg-block">Code</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="tab-content border-top" id="pills-tabTwoContent">
+                        <div class="tab-pane tab-example-preview fade show active p-5 bg-gray-100" id="pills-DisplayExample-preview" role="tabpanel" aria-labelledby="pills-DisplayExample-preview-tab">
+                          <div class="d-inline p-2 text-bg-primary">d-inline</div>
+                          <span class="d-block p-2 text-bg-primary mt-3">d-block</span>
+                        </div>
+                        <div class="tab-pane tab-example-code fade" id="pills-DisplayExample-code" role="tabpanel" aria-labelledby="pills-DisplayExample-code-tab">
+                          <pre
+                            class="language-markup"
+                            tabindex="0"
+                          ><code class="language-markup"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d-inline p-2 text-bg-primary <span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>d-inline<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d-block p-2 text-bg-primary<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>d-block<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="border rounded-3 overflow-hidden">
+                  <div class="row align-items-center py-2">
+                    <div class="mx-5 my-2">
+                      <h3 class="text-truncate h5 mb-0" id="hidingelements">Hiding elements</h3>
+                    </div>
+                    <div class="border-top px-8 py-6">
+                      <p>
+                        For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site,
+                        instead hide elements responsively for each screen size.
+                      </p>
+                      <p>To hide elements simply use the <code>.d-none</code> class or one of the <code>.d-{sm,md,lg,xl,xxl}-none</code> classes for any responsive screen variation.</p>
+                      <p>
+                        To show an element only on a given interval of screen sizes you can combine one <code>.d-*-none</code> class with a <code>.d-*-*</code> class, for example
+                        <code>.d-none .d-md-block .d-xl-none .d-xxl-none</code> will hide the element for all screen sizes except on medium and large devices.
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Screen size</th>
+                              <th>Class</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Hidden on all</td>
+                              <td><code>.d-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on xs</td>
+                              <td><code>.d-none .d-sm-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on sm</td>
+                              <td><code>.d-sm-none .d-md-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on md</td>
+                              <td><code>.d-md-none .d-lg-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on lg</td>
+                              <td><code>.d-lg-none .d-xl-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on xl</td>
+                              <td><code>.d-xl-none .d-xxl-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Hidden only on xxl</td>
+                              <td><code>.d-xxl-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible on all</td>
+                              <td><code>.d-block</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on xs</td>
+                              <td><code>.d-block .d-sm-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on sm</td>
+                              <td><code>.d-none .d-sm-block .d-md-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on md</td>
+                              <td><code>.d-none .d-md-block .d-lg-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on lg</td>
+                              <td><code>.d-none .d-lg-block .d-xl-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on xl</td>
+                              <td><code>.d-none .d-xl-block .d-xxl-none</code></td>
+                            </tr>
+                            <tr>
+                              <td>Visible only on xxl</td>
+                              <td><code>.d-none .d-xxl-block</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="border rounded-3 overflow-hidden">
+                  <div class="row align-items-center py-2">
+                    <div class="mx-5 my-2">
+                      <h3 class="text-truncate h5 mb-0" id="displayinprint">Display in print</h3>
+                    </div>
+                    <div class="border-top px-8 py-6">
+                      <p>
+                        Change the <code>display</code> value of elements when printing with our print display utility classes. Includes support for the same <code>display</code> values as our
+                        responsive <code>.d-*</code> utilities.
+                      </p>
+                      <ul>
+                        <li><code>.d-print-none</code></li>
+                        <li><code>.d-print-inline</code></li>
+                        <li><code>.d-print-inline-block</code></li>
+                        <li><code>.d-print-block</code></li>
+                        <li><code>.d-print-grid</code></li>
+                        <li><code>.d-print-inline-grid</code></li>
+                        <li><code>.d-print-table</code></li>
+                        <li><code>.d-print-table-row</code></li>
+                        <li><code>.d-print-table-cell</code></li>
+                        <li><code>.d-print-flex</code></li>
+                        <li><code>.d-print-inline-flex</code></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 d-none d-xl-flex">
+              <!-- sidebar nav fixed -->
+              <div class="sidebar-nav-fixed">
+                <span class="d-block h2 fs-6"> On this page </span>
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#notation" class="active">1. Notation</a>
+                  </li>
+                  <li>
+                    <a href="#examples">2. Examples</a>
+                  </li>
+                  <li>
+                    <a href="#hidingelements">3. Hiding elements</a>
+                  </li>
+                  <li>
+                    <a href="#displayinprint">4. Display in print</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="container-fluid py-3 border-top bg-gray-100 text-center position-relative z-1">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="small">
+                Copyright © 2025
+                <span class="text-primary">
+                  <a href="#">Dasher Admin Bootstrap 5 Theme</a>
+                </span>
+                | Designed by
+                <span class="text-primary">
+                  <a href="#">CodesCandy</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    @@include("../partials/scripts.html")
+    <script src="@@webRoot/node_modules/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="@@webRoot/assets/js/vendors/sticky.js"></script>
+    <!-- Scripts -->
+    <script src="@@webRoot/node_modules/prismjs/prism.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/components/prism-scss.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="@@webRoot/assets/js/vendors/sidebar-menu.js"></script>
+  </body>
+</html>

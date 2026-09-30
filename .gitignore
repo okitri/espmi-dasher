@@ -1,0 +1,22 @@
+### Windows
+# Windows thumbnail cache files
+Thumbs.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+### Node
+# Dependencies (restore with: npm install)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+### Build temp
+# gulp-file-include staging folder used by `npm start` / `gulp`
+.temp/

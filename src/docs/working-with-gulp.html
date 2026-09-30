@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @@include("../partials/head/head-meta.html")
+    <title>Working with Gulp | Dasher - Responsive Bootstrap 5 Admin Dashboard</title>
+    <link href="@@webRoot/node_modules/prismjs/themes/prism-okaidia.min.css" rel="stylesheet" />
+    @@include("../partials/head/head-links.html")
+  </head>
+  <body class>
+    <!-- main -->
+    <div>
+      @@include("../partials/header.html") @@include("../partials/breadcrumb.html",{ "heading" : "Working with Gulp", "pageFolder": "Docs", "pageName": "Working with Gulp", })
+
+      <div class="pt-lg-10 mt-10 position-relative">
+        <div class="container">
+          <div class="row">
+            <aside class="col-xl-2 col-lg-3 col-md-4 mb-6 mb-md-0 d-none d-lg-block">@@include("../partials/nav-sidebar.html")</aside>
+            <div class="col-xl-9 col-lg-9 col-md-12 mb-6 mb-md-0 mx-auto">
+              <div class="mb-12 product-content d-flex flex-column gap-8">
+                <div>
+                  <p class="lead">Learn how to included npm scripts to automate your time-consuming tasks in your development workflow with Gulp toolkit.</p>
+                </div>
+                <div>
+                  <h2>Quick Start</h2>
+                  <p>Dasher uses NPM scripts for its build system. Our package.json includes convenient methods for working with the framework, including compiling code, running tests, and more.</p>
+                  <p>To use our build system and run our documentation locally, you ll need a copy of Dasher s source files and Node. Follow these steps and you should be ready to rock:</p>
+
+                  <ul class="list-unstyled lh-lg">
+                    <li>1. Download and install Node.js</li>
+                    <li>2. Installing Gulp.</li>
+                    <li>
+                      3. Working with Theme Folder
+                      <ul class="list-unstyled ps-3">
+                        <li>a. Installing NPM modules</li>
+                        <li>b. Run Gulp</li>
+                        <li>c. Build Production Files</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="d-md-flex align-items-center mb-4">
+                    <h2 class="mb-0">1. Download and install Node.js</h2>
+                    <span class="text-body ms-2">( Installtion in System )</span>
+                  </div>
+                  <p>
+                    Almost all tooling for modern JavaScript projects is based in
+                    <a href="https://nodejs.org/en/" target="_blank">Node.js.</a>
+                    The
+                    <a href="https://nodejs.org/en/download/" target="_blank">download page</a>
+                    has prebuilt installation packages for all platforms.
+                  </p>
+                  <p>Node is bundled with npm, the package manager for JavaScript.</p>
+                  <p>To verify the installation, open a new terminal window and run:</p>
+                  <pre><code class="language-markup">$ node --version
+<br>$ npm --version
+                  </code></pre>
+                </div>
+                <div>
+                  <div class="d-md-flex align-items-center mb-4">
+                    <h2 class="mb-0">2. Installing Gulp.js</h2>
+                    <span class="text-body ms-2">( Global Installtion in System )</span>
+                  </div>
+                  <p>Please note, first Gulp should be installed globally and for that reason -g command is used.</p>
+
+                  <pre><code class="language-markup">$ npm install --global gulp-cli
+                </code></pre>
+
+                  <div class="mt-4">
+                    <p>To verify the installation, open a new terminal window and run:</p>
+                    <pre><code class="language-markup">$ gulp --version</code></pre>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-4">
+                    <h2 class="mb-0">3. Now Working with Theme Folder</h2>
+                  </div>
+                  <p>
+                    Navigate to the root
+                    <code>/Dasher</code>
+                    directory and run
+                    <code>npm install</code>
+                    to install our local dependencies listed in package.json.
+                  </p>
+                  <div class="mt-4">
+                    <h3>a. Installing NPM modules</h3>
+                    <p>
+                      First, change the command line path into your project where Dasher folder is located. if you have not done this before, you may check the following article to quick start, you
+                      may run package.json file by using the following command:
+                    </p>
+
+                    <pre><code class="language-markup">$ npm install</code></pre>
+                    <p class="mt-3">
+                      If you check the project folder when the command has finished executing, you should see that Gulp has created a
+                      <code>node_modules</code>
+                      folder
+                    </p>
+                  </div>
+
+                  <div class="mt-4">
+                    <h3>b. Run Gulp</h3>
+                    <p>
+                      Compile and watch the SCSS/JS/HTML, use Live Reload to update browsers instantly, start a server, and pop a tab in your default browser. Any changes made to the source files will
+                      be compiled as soon as you save the file. To try it out run:
+                    </p>
+
+                    <pre><code class="language-markup">$ gulp</code></pre>
+                  </div>
+                  <div class="mt-4">
+                    <h3>c. Build Production Files</h3>
+                    <p>
+                      Generates a
+                      <code>/dist</code>
+                      with all the production files.
+                    </p>
+
+                    <pre><code class="language-markup">$ gulp build</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="container-fluid py-3 border-top bg-gray-100 text-center position-relative z-1">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="small">
+                Copyright © 2025
+                <span class="text-primary">
+                  <a href="#">Dasher Admin Bootstrap 5 Theme</a>
+                </span>
+                | Designed by
+                <span class="text-primary">
+                  <a href="#">CodesCandy</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    @@include("../partials/scripts.html")
+    <script src="@@webRoot/node_modules/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="@@webRoot/assets/js/vendors/sticky.js"></script>
+    <!-- Scripts -->
+    <script src="@@webRoot/node_modules/prismjs/prism.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/components/prism-scss.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="@@webRoot/assets/js/vendors/sidebar-menu.js"></script>
+  </body>
+</html>

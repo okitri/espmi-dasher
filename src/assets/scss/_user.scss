@@ -1,0 +1,37 @@
+// 
+// user.scss
+// Use this to write your custom SCSS
+//
+// Authentication (login) page background — light mode only.
+// In dark mode nothing is set here on purpose, so the theme's own default dark
+// background (body -> background-color: var(--ds-body-bg)) is used instead.
+:root:not([data-bs-theme='dark']) .auth-bg {
+  background: #fffefe;
+  background: linear-gradient(180deg, rgba(255, 254, 254, 1) 0%, rgba(242, 161, 164, 1) 100%);
+}
+
+// Typography tweaks for Inter
+// Inter has a tall x-height and tight sidebearings, so display size text needs
+// a slightly negative tracking to avoid looking loose.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6,
+.fs-1,
+.fs-2 {
+  letter-spacing: -0.01em;
+}

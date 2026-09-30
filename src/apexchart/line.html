@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @@include("../partials/head/head-meta.html")
+
+    <title>Apex Line Charts | Dasher - Responsive Bootstrap 5 Admin Dashboard</title>
+    <link href="@@webRoot/node_modules/prismjs/themes/prism-okaidia.min.css" rel="stylesheet" />
+
+    @@include("../partials/head/head-links.html")
+  </head>
+
+  <body>
+    <!-- Vertical Sidebar -->
+    <div>
+      @@include("../partials/sidebar-collapse.html")
+
+      <!-- Main Content -->
+      <div id="content" class="position-relative h-100">
+        @@include("../partials/topbar-second.html")
+
+        <div class="custom-container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <!-- Page header -->
+              <div class="mb-8 d-md-flex justify-content-between align-items-center">
+                <div>
+                  <h1 class="mb-3 h2">Line</h1>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item"><a href="#">Appexchart</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Line</li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-6">
+            <div class="col-xl-6 col-12">
+              <div class="border rounded-3 overflow-hidden">
+                <div class="row align-items-center py-2 px-5">
+                  <div class="col-lg-8 col-xl-6 col-7">
+                    <div>
+                      <h3 class="text-truncate h5 mb-0">Basic line chart</h3>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xl-6 col-5 d-flex justify-content-end">
+                    <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="pills-linechart-preview-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-linechart-preview"
+                          role="tab"
+                          aria-controls="pills-linechart-preview"
+                          aria-selected="true"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Preview</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-linechart-code-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-linechart-code"
+                          role="tab"
+                          aria-controls="pills-linechart-code"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-code"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M7 8l-4 4l4 4" />
+                              <path d="M17 8l4 4l-4 4" />
+                              <path d="M14 4l-4 16" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Code</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="tab-content border-top" id="pills-tabTwoContent">
+                      <div class="tab-pane tab-example-preview fade show active p-5 bg-gray-100" id="pills-linechart-preview" role="tabpanel" aria-labelledby="pills-linechart-preview-tab">
+                        <div id="chartLead"></div>
+                      </div>
+                      <div class="tab-pane tab-example-code fade" id="pills-linechart-code" role="tabpanel" aria-labelledby="pills-linechart-code-tab">
+                        <pre
+                          class="language-markup"
+                          tabindex="0"
+                        ><code class="language-markup"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>chartLead<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-12">
+              <div class="border rounded-3 overflow-hidden">
+                <div class="row align-items-center py-2 px-5">
+                  <div class="col-lg-8 col-xl-6 col-7">
+                    <div>
+                      <h3 class="text-truncate h5 mb-0">Area line chart</h3>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xl-6 col-5 d-flex justify-content-end">
+                    <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="pills-arealinechart-preview-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-arealinechart-preview"
+                          role="tab"
+                          aria-controls="pills-arealinechart-preview"
+                          aria-selected="true"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Preview</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-arealinechart-code-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-arealinechart-code"
+                          role="tab"
+                          aria-controls="pills-arealinechart-code"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-code"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M7 8l-4 4l4 4" />
+                              <path d="M17 8l4 4l-4 4" />
+                              <path d="M14 4l-4 16" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Code</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="tab-content border-top" id="pills-tabTwoContent">
+                      <div class="tab-pane tab-example-preview fade show active p-5 bg-gray-100" id="pills-arealinechart-preview" role="tabpanel" aria-labelledby="pills-arealinechart-preview-tab">
+                        <div id="totalIncomeChart"></div>
+                      </div>
+                      <div class="tab-pane tab-example-code fade" id="pills-arealinechart-code" role="tabpanel" aria-labelledby="pills-arealinechart-code-tab">
+                        <pre
+                          class="language-markup"
+                          tabindex="0"
+                        ><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>totalIncomeChart<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-12">
+              <div class="border rounded-3 overflow-hidden">
+                <div class="row align-items-center py-2 px-5">
+                  <div class="col-lg-8 col-xl-6 col-7">
+                    <div>
+                      <h3 class="text-truncate h5 mb-0">Area line chart</h3>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xl-6 col-5 d-flex justify-content-end">
+                    <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="pills-arealine-preview-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-arealine-preview"
+                          role="tab"
+                          aria-controls="pills-arealine-preview"
+                          aria-selected="true"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Preview</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-arealine-code-tab"
+                          data-bs-toggle="pill"
+                          href="#pills-arealine-code"
+                          role="tab"
+                          aria-controls="pills-arealine-code"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <span class="lh-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-code"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M7 8l-4 4l4 4" />
+                              <path d="M17 8l4 4l-4 4" />
+                              <path d="M14 4l-4 16" />
+                            </svg>
+                          </span>
+                          <span class="ms-1 d-none d-lg-block">Code</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="tab-content border-top" id="pills-tabTwoContent">
+                      <div class="tab-pane tab-example-preview fade show active p-5 bg-gray-100" id="pills-arealine-preview" role="tabpanel" aria-labelledby="pills-arealine-preview-tab">
+                        <div id="totalExpensesChart"></div>
+                      </div>
+                      <div class="tab-pane tab-example-code fade" id="pills-arealine-code" role="tabpanel" aria-labelledby="pills-arealine-code-tab">
+                        <pre
+                          class="language-markup"
+                          tabindex="0"
+                        ><code class="language-markup"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>totalExpensesChart<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @@include("../partials/scripts.html")
+    <script src="@@webRoot/assets/js/vendors/sidebarnav.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/prism.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/components/prism-scss.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="@@webRoot/node_modules/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="@@webRoot/node_modules/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="@@webRoot/assets/js/vendors/chart.js"></script>
+  </body>
+</html>
