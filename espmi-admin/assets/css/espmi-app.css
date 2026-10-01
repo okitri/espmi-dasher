@@ -1,0 +1,122 @@
+/* ==========================================================================
+   eSPMI - Tema tampilan aplikasi
+   --------------------------------------------------------------------------
+   File ini dipanggil SETELAH ../dist/assets/css/theme.min.css pada SEMUA
+   halaman eSPMI (dashboard.html, index.html, dan halaman berikutnya).
+   Semua rule di bawah adalah override dari theme Dasher bawaan.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Background area konten (#content)
+   Light mode : bg-gray-50 (#fcfdfd)  --- sama dengan utility .bg-gray-50
+   Dark mode  : tetap mengikuti dark mode (transparan -> terlihat --ds-body-bg)
+
+   Kenapa butuh override dark mode: utility .bg-gray-50 di-bundle sebagai
+   `background-color:#fcfdfd!important` (hardcoded, tidak memakai variabel)
+   dan variabel --ds-gray-50 tidak di-remap di _darkmode.scss, sehingga tanpa
+   rule dark mode di bawah area konten akan berwarna nyaris putih.
+   -------------------------------------------------------------------------- */
+#content {
+  background-color: var(--ds-gray-50);
+}
+
+[data-bs-theme='dark'] #content {
+  background-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Sidebar - border kanan solid (theme bawaan memakai dashed)
+   Sumber theme: _navbar-vertical.scss
+     html.expanded  #miniSidebar { border-right: 1px dashed ... }
+     html.collapsed #miniSidebar { border-right: 1px dashed ... }
+     .offcanvasNav                { border-right: 1px dashed ... !important }
+   Hanya mengubah style-nya, lebar (1px) dan warna (--ds-gray-300) tetap.
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar,
+html.collapsed #miniSidebar {
+  border-right-style: solid;
+}
+
+/* Sidebar offcanvas untuk mobile */
+.offcanvasNav {
+  border-right-style: solid !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navbar glass - blur 16px + border bawah solid (theme bawaan dashed)
+   Sumber theme: _navbar-vertical.scss
+     .navbar-glass { backdrop-filter: blur(6px); border-bottom: 1px dashed ... }
+   Blok dark mode di bawah diperlukan karena _darkmode.scss men-set ulang
+   .navbar-glass ke blur(6px) saat [data-bs-theme='dark'].
+   -------------------------------------------------------------------------- */
+.navbar-glass {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom-style: solid;
+}
+
+[data-bs-theme='dark'] .navbar-glass {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Offset konten saat sidebar expanded: 15.5rem (theme bawaan 15.875rem)
+   Dibatasi min-width 991px agar tidak menimpa rule theme pada
+   @media (max-width: 990px) { html.expanded #content { margin-left: 0 } }
+   -------------------------------------------------------------------------- */
+@media (min-width: 991px) {
+  html.expanded #content {
+    margin-left: 15.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Tabel - garis pemisah baris solid (theme light mode memakai dashed
+   melalui --ds-border-style: dashed; dark mode theme sudah solid)
+   -------------------------------------------------------------------------- */
+.table > :not(caption) > * > * {
+  border-bottom-style: solid;
+}
+
+/* --------------------------------------------------------------------------
+   6. Tree "Daftar Standar Mutu" (halaman penetapan-daftar-standar-mutu.html)
+   a. .tree-toggle  : caret yang berputar mengikuti aria-expanded (Bootstrap
+                      collapse meng-update aria-expanded otomatis)
+   b. .tree-lvl-*   : jarak indentasi per level (1rem per level)
+   c. .badge-violet : warna badge indikator/status ungu - tidak tersedia di
+                      palet theme (theme hanya punya primary/secondary/success/
+                      danger/warning/info)
+   -------------------------------------------------------------------------- */
+.tree-toggle {
+  color: var(--ds-gray-500);
+  line-height: 1;
+}
+
+.tree-toggle .ti {
+  display: inline-block;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.tree-toggle[aria-expanded='true'] .ti {
+  transform: rotate(90deg);
+}
+
+.tree-lvl-2 {
+  padding-left: 1rem;
+}
+
+.tree-lvl-3 {
+  padding-left: 2rem;
+}
+
+.tree-lvl-4 {
+  padding-left: 3rem;
+}
+
+.badge-violet {
+  background-color: #7c5cff;
+  color: #fff;
+}
+

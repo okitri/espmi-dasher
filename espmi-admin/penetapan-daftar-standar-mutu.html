@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="Codescandy" name="author" />
+    <title>Daftar Standar Mutu | eSPMI</title>
+    <!-- Favicon icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../dist/assets/images/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../dist/assets/images/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../dist/assets/images/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../dist/assets/images/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../dist/assets/images/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../dist/assets/images/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../dist/assets/images/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../dist/assets/images/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../dist/assets/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../dist/assets/images/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../dist/assets/images/favicon/favicon-16x16.png" />
+
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="../dist/assets/images/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Color modes -->
+    <script src="../dist/assets/js/vendors/color-modes.js"></script>
+    <script>
+      if (localStorage.getItem('sidebarExpanded') === 'false') {
+        document.documentElement.classList.add('collapsed');
+        document.documentElement.classList.remove('expanded');
+      } else {
+        document.documentElement.classList.remove('collapsed');
+        document.documentElement.classList.add('expanded');
+      }
+    </script>
+    <!-- Libs CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="../dist/assets/libs/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../dist/assets/css/theme.min.css" />
+
+    <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
+    <link rel="stylesheet" href="assets/css/espmi-app.css" />
+  </head>
+
+  <body>
+    <!-- Vertical Sidebar -->
+    <div>
+      <div id="miniSidebar">
+        <div class="brand-logo">
+          <span class="d-none d-md-flex align-items-center gap-2">
+            <img src="../dist/assets/images/brand/logo/logo-icon.svg" alt="" />
+            <span class="fw-bold fs-4 site-logo-text">eSPMI</span>
+          </span>
+        </div>
+        <ul class="navbar-nav flex-column">
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="./dashboard.html">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg></span>
+              <span class="text">Beranda</span>
+            </a>
+          </li>
+          <!-- Nav item : Manajemen Referensi (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folders"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 4h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" /></svg></span>
+              <span class="text">Manajemen Referensi</span>
+            </a>
+            <ul class="dropdown-menu flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="./manajemen-referensi-tahun-periode.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-event"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg></span>
+                  <span class="text">Tahun Periode</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></span>
+                  <span class="text">Lembaga Akreditasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l18 0" /><path d="M9 8l1 0" /><path d="M9 12l1 0" /><path d="M9 16l1 0" /><path d="M14 8l1 0" /><path d="M14 12l1 0" /><path d="M14 16l1 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /></svg></span>
+                  <span class="text">Auditee Pusat</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
+                  <span class="text">Auditie</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M13 5h8" /><path d="M13 9h5" /><path d="M13 15h8" /><path d="M13 19h5" /><path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg></span>
+                  <span class="text">Unit Penunjang</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-text"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M9 9l1 0" /><path d="M9 13l6 0" /><path d="M9 17l6 0" /></svg></span>
+              <span class="text">Manajemen Dokumen</span>
+            </a>
+          </li>
+          <!-- Nav item : Penetapan (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg></span>
+              <span class="text">Penetapan</span>
+            </a>
+            <ul class="dropdown-menu flex-column show">
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75z" /><path d="M9 12v2" /><path d="M6 12v3" /><path d="M12 12v3" /><path d="M18 12v3" /><path d="M15 12v2" /><path d="M3 3v4" /><path d="M3 5h18" /><path d="M21 3v4" /></svg></span>
+                  <span class="text">Standar Mutu</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="./penetapan-daftar-standar-mutu.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M13 5h8" /><path d="M13 9h5" /><path d="M13 15h8" /><path d="M13 19h5" /><path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg></span>
+                  <span class="text">Daftar Standar Mutu</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
+              <span class="text">Pelaksanaan</span>
+            </a>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
+              <span class="text">Evaluasi (AMI)</span>
+            </a>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-line"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg></span>
+              <span class="text">Pengendalian &amp; Peningkatan</span>
+            </a>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plug-connected"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z" /><path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z" /><path d="M3 21l2.5 -2.5" /><path d="M18.5 5.5l2.5 -2.5" /><path d="M10 11l-2 2" /><path d="M13 14l-2 2" /></svg></span>
+              <span class="text">Integrasi SISter</span>
+            </a>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg></span>
+              <span class="text">Integrasi Akademik</span>
+            </a>
+          </li>
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="#!">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg></span>
+              <span class="text">Pengaturan Sistem</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Offcanvas sidebar (mobile) -->
+      <div class="offcanvasNav offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <a class="d-flex align-items-center gap-2 text-inherit" href="./dashboard.html" id="offcanvasExampleLabel">
+            <img src="../dist/assets/images/brand/logo/logo-icon.svg" alt="" />
+            <span class="fw-bold fs-4">eSPMI</span>
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+          <ul class="navbar-nav flex-column">
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="./dashboard.html">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg></span>
+                <span class="text">Beranda</span>
+              </a>
+            </li>
+            <!-- Nav item : Manajemen Referensi (submenu) -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folders"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 4h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" /></svg></span>
+                <span class="text">Manajemen Referensi</span>
+              </a>
+              <ul class="dropdown-menu flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" href="./manajemen-referensi-tahun-periode.html">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-event"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg></span>
+                    <span class="text">Tahun Periode</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#!">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></span>
+                    <span class="text">Lembaga Akreditasi</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#!">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l18 0" /><path d="M9 8l1 0" /><path d="M9 12l1 0" /><path d="M9 16l1 0" /><path d="M14 8l1 0" /><path d="M14 12l1 0" /><path d="M14 16l1 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /></svg></span>
+                    <span class="text">Auditee Pusat</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#!">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
+                    <span class="text">Auditie</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#!">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M13 5h8" /><path d="M13 9h5" /><path d="M13 15h8" /><path d="M13 19h5" /><path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg></span>
+                    <span class="text">Unit Penunjang</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-text"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M9 9l1 0" /><path d="M9 13l6 0" /><path d="M9 17l6 0" /></svg></span>
+                <span class="text">Manajemen Dokumen</span>
+              </a>
+            </li>
+            <!-- Nav item : Penetapan (submenu) -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg></span>
+                <span class="text">Penetapan</span>
+              </a>
+              <ul class="dropdown-menu flex-column show">
+                <li class="nav-item">
+                  <a class="nav-link" href="#!">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75z" /><path d="M9 12v2" /><path d="M6 12v3" /><path d="M12 12v3" /><path d="M18 12v3" /><path d="M15 12v2" /><path d="M3 3v4" /><path d="M3 5h18" /><path d="M21 3v4" /></svg></span>
+                    <span class="text">Standar Mutu</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="./penetapan-daftar-standar-mutu.html">
+                    <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M13 5h8" /><path d="M13 9h5" /><path d="M13 15h8" /><path d="M13 19h5" /><path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg></span>
+                    <span class="text">Daftar Standar Mutu</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
+                <span class="text">Pelaksanaan</span>
+              </a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
+                <span class="text">Evaluasi (AMI)</span>
+              </a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-line"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg></span>
+                <span class="text">Pengendalian &amp; Peningkatan</span>
+              </a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plug-connected"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z" /><path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z" /><path d="M3 21l2.5 -2.5" /><path d="M18.5 5.5l2.5 -2.5" /><path d="M10 11l-2 2" /><path d="M13 14l-2 2" /></svg></span>
+                <span class="text">Integrasi SISter</span>
+              </a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg></span>
+                <span class="text">Integrasi Akademik</span>
+              </a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="#!">
+                <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg></span>
+                <span class="text">Pengaturan Sistem</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div id="content" class="position-relative h-100">
+        <!-- navbar -->
+        <div class="navbar-glass navbar navbar-expand-lg px-0 px-lg-4">
+          <div class="container-fluid px-lg-0">
+            <div class="d-flex align-items-center gap-4">
+              <!-- Collapse (mobile) -->
+              <div class="d-block d-lg-none">
+                <a class="text-inherit" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+                </a>
+              </div>
+              <!-- Collapse (desktop) -->
+              <div class="d-none d-lg-block">
+                <a class="sidebar-toggle d-flex texttooltip p-3" href="javascript:void(0)" data-template="collapseMessage">
+                  <span class="collapse-mini">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-left text-secondary"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 12l10 0" /><path d="M4 12l4 4" /><path d="M4 12l4 -4" /><path d="M20 4l0 16" /></svg>
+                  </span>
+                  <span class="collapse-expanded">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-right text-secondary"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 12l-10 0" /><path d="M20 12l-4 4" /><path d="M20 12l-4 -4" /><path d="M4 4l0 16" /></svg>
+                    <div id="collapseMessage" class="d-none">
+                      <span class="small">Collapse</span>
+                    </div>
+                  </span>
+                </a>
+              </div>
+              <!-- Institution -->
+              <div class="d-flex align-items-center gap-3">
+                <img src="../dist/assets/images/brand/logo/img-campus-logo.png" width="34" alt="" />
+                <div class="lh-sm">
+                  <div class="small text-secondary d-none d-sm-block">Sistem Informasi Penjaminan Mutu Internal</div>
+                  <div class="fw-semibold">UNIVERSITAS SOLUSI KAMPUS INDONESIA</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navbar nav -->
+            <ul class="list-unstyled d-flex align-items-center mb-0 gap-2">
+              <!-- Periode aktif -->
+              <li class="d-none d-md-block">
+                <span class="small text-secondary">Periode Aktif: <span class="fw-semibold text-body">2026/2</span></span>
+              </li>
+              <!-- Light dark mode-->
+              <li>
+                <div class="dropdown">
+                  <button class="btn btn-ghost btn-icon rounded-circle d-flex align-items-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+                    <i class="ti theme-icon-active lh-1 fs-5"><i class="ti theme-icon ti-sun"></i></i>
+                    <span class="visually-hidden bs-theme-text">Toggle theme</span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
+                        <i class="ti theme-icon ti ti-sun"></i>
+                        <span class="ms-2">Light</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                        <i class="ti theme-icon ti ti-moon-stars"></i>
+                        <span class="ms-2">Dark</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                        <i class="ti theme-icon ti ti-circle-half-2"></i>
+                        <span class="ms-2">Auto</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- Bell icon -->
+              <li>
+                <a class="position-relative btn-icon btn-ghost btn rounded-circle" href="#!" role="button" aria-label="Notifications">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2 ms-n2">
+                    2
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </li>
+              <!-- User -->
+              <li>
+                <div class="dropdown">
+                  <a class="d-flex align-items-center gap-2 text-inherit dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../dist/assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-sm rounded-circle" />
+                    <span class="d-none d-md-block fw-semibold">Administrator Pusat</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li>
+                      <a class="dropdown-item" href="#!">Profil</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#!">Pengaturan Akun</a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a class="dropdown-item text-danger" href="./index.html">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- container -->
+        <div class="custom-container">
+          <!-- Page header -->
+          <div class="card card-lg mb-6">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-2">
+              <h4 class="mb-0">Daftar Standar Mutu</h4>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item"><a href="./dashboard.html">Beranda</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">List Data</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Filter -->
+          <div class="card card-lg mb-6">
+            <div class="card-body d-flex flex-column gap-4">
+              <!-- Filter utama -->
+              <div class="row g-3 align-items-center">
+                <div class="col-xl-1 col-lg-2 col-md-3">
+                  <select class="form-select" aria-label="Tahun periode">
+                    <option selected>2026</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                  </select>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-4">
+                  <select class="form-select" aria-label="Lembaga akreditasi">
+                    <option selected>SPMI</option>
+                    <option>LAMDIK</option>
+                    <option>APS</option>
+                  </select>
+                </div>
+                <div class="col-xl-5 col-lg-4 col-md-4">
+                  <select class="form-select" aria-label="Status standar">
+                    <option selected>SEMUA</option>
+                    <option>Aktif</option>
+                    <option>Tidak Aktif</option>
+                  </select>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-1 text-md-end">
+                  <button class="btn btn-white d-inline-flex align-items-center gap-2" type="button">
+                    <i class="ti ti-refresh"></i>
+                    <span class="d-none d-xl-inline">Reset</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Aksi daftar -->
+              <div class="row g-3 align-items-center">
+                <div class="col-xl-4 col-lg-5 col-md-6">
+                  <div class="d-flex align-items-center gap-2">
+                    <label class="form-label text-nowrap mb-0" for="filterKode">Kode</label>
+                    <select class="form-select" id="filterKode" style="max-width: 6rem">
+                      <option selected>Semua</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    <button class="btn btn-success d-inline-flex align-items-center gap-2" type="button" id="collapseAll">
+                      <i class="ti ti-arrows-minimize"></i>
+                      Collapse all
+                    </button>
+                    <button class="btn btn-success d-inline-flex align-items-center gap-2" type="button">
+                      <i class="ti ti-filter"></i>
+                      Filtr jenjang
+                    </button>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-12 text-md-end">
+                  <a href="#!" class="btn btn-info d-inline-flex align-items-center gap-2">
+                    <i class="ti ti-plus"></i>
+                    New Induk
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Daftar Standar Mutu -->
+          <div class="card card-lg">
+            <div class="table-responsive">
+              <table class="table table-bordered align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col" class="listjs-sorter" style="width: 55%">Standar Mutu</th>
+                    <th scope="col" class="text-center" style="width: 22%">Indikator</th>
+                    <th scope="col" class="listjs-sorter" style="width: 23%">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Standar Pendidikan -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-pendidikan" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Pendidikan</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-tingkat" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Tingkat Pendidikan</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-3">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-isi" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Isi Pembelajaran</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah struktur dan rencana pembelajaran di Program Studi telah disusun secara konsisten dengan visi, misi, serta tujuan institusi?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 2</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">5 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah Program Studi telah menunjukkan kemajuan dalam mengimplementasikan Standar Isi Pendidikan sesuai dengan standar yang ditetapkan?</span>
+                          <span class="badge text-bg-danger">Aktif, Sort No 6</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah pelaksanaan kegiatan belajar mengajar menunjukkan keterlibatan aktif dosen dalam proses pembelajaran?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 6</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">9 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah tersedia panduan jelas, transparan, dan terstruktur dalam proses penilaian pembelajaran, serta hasil penilaian tersebut dapat diakses oleh mahasiswa?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 2</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah proses penilaian dosen dilakukan dengan efektivitas yang mendukung kemampuan mahasiswa memenuhi capaian pembelajaran lulusan?</span>
+                          <span class="badge text-bg-danger">Aktif, No 14</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Uraian Pertanyaan: Sistem Penjaminan Mutu Internal (SPMI) pada bidang akademik mencakup: a. ketersediaan dokumen mutu (SPMI, Manual SPMI, Standar SPMI, dan Formulir SPMI); b. keterlaksanaan siklus penjaminan mutu (PPEPP: Penetapan, Pelaksanaan, Evaluasi, Pengendalian dan Peningkatan); c. mekanisme pengendalian pengelolaan pembelajaran; d. hasil observasi dan monitoring pembelajaran; e. tersedianya dokumen mutu (SPMI, Manual SPMI, Standar SPMI, dan Formulir SPMI); f. keterlaksanaan siklus penjaminan mutu (PPEPP: Penetapan, Pelaksanaan, Evaluasi, Pengendalian dan Peningkatan); g. hasil observasi dan monitoring pengelolaan pembelajaran.</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 14</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-pendidikan g-tingkat g-isi">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Kami secara proaktif berkomunikasi dengan semua pemangku kepentingan untuk memastikan bahwa kebutuhan, harapan, dan persyaratan mereka terpenuhi secara konsisten. Dengan dedikasi tinggi, kami terus berupaya memberikan layanan terbaik yang berorientasi pada mutu dan kepuasan pengguna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                          <span class="badge text-bg-danger">Aktif, Sort No 5</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <!-- Standar Proses Penelitian -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-proses" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Proses Penelitian</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-proses">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-3">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Penelitian harus mencakup seluruh tahapan penelitian, mulai dari perencanaan hingga pelaporan hasil penelitian. Selanjutnya, hasil penelitian harus diimplementasikan dalam pembelajaran dan dimanfaatkan oleh masyarakat. Penelitian juga harus melibatkan mahasiswa dan dosen secara kolaboratif. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                          <span class="badge badge-violet">Aktif, Sort No 8</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">11 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-proses">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-3">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Hasil penelitian harus diimplementasikan kepada mitra melalui program pengabdian masyarakat, sehingga luaran penelitian dapat dirasakan manfaatnya oleh pengguna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                          <span class="badge text-bg-danger">Aktif, Sort No 4</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">2 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-proses">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-3">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah ada pedoman dan indikator standar penelitian di setiap fakultas, serta akses hasil penelitian diaudit untuk menilai kesesuaiannya dengan standar yang telah ditetapkan?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 2</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <!-- Standar Penelitian -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-penelitian" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Penelitian</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-s41" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar 4.1</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian g-s41">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-3">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-dokumen" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Dokumen</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian g-s41 g-dokumen">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah STIKes telah melaksanakan berbagai pengabdian masyarakat, seperti penyuluhan kesehatan atau bakti sosial, sesuai dengan tuntutan yang tercantum dalam standar mutu institu&shy;si?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 3</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">2 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian g-s41 g-dokumen">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah sistem informasi institusi memfasilitasi proses data manajemen, mulai dari data induk penerimaan hingga hasil serta transkrip akademik mahasiswa?</span>
+                          <span class="badge text-bg-danger">Aktif, Sort No 2</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian g-s41 g-dokumen">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah hasil evaluasi dalam semua unit kerja tersebut dapat dipantau melalui mekanisme penjaminan mutu institusi, dan apa strategi institusi untuk mencapai standar tersebut?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 6</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">2 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-penelitian g-s41 g-dokumen">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Apakah hasil evaluasi tersebut juga mencakup upaya institusi dalam mengelola risiko terhadap temuan negatif dan melakukan perbaikan yang berkelanjutan, serta bagaimana pengaruhnya terhadap proses pembelajaran di institusi?</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">0 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <!-- Level 5.2 -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-level52" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Level 5.2</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-level52">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-2">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <div class="d-flex flex-column align-items-start gap-2">
+                          <span>Bagaimana hasil evaluasi dari pendidikan pada prodi anda?</span>
+                          <span class="badge text-bg-warning">Aktif, Sort No 6</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">0 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <!-- Standar Mutu V.1 -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-mutuv1" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Mutu V.1</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-mutuv1">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-subv2" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Sub Standar V.2</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-mutuv1 g-subv2">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-3">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-v3" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar V.3</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-mutuv1 g-subv2 g-v3">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-4">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-v4" aria-expanded="false"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar V.4</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse g-mutuv1 g-subv2 g-v3 g-v4">
+                    <td class="tree-lvl-4">
+                      <span class="text-secondary small">Indikator Standar V.4</span>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">4 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <!-- Standar Layer 1 -->
+                  <tr class="table-light fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-layer1" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Layer 1</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-alpa2" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Layer 2 - Alpa</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-alpa2">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-3">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-alpa3" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Layer 3 - Alpa</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-alpa2 g-alpa3">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <span>Standar Layer 4 - Alpa</span>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">4 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-alpa2 g-alpa3">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <span>Standar Layer 4 - Alpa 2</span>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">6 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-2">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-beta2" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Layer 2 - Beta</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-beta2 fw-semibold">
+                    <td>
+                      <div class="d-flex align-items-center gap-2 tree-lvl-3">
+                        <a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-beta3" aria-expanded="true"><i class="ti ti-chevron-right"></i></a>
+                        <span>Standar Layer 3 - Beta</span>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-info" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-danger" title="Hapus"><i class="ti ti-trash"></i></a><a href="#!" class="btn btn-icon btn-xs btn-success" title="Tambah sub standar"><i class="ti ti-plus"></i></a><a href="#!" class="btn btn-icon btn-xs btn-primary" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-beta2 g-beta3">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <span>Standar Layer 4 - Beta 1</span>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                  <tr class="collapse show g-layer1 g-beta2 g-beta3">
+                    <td>
+                      <div class="d-flex align-items-start gap-2 tree-lvl-4">
+                        <i class="ti ti-letter-a text-secondary"></i>
+                        <span>Standar Layer 4 - Beta 2</span>
+                      </div>
+                    </td>
+                    <td class="text-center"><div class="d-flex flex-column align-items-center gap-2"><span class="text-secondary small">1 Indikator</span><span class="badge badge-violet">Mutlak IPs</span></div></td>
+                    <td><div class="d-flex gap-1"><a href="#!" class="btn btn-icon btn-xs btn-warning" title="Ubah"><i class="ti ti-pencil"></i></a><a href="#!" class="btn btn-icon btn-xs btn-info" title="Kelola indikator"><i class="ti ti-list-check"></i></a></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- footer -->
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 py-4 small text-secondary">
+                <div>&copy; 2021 PT. Solusi Kampus Indonesia</div>
+                <div>version 3.1.7.0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.custom-container -->
+      </div>
+      <!-- /#content -->
+    </div>
+    <!-- /.wrapper -->
+
+    <!-- Libs JS -->
+    <script src="../dist/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../dist/assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+    <!-- Theme JS -->
+    <script src="../dist/assets/js/theme.min.js"></script>
+    <script src="../dist/assets/js/vendors/sidebarnav.js"></script>
+
+    <script>
+      // eSPMI - tree "Daftar Standar Mutu" (collapse per level + Collapse all)
+      (function () {
+        var toggles = Array.prototype.slice.call(document.querySelectorAll('.tree-toggle'));
+        if (!toggles.length) return;
+
+        var collapseAllBtn = document.getElementById('collapseAll');
+        var levelOne = ['g-pendidikan', 'g-proses', 'g-penelitian', 'g-level52', 'g-mutuv1', 'g-layer1'];
+
+        // Sinkronkan caret (aria-expanded) dengan kondisi elemen yang ditargetkan,
+        // supaya ikon tetap benar walau perubahan dilakukan lewat Collapse all.
+        function sync() {
+          toggles.forEach(function (toggle) {
+            var selector = toggle.getAttribute('data-bs-target');
+            if (!selector) return;
+            var shown = Array.prototype.some.call(document.querySelectorAll(selector), function (element) {
+              return element.classList.contains('show');
+            });
+            toggle.setAttribute('aria-expanded', shown ? 'true' : 'false');
+          });
+        }
+
+        document.querySelectorAll('.collapse').forEach(function (element) {
+          element.addEventListener('shown.bs.collapse', sync);
+          element.addEventListener('hidden.bs.collapse', sync);
+        });
+
+        function setCollapse(selector, isShown) {
+          document.querySelectorAll(selector).forEach(function (element) {
+            var collapse = bootstrap.Collapse.getOrCreateInstance(element, { toggle: false });
+            isShown ? collapse.show() : collapse.hide();
+          });
+        }
+
+        if (collapseAllBtn) {
+          collapseAllBtn.addEventListener('click', function () {
+            var expanded = document.querySelectorAll('.collapse.show').length > 0;
+            if (expanded) {
+              // semua node ditutup
+              setCollapse('.collapse.show', false);
+            } else {
+              // kalau sudah tertutup semua, buka kembali level 1 saja
+              levelOne.forEach(function (group) {
+                setCollapse('.' + group, true);
+              });
+            }
+            sync();
+            window.setTimeout(sync, 400);
+          });
+        }
+
+        sync();
+      })();
+    </script>
+  </body>
+</html>
