@@ -79,6 +79,97 @@ html.collapsed #miniSidebar {
   border-bottom-style: solid;
 }
 
+/* a. Kolom tetap (sticky) untuk tabel lebar - dipakai lewat kelas
+   `.table-sticky` pada <table> (bagian 8.2 design-rules.md).
+
+   Kolom ke-1 (No) dan ke-2 menempel di kiri, kolom terakhir (Aksi) menempel
+   di kanan, sehingga identitas baris + tombol aksi tetap terlihat saat tabel
+   di-scroll horizontal di dalam `.table-responsive`.
+
+   Catatan penting:
+   - theme mewarnai sel dari `--ds-table-bg` (default: transparent) + menimpa
+     baris hover lewat `box-shadow: inset 0 0 0 9999px var(--ds-table-bg-state,
+     var(--ds-table-bg-type, var(--ds-table-accent-bg)))`. Sel sticky WAJIB
+     opaque, jadi variabelnya di-set ke `--ds-card-bg` (putih di light mode,
+     #1c252e di dark mode). Hover tetap bekerja karena box-shadow bawaan theme
+     digambar di atas background sel.
+   - header TIDAK memakai `--ds-card-bg`: theme mewarnai header dari
+     `.table thead { background-color: var(--ds-gray-100) }`, jadi sel sticky
+     di <thead> memakai variabel yang sama supaya warnanya sama persis dengan
+     kolom header lain (light #f9fafb, dark #141a21).
+   - `left` kolom ke-2 = lebar kolom No (4.5rem, lihat §8.2 design-rules) dan
+     dapat di-override per halaman lewat `--espmi-table-sticky-left`. Pada
+     `table-layout: auto`, lebar kolom diambil dari lebar min-content isinya
+     (kolom `text-nowrap`), sehingga lebar kolom No bisa lebih kecil dari
+     offset dan menyisakan celah antar dua kolom sticky. Celah itu tampil
+     sebagai garis putih di header dan pada baris hover, jadi wajib ditutup
+     penutup celah pada poin d; lebar kolom No dikunci pada poin c. */
+.table-sticky > :not(caption) > * > *:nth-child(-n + 2),
+.table-sticky > :not(caption) > * > *:last-child {
+  position: sticky;
+  z-index: 2;
+  --ds-table-bg: var(--ds-card-bg);
+}
+
+/* b. Header sticky - pakai latar yang sama dengan thead theme. */
+.table-sticky > thead > tr > *:nth-child(-n + 2),
+.table-sticky > thead > tr > *:last-child {
+  --ds-table-bg: var(--ds-gray-100);
+}
+
+/* c. Kolom No - lebar dikunci = offset kolom ke-2. */
+.table-sticky > :not(caption) > * > *:nth-child(1) {
+  left: 0;
+  width: var(--espmi-table-sticky-left, 4.5rem);
+  min-width: var(--espmi-table-sticky-left, 4.5rem);
+}
+
+.table-sticky > :not(caption) > * > *:nth-child(2) {
+  left: var(--espmi-table-sticky-left, 4.5rem);
+}
+
+.table-sticky > :not(caption) > * > *:last-child {
+  right: 0;
+}
+
+/* d. Penutup celah antar dua kolom sticky kiri - blok warna selebar offset
+   kolom ke-2 di tepi kanan kolom No. Hanya terlihat bila lebar kolom No <
+   offset (mis. saat lebar min-content lebih kecil dari 4.5rem pada browser
+   yang mengabaikan `min-width` sel). Kolom ke-2 (urutan DOM setelahnya,
+   z-index sama) dilukis di atasnya, jadi tidak ada isi kolom yang tertutup.
+   Warnanya memakai rantai variabel yang sama dengan background sel theme
+   (state -> type -> bg), sehingga otomatis ikut header / baris normal / hover. */
+.table-sticky > :not(caption) > * > *:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: var(--espmi-table-sticky-left, 4.5rem);
+  background-color: var(--ds-table-bg-state, var(--ds-table-bg-type, var(--ds-table-bg)));
+}
+
+/* Garis penanda batas kolom tetap (1px) di tepi kanan blok kiri dan tepi kiri
+   kolom Aksi. Pseudo-element absolute diposisikan terhadap sel, dan sel sticky
+   sudah menjadi containing block (position: sticky). */
+.table-sticky > :not(caption) > * > *:nth-child(2)::after,
+.table-sticky > :not(caption) > * > *:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--ds-border-color);
+}
+
+.table-sticky > :not(caption) > * > *:nth-child(2)::after {
+  right: 0;
+}
+
+.table-sticky > :not(caption) > * > *:last-child::after {
+  left: 0;
+}
+
 /* --------------------------------------------------------------------------
    6. Tree "Daftar Standar Mutu" (halaman penetapan-daftar-standar-mutu.html)
    a. .tree-toggle  : caret yang berputar mengikuti aria-expanded (Bootstrap
@@ -118,5 +209,217 @@ html.collapsed #miniSidebar {
 .badge-violet {
   background-color: #7c5cff;
   color: #fff;
+}
+
+/* badge-violet versi subtle (light mode + dark mode).
+   Dipakai untuk badge STATUS di datatable, mengikuti standar
+   "status memakai badge subtle". Violet tidak ada di palet theme, jadi
+   warning/subtle-nya dibuat khusus di sini. */
+.badge-violet-subtle {
+  background-color: #ede9ff;
+  color: #5b3fd6;
+}
+
+[data-bs-theme='dark'] .badge-violet-subtle {
+  background-color: #2f2657;
+  color: #c3b6ff;
+}
+
+/* --------------------------------------------------------------------------
+   7. Card gradient (bg-gradient-info / success / warning / danger)
+   Mengganti gradient bawaan theme (gradasi putih lembut) dengan gradient
+   warna solid eSPMI, HANYA pada light mode.
+
+   Sumber theme: utilities/_background.scss
+     .bg-gradient-info { background: linear-gradient(320deg, rgba(...) 0%, var(--ds-white) 70%) }
+   Theme tidak punya override khusus dark mode untuk class ini; dark mode hanya
+   mengandalkan remap --ds-white (light #fff / dark #1c252e).
+
+   Karena itu scope ditulis `html:not([data-bs-theme='dark'])` (bukan
+   `[data-bs-theme='light']`) supaya:
+     - light mode        -> memakai gradient eSPMI di bawah;
+     - dark mode         -> TIDAK terpengaruh, tetap gradient bawaan theme;
+     - sebelum/ketika attribute belum ter-set (mis. JS belum jalan) -> tetap
+       memakai gradient eSPMI.
+   Specificity (0,2,1) > theme (0,1,0) dan file dimuat setelah theme.min.css.
+   -------------------------------------------------------------------------- */
+html:not([data-bs-theme='dark']) .bg-gradient-info {
+  background: linear-gradient(140deg, rgba(110, 168, 254, 1) 0%, rgba(10, 88, 202, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-success {
+  background: linear-gradient(140deg, rgba(121, 223, 193, 1) 0%, rgba(26, 161, 121, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-warning {
+  background: linear-gradient(140deg, rgba(254, 178, 114, 1) 0%, rgba(202, 101, 16, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-danger {
+  background: linear-gradient(140deg, rgba(252, 120, 127, 1) 0%, rgba(226, 33, 59, 1) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   8. Grid widget Beranda yang dapat dikostumasi (dashboard.html)
+   Kartu statistik + kartu chart disusun dalam SATU grid 4 kolom
+   (`#dashboardWidgetGrid`); setiap widget adalah `.dashboard-widget-col`
+   yang lebar tampilannya diatur lewat atribut `data-span` (1-4).
+
+   a. `.dashboard-widget-handle` / `.dashboard-widget-toolbar` /
+      `.dashboard-widget-remove`
+      Hanya muncul saat mode kostumasi. Secara default memakai `display: none`
+      + `!important` agar tidak perlu mengalahkan utility theme
+      (`d-flex`, `justify-content-between`, dst.) yang tetap terpasang di
+      markup saat mode non-aktif.
+   b. Kartu gradien (kartu KPI) memakai teks putih, sehingga toolbar-nya
+      memakai angka opacity putih (bukan utility `text-*`) supaya tetap
+      terbaca di light mode. Di dark mode gradient bawaan theme sudah gelap,
+      jadi putih tetap sesuai.
+   c. `.gu-mirror` = elemen "kembaran" yang mengikuti kursor saat drag.
+      `pointer-events: none` wajib supaya dragula selalu membaca elemen di
+      bawah kursor (termasuk saat kursor keluar dari elemen target).
+      `.gu-transit` = elemen asli yang ditinggal; dragula otomatis memberi
+      `opacity: .2`, jadi tidak perlu ditimpa lagi.
+   d. `.dashboard-widget-hidden` = kartu chart yang "dihapus" pengguna.
+      Kartu tidak di-`remove()` dari DOM (urutan tetap terjaga saat
+      dipulihkan lewat panel Kartu Tersembunyi atau tombol Reset).
+   e. Widget terkunci (`data-locked="true"`, mis. panel filter kartu chart)
+      tidak diberi outline & tidak punya pegangan, sehingga terlihat jelas
+      bahwa ia tidak dapat digeser.
+   -------------------------------------------------------------------------- */
+.dashboard-widget-handle,
+.dashboard-widget-toolbar,
+.dashboard-widget-remove {
+  display: none !important;
+}
+
+body.dashboard-customizing .dashboard-widget-handle,
+body.dashboard-customizing .dashboard-widget-remove {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: -0.25rem 0 0 0.25rem;
+  color: var(--ds-gray-500);
+}
+
+body.dashboard-customizing .dashboard-widget-handle {
+  cursor: grab;
+  touch-action: none;
+}
+
+/* Tombol hapus kartu chart: hanya muncul di mode kostumasi */
+body.dashboard-customizing .dashboard-widget-remove {
+  cursor: pointer;
+}
+
+body.dashboard-customizing .dashboard-widget-toolbar {
+  display: flex !important;
+}
+
+/* Pegangan pada kartu KPI bergradasi memakai warna putih transparan */
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-handle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-remove {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dashboard-widget-handle:active {
+  cursor: grabbing;
+}
+
+.dashboard-widget-remove:hover {
+  color: var(--ds-danger) !important;
+}
+
+/* Kartu chart yang disembunyikan pengguna (mode kostumasi -> tombol hapus).
+   Kartu tidak dihapus dari DOM agar urutannya tetap terjaga saat dipulihkan,
+   baik lewat chip di panel "Kartu Tersembunyi" maupun tombol Reset. */
+.dashboard-widget-hidden {
+  display: none !important;
+}
+
+/* Kartu gradien: tombol pilih lebar memakai putih transparan dengan teks gelap.
+   `.btn-white` theme mewarnai teks dari `--ds-white` (= #1c252e di dark mode),
+   sehingga pada kartu gradien gelap teksnya tetap kontras. */
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-toolbar .btn-white {
+  --ds-btn-color: #1c252e;
+  opacity: 0.85;
+}
+
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-toolbar .btn-white.active {
+  --ds-btn-color: #1c252e;
+  opacity: 1;
+}
+
+/* b. Outline kartu saat mode kostumasi (batas area drag).
+   Hanya kartu yang DAPAT digeser yang diberi outline; widget terkunci
+   (`data-locked="true"`, mis. panel filter) dibiarkan bersih sebagai penanda. */
+body.dashboard-customizing .dashboard-widget-col:not([data-locked='true']) .dashboard-widget {
+  outline: 2px dashed var(--ds-gray-400);
+  outline-offset: 2px;
+}
+
+html:not([data-bs-theme='dark']) body.dashboard-customizing .dashboard-widget-col:not([data-locked='true']) .dashboard-widget--gradient {
+  outline-color: rgba(255, 255, 255, 0.6);
+}
+
+/* c. Mirror & transit dragula */
+.gu-mirror {
+  pointer-events: none;
+  border-radius: 1rem;
+  z-index: 1200;
+}
+
+.gu-transit {
+  visibility: hidden;
+}
+
+/* Khusus area chart pada kartu KPI: tinggi minimum agar sparkline tetap
+   terlihat saat kartu masih dimuat atau grafik di-render ulang. */
+.dashboard-widget-chart {
+  min-height: 3.5rem;
+}
+
+/* Tombol bantu mode kostumasi (Reset) memakai tombol putih theme. */
+body.dashboard-customizing #btnResetDashboard {
+  display: inline-flex !important;
+}
+
+/* Petunjuk mode kostumasi (alert alert-info) hanya tampil saat mode aktif.
+   `display: none !important` wajib karena elemen tetap memakai utility
+   `d-flex` dari theme agar ikon sejajar saat ditampilkan. */
+body:not(.dashboard-customizing) .dashboard-customizing-only {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Toolbar datatable (card list di halaman daftar data)
+   Standar (lihat bagian 7, 9 & 16.5 design-rules.md):
+     - input pencarian SELALU 200px, tanpa inline style di HTML
+     - bila datatable punya filter, filter dipindah ke baris kedua
+       (Bootstrap collapse) dan dipicu tombol `.datatable-filter-toggle`.
+   -------------------------------------------------------------------------- */
+
+/* a. Lebar baku input pencarian List.js. Didefinisikan sekali di sini supaya
+   tidak perlu inline style `max-width` pada setiap halaman. */
+.listjs-search {
+  width: 200px;
+}
+
+/* b. Tombol pemicu baris filter: tampak "tertekan" ketika baris filter terbuka
+   (aria-expanded di-update otomatis oleh Bootstrap collapse).
+   Nilai langsung (bukan variabel --ds-btn-*) dipakai agar keadaan aktif tidak
+   tertimpa `.btn-white:hover`. Varian dark mode tetap ditulis karena
+   `[data-bs-theme=dark] .btn-white:hover` memiliki specificity lebih tinggi. */
+.datatable-filter-toggle[aria-expanded='true'] {
+  background-color: var(--ds-gray-100);
+  border-color: var(--ds-gray-200);
+}
+
+[data-bs-theme='dark'] .datatable-filter-toggle[aria-expanded='true'] {
+  background-color: var(--ds-gray-100);
+  border-color: var(--ds-gray-200);
 }
 
