@@ -1,0 +1,89 @@
+﻿FILE dashboard.html BOM=False CRLF=True bytes=125974
+FILE index.html BOM=False CRLF=True bytes=9172
+FILE manajemen-dokumen-jenis-dokumen.html BOM=False CRLF=True bytes=79143
+FILE manajemen-dokumen-kategori-dokumen.html BOM=False CRLF=True bytes=79329
+FILE manajemen-referensi-auditee-pusat.html BOM=False CRLF=True bytes=77491
+FILE manajemen-referensi-auditee.html BOM=False CRLF=True bytes=112516
+FILE manajemen-referensi-lembaga-akreditasi.html BOM=False CRLF=True bytes=95731
+FILE manajemen-referensi-manajemen-dokumen.html BOM=False CRLF=True bytes=86009
+FILE manajemen-referensi-master-standar-mutu.html BOM=False CRLF=True bytes=70309
+FILE manajemen-referensi-tahun-periode.html BOM=False CRLF=True bytes=82174
+FILE manajemen-referensi-unit-penunjang.html BOM=False CRLF=True bytes=76480
+FILE pelaksanaan-evaluasi-diri.html BOM=False CRLF=True bytes=81721
+FILE pelaksanaan-lihat-data-pendidikan-data-ipk.html BOM=False CRLF=True bytes=83290
+FILE pelaksanaan-pengaturan-periode.html BOM=False CRLF=True bytes=84516
+FILE pelaksanaan-target-nilai-mutu.html BOM=False CRLF=True bytes=81015
+FILE penetapan-daftar-standar-mutu.html BOM=False CRLF=True bytes=117678
+FILE penetapan-standar-mutu.html BOM=False CRLF=True bytes=83644
+--- dashboard profile 578-596 ---
+578:|................<div.class="dropdown">|
+579:|..................<a.class="d-flex.align-items-center.gap-2.text-inherit.dropdown-toggle".href="#!".role="button".data-bs-toggle="dropdown".aria-expanded="false">|
+580:|....................<img.src="../dist/assets/images/avatar/avatar-1.jpg".alt="".class="avatar.avatar-sm.rounded-circle"./>|
+581:|....................<span.class="d-none.d-md-block.fw-semibold">Administrator.Pusat</span>|
+582:|..................</a>|
+583:|..................<ul.class="dropdown-menu.dropdown-menu-end.shadow">|
+584:|....................<li>|
+585:|......................<a.class="dropdown-item".href="#!">Profil</a>|
+586:|....................</li>|
+587:|....................<li>|
+588:|......................<a.class="dropdown-item".href="#!">Pengaturan.Akun</a>|
+589:|....................</li>|
+590:|....................<li><hr.class="dropdown-divider"./></li>|
+591:|....................<li>|
+592:|......................<a.class="dropdown-item.text-danger".href="./index.html">Logout</a>|
+593:|....................</li>|
+594:|..................</ul>|
+595:|................</div>|
+596:|..............</li>|
+--- dashboard head 27-52 ---
+27:|....<!--.Color.modes.-->|
+28:|....<script.src="../dist/assets/js/vendors/color-modes.js"></script>|
+29:|....<script>|
+30:|......if.(localStorage.getItem('sidebarExpanded').===.'false').{|
+31:|........document.documentElement.classList.add('collapsed');|
+32:|........document.documentElement.classList.remove('expanded');|
+33:|......}.else.{|
+34:|........document.documentElement.classList.remove('collapsed');|
+35:|........document.documentElement.classList.add('expanded');|
+36:|......}|
+37:|....</script>|
+38:|....<!--.Libs.CSS.-->|
+39:|....<link.rel="preconnect".href="https://fonts.googleapis.com"./>|
+40:|....<link.rel="preconnect".href="https://fonts.gstatic.com".crossorigin./>|
+41:|....<link.rel="stylesheet".href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"./>|
+42:|....<link.rel="stylesheet".href="../dist/assets/libs/simplebar/dist/simplebar.min.css"./>|
+43:|....<link.rel="stylesheet".href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css"./>|
+44:|....<!--.drag.&.drop.grid.widget.Beranda.(hanya.dipakai.halaman.ini).-->|
+45:|....<link.rel="stylesheet".href="../dist/assets/libs/dragula/dist/dragula.min.css"./>|
+46:||
+47:|....<!--.Theme.CSS.-->|
+48:|....<link.rel="stylesheet".href="../dist/assets/css/theme.min.css"./>|
+49:||
+50:|....<!--.App.CSS.(override.tampilan.eSPMI:.background.content,.sidebar,.navbar.glass).-->|
+51:|....<link.rel="stylesheet".href="assets/css/espmi-app.css"./>|
+52:|..</head>|
+--- index head 27-50 ---
+27:|<!--.Color.modes.-->|
+28:|<script.src="../dist/assets/js/vendors/color-modes.js"></script>|
+29:|<script>|
+30:|..if.(localStorage.getItem('sidebarExpanded').===.'false').{|
+31:|....document.documentElement.classList.add('collapsed');|
+32:|....document.documentElement.classList.remove('expanded');|
+33:|..}.else.{|
+34:|....document.documentElement.classList.remove('collapsed');|
+35:|....document.documentElement.classList.add('expanded');|
+36:|..}|
+37:|</script>|
+38:|<!--.Libs.CSS.-->|
+39:|<link.rel="preconnect".href="https://fonts.googleapis.com"./>|
+40:|<link.rel="preconnect".href="https://fonts.gstatic.com".crossorigin./>|
+41:|<link.rel="stylesheet".href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"./>|
+42:|<link.rel="stylesheet".href="../dist/assets/libs/simplebar/dist/simplebar.min.css"./>|
+43:|<link.rel="stylesheet".href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css"./>|
+44:||
+45:|<!--.Theme.CSS.-->|
+46:|<link.rel="stylesheet".href="../dist/assets/css/theme.min.css">|
+47:||
+48:|<!--.App.CSS.(override.tampilan.eSPMI:.background.content,.sidebar,.navbar.glass).-->|
+49:|<link.rel="stylesheet".href="assets/css/espmi-app.css">|
+50:||

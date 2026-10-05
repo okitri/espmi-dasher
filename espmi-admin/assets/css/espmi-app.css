@@ -423,3 +423,212 @@ body:not(.dashboard-customizing) .dashboard-customizing-only {
   border-color: var(--ds-gray-200);
 }
 
+/* --------------------------------------------------------------------------
+   10. Sidebar - menu bertingkat (level 3, li.dropdown-submenu)
+   Theme mewarnai tautan level 3 lewat selector yang sangat spesifik
+   (`html.expanded #miniSidebar .dropdown-menu .dropdown-submenu
+   .dropdown-menu .nav-link { color: gray-600 }`), sehingga `.nav-link.active`
+   bawaan kalah specificity dan item aktif tidak tersorot. Rule di bawah
+   menyamai/melampaui specificity tersebut agar state aktif tetap terlihat
+   (sama seperti menu level 1 & 2), baik pada sidebar desktop maupun offcanvas.
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active,
+html.collapsed #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active {
+  color: var(--ds-primary-text-emphasis);
+  background-color: var(--ds-primary-bg-subtle);
+}
+
+/* ============================================================================
+   SIDEBAR LAYOUT FIX
+   - Chevron (::after) selalu menempel di pojok kanan
+   - Lebar label menu/submenu/sub-submenu konsisten (fixed)
+   - Label panjang dipotong dengan ellipsis (...)
+   Struktur HTML existing: <a.nav-link><span.nav-icon/><span.text/></a>
+   Chevron dihasilkan oleh pseudo-element ::after pada .dropdown-toggle.
+   ============================================================================ */
+
+/* --- Level 1: nav-link (menu utama) --- */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Label text: ambil sisa ruang, truncate bila panjang */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link > .text,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Icon: ukuran tetap, tidak menyusut */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link > .nav-icon,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link > .nav-icon {
+  flex: 0 0 auto;
+}
+
+/* Chevron: selalu di pojok kanan, tidak terdorong ke bawah */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link.dropdown-toggle::after,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* --- Level 2: submenu di dalam .dropdown-menu --- */
+html.expanded #miniSidebar .dropdown-menu .nav-link,
+.offcanvasNav .dropdown-menu .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: .125rem .5rem;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link > .text,
+.offcanvasNav .dropdown-menu .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link > .nav-icon,
+.offcanvasNav .dropdown-menu .nav-link > .nav-icon {
+  flex: 0 0 auto;
+  /* Hidden for level 2 items per requirement */
+  display: none !important;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link.dropdown-toggle::after,
+.offcanvasNav .dropdown-menu .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* --- Level 3: sub-submenu (dropdown-submenu > .dropdown-menu) --- */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0 .5rem;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .text,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .nav-icon,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .nav-icon {
+  flex: 0 0 auto;
+  /* Hidden for level 3 items per requirement */
+  display: none !important;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.dropdown-toggle::after,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* Force level-3 submenu visibility with proper display property */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu.show,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu.show {
+  display: block !important;
+}
+
+/* --- Collapsed mode (mini sidebar): sembunyikan chevron --- */
+html.collapsed #miniSidebar .nav-link.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Preferensi font sistem (halaman akun-preferensi.html)
+   Pilihan font disimpan di localStorage (key: `espmiFont`) dan diterapkan ke
+   seluruh halaman lewat atribut `data-espmi-font` pada <html>. Atribut ini
+   memetakan nilai ke variabel CSS `--ds-font-sans-serif`, yang kemudian dipakai
+   oleh `--ds-body-font-family` dan berbagai komponen theme. Dengan demikian,
+   teks di SELURUH halaman (termasuk sidebar, navbar, body) mengikuti pilihan.
+   Ikon Tabler memakai font-family `tabler-icons` tersendiri sehingga tidak
+   terpengaruh.
+   ========================================================================== */
+html[data-espmi-font='roboto'] {
+  --ds-font-sans-serif: 'Roboto', sans-serif;
+}
+
+html[data-espmi-font='google-sans'] {
+  --ds-font-sans-serif: 'Google Sans', 'Inter', sans-serif;
+}
+
+html[data-espmi-font='open-sans'] {
+  --ds-font-sans-serif: 'Open Sans', sans-serif;
+}
+
+html[data-espmi-font='inter'], html:not([data-espmi-font]) {
+  --ds-font-sans-serif: 'Inter', sans-serif;
+}
+
+/* Kartu pilihan font untuk halaman Preferensi — style hover & selected state */
+.font-option label.card {
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.font-option:hover label.card {
+  border-color: var(--ds-gray-400);
+}
+
+/* Radio disembunyikan (btn-check); label kartu menjadi penanda terpilih */
+.font-option .btn-check:checked + label.card {
+  border-color: var(--ds-primary) !important;
+  box-shadow: 0 0 0 0.15rem var(--ds-primary-bg-subtle);
+  background-color: var(--ds-primary-bg-subtle);
+}
+
+/* Ikon centang hanya muncul pada pilihan aktif */
+.font-option-check {
+  visibility: hidden;
+}
+
+.font-option .btn-check:checked + label.card .font-option-check {
+  visibility: visible;
+}
+
+/* Preview contoh teks pada kartu pilihan — memakai font-family masing-masing */
+.font-option-preview {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.font-option[data-font='inter'] .font-option-preview {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-option[data-font='roboto'] .font-option-preview {
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-option[data-font='google-sans'] .font-option-preview {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+}
+
+.font-option[data-font='open-sans'] .font-option-preview {
+  font-family: 'Open Sans', sans-serif;
+}
+

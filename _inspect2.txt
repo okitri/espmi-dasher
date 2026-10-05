@@ -1,0 +1,17 @@
+﻿dashboard.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+index.html profileHash=20-C8-1B len=8 cmIndent=0 cmFound=True
+manajemen-dokumen-jenis-dokumen.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-dokumen-kategori-dokumen.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-auditee.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-auditee-pusat.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-lembaga-akreditasi.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-manajemen-dokumen.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-master-standar-mutu.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-tahun-periode.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+manajemen-referensi-unit-penunjang.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+pelaksanaan-evaluasi-diri.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+pelaksanaan-lihat-data-pendidikan-data-ipk.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+pelaksanaan-pengaturan-periode.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+pelaksanaan-target-nilai-mutu.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+penetapan-daftar-standar-mutu.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True
+penetapan-standar-mutu.html profileHash=85-DA-04 len=553 cmIndent=4 cmFound=True

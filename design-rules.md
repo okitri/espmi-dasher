@@ -24,10 +24,17 @@ akhir** setelah `theme.min.css`.
 espmi-admin/
 ├── dashboard.html                            # Beranda
 ├── index.html                                # Halaman login
+├── akun-preferensi.html                       # Preferensi (font sistem)
 ├── manajemen-referensi-tahun-periode.html     # HALAMAN ACUAN (baseline)
 ├── penetapan-standar-mutu.html
 ├── penetapan-daftar-standar-mutu.html
 ├── pelaksanaan-pengaturan-periode.html
+├── pelaksanaan-target-nilai-mutu.html
+├── pelaksanaan-evaluasi-diri.html
+├── pelaksanaan-lihat-data-pendidikan-data-ipk.html
+├── pelaksanaan-lihat-data-pendidikan-data-do.html
+├── pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html
+├── pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html
 ├── manajemen-referensi-lembaga-akreditasi.html
 ├── manajemen-referensi-auditee-pusat.html
 ├── manajemen-referensi-auditee.html
@@ -93,6 +100,7 @@ Urutan tag pada `<head>` **tidak boleh diubah**:
 <title>{Nama Halaman} | eSPMI</title>
 <!-- favicon: blok standar (apple-icon / favicon-*.png) -->
 <script src="../dist/assets/js/vendors/color-modes.js"></script>
+<script src="../dist/assets/js/vendors/espmi-font.js"></script>
 <script>
   if (localStorage.getItem('sidebarExpanded') === 'false') {
     document.documentElement.classList.add('collapsed');
@@ -105,6 +113,9 @@ Urutan tag pada `<head>` **tidak boleh diubah**:
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" />
 <link rel="stylesheet" href="../dist/assets/libs/simplebar/dist/simplebar.min.css" />
 <link rel="stylesheet" href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css" />
 <link rel="stylesheet" href="../dist/assets/css/theme.min.css" />
@@ -114,6 +125,10 @@ Urutan tag pada `<head>` **tidak boleh diubah**:
 - `<title>`: `{Nama Halaman} | eSPMI`.
 - Skrip penentu posisi sidebar pada `documentElement` **wajib** ada (mencegah
   halaman "berkedip" saat sidebar di-collapse).
+- `espmi-font.js` dimuat **sebelum** blok penentu sidebar & CSS agar preferensi
+  font (bagian 11) diterapkan lebih dulu (mencegah *flash* font bawaan).
+- Empat `link` Google Fonts (Inter, Roboto, Google Sans, Open Sans) **wajib**
+  ada di setiap halaman agar pilihan font di halaman Preferensi langsung siap.
 - `theme.min.css` **selalu** dimuat sebelum `espmi-app.css`.
 
 ---
@@ -157,10 +172,67 @@ Struktur: `#miniSidebar` → `.brand-logo` → `ul.navbar-nav.flex-column` → i
 </div>
 ```
 
+### 4.1 Submenu bertingkat (level 3)
+
+Theme Dasher mendukung menu **tiga level** dengan pola `li.dropdown-submenu`. Toggle level 2 dan level 3 **tidak menampilkan ikon**, hanya level 1 yang memiliki SVG inline. Level 3 submenu ditampilkan saat toggle diklik, bukan hover seperti mode collapsed.
+
+Contoh grup **Lihat Data Pendidikan** di dalam submenu **Pelaksanaan**:
+
+```html
+<ul class="dropdown-menu flex-column">
+  <li class="nav-item">
+    <a class="nav-link" href="./pelaksanaan-pengaturan-periode.html">
+      <span class="nav-icon"><svg ...width="18" height="18"...></svg></span>
+      <span class="text">Pengaturan Periode</span>
+    </a>
+  </li>
+  <!-- grup bertingkat -->
+  <li class="nav-item dropdown-submenu">
+    <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="nav-icon"><svg ...width="18" height="18"...></svg></span>
+      <span class="text">Lihat Data Pendidikan</span>
+    </a>
+    <ul class="dropdown-menu flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="./pelaksanaan-lihat-data-pendidikan-data-ipk.html">
+          <span class="nav-icon"><svg ...width="18" height="18"...></svg></span>
+          <span class="text">Data IPK</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+```
+
+- Toggle grup bertingkat memakai `li.nav-item.dropdown-submenu` +
+  `a.nav-link.dropdown-toggle` + `ul.dropdown-menu.flex-column`.
+- **Ikon**: hanya menu **level 1** yang memakai ikon SVG. Level 2 dan level 3
+  **tanpa ikon** (span `.nav-icon` disembunyikan via CSS di `espmi-app.css`).
+  Atribut `width/height` tetap 20 (level 1) dan 18 (level 2 & 3) bila ikon
+  ditulis di markup, tetapi tidak ditampilkan.
+- Saat halaman di dalam grup dibuka, toggle level 3 diberi `active` +
+  `aria-expanded="true"` dan `ul.dropdown-menu`-nya diberi `show`.
+- **Sorotan item aktif level 3**: theme mewarnai tautan level 3 dengan selector
+  yang lebih spesifik, jadi override ada di `espmi-app.css` bagian 10 agar
+  `.active` tetap terlihat (desktop & offcanvas).
+- **Catatan bug theme & perbaikan `sidebarnav.js`**: submenu bertingkat
+  (level 3) sebelumnya tidak bisa dibuka karena (1) variabel tak terdefinisi
+  `isVisible` pada `classList.toggle('show', isVisible)`, dan (2) konflik
+  *double-toggle* antara handler Bootstrap `data-bs-toggle="dropdown"` dengan
+  handler kustom. Perbaikan di `src/assets/js/vendors/sidebarnav.js` **dan**
+  file build `dist/assets/js/vendors/sidebarnav.js`:
+  1. Menghapus `data-bs-toggle` dari toggle `.dropdown-submenu` secara dinamis
+     agar hanya handler kustom yang mengontrol submenu.
+  2. Men-toggle `show` secara eksplisit (`classList.toggle('show', !isOpen)`)
+     sekaligus menyinkronkan `aria-expanded`.
+  3. Memakai fase *capture* (`addEventListener(..., true)`) agar handler kustom
+     berjalan lebih dulu sebelum handler Bootstrap tingkat dokumen.
+
 Aturan:
 
 1. **Icon** memakai SVG inline Tabler *outline* — `width/height="20"` untuk menu
-   level 1, `18` untuk menu level 2. Kelas: `icon icon-tabler
+   level 1, `18` untuk level 2 & 3 (ditulis di markup tetapi disembunyikan lewat
+   CSS agar hanya level 1 yang menampilkan ikon). Kelas: `icon icon-tabler
    icons-tabler-outline icon-tabler-{nama}`. Jangan memakai `<i class="ti ...">`
    untuk icon menu sidebar.
 2. **Teks menu** selalu dibungkus `<span class="text">`. Judul menu berbahasa
@@ -169,22 +241,31 @@ Aturan:
    - Menu induk: tambahkan `active` pada `dropdown-toggle`, set
      `aria-expanded="true"`, dan tambahkan `show` pada `ul.dropdown-menu`.
    - Submenu aktif: tambahkan `active` pada `nav-link` anak.
+   - Grup bertingkat (level 3): tambahkan `active` pada `dropdown-toggle`
+     level 3, set `aria-expanded="true"`, dan tambahkan `show` pada
+     `ul.dropdown-menu` level 3 (lihat bagian 4.1).
 4. Urutan menu mengikuti informasi arsitektur aplikasi (Beranda → Manajemen
    Referensi → Manajemen Dokumen → Penetapan → Pelaksanaan → …).
 5. Perubahan sidebar **wajib diterapkan pada versi desktop dan offcanvas**.
-6. **Submenu Pelaksanaan** (dropdown, ikon `icon-tabler-clipboard-list`):
+6. **Submenu Pelaksanaan** (dropdown level 1, ikon `icon-tabler-clipboard-list`):
 
-   | Urutan | Label | Ikon (level 2) | Halaman |
-   | --- | --- | --- | --- |
-   | 1 | Pengaturan Periode | `icon-tabler-calendar-cog` | `pelaksanaan-pengaturan-periode.html` |
-   | 2 | Target Nilai Mutu | `icon-tabler-target` | `#!` (belum ada halaman) |
-   | 3 | Evaluasi Diri | `icon-tabler-refresh` | `#!` (belum ada halaman) |
-   | 4-6 | Lihat Data Pendidikan / Penelitian / Pengabdian | `icon-tabler-corner-down-right` | `#!` (belum ada halaman) |
+   | Urutan | Label | Level | Ikon | Halaman |
+   | --- | --- | --- | --- | --- |
+   | 1 | Pengaturan Periode | 2 | — | `pelaksanaan-pengaturan-periode.html` |
+   | 2 | Target Nilai Mutu | 2 | — | `pelaksanaan-target-nilai-mutu.html` |
+   | 3 | Evaluasi Diri | 2 | — | `pelaksanaan-evaluasi-diri.html` |
+   | 4 | Lihat Data Pendidikan | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
+   | 4.1 | Data IPK | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-ipk.html` |
+   | 4.2 | Data DO | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-do.html` |
+   | 4.3 | Data Lulus Tepat | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html` |
+   | 4.4 | Data Tugas Akhir | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html` |
+   | 4.5 | Lihat Data Penelitian | 3 | — | `#!` (belum ada halaman) |
+   | 4.6 | Lihat Data Pengabdian | 3 | — | `#!` (belum ada halaman) |
 
-   - Item 2–6 adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
+   - Item 4.2–4.6 adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
      `href="#!"` menjadi path halaman begitu halamannya dibuat.
-   - Hanya mendukung **dua level** (menu induk + submenu) seperti pola di atas;
-     grup bertingkat (nested) belum dipakai di theme ini.
+   - Grup **Lihat Data Pendidikan** memakai pola **bertingkat (level 3)** —
+     lihat bagian 4.1.
 
 ---
 
@@ -215,6 +296,44 @@ Navbar berada di dalam `#content` (di atas `custom-container`), bukan `fixed`.
   notifikasi → user (`Administrator Pusat`).
 - Toggle tema memakai ikon Tabler `<i class="ti ti-...">` dengan
   `data-bs-theme-value="light|dark|auto"`.
+
+### 5.1 Dropdown Profile Menu (User)
+
+Dropdown user (`Administrator Pusat`) memakai **ikon Tabler di setiap item**
+(format `dropdown-item d-flex align-items-center` + ikon + `<span class="ms-2">`):
+
+```html
+<ul class="dropdown-menu dropdown-menu-end shadow">
+  <li>
+    <a class="dropdown-item d-flex align-items-center" href="#!"><i class="ti ti-user"></i><span class="ms-2">Profil</span></a>
+  </li>
+  <li>
+    <a class="dropdown-item d-flex align-items-center" href="./akun-preferensi.html"><i class="ti ti-typography"></i><span class="ms-2">Preferensi</span></a>
+  </li>
+  <li>
+    <a class="dropdown-item d-flex align-items-center" href="#!"><i class="ti ti-user-cog"></i><span class="ms-2">Pengaturan Akun</span></a>
+  </li>
+  <li><hr class="dropdown-divider" /></li>
+  <li>
+    <a class="dropdown-item d-flex align-items-center text-danger" href="./index.html"><i class="ti ti-logout"></i><span class="ms-2">Logout</span></a>
+  </li>
+</ul>
+```
+
+| Urutan | Label | Ikon | Halaman |
+| --- | --- | --- | --- |
+| 1 | Profil | `ti-user` | `#!` |
+| 2 | Preferensi | `ti-typography` | `akun-preferensi.html` |
+| 3 | Pengaturan Akun | `ti-user-cog` | `#!` |
+| — | *(divider)* | — | — |
+| 4 | Logout | `ti-logout` | `index.html` |
+
+- Urutan wajib: **Profil → Preferensi → Pengaturan Akun → Logout** (Preferensi
+  berada **di atas** Pengaturan Akun).
+- Semua item memakai ikon Tabler webfont `<i class="ti ti-{nama}"></i>`; item
+  Logout berwarna `text-danger`.
+- Blok ini **identik** di semua halaman (desktop & offcanvas memakai navbar yang
+  sama).
 
 ---
 
@@ -247,8 +366,11 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
 
 - Judul halaman memakai `<h1 class="mb-3 h2">` (semantik `h1`, ukuran visual `h2`)
   dan **diawali ikon** yang sama dengan ikon menu sidebar halaman tersebut
-  (lihat bagian 16.1). Contoh:
-  `<h1 class="mb-3 h2"><i class="ti ti-calendar-event"></i> Tahun Periode</h1>`.
+  (menu level 2/3 memakai ikon induk level 1 — lihat bagian 16.1). Contoh:
+  `<h1 class="mb-3 h2"><i class="ti ti-folders"></i> Tahun Periode</h1>`.
+- **Posisi breadcrumb**: di **bawah judul** dan tetap di **kolom kiri** —
+  dibungkus satu `<div>` bersama `<h1>` (lihat contoh di atas). Breadcrumb
+  **tidak boleh** diletakkan di sisi kanan header.
 - Breadcrumb selalu diawali `Beranda`. Item terakhir memakai `active` +
   `aria-current="page"`.
 - Tombol aksi utama (mis. **Tambah**) memakai `btn-dark` dengan ikon
@@ -503,7 +625,10 @@ horizontal, yaitu:
 Halaman yang **sudah** memakainya: `manajemen-referensi-manajemen-dokumen.html`,
 `manajemen-referensi-auditee.html`, `manajemen-referensi-unit-penunjang.html`,
 `manajemen-referensi-lembaga-akreditasi.html`, `penetapan-standar-mutu.html`,
-`pelaksanaan-pengaturan-periode.html`.
+`pelaksanaan-pengaturan-periode.html`,
+`pelaksanaan-lihat-data-pendidikan-data-do.html`,
+`pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
+`pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`.
 
 **Tidak dipakai** pada tabel 3 kolom (No + 1 kolom data + Aksi) atau tabel 4
 kolom yang selalu muat — pada tabel seperti itu hampir semua kolom menjadi
@@ -670,6 +795,8 @@ Urutan pemuatan script:
     menggantikan inline `style="max-width: 22rem"` (bagian 7).
   - `.datatable-filter-toggle[aria-expanded='true']` — keadaan "tertekan" tombol
     Filter saat baris filter terbuka (bagian 7 & 9).
+  - `html[data-espmi-font='...']` + `.font-option*` — preferensi font sistem &
+    kartu pilihan font (bagian 11 & 20).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
   untuk toolbar datatable), bukan sebagai inline style di HTML.
 - Override gradasi bertema (warna palet aplikasi) **hanya** ditulis untuk light
@@ -728,6 +855,11 @@ Urutan pemuatan script:
 19. Uji mode kostumasi: drag urutan, ubah lebar 1–4, hapus kartu chart,
     pulihkan lewat chip/Tampilkan Semua, dan **Reset** — lalu muat ulang halaman
     untuk memastikan layout tersimpan.
+20. Untuk halaman **non-datatable** (mis. `akun-preferensi.html`), lewati langkah
+    tabel/toolbar List.js; tetap penuhi kerangka halaman (bagian 2), `<head>`
+    (bagian 3), page header berikon (bagian 6), petunjuk `alert alert-info`
+    (bagian 16.4), dan footer (bagian 11). Bila menambah preferensi baru, ikuti
+    kontrak di bagian 20.
 
 ---
 
@@ -740,26 +872,47 @@ Lima aturan berikut berlaku untuk **semua halaman** eSPMI dan wajib dipatuhi.
 Setiap judul halaman (`<h1>`) **wajib** diawali ikon Tabler webfont yang **sama**
 dengan ikon menu sidebar halaman tersebut.
 
+**Aturan ikon menurut level menu:**
+
+- **Menu level 1** (item utama sidebar) → judul memakai ikon menu itu sendiri
+  (ikon yang tampil di sidebar).
+- **Submenu (level 2) dan sub-submenu (level 3)** → karena ikon level 2/3
+  disembunyikan (bagian 4), judul memakai **ikon menu induk level 1**-nya.
+
 ```html
-<h1 class="mb-3 h2"><i class="ti ti-calendar-event"></i> Tahun Periode</h1>
+<!-- level 1 : ikon sendiri -->
+<h1 class="mb-3 h2"><i class="ti ti-home"></i> Beranda</h1>
+
+<!-- level 2/3 : ikon induk level 1 -->
+<h1 class="mb-3 h2"><i class="ti ti-folders"></i> Tahun Periode</h1>
 ```
 
-| Halaman | Ikon sidebar (SVG) | Ikon judul (`<h1>`) |
+| Halaman | Level | Ikon judul (`<h1>`) |
 | --- | --- | --- |
-| Beranda (`dashboard.html`) | `icon-tabler-home` | `<i class="ti ti-home"></i>` |
-| Manajemen Referensi › Tahun Periode | `icon-tabler-calendar-event` | `<i class="ti ti-calendar-event"></i>` |
-| Manajemen Referensi › Lembaga Akreditasi | `icon-tabler-star` | `<i class="ti ti-star"></i>` |
-| Manajemen Referensi › Auditee Pusat | `icon-tabler-building` | `<i class="ti ti-building"></i>` |
-| Manajemen Referensi › Auditee | `icon-tabler-user` | `<i class="ti ti-user"></i>` |
-| Manajemen Referensi › Unit Penunjang | `icon-tabler-list-details` | `<i class="ti ti-list-details"></i>` |
-| Manajemen Referensi › Master Standar Mutu | `icon-tabler-versions` | `<i class="ti ti-versions"></i>` |
-| Manajemen Dokumen › Kategori Dokumen | `icon-tabler-category` | `<i class="ti ti-category"></i>` |
-| Manajemen Dokumen › Jenis Dokumen | `icon-tabler-file-description` | `<i class="ti ti-file-description"></i>` |
-| Manajemen Dokumen › Manajemen Dokumen | `icon-tabler-files` | `<i class="ti ti-files"></i>` |
-| Penetapan › Standar Mutu | `icon-tabler-ruler-measure` | `<i class="ti ti-ruler-measure"></i>` |
-| Pelaksanaan › Pengaturan Periode | `icon-tabler-calendar-cog` | `<i class="ti ti-calendar-cog"></i>` |
-| Penetapan › Daftar Standar Mutu | `icon-tabler-list-details` | `<i class="ti ti-list-details"></i>` |
+| Beranda (`dashboard.html`) | 1 | `<i class="ti ti-home"></i>` |
+| Manajemen Referensi › Tahun Periode | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Referensi › Lembaga Akreditasi | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Referensi › Auditee Pusat | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Referensi › Auditee | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Referensi › Unit Penunjang | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Referensi › Master Standar Mutu | 2 | `<i class="ti ti-folders"></i>` |
+| Manajemen Dokumen › Kategori Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
+| Manajemen Dokumen › Jenis Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
+| Manajemen Dokumen › Manajemen Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
+| Penetapan › Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
+| Penetapan › Daftar Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
+| Pelaksanaan › Pengaturan Periode | 2 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Target Nilai Mutu | 2 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Evaluasi Diri | 2 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pendidikan › Data IPK | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pendidikan › Data DO | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pendidikan › Data Lulus Tepat | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pendidikan › Data Tugas Akhir | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Preferensi (`akun-preferensi.html`) | — *(menu profile dropdown)* | `<i class="ti ti-typography"></i>` |
 
+- Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
+  Manajemen Dokumen = `ti-file-text`, Penetapan = `ti-clipboard-check`,
+  Pelaksanaan = `ti-clipboard-list`.
 - Nama ikon = nama ikon sidebar **tanpa** prefix `icon-tabler-`.
 - **Semua** halaman wajib punya judul berikon, termasuk Beranda: `dashboard.html`
   memakai `<h1 class="mb-3 h2"><i class="ti ti-home"></i> Beranda</h1>` dengan
@@ -914,6 +1067,13 @@ Tiga aturan wajib untuk **setiap card datatable**:
 - Jangan memakai varian tombol **solid** (`btn-info`, `btn-danger`,
   `btn-success`, `btn-primary`) untuk aksi di dalam tabel; pakai varian **soft**
   `btn-subtle-*` (lihat bagian 8.1 & 9).
+- Jangan menghapus `espmi-font.js` atau salah satu dari empat `link` Google Fonts
+  dari `<head>` — preferensi font (bagian 20) akan gagal diterapkan.
+- Jangan memuat `espmi-font.js` di akhir `<body>`; ia **wajib** di `<head>`
+  sebelum CSS agar font tidak berkedip (bagian 3 & 20).
+- Jangan menambah item menu di dropdown Profile Menu tanpa ikon Tabler dan
+  tanpa mengikuti urutan **Profil → Preferensi → Pengaturan Akun → Logout**
+  (bagian 5.1).
 
 ---
 
@@ -1151,5 +1311,123 @@ Perilaku:
    berasal dari `data-widget-title`.
 8. Panel filter kartu chart **tetap selalu tampil** meski seluruh kartu chart dihapus;
    panel itu tidak ikut disembunyikan otomatis.
+
+---
+
+## 19. Halaman "Lihat Data" (laporan pendidikan)
+
+Halaman `pelaksanaan-lihat-data-pendidikan-data-ipk.html` (Data IPK) adalah
+acuan pola **halaman laporan** di dalam grup **Lihat Data Pendidikan**.
+Struktur konten, berurutan:
+
+1. **Page header** — `h1.h2` dengan ikon Tabler webfont `<i class="ti ...">`
+   (ikon sama dengan menu sidebar level 3, mis. `ti-award`); di sisi kanan
+   breadcrumb `Beranda` → `List Data`.
+2. **Tab navigasi** — `ul.nav.nav-pills` dengan `data-bs-toggle="pill"`
+   (mis. *Monitoring IPK / Evaluasi IPK / Evaluasi Masa Studi*), diikuti
+   `div.tab-content` berisi `div.tab-pane`.
+3. **Tabel data** — mengikuti **pola datatable baku (bagian 7 & 16.5)**:
+   satu `div.card.card-lg` berisi **toolbar → baris filter (collapse) →
+   tabel → footer pagination**. Toolbar memakai
+   `justify-content-md-between`: **kiri** = input pencarian
+   (`form-control listjs-search`) + tombol **Filter**
+   (`btn btn-white datatable-filter-toggle`); **kanan** = selector
+   **Per page**. Filter (Tahun Lulus, Auditee) **tidak** lagi diletakkan di
+   card terpisah, melainkan di dalam `<div class="collapse" id="{idFilters}">`
+   tepat setelah baris toolbar, dibuka oleh tombol Filter. Kolom: No, NIM,
+   Nama Lulusan, IPK, Tahun Lulus, Lama Studi, Prodi; selaraskan `class` sel
+   dengan `data-sort` pada `listjs-sorter`.
+4. **Statistik** — `h4` "Statistik" + `table` ringkas (Minimum / Maksimum /
+   Rata-rata) tanpa `table-bordered` (bagian 16.3).
+6. **Grafik** — `div.card.card-lg` dengan `card-header` "Grafik Statistik IPK"
+   dan `div#ipkStatChart` di dalam `card-body`. Chart ApexCharts (bar
+   berkelompok) diinisialisasi di IIFE akhir `<body>` dengan **guard
+   visibilitas** `offsetParent !== null` (bagian 18.4) dan dirender ulang pada
+   event `shown.bs.tab`.
+
+Catatan:
+
+- Karena halaman ini hanya **menampilkan** data (read-only), kolom **Aksi
+  tidak ditampilkan** — ini pengecualian terhadap aturan "setiap datatable
+  wajib punya kolom Aksi" (bagian 8.1/16.2).
+- ApexCharts dimuat di halaman ini:
+  `<script src="../dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>`.
+- Filter antar-tab (Evaluasi IPK / Evaluasi Masa Studi) masih berupa
+  `alert alert-info` placeholder sampai datanya tersedia.
+
+---
+
+## 20. Halaman Preferensi (Font Sistem)
+
+Halaman `akun-preferensi.html` dibuka dari **dropdown Profile Menu → Preferensi**
+(bagian 5.1). Halaman ini mengatur preferensi pengguna yang berlaku **global** di
+seluruh halaman eSPMI. Saat ini berisi satu preferensi: **Font Sistem**.
+
+### 20.1 Kontrak Preferensi Font
+
+| Aspek | Ketentuan |
+| --- | --- |
+| Kunci `localStorage` | **`espmiFont`** |
+| Nilai | `inter` (default), `roboto`, `google-sans`, `open-sans` |
+| Penerapan | Atribut `data-espmi-font` pada `<html>`, di-set oleh `espmi-font.js` |
+| Skrip | `../dist/assets/js/vendors/espmi-font.js` (dimuat di `<head>`) |
+| Pemetaan CSS | `espmi-app.css` bagian 11 → `--ds-font-sans-serif` |
+| API global | `window.espmiFont` (`get()`, `set(key)`, `apply(key)`, `key`, `defaultFont`, `fonts`) |
+
+- `espmi-font.js` memetakan nilai tersimpan ke atribut `data-espmi-font` pada
+  `<html>` **segera saat dieksekusi** (sebelum body dirender) sehingga tidak
+  terjadi *flash* font bawaan.
+- CSS memetakan `html[data-espmi-font='...']` ke variabel `--ds-font-sans-serif`
+  yang dipakai `--ds-body-font-family`, sehingga **seluruh** teks halaman
+  (body, sidebar, navbar, tabel) ikut berubah. Ikon Tabler tidak terpengaruh
+  karena memakai `font-family: tabler-icons`.
+- Nilai tidak dikenal / belum di-set otomatis jatuh ke **Inter** (default).
+
+### 20.2 Struktur Halaman
+
+1. **Page header** — `h1.h2` berikon `<i class="ti ti-typography"></i>`,
+   breadcrumb `Beranda` → `Preferensi` (item aktif).
+2. **Card `card-lg`** berisi heading `Font Sistem` + deskripsi, lalu grid
+   pilihan font `row g-3` (4 opsi: `col-12 col-md-6 col-xl-3`).
+3. Setiap opsi memakai pola **Bootstrap `btn-check`**:
+
+   ```html
+   <div class="col-12 col-md-6 col-xl-3 font-option" data-font="roboto">
+     <input type="radio" class="btn-check" name="espmiFont" id="espmiFontRoboto" value="roboto" autocomplete="off" />
+     <label class="card card-lg h-100 mb-0" for="espmiFontRoboto">
+       <div class="card-body d-flex flex-column gap-3">
+         <div class="d-flex align-items-center justify-content-between gap-2">
+           <span class="fw-semibold">Roboto</span>
+           <i class="ti ti-circle-check-filled fs-4 text-primary font-option-check"></i>
+         </div>
+         <div class="font-option-preview text-body">Aa Bb Cc</div>
+         <p class="mb-0 small text-secondary">Roboto &mdash; font geometris yang netral.</p>
+       </div>
+     </label>
+   </div>
+   ```
+
+4. **Petunjuk** memakai `alert alert-info` (bagian 16.4).
+5. **Footer** standar (bagian 11).
+
+- Semua radio memakai `name="espmiFont"`; `value` = nilai yang sama dengan kunci
+  font di `espmi-font.js`.
+- Ikon centang (`.font-option-check`) **hanya tampil** saat kartu terpilih
+  (CSS: `.btn-check:checked + label.card`).
+- Preview `Aa Bb Cc` (`.font-option-preview`) dirender dengan font aslinya
+  masing-masing agar pengguna bisa membandingkan.
+- Skrip halaman (IIFE di akhir `<body>`) menyinkronkan radio tercentang dengan
+  `espmiFont.get()` lalu memanggil `espmiFont.set(value)` saat `change`.
+- Halaman ini **tidak** memiliki item sidebar aktif (bukan bagian menu sidebar);
+  sidebar dibiarkan dalam keadaan normal (tidak ada `active`/`show`).
+
+### 20.3 Kelas CSS Terkait (`espmi-app.css` bagian 11)
+
+| Kelas | Fungsi |
+| --- | --- |
+| `.font-option` | pembungkus satu pilihan (menyimpan `data-font`) |
+| `.font-option .btn-check:checked + label.card` | gaya kartu terpilih (border & latar primary) |
+| `.font-option-check` | ikon centang; `visibility: hidden` kecuali saat terpilih |
+| `.font-option-preview` | contoh teks "Aa Bb Cc" dengan font masing-masing |
 
 

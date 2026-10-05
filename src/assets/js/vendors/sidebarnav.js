@@ -21,25 +21,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Prevent submenu from closing the main dropdown
+  // Handle nested submenus (level 3): neutralize Bootstrap's data-bs-toggle
+  // to avoid double-toggle conflicts, then control visibility ourselves.
   const dropdownSubmenus = document.querySelectorAll('.dropdown-submenu');
   dropdownSubmenus.forEach((submenu) => {
-    submenu.addEventListener('click', (event) => {
-      const submenuDropdown = submenu.querySelector('.dropdown-menu');
+    const toggle = submenu.querySelector(':scope > .dropdown-toggle');
+    const submenuDropdown = submenu.querySelector(':scope > .dropdown-menu');
 
-      // Allow navigation for valid links
-      const targetLink = event.target.closest('a');
-      if (targetLink && targetLink.getAttribute('href') !== '#!') {
-        return; // Let the navigation proceed
-      }
+    if (!toggle || !submenuDropdown) {
+      return;
+    }
 
-      // Prevent closing the main dropdown
-      event.stopPropagation();
-      event.preventDefault();
+    // Remove Bootstrap's toggle so only this handler controls the submenu
+    toggle.removeAttribute('data-bs-toggle');
 
-      // Toggle the submenu visibility
-      submenuDropdown.classList.toggle('show', isVisible);
-    });
+    toggle.addEventListener(
+      'click',
+      (event) => {
+        const href = toggle.getAttribute('href');
+
+        // Allow navigation for valid links
+        if (href && href !== '#!') {
+          return; // Let the navigation proceed
+        }
+
+        // Control the nested submenu exclusively
+        event.stopPropagation();
+        event.preventDefault();
+
+        const isOpen = submenuDropdown.classList.contains('show');
+        submenuDropdown.classList.toggle('show', !isOpen);
+        toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      },
+      true // capture phase: run before any document-level (Bootstrap) handler
+    );
   });
 });
 
