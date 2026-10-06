@@ -82,9 +82,11 @@ html.collapsed #miniSidebar {
 /* a. Kolom tetap (sticky) untuk tabel lebar - dipakai lewat kelas
    `.table-sticky` pada <table> (bagian 8.2 design-rules.md).
 
-   Kolom ke-1 (No) dan ke-2 menempel di kiri, kolom terakhir (Aksi) menempel
-   di kanan, sehingga identitas baris + tombol aksi tetap terlihat saat tabel
-   di-scroll horizontal di dalam `.table-responsive`.
+   Kolom ke-1 (No) dan ke-2 menempel di kiri. Kolom **Aksi** (kolom terakhir
+   yang headernya ditandai `class="aksi"`) menempel di kanan; kolom data biasa
+   TIDAK menempel, sehingga tabel laporan tanpa kolom Aksi hanya menempelkan
+   dua kolom kiri. Dengan begitu identitas baris + tombol aksi tetap terlihat
+   saat tabel di-scroll horizontal di dalam `.table-responsive`.
 
    Catatan penting:
    - theme mewarnai sel dari `--ds-table-bg` (default: transparent) + menimpa
@@ -104,16 +106,14 @@ html.collapsed #miniSidebar {
      offset dan menyisakan celah antar dua kolom sticky. Celah itu tampil
      sebagai garis putih di header dan pada baris hover, jadi wajib ditutup
      penutup celah pada poin d; lebar kolom No dikunci pada poin c. */
-.table-sticky > :not(caption) > * > *:nth-child(-n + 2),
-.table-sticky > :not(caption) > * > *:last-child {
+.table-sticky > :not(caption) > * > *:nth-child(-n + 2) {
   position: sticky;
   z-index: 2;
   --ds-table-bg: var(--ds-card-bg);
 }
 
 /* b. Header sticky - pakai latar yang sama dengan thead theme. */
-.table-sticky > thead > tr > *:nth-child(-n + 2),
-.table-sticky > thead > tr > *:last-child {
+.table-sticky > thead > tr > *:nth-child(-n + 2) {
   --ds-table-bg: var(--ds-gray-100);
 }
 
@@ -126,10 +126,6 @@ html.collapsed #miniSidebar {
 
 .table-sticky > :not(caption) > * > *:nth-child(2) {
   left: var(--espmi-table-sticky-left, 4.5rem);
-}
-
-.table-sticky > :not(caption) > * > *:last-child {
-  right: 0;
 }
 
 /* d. Penutup celah antar dua kolom sticky kiri - blok warna selebar offset
@@ -152,22 +148,38 @@ html.collapsed #miniSidebar {
 /* Garis penanda batas kolom tetap (1px) di tepi kanan blok kiri dan tepi kiri
    kolom Aksi. Pseudo-element absolute diposisikan terhadap sel, dan sel sticky
    sudah menjadi containing block (position: sticky). */
-.table-sticky > :not(caption) > * > *:nth-child(2)::after,
-.table-sticky > :not(caption) > * > *:last-child::after {
+.table-sticky > :not(caption) > * > *:nth-child(2)::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
   width: 1px;
   background-color: var(--ds-border-color);
-}
-
-.table-sticky > :not(caption) > * > *:nth-child(2)::after {
   right: 0;
 }
 
-.table-sticky > :not(caption) > * > *:last-child::after {
+.table-sticky:has(> thead > tr > th:last-child.aksi) > :not(caption) > * > *:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--ds-border-color);
   left: 0;
+}
+
+/* e. Kolom Aksi (kanan) - HANYA bila header kolom terakhir ditandai `.aksi`.
+   Kolom data biasa pada tabel laporan tidak ikut menempel. Memakai :has();
+   bila tidak didukung, hanya dua kolom kiri yang menempel (degradasi aman). */
+.table-sticky:has(> thead > tr > th:last-child.aksi) > :not(caption) > * > *:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  --ds-table-bg: var(--ds-card-bg);
+}
+
+.table-sticky:has(> thead > tr > th:last-child.aksi) > thead > tr > *:last-child {
+  --ds-table-bg: var(--ds-gray-100);
 }
 
 /* --------------------------------------------------------------------------
@@ -260,7 +272,7 @@ html:not([data-bs-theme='dark']) .bg-gradient-danger {
 }
 
 /* --------------------------------------------------------------------------
-   8. Grid widget Beranda yang dapat dikostumasi (dashboard.html)
+   8. Grid widget Dashboard yang dapat dikostumasi (dashboard.html)
    Kartu statistik + kartu chart disusun dalam SATU grid 4 kolom
    (`#dashboardWidgetGrid`); setiap widget adalah `.dashboard-widget-col`
    yang lebar tampilannya diatur lewat atribut `data-span` (1-4).

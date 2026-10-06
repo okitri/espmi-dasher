@@ -22,7 +22,7 @@ akhir** setelah `theme.min.css`.
 
 ```
 espmi-admin/
-├── dashboard.html                            # Beranda
+├── dashboard.html                            # Dashboard
 ├── index.html                                # Halaman login
 ├── akun-preferensi.html                       # Preferensi (font sistem)
 ├── manajemen-referensi-tahun-periode.html     # HALAMAN ACUAN (baseline)
@@ -35,6 +35,8 @@ espmi-admin/
 ├── pelaksanaan-lihat-data-pendidikan-data-do.html
 ├── pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html
 ├── pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html
+├── pelaksanaan-lihat-data-penelitian-data-penelitian.html
+├── pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html
 ├── manajemen-referensi-lembaga-akreditasi.html
 ├── manajemen-referensi-auditee-pusat.html
 ├── manajemen-referensi-auditee.html
@@ -150,7 +152,7 @@ Struktur: `#miniSidebar` → `.brand-logo` → `ul.navbar-nav.flex-column` → i
     <li class="nav-item">
       <a class="nav-link" href="./dashboard.html">
         <span class="nav-icon"><svg ...width="20" height="20"...></svg></span>
-        <span class="text">Beranda</span>
+        <span class="text">Dashboard</span>
       </a>
     </li>
     <!-- item dengan submenu -->
@@ -171,6 +173,32 @@ Struktur: `#miniSidebar` → `.brand-logo` → `ul.navbar-nav.flex-column` → i
   </ul>
 </div>
 ```
+
+### 4.0 Grup Menu (`nav-heading`)
+
+Item sidebar dikelompokkan dengan **label grup** memakai pola bawaan tema
+Dasher (`nav-heading` + `nav-line`):
+
+```html
+<li class="nav-item">
+  <div class="nav-heading">Operasional</div>
+  <hr class="mx-5 nav-line mb-1" />
+</li>
+```
+
+Pembagian grup (urut):
+
+| Grup | Isi (urut) |
+| --- | --- |
+| — (tanpa grup) | Dashboard |
+| Operasional | Penetapan, Pelaksanaan, Evaluasi (AMI), Pengendalian & Peningkatan |
+| Pengaturan | Manajemen Referensi, Manajemen Dokumen, Integrasi SISter, Integrasi Akademik, Pengaturan Sistem |
+
+- Label `nav-heading` **selalu** didampingi `<hr class="mx-5 nav-line mb-1" />`.
+  Heading tampil saat sidebar *expanded*; `hr` tampil saat *collapsed* — keduanya
+  diatur tema (`theme.min.css`), jangan diubah.
+- Heading **bukan** tautan dan tidak pernah diberi state `active`.
+- Perubahan grup **wajib** diterapkan pada desktop **dan** offcanvas.
 
 ### 4.1 Submenu bertingkat (level 3)
 
@@ -244,8 +272,11 @@ Aturan:
    - Grup bertingkat (level 3): tambahkan `active` pada `dropdown-toggle`
      level 3, set `aria-expanded="true"`, dan tambahkan `show` pada
      `ul.dropdown-menu` level 3 (lihat bagian 4.1).
-4. Urutan menu mengikuti informasi arsitektur aplikasi (Beranda → Manajemen
-   Referensi → Manajemen Dokumen → Penetapan → Pelaksanaan → …).
+4. Urutan menu mengikuti **grup pada bagian 4.0**: Dashboard (tanpa grup) →
+   grup **Operasional** (Penetapan → Pelaksanaan → Evaluasi (AMI) →
+   Pengendalian & Peningkatan) → grup **Pengaturan** (Manajemen Referensi →
+   Manajemen Dokumen → Integrasi SISter → Integrasi Akademik →
+   Pengaturan Sistem).
 5. Perubahan sidebar **wajib diterapkan pada versi desktop dan offcanvas**.
 6. **Submenu Pelaksanaan** (dropdown level 1, ikon `icon-tabler-clipboard-list`):
 
@@ -259,13 +290,19 @@ Aturan:
    | 4.2 | Data DO | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-do.html` |
    | 4.3 | Data Lulus Tepat | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html` |
    | 4.4 | Data Tugas Akhir | 3 | — | `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html` |
-   | 4.5 | Lihat Data Penelitian | 3 | — | `#!` (belum ada halaman) |
-   | 4.6 | Lihat Data Pengabdian | 3 | — | `#!` (belum ada halaman) |
+   | 5 | Lihat Data Penelitian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
+   | 5.1 | Data Penelitian | 3 | — | `pelaksanaan-lihat-data-penelitian-data-penelitian.html` |
+   | 5.2 | Data Karya Ilmiah | 3 | — | `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html` |
+   | 5.3 | Data HAKI | 3 | — | `#!` (belum ada halaman) |
+   | 5.4 | Data Publikasi Jurnal | 3 | — | `#!` (belum ada halaman) |
+   | 6 | Lihat Data Pengabdian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
+   | 6.1 | Data Pengabdian | 3 | — | `#!` (belum ada halaman) |
 
-   - Item 4.2–4.6 adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
+   - Item ber-`#!` adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
      `href="#!"` menjadi path halaman begitu halamannya dibuat.
-   - Grup **Lihat Data Pendidikan** memakai pola **bertingkat (level 3)** —
-     lihat bagian 4.1.
+   - **Lihat Data Penelitian** dan **Lihat Data Pengabdian** adalah **submenu
+     (level 2) dari Pelaksanaan**, bukan sub-submenu dari Lihat Data Pendidikan.
+     Keduanya memakai pola **grup bertingkat (level 3)** — lihat bagian 4.1.
 
 ---
 
@@ -350,7 +387,7 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
         <h1 class="mb-3 h2">Nama Halaman</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./dashboard.html">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="#!">Menu Induk</a></li>
             <li class="breadcrumb-item active" aria-current="page">Nama Halaman</li>
           </ol>
@@ -371,7 +408,7 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
 - **Posisi breadcrumb**: di **bawah judul** dan tetap di **kolom kiri** —
   dibungkus satu `<div>` bersama `<h1>` (lihat contoh di atas). Breadcrumb
   **tidak boleh** diletakkan di sisi kanan header.
-- Breadcrumb selalu diawali `Beranda`. Item terakhir memakai `active` +
+- Breadcrumb selalu diawali `Dashboard`. Item terakhir memakai `active` +
   `aria-current="page"`.
 - Tombol aksi utama (mis. **Tambah**) memakai `btn-dark` dengan ikon
   `icon-tabler-plus` dan `d-md-flex align-items-center gap-2`.
@@ -557,7 +594,7 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
       <th scope="col" style="width: 4.5rem">No</th>
       <th scope="col" class="listjs-sorter" data-sort="{kolom}">Nama Kolom</th>
       <!-- kolom lain ... -->
-      <th scope="col" style="width: 7rem">Aksi</th>
+      <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
     </tr>
   </thead>
   <tbody class="list"> ... </tbody>
@@ -568,7 +605,8 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
 - Kolom **No** selalu kolom pertama dengan `style="width: 4.5rem"` dan isi
   `<td class="no">{nomor}</td>`.
 - Kolom **Aksi** selalu kolom **terakhir** dan **wajib ada di setiap datatable**
-  (lihat bagian 8.1).
+  (lihat bagian 8.1) — kecuali halaman laporan **read-only** yang hanya
+  menampilkan data (bagian 19), yang tidak menampilkan kolom Aksi.
 - Kolom yang bisa diurutkan diberi `class="listjs-sorter"` + `data-sort`.
 - **Jangan** memakai `table-bordered` — cukup `table` + modifier standar
   (`text-nowrap`, `table-hover`, `align-middle`, `mb-0`) (lihat bagian 16.3).
@@ -579,8 +617,10 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
 ### 8.2 Kolom Tetap (`.table-sticky`) untuk Tabel Lebar
 
 `.table-sticky` membuat **dua kolom pertama** (No + kolom identitas) menempel di
-kiri dan **kolom terakhir** (Aksi) menempel di kanan, sehingga identitas baris dan
-tombol aksi tetap terlihat saat tabel di-scroll horizontal.
+kiri. **Kolom Aksi** (kolom terakhir yang headernya diberi `class="aksi"`)
+menempel di kanan, sehingga tombol aksi tetap terlihat saat tabel di-scroll
+horizontal. Kolom **data biasa tidak** menempel — pada tabel laporan tanpa kolom
+Aksi, hanya dua kolom kiri yang menempel.
 
 ```html
 <div class="table-responsive mt-6">
@@ -593,14 +633,21 @@ tombol aksi tetap terlihat saat tabel di-scroll horizontal.
 | Aspek | Ketentuan |
 | --- | --- |
 | Kelas | `table-sticky` ditulis **setelah** `mb-0` (urutan class lain tidak berubah) |
-| Cakupan | kolom ke-1 & ke-2 (`nth-child(-n + 2)`) sticky `left`, kolom terakhir sticky `right` |
+| Cakupan | kolom ke-1 & ke-2 (`nth-child(-n + 2)`) sticky `left`; kolom **terakhir** sticky `right` **hanya bila** `<th>`-nya ber-`class="aksi"` (deteksi `:has()`) |
 | Posisi kolom ke-2 | `left: 4.5rem` = lebar kolom No; dioverride per halaman dengan `--espmi-table-sticky-left` |
 | Lebar kolom No | **wajib sama dengan `--espmi-table-sticky-left`** — CSS men-set `width` + `min-width: 4.5rem` dan tetap menutup celahnya (lihat baris berikut) |
 | Latar sel (body) | wajib opaque — CSS men-set `--ds-table-bg: var(--ds-card-bg)`; hover tetap dari `box-shadow: inset` theme |
 | Latar sel (header) | **sama dengan header theme** — `--ds-table-bg: var(--ds-gray-100)` (light `#f9fafb`, dark `#141a21`) |
 | Penutup celah | pseudo `::after` selebar offset di tepi kanan kolom No, warnanya mengikuti keadaan sel |
-| Garis batas | pseudo `::after` 1px di tepi kanan blok kiri & tepi kiri kolom Aksi |
+| Garis batas | pseudo `::after` 1px di tepi kanan blok kiri & (bila kolom Aksi ada) tepi kiri kolom Aksi |
 | Pembungkus | **wajib** berada di dalam `.table-responsive` (kalau tidak, tidak ada scroll) |
+
+- **Kolom Aksi wajib ditandai `class="aksi"`** pada `<th>`-nya (mis.
+  `<th scope="col" class="aksi" style="width: 7rem">Aksi</th>`) — itulah penanda
+  yang membuat `.table-sticky` menempelkannya ke kanan (bagian 8.1). Kolom **data
+  biasa jangan** diberi `class="aksi"`.
+- Karena penempelan kanan memakai `:has()`, pada browser yang tidak mendukungnya
+  hanya dua kolom kiri yang menempel (degradasi aman).
 
 **Kenapa begitu** — tabel memakai `table-layout: auto`, sehingga lebar kolom dihitung
 dari lebar min-content isinya (kolom `text-nowrap`) dan `width` pada sel **bisa
@@ -628,7 +675,9 @@ Halaman yang **sudah** memakainya: `manajemen-referensi-manajemen-dokumen.html`,
 `pelaksanaan-pengaturan-periode.html`,
 `pelaksanaan-lihat-data-pendidikan-data-do.html`,
 `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
-`pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`.
+`pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
+`pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
+`pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`.
 
 **Tidak dipakai** pada tabel 3 kolom (No + 1 kolom data + Aksi) atau tabel 4
 kolom yang selalu muat — pada tabel seperti itu hampir semua kolom menjadi
@@ -645,7 +694,7 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 (`Ubah` dan `Hapus`) memakai **varian soft**:
 
 ```html
-<th scope="col" style="width: 7rem">Aksi</th>
+<th scope="col" class="aksi" style="width: 7rem">Aksi</th>
 ```
 
 ```html
@@ -665,6 +714,7 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 | Pembungkus | `<div class="d-flex gap-1">` |
 | Atribut | `title="Ubah"` / `title="Hapus"` **dan** `aria-label` yang sama |
 | Lebar kolom | `style="width: 7rem"` |
+| Kelas `<th>` | `class="aksi"` — penanda kolom Aksi; dipakai `.table-sticky` agar kolom menempel di kanan (bagian 8.2) |
 | `data-list` | Kolom Aksi **tidak** dimasukkan ke `data-list` (tidak dicari/diurutkan) |
 | `listjs-sorter` | **Tidak** dipakai pada `<th>` Aksi (tidak ada `data-sort`) |
 
@@ -674,9 +724,9 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 - **Jangan** memakai varian solid (`btn-info`, `btn-danger`, `btn-success`,
   `btn-primary`) pada tombol aksi tabel — lihat bagian 16.5.
 - Bila ada baris *empty state*, `colspan`-nya = **jumlah kolom termasuk Aksi**.
-- Pada tabel lebar yang memakai `.table-sticky`, kolom Aksi (kolom terakhir)
-  otomatis **menempel di kanan** sehingga tombol tetap terjangkau tanpa
-  scroll horizontal (bagian 8.2).
+- Pada tabel lebar yang memakai `.table-sticky`, kolom Aksi **menempel di kanan**
+  sehingga tombol tetap terjangkau tanpa scroll horizontal (bagian 8.2) — ini
+  aktif hanya karena `<th>` Aksi diberi `class="aksi"`.
 
 ---
 
@@ -785,7 +835,7 @@ Urutan pemuatan script:
   - `.navbar-glass`, `#content`, `#miniSidebar` — override tampilan eSPMI.
   - `.bg-gradient-info/success/warning/danger` — gradient card eSPMI
     (**light mode saja**; dark mode tetap memakai gradient bawaan theme).
-  - `.dashboard-widget*`, `.dashboard-customizing-only` — grid widget Beranda yang
+  - `.dashboard-widget*`, `.dashboard-customizing-only` — grid widget Dashboard yang
     dapat dikostumasi (bagian 18).
   - `.table-sticky` — kolom tetap (2 kiri + Aksi kanan) untuk tabel lebar
     (bagian 8.2); variabel `--espmi-table-sticky-left` = lebar kolom No =
@@ -848,7 +898,7 @@ Urutan pemuatan script:
 17. Uji **light & dark mode** serta tampilan **desktop & mobile** — dan bila
     tabel memakai `table-sticky`, pastikan header No + kolom identitas tetap
     menempel saat tabel di-scroll horizontal.
-18. Khusus **Beranda**: ikuti kontrak grid widget yang dapat dikostumasi
+18. Khusus **Dashboard**: ikuti kontrak grid widget yang dapat dikostumasi
     (bagian 18) — atribut `data-widget`/`data-span`/`data-widget-title`, kelas
     pegangan & toolbar, widget terkunci `data-locked`, tombol hapus `data-removable`,
     panel Kartu Tersembunyi, dan urutan pemuatan aset dragula.
@@ -881,7 +931,7 @@ dengan ikon menu sidebar halaman tersebut.
 
 ```html
 <!-- level 1 : ikon sendiri -->
-<h1 class="mb-3 h2"><i class="ti ti-home"></i> Beranda</h1>
+<h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>
 
 <!-- level 2/3 : ikon induk level 1 -->
 <h1 class="mb-3 h2"><i class="ti ti-folders"></i> Tahun Periode</h1>
@@ -889,7 +939,7 @@ dengan ikon menu sidebar halaman tersebut.
 
 | Halaman | Level | Ikon judul (`<h1>`) |
 | --- | --- | --- |
-| Beranda (`dashboard.html`) | 1 | `<i class="ti ti-home"></i>` |
+| Dashboard (`dashboard.html`) | 1 | `<i class="ti ti-layout-dashboard"></i>` |
 | Manajemen Referensi › Tahun Periode | 2 | `<i class="ti ti-folders"></i>` |
 | Manajemen Referensi › Lembaga Akreditasi | 2 | `<i class="ti ti-folders"></i>` |
 | Manajemen Referensi › Auditee Pusat | 2 | `<i class="ti ti-folders"></i>` |
@@ -908,15 +958,17 @@ dengan ikon menu sidebar halaman tersebut.
 | Pelaksanaan › Lihat Data Pendidikan › Data DO | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Pendidikan › Data Lulus Tepat | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Pendidikan › Data Tugas Akhir | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Penelitian › Data Penelitian | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Penelitian › Data Karya Ilmiah | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Preferensi (`akun-preferensi.html`) | — *(menu profile dropdown)* | `<i class="ti ti-typography"></i>` |
 
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
   Manajemen Dokumen = `ti-file-text`, Penetapan = `ti-clipboard-check`,
   Pelaksanaan = `ti-clipboard-list`.
 - Nama ikon = nama ikon sidebar **tanpa** prefix `icon-tabler-`.
-- **Semua** halaman wajib punya judul berikon, termasuk Beranda: `dashboard.html`
-  memakai `<h1 class="mb-3 h2"><i class="ti ti-home"></i> Beranda</h1>` dengan
-  breadcrumb satu item aktif (Beranda adalah halaman saat ini).
+- **Semua** halaman wajib punya judul berikon, termasuk Dashboard: `dashboard.html`
+  memakai `<h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>` dengan
+  breadcrumb satu item aktif (Dashboard adalah halaman saat ini).
 
 ### 16.2 Status di Datatable Memakai Badge Subtle
 
@@ -1077,9 +1129,9 @@ Tiga aturan wajib untuk **setiap card datatable**:
 
 ---
 
-## 18. Kartu Statistik Beranda yang Dapat Dikostumasi
+## 18. Kartu Statistik Dashboard yang Dapat Dikostumasi
 
-Beranda (`dashboard.html`) memakai **satu grid widget 4 kolom** yang dapat diubah
+Dashboard (`dashboard.html`) memakai **satu grid widget 4 kolom** yang dapat diubah
 pengguna: kartu bisa **digeser urutannya** (drag & drop) dan **diubah lebarnya**
 (1–4 kolom). Grid memuat kartu statistik *dan* kartu chart.
 
@@ -1219,7 +1271,7 @@ Aturan:
 
 ### 18.4 Chart di Dalam Widget
 
-- Semua chart Beranda dirender dari satu fungsi `renderAllCharts()` di dalam IIFE
+- Semua chart Dashboard dirender dari satu fungsi `renderAllCharts()` di dalam IIFE
   akhir `<body>` (bagian 12), bukan langsung di top-level.
 - Helper `registerChart(instance)` mengumpulkan instance ApexCharts.
 - `refreshCharts()` melakukan **destroy + render ulang** (debounce 60 ms) setelah drag
@@ -1244,8 +1296,8 @@ Aturan:
 <script src="../dist/assets/libs/dragula/dist/dragula.min.js"></script>
 ```
 
-- Muat dragula **hanya** pada halaman yang memakai grid widget (saat ini Beranda).
-- ApexCharts sudah dimuat Beranda dan dipakai untuk sparkline.
+- Muat dragula **hanya** pada halaman yang memakai grid widget (saat ini Dashboard).
+- ApexCharts sudah dimuat Dashboard dan dipakai untuk sparkline.
 
 ### 18.6 Kelas CSS Terkait (`espmi-app.css` bagian 8)
 
@@ -1275,7 +1327,7 @@ Aturan atribut:
 
 ### 18.7 Menyembunyikan (Menghapus) Kartu Chart
 
-Pengguna dapat "menghapus" kartu **chart** dari Beranda tanpa menghilangkannya
+Pengguna dapat "menghapus" kartu **chart** dari Dashboard tanpa menghilangkannya
 permanen. Kartu yang dihapus cukup disembunyikan dan dapat dimunculkan kembali.
 
 Kartu yang **dapat** dihapus (chart, `data-removable="true"`):
@@ -1322,7 +1374,7 @@ Struktur konten, berurutan:
 
 1. **Page header** — `h1.h2` dengan ikon Tabler webfont `<i class="ti ...">`
    (ikon sama dengan menu sidebar level 3, mis. `ti-award`); di sisi kanan
-   breadcrumb `Beranda` → `List Data`.
+   breadcrumb `Dashboard` → `List Data`.
 2. **Tab navigasi** — `ul.nav.nav-pills` dengan `data-bs-toggle="pill"`
    (mis. *Monitoring IPK / Evaluasi IPK / Evaluasi Masa Studi*), diikuti
    `div.tab-content` berisi `div.tab-pane`.
@@ -1354,6 +1406,13 @@ Catatan:
   `<script src="../dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>`.
 - Filter antar-tab (Evaluasi IPK / Evaluasi Masa Studi) masih berupa
   `alert alert-info` placeholder sampai datanya tersedia.
+- Halaman laporan **sederhana** — `pelaksanaan-lihat-data-pendidikan-data-do.html`,
+  `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
+  `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
+  `pelaksanaan-lihat-data-penelitian-data-penelitian.html`, dan
+  `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html` — mengikuti **hanya**
+  langkah 1 + 3 di atas (page header + datatable baku), tanpa tab, statistik,
+  atau grafik. Kolom disesuaikan dengan data tiap laporan.
 
 ---
 
@@ -1386,7 +1445,7 @@ seluruh halaman eSPMI. Saat ini berisi satu preferensi: **Font Sistem**.
 ### 20.2 Struktur Halaman
 
 1. **Page header** — `h1.h2` berikon `<i class="ti ti-typography"></i>`,
-   breadcrumb `Beranda` → `Preferensi` (item aktif).
+   breadcrumb `Dashboard` → `Preferensi` (item aktif).
 2. **Card `card-lg`** berisi heading `Font Sistem` + deskripsi, lalu grid
    pilihan font `row g-3` (4 opsi: `col-12 col-md-6 col-xl-3`).
 3. Setiap opsi memakai pola **Bootstrap `btn-check`**:
