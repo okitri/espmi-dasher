@@ -37,6 +37,7 @@ espmi-admin/
 ├── pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html
 ├── pelaksanaan-lihat-data-penelitian-data-penelitian.html
 ├── pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html
+├── pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html
 ├── manajemen-referensi-lembaga-akreditasi.html
 ├── manajemen-referensi-auditee-pusat.html
 ├── manajemen-referensi-auditee.html
@@ -294,7 +295,7 @@ Aturan:
    | 5.1 | Data Penelitian | 3 | — | `pelaksanaan-lihat-data-penelitian-data-penelitian.html` |
    | 5.2 | Data Karya Ilmiah | 3 | — | `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html` |
    | 5.3 | Data HAKI | 3 | — | `#!` (belum ada halaman) |
-   | 5.4 | Data Publikasi Jurnal | 3 | — | `#!` (belum ada halaman) |
+   | 5.4 | Data Publikasi Jurnal | 3 | — | `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html` |
    | 6 | Lihat Data Pengabdian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
    | 6.1 | Data Pengabdian | 3 | — | `#!` (belum ada halaman) |
 
@@ -677,7 +678,8 @@ Halaman yang **sudah** memakainya: `manajemen-referensi-manajemen-dokumen.html`,
 `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
 `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
 `pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
-`pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`.
+`pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`,
+`pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`.
 
 **Tidak dipakai** pada tabel 3 kolom (No + 1 kolom data + Aksi) atau tabel 4
 kolom yang selalu muat — pada tabel seperti itu hampir semua kolom menjadi
@@ -960,6 +962,7 @@ dengan ikon menu sidebar halaman tersebut.
 | Pelaksanaan › Lihat Data Pendidikan › Data Tugas Akhir | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Penelitian › Data Penelitian | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Penelitian › Data Karya Ilmiah | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Penelitian › Data Publikasi Jurnal | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Preferensi (`akun-preferensi.html`) | — *(menu profile dropdown)* | `<i class="ti ti-typography"></i>` |
 
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
@@ -1409,8 +1412,9 @@ Catatan:
 - Halaman laporan **sederhana** — `pelaksanaan-lihat-data-pendidikan-data-do.html`,
   `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
   `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
-  `pelaksanaan-lihat-data-penelitian-data-penelitian.html`, dan
-  `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html` — mengikuti **hanya**
+  `pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
+  `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`, dan
+  `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html` — mengikuti **hanya**
   langkah 1 + 3 di atas (page header + datatable baku), tanpa tab, statistik,
   atau grafik. Kolom disesuaikan dengan data tiap laporan.
 
