@@ -37,7 +37,9 @@ espmi-admin/
 ├── pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html
 ├── pelaksanaan-lihat-data-penelitian-data-penelitian.html
 ├── pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html
+├── pelaksanaan-lihat-data-penelitian-data-haki.html
 ├── pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html
+├── pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html
 ├── manajemen-referensi-lembaga-akreditasi.html
 ├── manajemen-referensi-auditee-pusat.html
 ├── manajemen-referensi-auditee.html
@@ -294,16 +296,23 @@ Aturan:
    | 5 | Lihat Data Penelitian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
    | 5.1 | Data Penelitian | 3 | — | `pelaksanaan-lihat-data-penelitian-data-penelitian.html` |
    | 5.2 | Data Karya Ilmiah | 3 | — | `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html` |
-   | 5.3 | Data HAKI | 3 | — | `#!` (belum ada halaman) |
+   | 5.3 | Data HAKI | 3 | — | `pelaksanaan-lihat-data-penelitian-data-haki.html` |
    | 5.4 | Data Publikasi Jurnal | 3 | — | `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html` |
    | 6 | Lihat Data Pengabdian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
-   | 6.1 | Data Pengabdian | 3 | — | `#!` (belum ada halaman) |
+   | 6.1 | Data Kegiatan PKM | 3 | — | `pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html` |
+   | 6.2 | Data Publikasi PKM | 3 | — | `#!` (belum ada halaman) |
+   | 6.3 | Data Bahan Ajar PKM | 3 | — | `#!` (belum ada halaman) |
+   | 6.4 | Data Isi PKM | 3 | — | `#!` (belum ada halaman) |
+   | 6.5 | Data Mutu Pelaksana PKM | 3 | — | `#!` (belum ada halaman) |
 
    - Item ber-`#!` adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
      `href="#!"` menjadi path halaman begitu halamannya dibuat.
    - **Lihat Data Penelitian** dan **Lihat Data Pengabdian** adalah **submenu
      (level 2) dari Pelaksanaan**, bukan sub-submenu dari Lihat Data Pendidikan.
      Keduanya memakai pola **grup bertingkat (level 3)** — lihat bagian 4.1.
+   - **Data Kegiatan PKM dkk. adalah item level 3** di dalam grup **Lihat Data
+     Pengabdian**. Item-item tersebut **tidak boleh** muncul sebagai menu
+     top-level (`li.nav-item` tingkat 1) di luar grupnya.
 
 ---
 
@@ -389,7 +398,8 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#!">Menu Induk</a></li>
+            <li class="breadcrumb-item"><a href="#!">Menu</a></li>
+            <li class="breadcrumb-item"><a href="#!">Submenu</a></li>
             <li class="breadcrumb-item active" aria-current="page">Nama Halaman</li>
           </ol>
         </nav>
@@ -409,8 +419,18 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
 - **Posisi breadcrumb**: di **bawah judul** dan tetap di **kolom kiri** —
   dibungkus satu `<div>` bersama `<h1>` (lihat contoh di atas). Breadcrumb
   **tidak boleh** diletakkan di sisi kanan header.
+- **Struktur breadcrumb mengikuti hierarki menu sidebar**, berurutan:
+  `Dashboard` → `Menu` (level 1) → `Submenu` (level 2, **jika** halaman berada
+  di dalam submenu) → `Sub-submenu` (level 3, **jika** halaman berada di dalam
+  sub-submenu) → item aktif (nama halaman). Contoh:
+  - Level 1: `Dashboard` → `Dashboard`
+  - Level 2: `Dashboard` → `Pelaksanaan` → `Pengaturan Periode`
+  - Level 3: `Dashboard` → `Pelaksanaan` → `Lihat Data Pendidikan` → `Data DO`
+- Item breadcrumb **bukan halaman** (menu/submenu induk) memakai
+  `<a href="#!">` — **bukan** `href="#"`.
 - Breadcrumb selalu diawali `Dashboard`. Item terakhir memakai `active` +
-  `aria-current="page"`.
+  `aria-current="page"`, dan namanya **sama** dengan item sidebar
+  (lihat bagian 14).
 - Tombol aksi utama (mis. **Tambah**) memakai `btn-dark` dengan ikon
   `icon-tabler-plus` dan `d-md-flex align-items-center gap-2`.
 - Tombol sekunder/ikon (mis. **filter**) memakai `btn btn-icon btn-white` +
@@ -529,6 +549,50 @@ justify-content-md-between align-items-md-center gap-3` dengan pembagian:
 - Label filter memakai `form-label text-nowrap mb-0` dan select-nya
   `style="width: 10rem"`.
 - Semua kontrol wajib punya `aria-label` deskriptif (lihat bagian 10).
+
+### Indikator Filter Aktif (badge pada tombol Filter)
+
+UX: bila ada **filter yang aktif** (select terpilih, bukan opsi default
+`-- SEMUA --`), tombol `Filter` menampilkan **badge angka** di **sebelah kanan
+teks "Filter"** yang menunjukkan **berapa banyak** item filter yang aktif.
+Badge disembunyikan (`hidden`) saat 0 filter aktif.
+
+Markup badge — disisipkan **di dalam** tombol Filter, tepat setelah teks
+`Filter` (lihat contoh toolbar di atas):
+
+```html
+<button
+  class="btn btn-white datatable-filter-toggle d-inline-flex align-items-center gap-2"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#{idFilters}"
+  aria-expanded="false"
+  aria-controls="{idFilters}"
+>
+  <i class="ti ti-filter fs-5"></i>
+  Filter
+  <span class="badge bg-primary-subtle text-primary-emphasis active-filter-badge" hidden>0</span>
+</button>
+```
+
+Kontrak:
+
+| Aspek | Ketentuan |
+| --- | --- |
+| Kelas badge | `.active-filter-badge` (style: `espmi-app.css` bagian 9) |
+| Varian warna | `badge bg-primary-subtle text-primary-emphasis` (palet subtle, bagian 9) |
+| Aturan hitung | **1 poin per `<select>`** di dalam baris filter yang `selectedIndex > 0` (bukan opsi pertama / default) |
+| Default | Opsi pertama select filter selalu `-- SEMUA --` (dianggap tidak aktif) |
+| Keadaan 0 | badge diberi atribut `hidden` (tersembunyi) |
+| Skrip | `../dist/assets/js/vendors/espmi-filter-badge.js` — dimuat di **semua halaman** (setelah `sidebarnav.js`); IIFE, no-op bila halaman tidak punya tombol Filter |
+| Perilaku | Listener `change` pada tiap select filter → hitung ulang; juga dihitung ulang saat halaman dimuat (filter mungkin sudah terpilih di HTML) |
+
+- **Contoh penerapan** (halaman acuan): `pelaksanaan-lihat-data-pendidikan-data-do.html`
+  — filter **Angkatan** diset `2025` (`<option selected>2025</option>`), maka
+  saat halaman dibuka tombol Filter menampilkan badge **`1`** (dan jadi `2`/`3`
+  bila user memilih filter lain).
+- Jangan menghitung "Per page" select atau select di luar baris filter —
+  hanya `<select>` di dalam `div.collapse` yang dijadikan target tombol.
 
 ### Kontrak List.js
 
@@ -679,7 +743,9 @@ Halaman yang **sudah** memakainya: `manajemen-referensi-manajemen-dokumen.html`,
 `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
 `pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
 `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`,
-`pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`.
+`pelaksanaan-lihat-data-penelitian-data-haki.html`,
+`pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`,
+`pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html`.
 
 **Tidak dipakai** pada tabel 3 kolom (No + 1 kolom data + Aksi) atau tabel 4
 kolom yang selalu muat — pada tabel seperti itu hampir semua kolom menjadi
@@ -770,6 +836,15 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 - Select kecil (mis. per page) diberi `style="width: 5.5rem"`.
 - Selector "Per page" & pencarian **selalu** berada di dalam toolbar card list.
 - Gunakan `aria-label` yang deskriptif pada input pencarian & select.
+- **Warna value vs placeholder harus berbeda** (lihat `espmi-app.css` bagian 12):
+  - **Value** (teks yang sudah diisi/dipilih) memakai warna teks normal
+    (gray-800 / `--ds-body-color`) agar jelas terbaca.
+  - **Placeholder** memakai gray-500 (tetap samar), sesuai theme.
+  - Pada `<select>`, opsi default ("-- SEMUA --" / "-- Pilih --") dianggap
+    placeholder dan diredupkan lewat class `.is-placeholder`, yang ditambahkan
+    otomatis oleh `espmi-form-select.js` (dimuat di semua halaman ber-`select`).
+    Karena itu **opsi placeholder harus diawali `-- `** (mis. `-- SEMUA --`) dan
+    berada di posisi pertama; opsi bernilai nyata tidak boleh diawali `-- `.
 
 ---
 
@@ -804,6 +879,8 @@ Urutan pemuatan script:
 <!-- Theme JS -->
 <script src="../dist/assets/js/theme.min.js"></script>
 <script src="../dist/assets/js/vendors/sidebarnav.js"></script>
+<script src="../dist/assets/js/vendors/espmi-filter-badge.js"></script>
+<script src="../dist/assets/js/vendors/espmi-form-select.js"></script>
 <!-- hanya pada halaman daftar data -->
 <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
 <!-- Skrip khusus halaman -->
@@ -847,6 +924,11 @@ Urutan pemuatan script:
     menggantikan inline `style="max-width: 22rem"` (bagian 7).
   - `.datatable-filter-toggle[aria-expanded='true']` — keadaan "tertekan" tombol
     Filter saat baris filter terbuka (bagian 7 & 9).
+  - `.active-filter-badge` — badge angka jumlah filter aktif di dalam tombol
+    Filter (bagian 7 → *Indikator Filter Aktif*; dihitung `espmi-filter-badge.js`).
+  - `.form-control`, `.form-select` + `.is-placeholder` — warna **value** (gray-800)
+    vs **placeholder** (gray-500) pada input & select (bagian 10 & 12; class
+    `.is-placeholder` diset `espmi-form-select.js`).
   - `html[data-espmi-font='...']` + `.font-option*` — preferensi font sistem &
     kartu pilihan font (bagian 11 & 20).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
@@ -873,16 +955,22 @@ Urutan pemuatan script:
 ## 15. Checklist Halaman Baru
 
 1. **Salin** `manajemen-referensi-tahun-periode.html` sebagai titik awal.
-2. Ganti `<title>`, `<h1>`, dan breadcrumb sesuai halaman baru.
+2. Ganti `<title>`, `<h1>`, dan breadcrumb sesuai halaman baru — breadcrumb
+   **wajib** mengikuti hierarki menu sidebar `Dashboard › Menu › Submenu ›
+   Sub-submenu` sesuai level halaman (bagian 6), bukan label generik.
 3. Sesuaikan state aktif sidebar pada **desktop + offcanvas** (menu induk
-   `active`/`show`, submenu `active`, dan `href` yang benar).
+   `active`/`show`, submenu `active`, dan `href` yang benar). Pastikan item
+   **grup bertingkat (level 3)** berada di dalam grupnya (mis. *Data Kegiatan
+   PKM* di dalam *Lihat Data Pengabdian*), **bukan** sebagai menu top-level.
 4. Sesuaikan **Periode Aktif** di navbar bila perlu.
 5. Siapkan card list: `id`, `data-list`, kelas `<td>`, dan header kolom urut.
 6. Susun **toolbar** sesuai standar: **kiri** = pencarian 200px (`.listjs-search`,
    tanpa inline style lebar), **kanan** = `Per page` (10/25/50/100) — bagian 7 &
    16.5. Bila ada filter, tambahkan tombol `Filter`
    (`.datatable-filter-toggle`) di grup kiri + baris `collapse` filter di dalam
-   `.card-body` (bagian 7 → *Tata Letak Toolbar*).
+   `.card-body` (bagian 7 → *Tata Letak Toolbar*), dan **badge indikator filter
+   aktif** `.active-filter-badge` di dalam tombol (bagian 7 → *Indikator Filter
+   Aktif*).
 7. Tambahkan kolom **Aksi** di kolom terakhir berisi tombol ikon **soft**
    Ubah (`btn-subtle-info` + `ti ti-pencil`) dan Hapus
    (`btn-subtle-danger` + `ti ti-trash`) — bagian 8.1 & 16.5.
@@ -896,7 +984,8 @@ Urutan pemuatan script:
 14. Pastikan **footer** ada dengan teks versi yang konsisten.
 15. Periksa semua path aset (`../dist/assets/...`, `assets/css/...`).
 16. Uji: pencarian, sorting, ubah "Per page", tombol Filter (buka/tutup baris
-    filter), dan navigasi Prev/Next.
+    filter), **badge indikator filter aktif** (pilih filter → angka tampil;
+    kembalikan ke `-- SEMUA --` → badge hilang), dan navigasi Prev/Next.
 17. Uji **light & dark mode** serta tampilan **desktop & mobile** — dan bila
     tabel memakai `table-sticky`, pastikan header No + kolom identitas tetap
     menempel saat tabel di-scroll horizontal.
@@ -1376,8 +1465,9 @@ acuan pola **halaman laporan** di dalam grup **Lihat Data Pendidikan**.
 Struktur konten, berurutan:
 
 1. **Page header** — `h1.h2` dengan ikon Tabler webfont `<i class="ti ...">`
-   (ikon sama dengan menu sidebar level 3, mis. `ti-award`); di sisi kanan
-   breadcrumb `Dashboard` → `List Data`.
+   (ikon sama dengan menu sidebar level 3, mis. `ti-award`); di bawah judul
+   breadcrumb struktur penuh sesuai hierarki menu (bagian 6), mis.
+   `Dashboard` → `Pelaksanaan` → `Lihat Data Pendidikan` → `Data IPK`.
 2. **Tab navigasi** — `ul.nav.nav-pills` dengan `data-bs-toggle="pill"`
    (mis. *Monitoring IPK / Evaluasi IPK / Evaluasi Masa Studi*), diikuti
    `div.tab-content` berisi `div.tab-pane`.
@@ -1413,8 +1503,10 @@ Catatan:
   `pelaksanaan-lihat-data-pendidikan-data-lulus-tepat.html`,
   `pelaksanaan-lihat-data-pendidikan-data-tugas-akhir.html`,
   `pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
-  `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`, dan
-  `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html` — mengikuti **hanya**
+  `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`,
+  `pelaksanaan-lihat-data-penelitian-data-haki.html`,
+  `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`, dan
+  `pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html` — mengikuti **hanya**
   langkah 1 + 3 di atas (page header + datatable baku), tanpa tab, statistik,
   atau grafik. Kolom disesuaikan dengan data tiap laporan.
 
