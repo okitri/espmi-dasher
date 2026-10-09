@@ -28,6 +28,8 @@ espmi-admin/
 ├── manajemen-referensi-tahun-periode.html     # HALAMAN ACUAN (baseline)
 ├── penetapan-standar-mutu.html                 # Penetapan › Daftar Nilai Mutu
 ├── penetapan-daftar-standar-mutu.html          # Penetapan › Daftar Standar Mutu
+├── evaluasi-ami-manajemen-auditor.html         # Evaluasi (AMI) › Manajemen Auditor
+├── evaluasi-ami-jenis-temuan.html              # Evaluasi (AMI) › Jenis Temuan
 ├── pelaksanaan-pengaturan-periode.html
 ├── pelaksanaan-target-nilai-mutu.html
 ├── pelaksanaan-evaluasi-diri.html
@@ -54,7 +56,9 @@ espmi-admin/
 │   │   └── vendor/                            # CSS pihak ketiga (mis. driver.css)
 │   └── js/
 │       ├── espmi-toast.js                     # toast notifikasi (semua halaman)
+│       ├── espmi-about.js                     # modal "Tentang" (semua halaman)
 │       ├── espmi-truncate.js                  # tooltip teks terpotong (semua halaman)
+│       ├── espmi-drag-scroll.js               # geser tabel lebar dengan drag (semua halaman)
 │       ├── espmi-datatable-columns.js         # kontrol kolom datatable
 │       ├── espmi-datatable-crud.js            # aksi Hapus datatable
 │       ├── espmi-tour.js                      # mesin tour halaman
@@ -210,8 +214,13 @@ Pembagian grup (urut):
 | Pengaturan | Manajemen Referensi, Manajemen Dokumen, Integrasi SISter, Integrasi Akademik, Pengaturan Sistem |
 
 - Label `nav-heading` **selalu** didampingi `<hr class="mx-5 nav-line mb-1" />`.
-  Heading tampil saat sidebar *expanded*; `hr` tampil saat *collapsed* — keduanya
-  diatur tema (`theme.min.css`), jangan diubah.
+- **Garis tipis pemisah antar grup (wajib, semua halaman)**: setiap grup menu
+  dipisah **garis tipis**. Saat sidebar *expanded* / *offcanvas*, garis digambar
+  di **atas** label grup (`.nav-heading`) lewat `espmi-app.css` bagian 16; saat
+  *collapsed*, tema menampilkan `<hr class="nav-line">`. Warna garis mengikuti
+  `--ds-gray-300` (ikut light/dark). Pemisah berlaku otomatis di **semua
+  halaman** — **tanpa** markup tambahan (cukup pola grup `nav-heading` +
+  `nav-line` di atas).
 - Heading **bukan** tautan dan tidak pernah diberi state `active`.
 - Perubahan grup **wajib** diterapkan pada desktop **dan** offcanvas.
 
@@ -847,7 +856,8 @@ Halaman yang **sudah** memakainya: `manajemen-referensi-manajemen-dokumen.html`,
 `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`,
 `pelaksanaan-lihat-data-penelitian-data-haki.html`,
 `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`,
-`pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html`.
+`pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html`,
+`evaluasi-ami-manajemen-auditor.html`.
 
 **Tidak dipakai** pada tabel 3 kolom (No + 1 kolom data + Aksi) atau tabel 4
 kolom yang selalu muat — pada tabel seperti itu hampir semua kolom menjadi
@@ -857,6 +867,28 @@ sticky dan tidak ada lagi kolom yang bisa di-scroll (mis.
 - Cara memeriksa cepat: buka halaman, jalankan
   `document.querySelector('.table-responsive').scrollWidth > document.querySelector('.table-responsive').clientWidth`
   di console. Bila `false` di semua ukuran layar, jangan pakai `table-sticky`.
+
+### 8.3 Geser Tabel Lebar dengan Drag (drag-to-scroll)
+
+Tabel lebar (banyak kolom, memakai `.table-sticky`) dapat di-scroll horizontal.
+Selain lewat **scroll bar**, pengguna **wajib** bisa menggeser **area tabel**
+(baris/kolomnya) dengan **drag** (klik-tahan-lalu-geser) untuk scroll horizontal.
+Perilaku ini disediakan otomatis oleh `assets/js/espmi-drag-scroll.js` (dimuat di
+**setiap halaman**, setelah `espmi-truncate.js`):
+
+- Kursor `grab` muncul pada `.table-responsive` **hanya bila** container memang
+  bisa scroll horizontal (`scrollWidth > clientWidth`); berubah `grabbing` saat
+  drag (kelas `espmi-drag-scrollable` / `is-dragging` — `espmi-app.css` bagian 15).
+- Hanya untuk pointer **mouse**; perangkat sentuh tetap memakai swipe bawaan.
+- Ada ambang gerak (4px): klik biasa (sorting header, tombol, pagination) tetap
+  berfungsi; klik yang ternyata bagian dari drag otomatis dibatalkan (suppress).
+- Seleksi teks dimatikan (`user-select: none`) selama drag.
+
+**Ketentuan markup** — cukup bungkus tabel di `.table-responsive` (sudah wajib,
+bagian 8.2). **Tidak ada markup tambahan** dan **tidak perlu** konfigurasi per
+halaman; fitur ini otomatis aktif di semua tabel yang bisa scroll horizontal.
+
+---
 
 ### 8.1 Kolom Aksi (wajib di setiap datatable)
 
@@ -998,7 +1030,9 @@ Urutan pemuatan script:
 <script src="../dist/assets/js/vendors/espmi-form-select.js"></script>
 <!-- skrip bersama eSPMI (semua halaman) -->
 <script src="assets/js/espmi-toast.js"></script>
+<script src="assets/js/espmi-about.js"></script>
 <script src="assets/js/espmi-truncate.js"></script>
+<script src="assets/js/espmi-drag-scroll.js"></script>
 <!-- hanya pada halaman daftar data -->
 <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
 <script src="assets/js/espmi-datatable-columns.js"></script>
@@ -1033,8 +1067,13 @@ Urutan pemuatan script:
 - `assets/js/espmi-toast.js` adalah skrip **bersama** (semua halaman) yang
   menyediakan `window.espmiToast(message, opts)` untuk notifikasi toast
   Bootstrap (lihat bagian 16.6 → *Notifikasi Toast*).
+- `assets/js/espmi-about.js` adalah skrip **bersama** (semua halaman) yang
+  menyuntikkan modal **Tentang** (`#espmiAboutModal`) untuk menu dropdown profil
+  (lihat bagian 16.9).
 - `assets/js/espmi-truncate.js` adalah skrip **bersama** (semua halaman) yang
   memberi tooltip otomatis pada teks yang terpotong ellipsis (bagian 16.7).
+- `assets/js/espmi-drag-scroll.js` adalah skrip **bersama** (semua halaman) yang
+  mengaktifkan geser horizontal tabel lebar dengan drag (bagian 8.3).
 - Aset **vendor pihak ketiga** (mis. `driver.js`) diletakkan di subfolder
   khusus — `assets/js/vendor/` dan `assets/css/vendor/` — dan dimuat **hanya**
   pada halaman yang memakainya. Ini bukan override tema, sehingga tidak
@@ -1053,6 +1092,9 @@ Urutan pemuatan script:
   - `.tree-toggle`, `.tree-lvl-2/3/4` — tree view (halaman Daftar Standar Mutu).
   - `.badge-violet`, `.badge-violet-subtle` — badge warna khusus di luar palet theme.
   - `.navbar-glass`, `#content` (latar area konten = `--ds-gray-100`), `#miniSidebar` — override tampilan eSPMI.
+  - `.nav-heading` — label grup menu sidebar; diberi **garis tipis pemisah** di
+    atasnya saat sidebar *expanded* / *offcanvas* (bagian 4.0 & CSS bagian 16).
+    `html.collapsed` memakai `<hr class="nav-line">` bawaan tema.
   - `.bg-gradient-info/success/warning/danger` — gradient card eSPMI
     (**light mode saja**; dark mode tetap memakai gradient bawaan theme).
   - `.dashboard-widget*`, `.dashboard-customizing-only` — grid widget Dashboard yang
@@ -1087,6 +1129,9 @@ Urutan pemuatan script:
     `.is-placeholder` diset `espmi-form-select.js`).
   - `html[data-espmi-font='...']` + `.font-option*` — preferensi font sistem &
     kartu pilihan font (bagian 11 & 20).
+  - `.espmi-readiness` — progress bar **kesiapan akreditasi** yang ramping (tinggi
+    `0.5rem`, tepi membulat penuh, `min-width: 6rem`); dipakai di kolom
+    *Visualisasi Akreditasi* (bagian 21).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
   untuk toolbar datatable), bukan sebagai inline style di HTML.
 - Override gradasi bertema (warna palet aplikasi) **hanya** ditulis untuk light
@@ -1148,7 +1193,8 @@ Urutan pemuatan script:
     navigasi Prev/Next.
 17. Uji **light & dark mode** serta tampilan **desktop & mobile** — dan bila
     tabel memakai `table-sticky`, pastikan header No + kolom identitas tetap
-    menempel saat tabel di-scroll horizontal.
+    menempel saat tabel di-scroll horizontal, serta tabel bisa digeser dengan
+    **drag** (klik-tahan-geser area baris) — kursor `grab`/`grabbing` (bagian 8.3).
 18. Khusus **Dashboard**: ikuti kontrak grid widget yang dapat dikostumasi
     (bagian 18) — atribut `data-widget`/`data-span`/`data-widget-title`, kelas
     pegangan & toolbar, widget terkunci `data-locked`, tombol hapus `data-removable`,
@@ -1166,9 +1212,14 @@ Urutan pemuatan script:
     (bagian 16.6 → *Notifikasi Toast*).
 22. Verifikasi **tooltip teks terpotong**: persempit jendela/sidebar hingga label
     menu terpotong → hover menampilkan teks lengkap (bagian 16.7).
-23. Bila halaman menyediakan **tour** (driver.js): tombol
+23. **WAJIB** — setiap halaman menyediakan **tour** (driver.js): tombol
     `btn-subtle-secondary btn-icon` + `ti-help-circle` di **kiri** grup aksi page
     header; klik → tour berjalan dan langkah tersembunyi dilewati (bagian 16.8).
+    Muat `driver.css` + `driver.js` + `espmi-tour.js` di halaman tersebut.
+24. Tambahkan menu **Tentang** pada dropdown profil (tepat di bawah
+    **Pengaturan Akun**), ikon `ti ti-info-circle` dan
+    `data-bs-target="#espmiAboutModal"`, lalu muat `assets/js/espmi-about.js` —
+    klik → modal "Tentang Aplikasi" tampil (bagian 16.9).
 
 ---
 
@@ -1210,6 +1261,8 @@ dengan ikon menu sidebar halaman tersebut.
 | Manajemen Dokumen › Manajemen Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
 | Penetapan › Daftar Nilai Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
 | Penetapan › Daftar Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
+| Evaluasi (AMI) › Manajemen Auditor | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Jenis Temuan | 2 | `<i class="ti ti-checklist"></i>` |
 | Pelaksanaan › Pengaturan Periode | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Target Nilai Mutu | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Evaluasi Diri | 2 | `<i class="ti ti-clipboard-list"></i>` |
@@ -1229,7 +1282,7 @@ dengan ikon menu sidebar halaman tersebut.
 
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
   Manajemen Dokumen = `ti-file-text`, Penetapan = `ti-clipboard-check`,
-  Pelaksanaan = `ti-clipboard-list`.
+  Pelaksanaan = `ti-clipboard-list`, Evaluasi (AMI) = `ti-checklist`.
 - Nama ikon = nama ikon sidebar **tanpa** prefix `icon-tabler-`.
 - **Semua** halaman wajib punya judul berikon, termasuk Dashboard: `dashboard.html`
   memakai `<h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>` dengan
@@ -1433,23 +1486,19 @@ tooltip berisi **teks lengkap** saat di-hover. Ditangani otomatis oleh
 - Larangan: jangan menulis teks ellipsis manual tanpa mekanisme ini, dan
   jangan menimpa `title` yang sudah dipakai untuk keperluan lain.
 
-### 16.8 Tour Halaman (driver.js)
+### 16.8 Tour Halaman (driver.js) — wajib di setiap halaman
 
-Tour langkah-per-langkah memakai **driver.js** (vendored di
-`assets/js/vendor/driver.js` + `assets/css/vendor/driver.css`). Mesin tour
-`assets/js/espmi-tour.js` bersifat deklaratif:
+**Setiap halaman eSPMI wajib memiliki tour tutorial** singkat yang menjelaskan
+bagian-bagian penting halaman tersebut (tujuan, kontrol utama, area data, dan
+aksi yang tersedia). Tour memakai **driver.js** (vendored di
+`assets/js/vendor/driver.js` + `assets/css/vendor/driver.css`) dan mesin
+deklaratif `assets/js/espmi-tour.js`.
 
-- Pemicu: tombol dengan `data-tour-start` (mis. `#btnTourHalaman`).
-- Langkah: elemen dengan `data-tour-step` (urut sesuai DOM); isi popover dari
-  `data-tour-title` + `data-tour-text`; posisi opsional lewat `data-tour-side`
-  (`top|bottom|left|right`) dan `data-tour-align` (`start|center|end`).
-- Langkah pembuka (opsional, popover di tengah): `data-tour-intro-title` +
-  `data-tour-intro-text` pada tombol pemicu.
-- Elemen yang tersembunyi (mis. panel khusus mode kostumasi) otomatis
-  **dilewati**.
+#### Tombol pemicu (page header)
 
-**Tombol pemicu** di page header — taruh sebagai item **pertama** di grup aksi
-(di sebelah kiri tombol aksi lain), ikon saja:
+Tombol pemicu **selalu** diletakkan sebagai item **pertama** pada grup aksi di
+sisi kanan judul halaman — yaitu **di sebelah kiri** tombol aksi lain (Tambah,
+Reset, Kostumasi, dsb.) — berupa **tombol ikon saja**:
 
 ```html
 <button
@@ -1457,7 +1506,7 @@ Tour langkah-per-langkah memakai **driver.js** (vendored di
   id="btnTourHalaman"
   class="btn btn-subtle-secondary btn-icon"
   data-tour-start
-  data-tour-intro-title="Tour Halaman"
+  data-tour-intro-title="Tour {Nama Halaman}"
   data-tour-intro-text="{ringkasan singkat halaman}"
   aria-label="Mulai tour halaman"
   title="Tur halaman"
@@ -1466,8 +1515,79 @@ Tour langkah-per-langkah memakai **driver.js** (vendored di
 </button>
 ```
 
-- Muat `driver.js` + `espmi-tour.js` **hanya** di halaman yang punya tour
-  (contoh acuan: `dashboard.html`).
+- Kelas **wajib**: `btn btn-subtle-secondary btn-icon` + ikon `ti ti-help-circle`
+  (`id="btnTourHalaman"` dipakai konsisten di semua halaman).
+- Bila halaman belum punya grup aksi di header, buat wrapper
+  `div.d-flex align-items-center gap-2` dan taruh tombol ini sebagai anak pertama.
+- Urutan dalam grup aksi: **Tour → aksi lain** (Tambah/Reset/Kostumasi).
+
+#### Penanda langkah (declarative)
+
+Mesin tour membaca penanda `data-*` pada HTML (tanpa JS per halaman):
+
+| Atribut | Ditempatkan pada | Fungsi |
+| --- | --- | --- |
+| `data-tour-start` | tombol pemicu | mengaktifkan klik untuk memulai tour |
+| `data-tour-intro-title` | tombol pemicu | judul langkah pembuka (popover tengah, opsional) |
+| `data-tour-intro-text` | tombol pemicu | deskripsi langkah pembuka (opsional) |
+| `data-tour-step` | elemen target | menandai satu langkah; urut mengikuti urutan DOM |
+| `data-tour-title` | elemen target | judul popover langkah |
+| `data-tour-text` | elemen target | deskripsi popover langkah |
+| `data-tour-side` | elemen target | `top`/`bottom`/`left`/`right` (opsional) |
+| `data-tour-align` | elemen target | `start`/`center`/`end` (opsional, default `start`) |
+
+- **Urutan langkah = urutan DOM** elemen bertanda `data-tour-step`; tidak perlu
+  penomoran manual. Jumlah langkah disarankan **3–6**.
+- Setiap tour mencakup minimal: (1) **aksi utama halaman**, (2) **kontrol/
+  toolbar** (pencarian, Filter, Kolom, Per page), dan (3) **area data**
+  (tabel/kartu). Tambahkan langkah khas halaman bila perlu.
+- Elemen yang **tersembunyi** (`offsetWidth`/`offsetHeight` = 0, mis. panel
+  khusus mode kostumasi) otomatis **dilewati**, jadi aman menandai elemen
+  kondisional.
+
+#### Pemuatan aset
+
+Muat CSS driver di `<head>` (setelah `espmi-app.css`) dan skrip di akhir
+`<body>` (`driver.js` **sebelum** `espmi-tour.js`) di **setiap halaman yang
+punya tour**:
+
+```html
+<link rel="stylesheet" href="assets/css/vendor/driver.css" />
+...
+<script src="assets/js/vendor/driver.js"></script>
+<script src="assets/js/espmi-tour.js"></script>
+```
+
+- Contoh acuan: `dashboard.html` (tour widget dashboard) dan
+  `penetapan-standar-mutu.html` / `evaluasi-ami-jenis-temuan.html` /
+  `evaluasi-ami-manajemen-auditor.html` (tour halaman daftar data).
+
+### 16.9 Tentang Aplikasi (dropdown Profil)
+
+Setiap halaman (kecuali `index.html`) memuat menu **Tentang** pada dropdown
+profil di navbar, **tepat di bawah** menu **Pengaturan Akun**:
+
+```html
+<li>
+  <a class="dropdown-item d-flex align-items-center" href="#!"
+     data-bs-toggle="modal" data-bs-target="#espmiAboutModal">
+    <i class="ti ti-info-circle"></i><span class="ms-2">Tentang</span>
+  </a>
+</li>
+```
+
+- Ikon **wajib** `ti ti-info-circle`.
+- Modal `#espmiAboutModal` **tidak** ditulis di markup halaman, melainkan
+  disuntikkan oleh `assets/js/espmi-about.js` (dimuat di semua halaman, tepat
+  setelah `espmi-toast.js`). Skrip ini idempoten (dibuat sekali per halaman).
+- Isi modal (urut): logo eSPMI (sama seperti sidebar —
+  `../dist/assets/images/brand/logo/logo-icon.svg`), nama + tagline aplikasi,
+  ringkasan aplikasi, **Versi Aplikasi** (`3.1.7.0`, samakan dengan footer),
+  **Hak Cipta** (`© 2021 PT. Solusi Kampus Indonesia`), lalu footer berisi
+  tautan **Kebijakan Privasi** & **Ketentuan Layanan** (`#!`) dan tombol
+  **Tutup** (`btn btn-white`).
+- Modal memakai `modal-dialog-centered`; tombol tutup sudut kanan atas
+  (`btn-close`) juga disediakan.
 
 ---
 
@@ -1480,14 +1600,21 @@ Tour langkah-per-langkah memakai **driver.js** (vendored di
 - Tulis semua override styling di `espmi-app.css`.
 - Jaga konsistensi label (judul = breadcrumb = menu sidebar).
 - Pakai `.listjs-search` (200px) & `table-sticky` bila tabel memang melebar
-  horizontal (bagian 7, 8.2, 16.5).
+  horizontal, dan biarkan `espmi-drag-scroll.js` membuat tabel lebar bisa
+  digeser dengan **drag** (bagian 7, 8.2, 8.3, 16.5).
 - Gunakan modal Bootstrap untuk form **Tambah** & konfirmasi **Hapus**
   (bagian 16.6).
 - Tampilkan notifikasi aksi memakai `window.espmiToast(...)` (bagian 16.6 →
   *Notifikasi Toast*), dan andalkan `espmi-truncate.js` untuk tooltip teks
   terpotong (bagian 16.7).
-- Pakai tombol `btn-subtle-secondary btn-icon` berikon `ti-help-circle` sebagai
-  pemicu tour halaman bila halaman menyediakan tour (bagian 16.8).
+- Sediakan **tour** (driver.js) di **setiap** halaman dengan tombol
+  `btn-subtle-secondary btn-icon` berikon `ti-help-circle` di kiri grup aksi
+  (bagian 16.8).
+- Pisahkan **grup menu sidebar** dengan garis tipis — cukup memakai pola grup
+  `nav-heading` + `<hr class="nav-line">`; garis tampil otomatis di desktop
+  (expanded) & offcanvas (bagian 4.0, CSS bagian 16).
+- Sertakan menu **Tentang** di dropdown profil (bawah **Pengaturan Akun**) dan
+  muat `assets/js/espmi-about.js` (bagian 16.9).
 
 **Don't**
 
@@ -1525,6 +1652,9 @@ Tour langkah-per-langkah memakai **driver.js** (vendored di
 - Jangan memakai `table-sticky` pada tabel yang tidak bisa scroll horizontal
   (mis. 3 kolom) atau meletakkannya di luar `.table-responsive`
   (lihat bagian 8.2).
+- Jangan mengandalkan **scroll bar** saja untuk tabel lebar — area tabel wajib
+  bisa digeser dengan **drag** (klik-tahan-geser) via `espmi-drag-scroll.js`
+  (lihat bagian 8.3).
 - Jangan memberi latar `--ds-card-bg` pada sel sticky di `<thead>` — header sticky
   wajib memakai `--ds-gray-100` yang sama dengan `.table thead`, kalau tidak kolom
   No/kolom identitas/Aksi berbeda warna dari kolom header lain (lihat bagian 8.2).
@@ -1928,5 +2058,62 @@ seluruh halaman eSPMI. Saat ini berisi satu preferensi: **Font Sistem**.
 | `.font-option .btn-check:checked + label.card` | gaya kartu terpilih (border & latar primary) |
 | `.font-option-check` | ikon centang; `visibility: hidden` kecuali saat terpilih |
 | `.font-option-preview` | contoh teks "Aa Bb Cc" dengan font masing-masing |
+
+---
+
+## 21. Halaman Visualisasi (Kesiapan Akreditasi)
+
+Halaman `evaluasi-ami-visualisasi-akreditasi.html` (grup **Evaluasi (AMI)**)
+adalah acuan pola **halaman visualisasi read-only**. Struktur konten, berurutan:
+
+1. **Page header** — `h1.h2` berikon `<i class="ti ti-checklist"></i>` (ikon
+   menu induk level 1 *Evaluasi (AMI)*, bagian 16.1); breadcrumb
+   `Dashboard` → `Evaluasi (AMI)` → `Visualisasi Akreditasi`.
+2. **Petunjuk** — `alert alert-info` (bagian 16.4) di **atas** card, berisi
+   "Klik progress bar Visual Akreditasi untuk melihat detail Syarat Perlu
+   Akreditasi."
+3. **Tabel data** — datatable baku (bagian 7 & 16.5): satu
+   `div.card.card-lg.border-1` berisi **toolbar → baris filter (collapse) →
+   tabel → footer pagination**.
+   - Toolbar: **kiri** = pencarian (`form-control listjs-search`) + tombol
+     **Filter** (`btn btn-white datatable-filter-toggle`) + tombol dropdown
+     **Kolom**; **kanan** = selector **Per page**.
+   - Filter (collapse): **Tahun** + **Lembaga Akreditasi** (select
+     `-- SEMUA --`).
+   - Kolom: **No**, **Auditee** (`listjs-sorter` + `data-sort="auditee"`),
+     **Visualisasi Akreditasi**.
+   - Karena halaman **read-only**, kolom **Aksi tidak ditampilkan** — pengecualian
+     terhadap bagian 8.1/16.2 (sama seperti bagian 19).
+
+### 21.1 Progress Bar Kesiapan Akreditasi
+
+Sel kolom **Visualisasi Akreditasi** memakai salah satu dari dua bentuk:
+
+- **Tidak ada syarat perlu** — teks biasa:
+  `<span class="text-secondary">Tidak memiliki syarat perlu</span>`.
+- **Ada kesiapan** — badge persentase + progress bar ramping:
+
+  ```html
+  <div class="d-flex align-items-center gap-2">
+    <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
+    <div class="progress espmi-readiness flex-grow-1" role="progressbar"
+         aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar bg-danger" style="width: 0%"></div>
+    </div>
+  </div>
+  ```
+
+| Rentang kesiapan | Badge (varian soft) | Progress bar |
+| --- | --- | --- |
+| `< 50%` | `bg-danger-subtle text-danger-emphasis` | `bg-danger` |
+| `50% &ndash; 79%` | `bg-warning-subtle text-warning-emphasis` | `bg-warning` |
+| `&ge; 80%` | `bg-success-subtle text-success-emphasis` | `bg-success` |
+
+- Badge persentase memakai varian **soft** (bagian 16.2); progress bar memakai
+  warna solid agar kontras terhadap track.
+- Track progress bar dimampatkan lewat kelas `.espmi-readiness`
+  (`espmi-app.css` bagian 17): tinggi `0.5rem`, tepi membulat penuh,
+  `min-width: 6rem`.
+
 
 

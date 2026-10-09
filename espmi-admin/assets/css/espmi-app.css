@@ -825,3 +825,62 @@ textarea.form-control::placeholder {
   transform: rotate(-135deg) translate(-1px, -1px);
 }
 
+/* --------------------------------------------------------------------------
+   15. Datatable - geser horizontal dengan drag (drag-to-scroll)
+   Dipakai oleh assets/js/espmi-drag-scroll.js. Kursor `grab` hanya muncul
+   ketika container memang bisa di-scroll horizontal (banyak kolom).
+   -------------------------------------------------------------------------- */
+.table-responsive.espmi-drag-scrollable {
+  cursor: grab;
+}
+
+.table-responsive.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.table-responsive.is-dragging * {
+  cursor: grabbing !important;
+}
+
+/* Matikan seleksi teks di seluruh halaman selama drag agar tidak "mem-blok"
+   teks tabel; dikembalikan otomatis saat pointer dilepas. */
+body.espmi-is-dragging {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   16. Sidebar - garis tipis pemisah antar grup menu
+   Grup menu (design-rules.md bagian 4.0) dipisah garis tipis. Tema hanya
+   menampilkan label `.nav-heading` saat sidebar *expanded* dan
+   `<hr class="nav-line">` saat *collapsed*; rule ini menambahkan garis tipis
+   di ATAS label grup agar pemisah antar grup tetap terlihat saat *expanded*
+   maupun pada *offcanvas*. Warna mengikuti `--ds-gray-300` (ikut dark mode).
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar .nav-heading,
+.offcanvasNav .nav-heading {
+  background-image: linear-gradient(var(--ds-gray-300), var(--ds-gray-100));
+  background-repeat: no-repeat;
+  background-size: calc(100% - 2.5rem) 1px;
+  background-position: 1.25rem top;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   17. Progress bar "kesiapan akreditasi" (halaman Visualisasi Akreditasi)
+   Menampilkan persentase kesiapan akreditasi. Tema memakai variabel
+   `--ds-progress-*`; track dimampatkan (0.5rem) dan tepinya dibulatkan penuh
+   agar tetap rapi di dalam sel tabel.
+   -------------------------------------------------------------------------- */
+.espmi-readiness {
+  --ds-progress-height: 0.5rem;
+  --ds-progress-border-radius: 999px;
+  min-width: 6rem;
+}
+
+.espmi-readiness .progress-bar {
+  border-radius: 999px;
+}
+
+

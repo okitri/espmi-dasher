@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Dashboard | eSPMI</title>
+    <title>Visualisasi Akreditasi | eSPMI</title>
     <!-- Favicon icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
@@ -46,8 +46,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="../dist/assets/libs/simplebar/dist/simplebar.min.css" />
     <link rel="stylesheet" href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css" />
-    <!-- drag & drop grid widget Dashboard (hanya dipakai halaman ini) -->
-    <link rel="stylesheet" href="../dist/assets/libs/dragula/dist/dragula.min.css" />
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="../dist/assets/css/theme.min.css" />
@@ -55,7 +53,7 @@
     <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
     <link rel="stylesheet" href="assets/css/espmi-app.css" />
 
-    <!-- Vendor CSS: driver.js (tour halaman, design-rules 16.7) -->
+    <!-- Vendor CSS: driver.js (tour halaman, design-rules 16.8) -->
     <link rel="stylesheet" href="assets/css/vendor/driver.css" />
   </head>
 
@@ -72,7 +70,7 @@
         <ul class="navbar-nav flex-column">
           <!-- Nav item -->
           <li class="nav-item">
-            <a class="nav-link active" href="./dashboard.html">
+            <a class="nav-link" href="./dashboard.html">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v8h-6z" /><path d="M4 16h6v4h-6z" /><path d="M14 12h6v8h-6z" /><path d="M14 4h6v4h-6z" /></svg></span>
               <span class="text">Dashboard</span>
             </a>
@@ -234,11 +232,11 @@
           </li>
           <!-- Nav item : Evaluasi (AMI) (submenu) -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
               <span class="text">Evaluasi (AMI)</span>
             </a>
-            <ul class="dropdown-menu flex-column">
+            <ul class="dropdown-menu flex-column show">
               <li class="nav-item">
                 <a class="nav-link" href="./evaluasi-ami-manajemen-auditor.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
@@ -276,7 +274,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./evaluasi-ami-visualisasi-akreditasi.html">
+                <a class="nav-link active" href="./evaluasi-ami-visualisasi-akreditasi.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-versions"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 5m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" /><path d="M7 7l0 10" /><path d="M4 8l0 8" /></svg></span>
                   <span class="text">Visualisasi Akreditasi</span>
                 </a>
@@ -405,7 +403,7 @@
           <ul class="navbar-nav flex-column">
             <!-- Nav item -->
             <li class="nav-item">
-              <a class="nav-link active" href="./dashboard.html">
+              <a class="nav-link" href="./dashboard.html">
                 <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v8h-6z" /><path d="M4 16h6v4h-6z" /><path d="M14 12h6v8h-6z" /><path d="M14 4h6v4h-6z" /></svg></span>
                 <span class="text">Dashboard</span>
               </a>
@@ -568,11 +566,11 @@
             <!-- Nav item -->
             <!-- Nav item : Evaluasi (AMI) (submenu) -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                 <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
                 <span class="text">Evaluasi (AMI)</span>
               </a>
-              <ul class="dropdown-menu flex-column">
+              <ul class="dropdown-menu flex-column show">
                 <li class="nav-item">
                   <a class="nav-link" href="./evaluasi-ami-manajemen-auditor.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
@@ -610,7 +608,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./evaluasi-ami-visualisasi-akreditasi.html">
+                  <a class="nav-link active" href="./evaluasi-ami-visualisasi-akreditasi.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-versions"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 5m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" /><path d="M7 7l0 10" /><path d="M4 8l0 8" /></svg></span>
                     <span class="text">Visualisasi Akreditasi</span>
                   </a>
@@ -736,7 +734,7 @@
               <!-- Collapse (mobile) -->
               <div class="d-block d-lg-none">
                 <a class="text-inherit" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
                 </a>
               </div>
               <!-- Collapse (desktop) -->
@@ -841,15 +839,18 @@
 
         <!-- container -->
         <div class="custom-container">
-          <!-- Page Header : Dashboard (icon sama dengan icon menu sidebar - design-rules 16.1) -->
+          <!-- Page header -->
           <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
+              <!-- Page header -->
               <div class="mb-6 d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>
+                  <h1 class="mb-3 h2"><i class="ti ti-checklist"></i> Visualisasi Akreditasi</h1>
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                      <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
+                      <li class="breadcrumb-item"><a href="#!">Evaluasi (AMI)</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Visualisasi Akreditasi</li>
                     </ol>
                   </nav>
                 </div>
@@ -859,464 +860,420 @@
                     id="btnTourHalaman"
                     class="btn btn-subtle-secondary btn-icon"
                     data-tour-start
-                    data-tour-intro-title="Tour Dashboard"
-                    data-tour-intro-text="Ikuti langkah singkat untuk mengenal bagian-bagian dashboard eSPMI. Klik Berikutnya untuk lanjut."
+                    data-tour-intro-title="Tour Visualisasi Akreditasi"
+                    data-tour-intro-text="Ikuti langkah singkat untuk mengenal halaman Visualisasi Akreditasi: pencarian, filter, kontrol kolom, dan tabel kesiapan akreditasi."
                     aria-label="Mulai tour halaman"
                     title="Tur halaman"
                   >
                     <i class="ti ti-help-circle fs-5"></i>
                   </button>
-                  <button type="button" id="btnResetDashboard" class="btn btn-white align-items-center gap-2" hidden>
-                    <i class="ti ti-refresh"></i><span>Reset</span>
-                  </button>
-                  <button type="button" id="btnKustomisasiDashboard" class="btn btn-dark d-md-flex align-items-center gap-2" data-tour-step data-tour-title="Kostumasi Dashboard" data-tour-text="Aktifkan mode ini untuk menggeser, mengubah lebar, atau menyembunyikan kartu. Perubahan tersimpan otomatis di peramban." data-tour-side="bottom" data-tour-align="end">
-                    <i class="ti ti-adjustments" id="btnKustomisasiDashboardIcon"></i><span id="btnKustomisasiDashboardLabel">Kostumasi Dashboard</span>
-                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Petunjuk mode kostumasi (design-rules 16.4) - hanya tampil saat mode aktif -->
-          <div class="alert alert-info d-flex align-items-start gap-2 mb-6 dashboard-customizing-only" role="alert">
+          <!-- Petunjuk -->
+          <div class="alert alert-info d-flex align-items-start gap-2 mb-6" role="alert">
             <i class="ti ti-info-circle fs-5"></i>
-            <div><span class="fw-semibold">Petunjuk:</span> Geser kartu lewat ikon pegangan untuk mengubah urutan, lalu pilih lebar kartu (1&ndash;4 kolom). Klik ikon tempat sampah untuk menyembunyikan kartu chart &mdash; kartu tersebut muncul kembali lewat tombol <strong>Reset</strong>. Perubahan tersimpan otomatis di peramban ini.</div>
+            <div><span class="fw-semibold">Petunjuk:</span> Klik progress bar Visual Akreditasi untuk melihat detail Syarat Perlu Akreditasi.</div>
           </div>
 
-          <!-- Panel kartu tersembunyi - hanya tampil saat mode kostumasi -->
-          <div class="card card-lg border-1 mb-6 dashboard-customizing-only" id="dashboardHiddenPanel">
-            <div class="card-body d-flex flex-wrap align-items-center gap-3">
-              <span class="fw-semibold d-inline-flex align-items-center gap-2">
-                <i class="ti ti-eye-off fs-5"></i>Kartu Tersembunyi
-              </span>
-              <div class="d-flex flex-wrap align-items-center gap-2" id="dashboardHiddenList"></div>
-              <button type="button" class="btn btn-white btn-sm ms-auto d-none align-items-center gap-1" id="btnTampilkanSemuaKartu">
-                <i class="ti ti-eye"></i><span>Tampilkan Semua</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Grid Widget Dashboard : kartu statistik + kartu chart, dapat dikostumasi -->
-          <div class="row g-6 mb-6" id="dashboardWidgetGrid">
-
-            <!-- Widget : Auditee -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-3" data-widget="auditee" data-span="1" data-widget-title="Auditee" data-tour-step data-tour-title="Kartu Statistik" data-tour-text="Empat kartu ini menampilkan ringkasan jumlah Auditee, Lembaga Akreditasi, Standar Mutu, dan Risiko Tinggi." data-tour-side="bottom">
-              <!-- card -->
-              <div class="card card-lg border-1 bg-gradient-info h-100 dashboard-widget dashboard-widget--gradient">
-                <div class="card-body d-flex flex-column gap-6">
-                  <div class="d-flex justify-content-between align-items-start gap-3">
-                    <div class="text-white fw-semibold">Auditee</div>
-                    <div class="d-flex align-items-center gap-1 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Auditee"><i class="ti ti-grip-vertical fs-5"></i></button>
-                    </div>
+          <!-- Daftar Visualisasi Akreditasi -->
+          <div class="card card-lg border-1" id="visualisasiAkreditasiList" data-list="auditee">
+            <div class="card-body pb-0">
+              <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
+                <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
+                  <input
+                    type="search"
+                    placeholder="Cari.."
+                    class="form-control listjs-search"
+                    aria-label="Cari auditee"
+                    data-tour-step
+                    data-tour-title="Pencarian"
+                    data-tour-text="Ketik nama auditee untuk mencari data secara instan."
+                    data-tour-side="bottom"
+                  />
+                  <button
+                    class="btn btn-white datatable-filter-toggle d-inline-flex align-items-center gap-2"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#visualisasiAkreditasiFilters"
+                    aria-expanded="false"
+                    aria-controls="visualisasiAkreditasiFilters"
+                    data-tour-step
+                    data-tour-title="Filter"
+                    data-tour-text="Buka filter data untuk menyaring berdasarkan Tahun dan Lembaga Akreditasi."
+                    data-tour-side="bottom"
+                  >
+                    <i class="ti ti-filter fs-5"></i>
+                    Filter
+                    <span class="badge bg-primary-subtle text-primary-emphasis active-filter-badge" hidden>0</span>
+                  </button>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="outside"
+                      aria-expanded="false"
+                      aria-label="Pilih kolom yang ditampilkan"
+                      data-tour-step
+                      data-tour-title="Kolom"
+                      data-tour-text="Pilih kolom yang ditampilkan atau disembunyikan. Kolom No dan Auditee selalu tampil."
+                      data-tour-side="bottom"
+                    >
+                      <i class="ti ti-table-minus fs-5"></i>
+                      Kolom
+                    </button>
+                    <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
+                      <li><h6 class="dropdown-header">Tampilkan kolom</h6></li>
+                    </ul>
                   </div>
-                  <div class="d-flex align-items-baseline gap-2">
-                    <div class="text-white fs-1 fw-bold lh-1">54</div>
-                    <span class="text-white fw-semibold">Data</span>
-                  </div>
-                  <div class="dashboard-widget-chart" id="statistikAuditeeChart"></div>
                 </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-white-50">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Auditee">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <label class="form-label text-nowrap mb-0" for="visualisasiAkreditasiPerPage">Per page:</label>
+                    <select class="form-select listjs-items-per-page" id="visualisasiAkreditasiPerPage" style="width: 5.5rem" aria-label="Jumlah data per halaman" data-tour-step data-tour-title="Jumlah per halaman" data-tour-text="Atur berapa baris auditee yang ditampilkan per halaman." data-tour-side="bottom" data-tour-align="end">
+                      <option value="10" selected>10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="collapse" id="visualisasiAkreditasiFilters">
+                <div class="d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300">
+                  <div class="d-flex align-items-center gap-2">
+                    <label class="form-label text-nowrap mb-0" for="filterTahunAkreditasi">Tahun</label>
+                    <select class="form-select" id="filterTahunAkreditasi" aria-label="Tahun" style="width: 10rem">
+                      <option selected>-- SEMUA --</option>
+                      <option>2026</option>
+                      <option>2025</option>
+                      <option>2024</option>
+                      <option>2023</option>
+                      <option>2022</option>
+                      <option>2021</option>
+                    </select>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <label class="form-label text-nowrap mb-0" for="filterLembagaAkreditasi">Lembaga Akreditasi</label>
+                    <select class="form-select" id="filterLembagaAkreditasi" aria-label="Lembaga Akreditasi" style="width: 12rem">
+                      <option selected>-- SEMUA --</option>
+                      <option>BAN-PT</option>
+                      <option>LAM-PTKes</option>
+                      <option>LAMEMBA</option>
+                      <option>LAMDIK</option>
+                      <option>LAM Teknik</option>
+                      <option>LAM INFOKOM</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Widget : Lembaga Akreditasi -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-3" data-widget="lembaga-akreditasi" data-span="1" data-widget-title="Lembaga Akreditasi">
-              <!-- card -->
-              <div class="card card-lg border-1 bg-gradient-success h-100 dashboard-widget dashboard-widget--gradient">
-                <div class="card-body d-flex flex-column gap-6">
-                  <div class="d-flex justify-content-between align-items-start gap-3">
-                    <div class="text-white fw-semibold">Lembaga Akreditasi</div>
-                    <div class="d-flex align-items-center gap-1 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Lembaga Akreditasi"><i class="ti ti-grip-vertical fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2">
-                    <div class="text-white fs-1 fw-bold lh-1">37</div>
-                    <span class="text-white fw-semibold">Data</span>
-                  </div>
-                  <div class="dashboard-widget-chart" id="statistikLembagaAkreditasiChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-white-50">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Lembaga Akreditasi">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Standar Mutu -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-3" data-widget="standar-mutu" data-span="1" data-widget-title="Standar Mutu">
-              <!-- card -->
-              <div class="card card-lg border-1 bg-gradient-warning h-100 dashboard-widget dashboard-widget--gradient">
-                <div class="card-body d-flex flex-column gap-6">
-                  <div class="d-flex justify-content-between align-items-start gap-3">
-                    <div class="text-white fw-semibold">Standar Mutu</div>
-                    <div class="d-flex align-items-center gap-1 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-stack-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 4l-8 4l8 4l8 -4l-8 -4" /><path d="M4 12l8 4l8 -4" /><path d="M4 16l8 4l8 -4" /></svg>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Standar Mutu"><i class="ti ti-grip-vertical fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2">
-                    <div class="text-white fs-1 fw-bold lh-1">2569</div>
-                    <span class="text-white fw-semibold">Data</span>
-                  </div>
-                  <div class="dashboard-widget-chart" id="statistikStandarMutuChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-white-50">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Standar Mutu">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Widget : Risiko Tinggi -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-3" data-widget="risiko-tinggi" data-span="1" data-widget-title="Risiko Tinggi">
-              <!-- card -->
-              <div class="card card-lg border-1 bg-gradient-danger h-100 dashboard-widget dashboard-widget--gradient">
-                <div class="card-body d-flex flex-column gap-6">
-                  <div class="d-flex justify-content-between align-items-start gap-3">
-                    <div class="fw-semibold text-white">Risiko Tinggi</div>
-                    <div class="d-flex align-items-center gap-1 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /><path d="M12 16h.01" /></svg>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Risiko Tinggi"><i class="ti ti-grip-vertical fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-baseline gap-2">
-                    <div class="text-white fs-1 fw-bold lh-1">18</div>
-                    <span class="text-white fw-semibold">Risiko</span>
-                  </div>
-                  <div class="dashboard-widget-chart" id="statistikRisikoTinggiChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-white-50">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Risiko Tinggi">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget terkunci : Filter Kartu Chart (tidak dapat digeser / diubah lebar / dihapus).
-                 Posisinya sengaja tepat setelah 4 kartu KPI karena filter ini khusus untuk kartu chart. -->
-            <div class="dashboard-widget-col col-12" data-widget="filter" data-locked="true" data-widget-title="Filter Kartu Chart" data-tour-step data-tour-title="Filter Kartu Chart" data-tour-text="Gunakan filter ini untuk menyaring kartu chart berdasarkan Lembaga Akreditasi, Tahun, dan Auditee." data-tour-side="bottom">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="row g-3">
-                    <div class="col-xl-4 col-md-6 col-12">
-                      <label class="form-label" for="filterLembagaAkreditasi">Filter Lembaga Akreditasi</label>
-                      <select class="form-select" id="filterLembagaAkreditasi">
-                        <option selected>SPMI</option>
-                        <option>BAN-PT</option>
-                        <option>LAMDIK</option>
-                        <option>LAMEMBA</option>
-                      </select>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-12">
-                      <label class="form-label" for="filterTahun">Filter Tahun</label>
-                      <select class="form-select" id="filterTahun">
-                        <option selected>2026</option>
-                        <option>2025</option>
-                        <option>2024</option>
-                        <option>2023</option>
-                      </select>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-12">
-                      <label class="form-label" for="filterAuditfee">Filter Auditee</label>
-                      <select class="form-select" id="filterAuditfee">
-                        <option selected>desi</option>
-                        <option>auditor</option>
-                        <option>pusat</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Persentase Kesiapan Akreditasi -->
-            <div class="dashboard-widget-col col-12" data-widget="kesiapan-akreditasi" data-span="4" data-removable="true" data-widget-title="Persentase Kesiapan Akreditasi" data-tour-step data-tour-title="Kartu Chart" data-tour-text="Kartu-kartu di bawah menampilkan grafik persentase dan perkembangan nilai mutu. Setiap kartu bisa diubah lebar atau disembunyikan." data-tour-side="top">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start gap-3">
-                    <div class="flex-grow-1 text-center">
-                      <h5 class="mb-1">Persentase Kesiapan Akreditasi</h5>
-                      <span class="text-secondary small">Berdasarkan Standar Mutu</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-1">
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Persentase Kesiapan Akreditasi"><i class="ti ti-grip-vertical fs-5"></i></button>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Persentase Kesiapan Akreditasi"><i class="ti ti-trash fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div id="kesiapanAkreditasiChart" class="d-flex justify-content-center"></div>
-                  <div class="text-center text-secondary">0 Terpenuhi dari 2 Syarat Perlu</div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Persentase Kesiapan Akreditasi">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Persentase Rata Nilai - Standar Mutu -->
-            <div class="dashboard-widget-col col-12" data-widget="rata-nilai-standar" data-span="4" data-removable="true" data-widget-title="Persentase Rata Nilai - Standar Mutu">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="row g-3 align-items-start mb-4">
-                    <div class="col-lg-4 col-12">
-                      <label class="form-label" for="filterJenis">Filter Jenis</label>
-                      <select class="form-select" id="filterJenis">
-                        <option selected>Evaluasi Diri</option>
-                        <option>Desk Evaluasi</option>
-                      </select>
-                    </div>
-                    <div class="col-lg-5 col-10 text-lg-center">
-                      <h5 class="mb-1">Persentase Rata Nilai</h5>
-                      <span class="text-secondary small">Berdasarkan Standar Mutu</span>
-                    </div>
-                    <div class="col-lg-3 col-2 d-flex justify-content-end">
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Persentase Rata Nilai Standar Mutu"><i class="ti ti-grip-vertical fs-5"></i></button>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Persentase Rata Nilai Standar Mutu"><i class="ti ti-trash fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div id="rataNilaiStandarChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Persentase Rata Nilai Standar Mutu">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Persentase Rata Nilai - Sub Standar Mutu -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-6" data-widget="rata-nilai-sub-standar" data-span="2" data-removable="true" data-widget-title="Persentase Rata Nilai - Sub Standar Mutu">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="row g-3 align-items-start mb-4">
-                    <div class="col-lg-8 col-12">
-                      <label class="form-label" for="filterStandarMutu">Filter Standar Mutu</label>
-                      <select class="form-select" id="filterStandarMutu">
-                        <option selected>Kompetensi Lulusan</option>
-                        <option>Isi Pembelajaran</option>
-                        <option>Proses Pembelajaran</option>
-                        <option>Penilaian Pembelajaran</option>
-                      </select>
-                    </div>
-                    <div class="col-lg-4 col-12 d-flex flex-column align-items-lg-end gap-1">
+            <div class="table-responsive mt-6">
+              <table class="table text-nowrap table-hover mb-0" data-tour-step data-tour-title="Tabel Data" data-tour-text="Daftar auditee beserta visualisasi kesiapan akreditasi. Klik progress bar untuk melihat detail Syarat Perlu Akreditasi." data-tour-side="top">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 4.5rem">No</th>
+                    <th scope="col" class="listjs-sorter" data-sort="auditee">Auditee</th>
+                    <th scope="col">Visualisasi Akreditasi</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr>
+                    <td class="no">1</td>
+                    <td class="auditee">Audi Fakultas Filsafat</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">2</td>
+                    <td class="auditee">desi</td>
+                    <td class="visualisasi">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="small text-secondary">Export</span>
-                        <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Persentase Rata Nilai Sub Standar Mutu"><i class="ti ti-grip-vertical fs-5"></i></button>
-                        <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Persentase Rata Nilai Sub Standar Mutu"><i class="ti ti-trash fs-5"></i></button>
+                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-danger" style="width: 0%"></div>
+                        </div>
                       </div>
-                      <button type="button" class="btn btn-white btn-sm d-inline-flex align-items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-spreadsheet text-success"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M8 11h8v7h-8z" /><path d="M8 15h8" /><path d="M11 11v7" /></svg>
-                        <span>XLS</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-                    <div class="flex-grow-1 text-center">
-                      <h5 class="mb-1">Persentase Rata Nilai</h5>
-                      <span class="text-secondary small">Berdasarkan Sub Standar Mutu</span>
-                    </div>
-                  </div>
-                  <div id="rataNilaiSubStandarChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Persentase Rata Nilai Sub Standar Mutu">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">3</td>
+                    <td class="auditee">DOKTOR TEKNIK ELEKTRO</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">4</td>
+                    <td class="auditee">DOKTOR INFORMATIKA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">5</td>
+                    <td class="auditee">ILMU KESEHATAN MASYARAKAT</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">6</td>
+                    <td class="auditee">ILMU SEJARAH</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">7</td>
+                    <td class="auditee">Kemahasiswaan</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-danger" style="width: 0%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">8</td>
+                    <td class="auditee">KERJASAMA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">9</td>
+                    <td class="auditee">Lembaga Bahasa Universitas</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">10</td>
+                    <td class="auditee">Manajemen Informasi Komunikasi [MIK]</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">11</td>
+                    <td class="auditee">Manajemen Perkantoran</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">12</td>
+                    <td class="auditee">MANAJEMEN SUMBER DAYA PERAIRAN</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">13</td>
+                    <td class="auditee">Matematika</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">14</td>
+                    <td class="auditee">NUTRISI DAN MAKANAN TERNAK</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">15</td>
+                    <td class="auditee">PENDIDIKAN AKUNTANSI</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">35% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="35% siap" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-danger" style="width: 35%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">16</td>
+                    <td class="auditee">PENDIDIKAN BAHASA INGGRIS</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">17</td>
+                    <td class="auditee">PENDIDIKAN BAHASA JERMAN</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">18</td>
+                    <td class="auditee">PENDIDIKAN GURU SEKOLAH DASAR</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">19</td>
+                    <td class="auditee">PENDIDIKAN JASMANI KESEHATAN DAN REKREASI</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">20</td>
+                    <td class="auditee">PENDIDIKAN LUAR BIASA</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-warning-subtle text-warning-emphasis text-nowrap">60% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="60% siap" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-warning" style="width: 60%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">21</td>
+                    <td class="auditee">PENDIDIKAN MATEMATIKA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">22</td>
+                    <td class="auditee">PENDIDIKAN SEJARAH</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">23</td>
+                    <td class="auditee">PERPUSTAKAAN</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">24</td>
+                    <td class="auditee">PERTANIAN</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">25</td>
+                    <td class="auditee">PROFESI PENDIDIKAN GURU</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">26</td>
+                    <td class="auditee">Psikologi</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">27</td>
+                    <td class="auditee">SASTRA ARAB</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">28</td>
+                    <td class="auditee">SASTRA CHINA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">29</td>
+                    <td class="auditee">SASTRA INDONESIA</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">45% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="45% siap" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-danger" style="width: 45%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">30</td>
+                    <td class="auditee">SASTRA INGGRIS</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">31</td>
+                    <td class="auditee">Sistem Informasi</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">32</td>
+                    <td class="auditee">STATISTIKA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">33</td>
+                    <td class="auditee">TEKNIK ARSITEKTUR</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">34</td>
+                    <td class="auditee">TEKNIK ELEKTRO</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">35</td>
+                    <td class="auditee">TEKNIK INFORMATIKA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">36</td>
+                    <td class="auditee">TEKNIK KIMIA</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">37</td>
+                    <td class="auditee">TEKNIK MESIN</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">38</td>
+                    <td class="auditee">TEKNIK SIPIL</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-warning-subtle text-warning-emphasis text-nowrap">75% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="75% siap" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-warning" style="width: 75%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">39</td>
+                    <td class="auditee">Unit Penjaminan Mutu</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">40</td>
+                    <td class="auditee">Unit Kerjasama dan Humas</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">41</td>
+                    <td class="auditee">Unit Perpustakaan Pusat</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">42</td>
+                    <td class="auditee">Unit Sistem Informasi</td>
+                    <td class="visualisasi">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-success-subtle text-success-emphasis text-nowrap">100% siap</span>
+                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="100% siap" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-success" style="width: 100%"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no">43</td>
+                    <td class="auditee">Unit Laboratorium Terpadu</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">44</td>
+                    <td class="auditee">Unit Kemahasiswaan dan Alumni</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                  <tr>
+                    <td class="no">45</td>
+                    <td class="auditee">Unit Penelitian dan Pengabdian</td>
+                    <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-            <!-- Widget : Risiko -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-6" data-widget="risiko" data-span="2" data-removable="true" data-widget-title="Risiko">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-                    <div class="flex-grow-1 text-center">
-                      <h5 class="mb-1">Risiko</h5>
-                      <span class="text-secondary small">Berdasarkan Standar Mutu</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-1">
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Risiko"><i class="ti ti-grip-vertical fs-5"></i></button>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Risiko"><i class="ti ti-trash fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div id="risikoChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Risiko">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Perkembangan Nilai Mutu -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-6" data-widget="perkembangan-mutu" data-span="2" data-removable="true" data-widget-title="Perkembangan Nilai Mutu">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-                    <div class="flex-grow-1 text-center">
-                      <h5 class="mb-1">Perkembangan Nilai Mutu desi</h5>
-                      <span class="text-secondary small d-block">Berdasarkan Periode Tahun</span>
-                      <span class="text-secondary small d-block">Lembaga SPMI</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-1">
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Perkembangan Nilai Mutu"><i class="ti ti-grip-vertical fs-5"></i></button>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Perkembangan Nilai Mutu"><i class="ti ti-trash fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div id="perkembanganMutuChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Perkembangan Nilai Mutu">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Widget : Perkembangan Nilai Evaluasi Diri -->
-            <div class="dashboard-widget-col col-12 col-md-6 col-xl-6" data-widget="perkembangan-evaluasi-diri" data-span="2" data-removable="true" data-widget-title="Perkembangan Nilai Evaluasi Diri">
-              <!-- card -->
-              <div class="card card-lg border-1 h-100 dashboard-widget">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-                    <div class="flex-grow-1 text-center">
-                      <h5 class="mb-1">Perkembangan Nilai Evaluasi Diri desi</h5>
-                      <span class="text-secondary small d-block">Berdasarkan Periode Tahun</span>
-                      <span class="text-secondary small d-block">Lembaga SPMI</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-1">
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-handle" aria-label="Geser kartu Perkembangan Nilai Evaluasi Diri"><i class="ti ti-grip-vertical fs-5"></i></button>
-                      <button type="button" class="btn btn-ghost btn-icon dashboard-widget-remove" aria-label="Hapus kartu Perkembangan Nilai Evaluasi Diri"><i class="ti ti-trash fs-5"></i></button>
-                    </div>
-                  </div>
-                  <div id="perkembanganEvaluasiDiriChart"></div>
-                </div>
-                <div class="card-footer border-0 bg-transparent dashboard-widget-toolbar justify-content-between align-items-center gap-2">
-                  <span class="small text-secondary">Lebar</span>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Lebar kartu Perkembangan Nilai Evaluasi Diri">
-                    <button type="button" class="btn btn-white" data-span-set="1">1</button>
-                    <button type="button" class="btn btn-white" data-span-set="2">2</button>
-                    <button type="button" class="btn btn-white" data-span-set="3">3</button>
-                    <button type="button" class="btn btn-white" data-span-set="4">4</button>
-                  </div>
-                </div>
+            <div class="card-footer border-top d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
+              <p class="mb-0 listjs-showing-items-label">Showing 1 to 10 of 45 entries</p>
+              <div class="pagination-buttons d-flex align-items-center">
+                <button class="btn btn-white prev" type="button" disabled>Previous</button>
+                <ul class="pagination mb-0 ms-1">
+                  <li class="page-item active"><a class="page-link page" href="#" data-page="1">1</a></li>
+                  <li class="page-item"><a class="page-link page" href="#" data-page="2">2</a></li>
+                  <li class="page-item"><a class="page-link page" href="#" data-page="3">3</a></li>
+                  <li class="page-item"><a class="page-link page" href="#" data-page="4">4</a></li>
+                  <li class="page-item"><a class="page-link page" href="#" data-page="5">5</a></li>
+                </ul>
+                <button class="btn btn-white next" type="button">Next</button>
               </div>
             </div>
           </div>
-          <!-- /#dashboardWidgetGrid -->
-          <!-- eSPMI - terapkan layout widget tersimpan sebelum paint (mencegah kedipan).
-               Diletakkan SETELAH markup grid agar elemennya sudah ada di DOM. -->
-          <script>
-            (function () {
-              var grid = document.getElementById('dashboardWidgetGrid');
-              if (!grid) return;
-              try {
-                var saved = JSON.parse(localStorage.getItem('espmi.dashboardLayout') || '[]');
-                if (!saved.length) return;
-                var cols = {};
-                Array.prototype.forEach.call(grid.querySelectorAll('.dashboard-widget-col'), function (col) {
-                  cols[col.getAttribute('data-widget')] = col;
-                });
 
-                // Migrasi layout lama (sebelum widget filter masuk ke grid):
-                // sisipkan entri 'filter' tepat sebelum entri kartu chart pertama
-                // agar urutan kustom pengguna tidak tertimpa.
-                var hasFilter = false;
-                for (var i = 0; i < saved.length; i++) {
-                  if (saved[i] && saved[i].id === 'filter') hasFilter = true;
-                }
-                if (!hasFilter) {
-                  var insertAt = saved.length;
-                  var chartIds = ['kesiapan-akreditasi', 'rata-nilai-standar', 'rata-nilai-sub-standar', 'risiko', 'perkembangan-mutu', 'perkembangan-evaluasi-diri'];
-                  for (var j = 0; j < saved.length; j++) {
-                    if (!saved[j]) continue;
-                    if (chartIds.indexOf(saved[j].id) !== -1) {
-                      insertAt = j;
-                      break;
-                    }
-                  }
-                  saved.splice(insertAt, 0, { id: 'filter' });
-                }
-
-                var spanClass = { 1: 'col-12 col-md-6 col-xl-3', 2: 'col-12 col-md-6 col-xl-6', 3: 'col-12 col-xl-9', 4: 'col-12' };
-                saved.forEach(function (item) {
-                  if (!item) return;
-                  var col = cols[item.id];
-                  if (!col) return;
-                  var locked = col.getAttribute('data-locked') === 'true';
-                  if (!locked && spanClass[item.span]) {
-                    col.setAttribute('data-span', item.span);
-                    col.className = 'dashboard-widget-col ' + spanClass[item.span];
-                  }
-                  // Kelas hidden WAJIB dipasang setelah penulisan className di atas.
-                  if (item.hidden) {
-                    col.classList.add('dashboard-widget-hidden');
-                    col.setAttribute('data-hidden', 'true');
-                  } else {
-                    col.classList.remove('dashboard-widget-hidden');
-                    col.removeAttribute('data-hidden');
-                  }
-                  grid.appendChild(col);
-                });
-              } catch (e) {
-                /* localStorage tidak tersedia - pakai urutan default */
-              }
-            })();
-          </script>
           <!-- footer -->
           <div class="row">
             <div class="col-12">
@@ -1349,862 +1306,130 @@
     <script src="assets/js/espmi-drag-scroll.js"></script>
     <script src="assets/js/vendor/driver.js"></script>
     <script src="assets/js/espmi-tour.js"></script>
-    <script src="../dist/assets/libs/dragula/dist/dragula.min.js"></script>
-    <script src="../dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../dist/assets/js/vendors/chart.js"></script>
+    <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
+    <script src="assets/js/espmi-datatable-columns.js"></script>
+    <script src="assets/js/espmi-datatable-crud.js"></script>
 
     <script>
-      // eSPMI - dashboard charts
+      // eSPMI - daftar Visualisasi Akreditasi (List.js: pencarian, sorting, dan pagination)
       (function () {
-        var theme = window.theme;
+        var listElement = document.getElementById('visualisasiAkreditasiList');
+        if (!listElement || typeof List === 'undefined') return;
 
-        /* ------------------------------------------------------------------
-           Grid widget Dashboard yang dapat dikostumasi
-           - Lebar kartu diatur atribut `data-span` (1-4 kolom dari 4 kolom).
-           - Urutan & lebar disimpan di localStorage 'espmi.dashboardLayout'.
-           - Drag hanya lewat `.dashboard-widget-handle` (mode kostumasi).
-           ------------------------------------------------------------------ */
-        var LAYOUT_KEY = 'espmi.dashboardLayout';
-        var SPAN_CLASS = {
-          1: 'col-12 col-md-6 col-xl-3',
-          2: 'col-12 col-md-6 col-xl-6',
-          3: 'col-12 col-xl-9',
-          4: 'col-12',
-        };
-        var DEFAULT_ORDER = [
-          'auditee',
-          'lembaga-akreditasi',
-          'standar-mutu',
-          'risiko-tinggi',
-          'filter',
-          'kesiapan-akreditasi',
-          'rata-nilai-standar',
-          'rata-nilai-sub-standar',
-          'risiko',
-          'perkembangan-mutu',
-          'perkembangan-evaluasi-diri',
-        ];
-        // Span indeks ke-4 (`filter`) tidak dipakai: widget itu terkunci pada col-12.
-        var DEFAULT_SPAN = [1, 1, 1, 1, 4, 4, 4, 2, 2, 2, 2];
+        var perPageSelect = listElement.querySelector('.listjs-items-per-page');
+        var label = listElement.querySelector('.listjs-showing-items-label');
+        var paginationEl = listElement.querySelector('.pagination');
+        var prevBtn = listElement.querySelector('.prev');
+        var nextBtn = listElement.querySelector('.next');
 
-        // Urutan class pada skrip restore di atas grid harus sama dengan nilai ini.
-        var REMOVABLE_TITLE_FALLBACK = 'Kartu Chart';
+        var itemsPerPage = perPageSelect ? parseInt(perPageSelect.value, 10) || 10 : 10;
+        var currentPage = 1;
+        var syncing = false;
 
-        var grid = document.getElementById('dashboardWidgetGrid');
-        var btnKustomisasi = document.getElementById('btnKustomisasiDashboard');
-        var btnKustomisasiIcon = document.getElementById('btnKustomisasiDashboardIcon');
-        var btnKustomisasiLabel = document.getElementById('btnKustomisasiDashboardLabel');
-        var btnReset = document.getElementById('btnResetDashboard');
-        var hiddenPanel = document.getElementById('dashboardHiddenPanel');
-        var hiddenList = document.getElementById('dashboardHiddenList');
-        var btnTampilkanSemua = document.getElementById('btnTampilkanSemuaKartu');
+        var listjs = new List(listElement.id, {
+          valueNames: (listElement.getAttribute('data-list') || 'auditee').split(','),
+          page: itemsPerPage,
+          searchClass: 'listjs-search',
+          sortClass: 'listjs-sorter',
+        });
 
-        // Kumpulkan instance ApexCharts agar bisa dirender ulang saat lebar berubah
-        var chartRegistry = [];
-
-        function registerChart(instance) {
-          if (instance) chartRegistry.push(instance);
-          return instance;
+        function totalPages() {
+          return Math.max(1, Math.ceil(listjs.matchingItems.length / itemsPerPage));
         }
 
-        function widgetColumns() {
-          if (!grid) return [];
-          return Array.prototype.slice.call(grid.querySelectorAll('.dashboard-widget-col'));
+        function updateLabel() {
+          if (!label) return;
+          var total = listjs.matchingItems.length;
+          var start = total === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
+          var end = Math.min(currentPage * itemsPerPage, total);
+          label.textContent = 'Showing ' + start + ' to ' + end + ' of ' + total + ' entries';
         }
 
-        function isLocked(col) {
-          return !!col && col.getAttribute('data-locked') === 'true';
+        function updateButtons() {
+          if (prevBtn) prevBtn.disabled = currentPage <= 1;
+          if (nextBtn) nextBtn.disabled = currentPage >= totalPages();
         }
 
-        function isRemovable(col) {
-          return !!col && col.getAttribute('data-removable') === 'true';
-        }
-
-        function isHidden(col) {
-          return !!col && col.classList.contains('dashboard-widget-hidden');
-        }
-
-        function removableColumns() {
-          return widgetColumns().filter(isRemovable);
-        }
-
-        function widgetTitle(col) {
-          if (!col) return REMOVABLE_TITLE_FALLBACK;
-          return col.getAttribute('data-widget-title') || REMOVABLE_TITLE_FALLBACK;
-        }
-
-        // Ada chart hanya boleh dibuat bila container-nya benar-benar terlihat,
-        // sebab ApexCharts salah menghitung ukuran pada elemen `display: none`.
-        function isChartVisible(elementId) {
-          var el = document.getElementById(elementId);
-          return !!el && el.offsetParent !== null;
-        }
-
-        // Tandai tombol lebar yang sedang aktif pada satu kartu
-        function syncSpanButtons(col) {
-          var span = col.getAttribute('data-span');
-          Array.prototype.forEach.call(col.querySelectorAll('[data-span-set]'), function (btn) {
-            var active = btn.getAttribute('data-span-set') === span;
-            btn.classList.toggle('active', active);
-            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-          });
-        }
-
-        function syncAllSpanButtons() {
-          widgetColumns().forEach(syncSpanButtons);
-        }
-
-        function applySpan(col, span) {
-          if (!SPAN_CLASS[span] || isLocked(col)) return;
-          col.setAttribute('data-span', span);
-          col.className = 'dashboard-widget-col ' + SPAN_CLASS[span];
-          // Kelas hidden ditulis ulang di atas, jadi harus dipulihkan lagi.
-          col.classList.toggle('dashboard-widget-hidden', col.getAttribute('data-hidden') === 'true');
-          syncSpanButtons(col);
-        }
-
-        // Simpan urutan, lebar, dan status sembunyi widget ke localStorage
-        function saveLayout() {
-          if (!grid) return;
-          var layout = widgetColumns().map(function (col) {
-            if (isLocked(col)) return { id: col.getAttribute('data-widget') };
-            return {
-              id: col.getAttribute('data-widget'),
-              span: parseInt(col.getAttribute('data-span'), 10) || 1,
-              hidden: isHidden(col),
-            };
-          });
-          try {
-            localStorage.setItem(LAYOUT_KEY, JSON.stringify(layout));
-          } catch (e) {
-            /* localStorage penuh / diblokir - abaikan */
+        function renderPagination() {
+          if (!paginationEl) return;
+          var html = '';
+          for (var i = 1; i <= totalPages(); i++) {
+            html +=
+              '<li class="page-item' +
+              (i === currentPage ? ' active' : '') +
+              '"><a class="page-link page" href="#" data-page="' +
+              i +
+              '">' +
+              i +
+              '</a></li>';
           }
+          paginationEl.innerHTML = html;
         }
 
-        /* ------------------------------------------------------------------
-           Sembunyikan / tampilkan kembali kartu chart.
-           Kartu TIDAK dihapus dari DOM supaya urutannya tetap terjaga saat
-           dipulihkan; kelas `.dashboard-widget-hidden` yang menyembunyikannya.
-           ------------------------------------------------------------------ */
-        function removeWidget(col) {
-          if (!isRemovable(col)) return;
-          col.classList.add('dashboard-widget-hidden');
-          col.setAttribute('data-hidden', 'true');
-          saveLayout();
-          renderHiddenPanel();
-          refreshCharts();
+        function renderView() {
+          updateLabel();
+          updateButtons();
+          renderPagination();
         }
 
-        function showWidget(col) {
-          if (!col) return;
-          col.classList.remove('dashboard-widget-hidden');
-          col.removeAttribute('data-hidden');
-          saveLayout();
-          renderHiddenPanel();
-          refreshCharts();
+        function goToPage(page) {
+          currentPage = Math.min(Math.max(1, page), totalPages());
+          syncing = true;
+          // List.js memakai indeks awal 1-based, jadi start index = (halaman - 1) * perPage + 1
+          listjs.show((currentPage - 1) * itemsPerPage + 1, itemsPerPage);
+          syncing = false;
+          renderView();
         }
 
-        function restoreAllHidden() {
-          removableColumns().forEach(function (col) {
-            col.classList.remove('dashboard-widget-hidden');
-            col.removeAttribute('data-hidden');
-          });
-          saveLayout();
-          renderHiddenPanel();
-          refreshCharts();
+        // Setiap hasil pencarian / sorting berubah, kembali ke halaman pertama
+        listjs.on('updated', function () {
+          if (syncing) return;
+          goToPage(1);
+        });
+
+        // Pencarian: panggil listjs.search() secara eksplisit agar tidak bergantung
+        // pada binding internal List.js (input & keyup, duplikat di-skip lewat lastSearch)
+        var searchInput = listElement.querySelector('.listjs-search');
+        if (searchInput) {
+          var lastSearch = null;
+          var applySearch = function () {
+            if (searchInput.value === lastSearch) return;
+            lastSearch = searchInput.value;
+            listjs.search(searchInput.value);
+          };
+          searchInput.addEventListener('input', applySearch);
+          searchInput.addEventListener('keyup', applySearch);
         }
 
-        // Daftar "Kartu Tersembunyi" + tombol pemulih, hanya relevan di mode kostumasi.
-        function renderHiddenPanel() {
-          if (!hiddenList) return;
-          hiddenList.textContent = '';
-          var hidden = removableColumns().filter(isHidden);
-
-          if (!hidden.length) {
-            var empty = document.createElement('span');
-            empty.className = 'text-secondary small';
-            empty.textContent = 'Tidak ada kartu yang disembunyikan.';
-            hiddenList.appendChild(empty);
-          } else {
-            hidden.forEach(function (col) {
-              var chip = document.createElement('button');
-              chip.type = 'button';
-              chip.className = 'btn btn-white btn-sm d-inline-flex align-items-center gap-1';
-              chip.setAttribute('data-widget-restore', col.getAttribute('data-widget'));
-              chip.setAttribute('aria-label', 'Tampilkan kartu ' + widgetTitle(col));
-
-              var icon = document.createElement('i');
-              icon.className = 'ti ti-plus';
-              chip.appendChild(icon);
-
-              // textContent (bukan innerHTML) - nama kartu berasal dari markup, tetap aman.
-              var label = document.createElement('span');
-              label.textContent = widgetTitle(col);
-              chip.appendChild(label);
-
-              hiddenList.appendChild(chip);
-            });
-          }
-
-          if (btnTampilkanSemua) {
-            var showAll = hidden.length > 1;
-            btnTampilkanSemua.classList.toggle('d-none', !showAll);
-            btnTampilkanSemua.classList.toggle('d-inline-flex', showAll);
-          }
-        }
-
-        // Panel di luar grid, jadi dipasang listener sendiri (bukan lewat delegation grid).
-        if (hiddenPanel) {
-          hiddenPanel.addEventListener('click', function (event) {
-            var restoreBtn = event.target.closest('[data-widget-restore]');
-            if (restoreBtn) {
-              showWidget(widgetById(restoreBtn.getAttribute('data-widget-restore')));
-              return;
-            }
-            if (event.target.closest('#btnTampilkanSemuaKartu')) restoreAllHidden();
+        if (perPageSelect) {
+          perPageSelect.addEventListener('change', function () {
+            itemsPerPage = parseInt(this.value, 10) || 10;
+            goToPage(1);
           });
         }
 
-        function widgetById(id) {
-          if (!grid || !id) return null;
-          return grid.querySelector('.dashboard-widget-col[data-widget="' + id + '"]');
-        }
-
-        // Render ulang seluruh chart setelah lebar kolom berubah.
-        // ApexCharts hanya mendengarkan event resize jendela, bukan perubahan
-        // ukuran container, sehingga destroy + render ulang paling andal.
-        var refreshTimer = null;
-        function refreshCharts() {
-          window.clearTimeout(refreshTimer);
-          refreshTimer = window.setTimeout(function () {
-            chartRegistry.forEach(function (chart) {
-              try {
-                chart.destroy();
-              } catch (e) {
-                /* instance mungkin sudah tidak ada lagi di DOM */
-              }
-            });
-            chartRegistry = [];
-            renderAllCharts();
-          }, 60);
-        }
-
-        function setCustomizing(active) {
-          document.body.classList.toggle('dashboard-customizing', active);
-          if (btnKustomisasi) btnKustomisasi.setAttribute('aria-pressed', active ? 'true' : 'false');
-          if (btnKustomisasiIcon) btnKustomisasiIcon.className = active ? 'ti ti-check' : 'ti ti-adjustments';
-          if (btnKustomisasiLabel) btnKustomisasiLabel.textContent = active ? 'Selesai' : 'Kostumasi Dashboard';
-          if (btnReset) btnReset.hidden = !active;
-        }
-
-        // Penggatingan drag cukup dilakukan pada opsi `moves` dragula, sehingga
-        // state internal drake (mis. `drake.dragging`) tidak perlu diutak-atik.
-        var drake = null;
-        if (grid && typeof dragula !== 'undefined') {
-          drake = dragula([grid], {
-            // Drag hanya boleh dimulai dari ikon pegangan, dan hanya saat mode kostumasi.
-            // `handle` adalah elemen tempat mousedown terjadi (bisa ikon <i> di dalam
-            // tombol pegangan), jadi dicek dengan closest() bukan classList.contains().
-            moves: function (el, container, handle) {
-              return (
-                document.body.classList.contains('dashboard-customizing') &&
-                !!handle &&
-                typeof handle.closest === 'function' &&
-                !!handle.closest('.dashboard-widget-handle')
-              );
-            },
-          });
-
-          drake.on('drop', function () {
-            saveLayout();
-            refreshCharts();
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            goToPage(currentPage - 1);
           });
         }
 
-        // Tombol "Kostumasi Dashboard" <-> "Selesai"
-        if (btnKustomisasi) {
-          btnKustomisasi.addEventListener('click', function () {
-            setCustomizing(!document.body.classList.contains('dashboard-customizing'));
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            goToPage(currentPage + 1);
           });
         }
 
-        // Hapus kartu chart (event delegation untuk semua widget)
-        // Cabang hapus dicek LEBIH DULU sebelum [data-span-set].
-        if (grid) {
-          grid.addEventListener('click', function (event) {
-            var removeBtn = event.target.closest('.dashboard-widget-remove');
-            if (removeBtn) {
-              removeWidget(removeBtn.closest('.dashboard-widget-col'));
-              return;
-            }
-            var btn = event.target.closest('[data-span-set]');
-            if (!btn) return;
-            var col = btn.closest('.dashboard-widget-col');
-            if (!col) return;
-            applySpan(col, parseInt(btn.getAttribute('data-span-set'), 10));
-            saveLayout();
-            refreshCharts();
+        if (paginationEl) {
+          paginationEl.addEventListener('click', function (event) {
+            var target = event.target.closest('[data-page]');
+            if (!target) return;
+            event.preventDefault();
+            goToPage(parseInt(target.getAttribute('data-page'), 10));
           });
         }
 
-        // Reset ke urutan & lebar default, sekaligus menampilkan kembali kartu tersembunyi
-        if (btnReset) {
-          btnReset.addEventListener('click', function () {
-            try {
-              localStorage.removeItem(LAYOUT_KEY);
-            } catch (e) {
-              /* abaikan */
-            }
-            if (grid) {
-              DEFAULT_ORDER.forEach(function (id, index) {
-                var col = widgetById(id);
-                if (!col) return;
-                // Tampilkan dulu, baru atur lebar (applySpan menulis ulang className).
-                col.classList.remove('dashboard-widget-hidden');
-                col.removeAttribute('data-hidden');
-                applySpan(col, DEFAULT_SPAN[index]);
-                grid.appendChild(col);
-              });
-            }
-            renderHiddenPanel();
-            setCustomizing(false);
-            refreshCharts();
-          });
-        }
-
-        syncAllSpanButtons();
-        renderHiddenPanel();
-
-        /* ------------------------------------------------------------------
-           Kartu statistik : sparkline area putih (aman di light & dark mode)
-           ------------------------------------------------------------------ */
-        // Data contoh - TODO: ganti dengan data API
-        var SPARKLINE_SERIES = {
-          statistikAuditeeChart: [12, 18, 15, 24, 21, 30, 28, 35],
-          statistikLembagaAkreditasiChart: [8, 12, 10, 16, 14, 20, 18, 24],
-          statistikStandarMutuChart: [180, 210, 195, 240, 225, 260, 250, 290],
-          statistikRisikoTinggiChart: [4, 6, 5, 9, 7, 11, 9, 13],
-        };
-
-        function renderSparkline(selector, data) {
-          var el = document.querySelector(selector);
-          if (!el) return;
-          // Kartu yang sedang disembunyikan tidak perlu dirender (ApexCharts
-          // salah menghitung ukuran pada elemen `display: none`).
-          if (el.offsetParent === null) return;
-          var chart = new ApexCharts(el, {
-            series: [{ name: 'Tren', data: data }],
-            chart: {
-              type: 'area',
-              height: 56,
-              sparkline: { enabled: true },
-              toolbar: { show: false },
-              animations: { enabled: false },
-              fontFamily: 'Inter, serif',
-            },
-            colors: ['#ffffff'],
-            stroke: { curve: 'smooth', width: 2 },
-            fill: {
-              type: 'gradient',
-              gradient: { opacityFrom: 0.45, opacityTo: 0.05, stops: [0, 100] },
-            },
-            markers: { size: 0 },
-            tooltip: { enabled: false },
-            dataLabels: { enabled: false },
-          });
-          chart.render();
-          registerChart(chart);
-        }
-
-        function renderStatisticSparklines() {
-          Object.keys(SPARKLINE_SERIES).forEach(function (id) {
-            renderSparkline('#' + id, SPARKLINE_SERIES[id]);
-          });
-        }
-
-        /* ------------------------------------------------------------------
-           Seluruh chart Dashboard dirender dari sini agar bisa dipanggil ulang
-           setelah urutan / lebar kartu berubah.
-           ------------------------------------------------------------------ */
-        function renderAllCharts() {
-          renderStatisticSparklines();
-
-          // Persentase Kesiapan Akreditasi
-          if (isChartVisible('kesiapanAkreditasiChart')) {
-            var kesiapanAkreditasiOptions = {
-              series: [0],
-              labels: ['Kesiapan Akreditasi'],
-              chart: {
-                height: 320,
-                type: 'radialBar',
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.primary],
-              plotOptions: {
-                radialBar: {
-                  hollow: {
-                    size: '72%',
-                  },
-                  track: {
-                    background: theme.gray300,
-                    strokeWidth: '100%',
-                  },
-                  dataLabels: {
-                    show: true,
-                    name: {
-                      show: false,
-                    },
-                    value: {
-                      fontSize: '24px',
-                      fontWeight: 700,
-                      color: theme.gray600,
-                      formatter: function () {
-                        return '0%';
-                      },
-                    },
-                  },
-                },
-              },
-              fill: {
-                type: 'solid',
-              },
-              stroke: {
-                lineCap: 'round',
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#kesiapanAkreditasiChart'), kesiapanAkreditasiOptions)).render();
-          }
-
-          // Persentase Rata Nilai - Berdasarkan Standar Mutu
-          if (isChartVisible('rataNilaiStandarChart')) {
-            var rataNilaiStandarOptions = {
-              series: [
-                {
-                  name: 'Rata Nilai',
-                  data: [],
-                },
-              ],
-              chart: {
-                height: 350,
-                type: 'bar',
-                toolbar: {
-                  show: false,
-                },
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.primary],
-              plotOptions: {
-                bar: {
-                  columnWidth: '35%',
-                  borderRadius: 4,
-                },
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              grid: {
-                borderColor: theme.gray300,
-                strokeDashArray: 2,
-              },
-              xaxis: {
-                categories: [],
-                title: {
-                  text: 'Mutu',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-                axisBorder: {
-                  show: false,
-                },
-                axisTicks: {
-                  show: false,
-                },
-              },
-              yaxis: {
-                title: {
-                  text: 'Nilai',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-              },
-              legend: {
-                show: false,
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#rataNilaiStandarChart'), rataNilaiStandarOptions)).render();
-          }
-
-          // Persentase Rata Nilai - Berdasarkan Sub Standar Mutu
-          if (isChartVisible('rataNilaiSubStandarChart')) {
-            var rataNilaiSubStandarOptions = {
-              series: [
-                {
-                  name: 'Evaluasi Diri',
-                  data: [],
-                },
-                {
-                  name: 'Desk Evaluasi',
-                  data: [],
-                },
-              ],
-              chart: {
-                height: 350,
-                type: 'bar',
-                toolbar: {
-                  show: false,
-                },
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.danger, theme.info],
-              plotOptions: {
-                bar: {
-                  columnWidth: '40%',
-                  borderRadius: 4,
-                },
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              grid: {
-                borderColor: theme.gray300,
-                strokeDashArray: 2,
-              },
-              xaxis: {
-                categories: [],
-                title: {
-                  text: 'Sub Standar Mutu',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-                axisBorder: {
-                  show: false,
-                },
-                axisTicks: {
-                  show: false,
-                },
-              },
-              yaxis: {
-                title: {
-                  text: 'Nilai',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-              },
-              legend: {
-                show: true,
-                position: 'bottom',
-                horizontalAlign: 'center',
-                markers: {
-                  radius: 12,
-                },
-                labels: {
-                  colors: theme.gray600,
-                },
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#rataNilaiSubStandarChart'), rataNilaiSubStandarOptions)).render();
-          }
-
-          // Risiko - Berdasarkan Standar Mutu
-          if (isChartVisible('risikoChart')) {
-            var risikoOptions = {
-              series: [
-                {
-                  name: 'Tinggi',
-                  data: [1],
-                },
-                {
-                  name: 'Sedang',
-                  data: [1],
-                },
-                {
-                  name: 'Rendah',
-                  data: [0],
-                },
-              ],
-              chart: {
-                height: 350,
-                type: 'bar',
-                toolbar: {
-                  show: false,
-                },
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.danger, theme.warning, '#fd7e14'],
-              plotOptions: {
-                bar: {
-                  columnWidth: '30%',
-                },
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              grid: {
-                borderColor: theme.gray300,
-                strokeDashArray: 2,
-              },
-              xaxis: {
-                categories: ['Standar Prioritas'],
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-                axisBorder: {
-                  show: false,
-                },
-                axisTicks: {
-                  show: false,
-                },
-              },
-              yaxis: {
-                min: 0,
-                max: 2,
-                tickAmount: 2,
-                title: {
-                  text: 'Jumlah Auditfee',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-              },
-              legend: {
-                show: true,
-                position: 'bottom',
-                horizontalAlign: 'center',
-                markers: {
-                  radius: 12,
-                },
-                labels: {
-                  colors: theme.gray600,
-                },
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#risikoChart'), risikoOptions)).render();
-          }
-
-          // Perkembangan Nilai Mutu desi
-          if (isChartVisible('perkembanganMutuChart')) {
-            var perkembanganMutuOptions = {
-              series: [
-                {
-                  name: 'Nilai Target',
-                  data: [null, null, null, null, null, null],
-                },
-                {
-                  name: 'Penilaian Auditor',
-                  data: [null, null, null, null, null, null],
-                },
-              ],
-              chart: {
-                height: 350,
-                type: 'line',
-                toolbar: {
-                  show: false,
-                },
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.dark, theme.gray600],
-              stroke: {
-                curve: 'smooth',
-                width: 2,
-              },
-              markers: {
-                size: 4,
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              grid: {
-                borderColor: theme.gray300,
-                strokeDashArray: 2,
-              },
-              xaxis: {
-                categories: [],
-                labels: {
-                  show: false,
-                },
-                axisBorder: {
-                  show: false,
-                },
-                axisTicks: {
-                  show: false,
-                },
-              },
-              yaxis: {
-                title: {
-                  text: 'Nilai',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-              },
-              legend: {
-                show: true,
-                position: 'bottom',
-                horizontalAlign: 'center',
-                markers: {
-                  radius: 12,
-                },
-                labels: {
-                  colors: theme.gray600,
-                },
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#perkembanganMutuChart'), perkembanganMutuOptions)).render();
-          }
-
-          // Perkembangan Nilai Evaluasi Diri desi
-          if (isChartVisible('perkembanganEvaluasiDiriChart')) {
-            var perkembanganEvaluasiDiriOptions = {
-              series: [
-                {
-                  name: 'Nilai Target',
-                  data: [null, null, null, null, null, null],
-                },
-                {
-                  name: 'Penilaian Auditor',
-                  data: [null, null, null, null, null, null],
-                },
-              ],
-              chart: {
-                height: 350,
-                type: 'line',
-                toolbar: {
-                  show: false,
-                },
-                fontFamily: 'Inter, serif',
-              },
-              colors: [theme.info, theme.success],
-              stroke: {
-                curve: 'smooth',
-                width: 2,
-              },
-              markers: {
-                size: 4,
-              },
-              dataLabels: {
-                enabled: false,
-              },
-              grid: {
-                borderColor: theme.gray300,
-                strokeDashArray: 2,
-              },
-              xaxis: {
-                categories: [],
-                labels: {
-                  show: false,
-                },
-                axisBorder: {
-                  show: false,
-                },
-                axisTicks: {
-                  show: false,
-                },
-              },
-              yaxis: {
-                title: {
-                  text: 'Nilai',
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: theme.gray600,
-                  },
-                },
-                labels: {
-                  style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: theme.gray600,
-                    fontFamily: 'Inter, serif',
-                  },
-                },
-              },
-              legend: {
-                show: true,
-                position: 'bottom',
-                horizontalAlign: 'center',
-                markers: {
-                  radius: 12,
-                },
-                labels: {
-                  colors: theme.gray600,
-                },
-              },
-            };
-            registerChart(new ApexCharts(document.querySelector('#perkembanganEvaluasiDiriChart'), perkembanganEvaluasiDiriOptions)).render();
-          }
-        }
-
-        // Render semua chart Dashboard saat halaman dimuat
-        renderAllCharts();
+        renderView();
       })();
     </script>
   </body>
