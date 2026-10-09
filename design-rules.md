@@ -300,10 +300,10 @@ Aturan:
    | 5.4 | Data Publikasi Jurnal | 3 | — | `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html` |
    | 6 | Lihat Data Pengabdian | 2 (grup) | — | — (grup bertingkat, bagian 4.1) |
    | 6.1 | Data Kegiatan PKM | 3 | — | `pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html` |
-   | 6.2 | Data Publikasi PKM | 3 | — | `#!` (belum ada halaman) |
-   | 6.3 | Data Bahan Ajar PKM | 3 | — | `#!` (belum ada halaman) |
-   | 6.4 | Data Isi PKM | 3 | — | `#!` (belum ada halaman) |
-   | 6.5 | Data Mutu Pelaksana PKM | 3 | — | `#!` (belum ada halaman) |
+   | 6.2 | Data Publikasi PKM | 3 | — | `pelaksanaan-lihat-data-pengabdian-data-publikasi-pkm.html` |
+   | 6.3 | Data Bahan Ajar PKM | 3 | — | `pelaksanaan-lihat-data-pengabdian-data-bahan-ajar-pkm.html` |
+   | 6.4 | Data Isi PKM | 3 | - | `pelaksanaan-lihat-data-pengabdian-data-isi-pkm.html` |
+   | 6.5 | Data Mutu Pelaksana PKM | 3 | — | `pelaksanaan-lihat-data-pengabdian-data-mutu-pelaksana-pkm.html` |
 
    - Item ber-`#!` adalah **placeholder** menu (sesuai arsitektur aplikasi). Ganti
      `href="#!"` menjadi path halaman begitu halamannya dibuat.
@@ -441,13 +441,17 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
 ## 7. Pola Halaman Daftar Data (List)
 
 Halaman daftar data (contoh: **Tahun Periode**, **Lembaga Akreditasi**) memakai
-satu `card card-lg` dengan urutan: **toolbar → tabel → footer pagination**.
+satu `card card-lg border-1` dengan urutan: **toolbar → tabel → footer pagination**.
+
+Setiap card yang memakai kelas `card card-lg` **wajib** ditambah kelas
+**`border-1`** → `class="card card-lg border-1"` (berlaku di seluruh halaman
+proyek, termasuk card non-datatable).
 
 ```html
-<div class="card card-lg" id="{idList}" data-list="kolom_1,kolom_2">
+<div class="card card-lg border-1" id="{idList}" data-list="kolom_1,kolom_2">
   <div class="card-body pb-0">
     <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-      <!-- KIRI : pencarian (+ tombol Filter bila ada filter) -->
+      <!-- KIRI : pencarian + tombol Filter + pilih kolom -->
       <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
         <input type="search" placeholder="Cari.." class="form-control listjs-search" aria-label="Cari ..." />
         <!-- tombol pembuka baris filter - HANYA bila halaman punya filter -->
@@ -462,6 +466,23 @@ satu `card card-lg` dengan urutan: **toolbar → tabel → footer pagination**.
           <i class="ti ti-filter fs-5"></i>
           Filter
         </button>
+        <!-- kontrol visibilitas kolom (selalu ada pada datatable) -->
+        <div class="dropdown">
+          <button
+            class="btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false"
+            aria-label="Pilih kolom yang ditampilkan"
+          >
+            <i class="ti ti-columns fs-5"></i>
+            Kolom
+          </button>
+          <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
+            <li><h6 class="dropdown-header">Tampilkan kolom</h6></li>
+          </ul>
+        </div>
       </div>
       <!-- KANAN : jumlah data per halaman -->
       <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
@@ -478,7 +499,7 @@ satu `card card-lg` dengan urutan: **toolbar → tabel → footer pagination**.
     </div>
     <!-- Baris filter: tampil setelah tombol Filter diklik (masih di dalam .card-body) -->
     <div class="collapse" id="{idFilters}">
-      <div class="d-flex flex-wrap align-items-center gap-3 pt-4">
+      <div class="d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300">
         <div class="d-flex align-items-center gap-2">
           <label class="form-label text-nowrap mb-0" for="{idFilter}">Nama Filter</label>
           <select class="form-select" id="{idFilter}" aria-label="{nama filter}" style="width: 10rem">
@@ -512,7 +533,7 @@ justify-content-md-between align-items-md-center gap-3` dengan pembagian:
 
 | Posisi | Isi |
 | --- | --- |
-| **Kiri** | Input pencarian (`form-control listjs-search`, **lebar tetap 200px**) + tombol **Filter** (hanya bila halaman punya filter) |
+| **Kiri** | Input pencarian (`form-control listjs-search`, **lebar tetap 200px**) + tombol **Filter** (hanya bila halaman punya filter) di **sebelah kanan** input + tombol dropdown **Kolom** (kontrol visibilitas kolom) |
 | **Kanan** | Selector `Per page:` (`form-select listjs-items-per-page`) |
 
 - **Lebar input pencarian = 200px** dan diatur CSS, bukan HTML. **Jangan** menulis
@@ -532,23 +553,78 @@ justify-content-md-between align-items-md-center gap-3` dengan pembagian:
   - Saat terbuka, kelas `.datatable-filter-toggle[aria-expanded='true']`
     (dikelola Bootstrap) membuat tombol tampak "tertekan"; tidak perlu JS
     tambahan karena `bootstrap.bundle.min.js` sudah dimuat di setiap halaman.
-  - Isi baris filter: `d-flex flex-wrap align-items-center gap-3 pt-4`, tiap
-    filter dibungkus `d-flex align-items-center gap-2` dengan
+  - Tombol Filter menampilkan **chevron status** (pseudo-element `::after`) yang
+    menunjuk **ke bawah** saat baris filter tertutup dan **ke atas** saat
+    terbuka. Arah mengikuti `aria-expanded` yang di-update Bootstrap; chevron
+    berada di **paling kanan** isi tombol (setelah teks `Filter` dan badge
+    indikator). Ditulis **CSS-only** di `espmi-app.css` bagian 9 sehingga tidak
+    perlu mengubah markup HTML di tiap halaman.
+  - Isi baris filter:
+    `d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300`,
+    tiap filter dibungkus `d-flex align-items-center gap-2` dengan
     `form-label text-nowrap mb-0` + `form-select` (`style="width: 10rem"`,
-    `12rem` bila label lebih panjang).
+    `12rem` bila label lebih panjang). Garis pemisah **dashed** di atas baris
+    filter memakai warna `--ds-gray-300` (kelas `.border-gray-300`, lihat
+    bagian 13) ditambah jarak `mt-4`.
   - **Tempat baris filter wajib di dalam `.card-body`**, tepat setelah baris
     toolbar — bukan setelah `.card-body`, bukan di luar card.
-- **Filter selalu berada di grup KIRI** halaman (toolbar-nya), bukan di kanan
-  dan bukan di luar card.
-- Bila halaman **tidak punya filter**, grup kiri hanya berisi input pencarian
-  (tanpa tombol Filter) dan tidak ada blok `collapse`. Grup kanan tetap ada
-  berisi `Per page:`.
+- **Tombol Filter selalu berada di grup KIRI** toolbar, tepat **di sebelah
+  kanan input pencarian**, bukan di grup kanan dan bukan di luar card.
+- **Tombol dropdown Kolom berada di sebelah kanan tombol Filter** (atau tepat
+  di sebelah kanan input pencarian pada halaman tanpa filter) — lihat
+  *Kontrol Kolom (Dropdown Kolom)* di bawah.
+- Bila halaman **tidak punya filter**, grup kiri berisi input pencarian +
+  tombol dropdown Kolom (tanpa tombol Filter) dan tidak ada blok `collapse`.
+  Grup kanan tetap berisi `Per page:`.
 - Grup kiri memakai
   `d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3`
-  agar tetap rapi saat menumpuk di layar kecil.
+  agar tetap rapi saat menumpuk di layar kecil; grup kanan memakai
+  `d-flex flex-column flex-sm-row align-items-sm-center gap-3`.
 - Label filter memakai `form-label text-nowrap mb-0` dan select-nya
   `style="width: 10rem"`.
 - Semua kontrol wajib punya `aria-label` deskriptif (lihat bagian 10).
+
+### Kontrol Kolom (Dropdown Kolom)
+
+Setiap datatable menampilkan tombol dropdown **Kolom** di toolbar (grup kiri,
+tepat di sebelah kanan tombol Filter, atau di sebelah kanan input pencarian
+bila halaman tanpa filter) untuk memilih kolom mana yang ditampilkan.
+**Checked = kolom tampil**, **unchecked = kolom disembunyikan**.
+
+Markup (identik di semua halaman; isi menu dibangun otomatis oleh
+`assets/js/espmi-datatable-columns.js`):
+
+```html
+<div class="dropdown">
+  <button
+    class="btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2"
+    type="button"
+    data-bs-toggle="dropdown"
+    data-bs-auto-close="outside"
+    aria-expanded="false"
+    aria-label="Pilih kolom yang ditampilkan"
+  >
+    <i class="ti ti-columns fs-5"></i>
+    Kolom
+  </button>
+  <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
+    <li><h6 class="dropdown-header">Tampilkan kolom</h6></li>
+  </ul>
+</div>
+```
+
+- **Tiga kolom pertama selalu tampil dan tidak bisa disembunyikan**: kolom
+  **No** (ke-1), kolom **Aksi** (ke-2), dan **kolom ke-3**. Ketiga checkbox-nya
+  `checked` + `disabled` dan itemnya diredupkan.
+- Skrip mengisi menu dari `<th>` tabel, **mendukung header bertingkat
+  (`rowspan`/`colspan`)**, lalu menampilkan/menyembunyikan kolom lewat atribut
+  `hidden` pada `<th>`/`<td>`. Karena kolom sticky (No/Aksi/ke-3) selalu tampil,
+  geometri `.table-sticky` tidak pernah terpengaruh.
+- `data-bs-auto-close="outside"` menjaga menu tetap terbuka saat beberapa
+  checkbox diubah.
+- Bila tabel punya ≤ 3 kolom (tidak ada kolom yang bisa disembunyikan), tombol
+  dropdown dan menu tidak berfungsi — halaman tetap memuat markup yang sama
+  demi konsistensi.
 
 ### Indikator Filter Aktif (badge pada tombol Filter)
 
@@ -640,13 +716,15 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
 - Baris data (`<td class="no">`, `<td class="{kolom}">`, `<td>` Aksi) ditambahkan
   saat data tersedia; baris *empty state* dihapus pada saat itu.
 - Selama tabel kosong, **selector Per page** dan **footer pagination** boleh
-  dihilangkan (contoh: `manajemen-referensi-master-standar-mutu.html`). List.js
+  dihilangkan (contoh: `manajemen-referensi-master-standar-mutu.html`,
+  `pelaksanaan-lihat-data-pengabdian-data-mutu-pelaksana-pkm.html`). List.js
   tetap aman karena setiap elemen (`listjs-showing-items-label`, `.pagination`,
   `.prev`, `.next`, `.listjs-items-per-page`) dicek `null` sebelum dipakai.
   Saat data ditambahkan, lengkapi kembali sesuai bagian 7.
 - **Tombol Filter tetap ditampilkan** di grup kiri toolbar meski tabel masih
   kosong (bagian 7 → *Tata Letak Toolbar*); baris filter di dalam
-  `.card-body` tetap ada dan bisa dibuka/ditutup.
+  `.card-body` tetap ada dan bisa dibuka/ditutup. Tombol dropdown **Kolom**
+  juga tetap ditampilkan.
 
 ---
 
@@ -657,9 +735,9 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
   <thead>
     <tr>
       <th scope="col" style="width: 4.5rem">No</th>
+      <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
       <th scope="col" class="listjs-sorter" data-sort="{kolom}">Nama Kolom</th>
       <!-- kolom lain ... -->
-      <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
     </tr>
   </thead>
   <tbody class="list"> ... </tbody>
@@ -669,9 +747,9 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
 - Selalu `text-nowrap table-hover mb-0`.
 - Kolom **No** selalu kolom pertama dengan `style="width: 4.5rem"` dan isi
   `<td class="no">{nomor}</td>`.
-- Kolom **Aksi** selalu kolom **terakhir** dan **wajib ada di setiap datatable**
-  (lihat bagian 8.1) — kecuali halaman laporan **read-only** yang hanya
-  menampilkan data (bagian 19), yang tidak menampilkan kolom Aksi.
+- Kolom **Aksi** selalu kolom **ke-2 setelah No** dan **wajib ada di setiap
+  datatable** (lihat bagian 8.1) — kecuali halaman laporan **read-only** yang
+  hanya menampilkan data (bagian 19), yang tidak menampilkan kolom Aksi.
 - Kolom yang bisa diurutkan diberi `class="listjs-sorter"` + `data-sort`.
 - **Jangan** memakai `table-bordered` — cukup `table` + modifier standar
   (`text-nowrap`, `table-hover`, `align-middle`, `mb-0`) (lihat bagian 16.3).
@@ -681,11 +759,12 @@ Bila tabel **belum memiliki data**, tuliskan satu baris *empty state* di dalam
 
 ### 8.2 Kolom Tetap (`.table-sticky`) untuk Tabel Lebar
 
-`.table-sticky` membuat **dua kolom pertama** (No + kolom identitas) menempel di
-kiri. **Kolom Aksi** (kolom terakhir yang headernya diberi `class="aksi"`)
-menempel di kanan, sehingga tombol aksi tetap terlihat saat tabel di-scroll
-horizontal. Kolom **data biasa tidak** menempel — pada tabel laporan tanpa kolom
-Aksi, hanya dua kolom kiri yang menempel.
+`.table-sticky` membuat **dua kolom pertama** (No + kolom ke-2) menempel di
+kiri. Untuk tabel ber-kolom **Aksi** (kini kolom **ke-2**, headernya diberi
+`class="aksi"`), **kolom ke-3** juga menempel di kiri, sehingga blok tetap =
+**No + Aksi + kolom identitas** dan tombol aksi tetap terlihat saat tabel
+di-scroll horizontal. Kolom **data biasa tidak** menempel — pada tabel laporan
+tanpa kolom Aksi, hanya dua kolom kiri yang menempel.
 
 ```html
 <div class="table-responsive mt-6">
@@ -698,21 +777,25 @@ Aksi, hanya dua kolom kiri yang menempel.
 | Aspek | Ketentuan |
 | --- | --- |
 | Kelas | `table-sticky` ditulis **setelah** `mb-0` (urutan class lain tidak berubah) |
-| Cakupan | kolom ke-1 & ke-2 (`nth-child(-n + 2)`) sticky `left`; kolom **terakhir** sticky `right` **hanya bila** `<th>`-nya ber-`class="aksi"` (deteksi `:has()`) |
+| Cakupan | kolom ke-1 & ke-2 (`nth-child(-n + 2)`) sticky `left`; **kolom ke-3** ikut sticky `left` **hanya bila** `<th>` kolom ke-2 ber-`class="aksi"` (deteksi `:has()`) |
 | Posisi kolom ke-2 | `left: 4.5rem` = lebar kolom No; dioverride per halaman dengan `--espmi-table-sticky-left` |
 | Lebar kolom No | **wajib sama dengan `--espmi-table-sticky-left`** — CSS men-set `width` + `min-width: 4.5rem` dan tetap menutup celahnya (lihat baris berikut) |
 | Latar sel (body) | wajib opaque — CSS men-set `--ds-table-bg: var(--ds-card-bg)`; hover tetap dari `box-shadow: inset` theme |
 | Latar sel (header) | **sama dengan header theme** — `--ds-table-bg: var(--ds-gray-100)` (light `#f9fafb`, dark `#141a21`) |
-| Penutup celah | pseudo `::after` selebar offset di tepi kanan kolom No, warnanya mengikuti keadaan sel |
-| Garis batas | pseudo `::after` 1px di tepi kanan blok kiri & (bila kolom Aksi ada) tepi kiri kolom Aksi |
+| Penutup celah | pseudo `::after` selebar offset di tepi kanan kolom No (dan, bila ber-Aksi, kolom Aksi), warnanya mengikuti keadaan sel |
+| Garis batas | pseudo `::after` 1px di tepi kanan blok kiri (kolom ke-2; **kolom ke-3** bila kolom Aksi ada) |
 | Pembungkus | **wajib** berada di dalam `.table-responsive` (kalau tidak, tidak ada scroll) |
 
 - **Kolom Aksi wajib ditandai `class="aksi"`** pada `<th>`-nya (mis.
   `<th scope="col" class="aksi" style="width: 7rem">Aksi</th>`) — itulah penanda
-  yang membuat `.table-sticky` menempelkannya ke kanan (bagian 8.1). Kolom **data
-  biasa jangan** diberi `class="aksi"`.
-- Karena penempelan kanan memakai `:has()`, pada browser yang tidak mendukungnya
-  hanya dua kolom kiri yang menempel (degradasi aman).
+  yang membuat `.table-sticky` menempelkan **kolom ke-3** (bagian 8.1). Kolom
+  **data biasa jangan** diberi `class="aksi"`.
+- Karena penempelan kolom ke-3 memakai `:has()`, pada browser yang tidak
+  mendukungnya hanya dua kolom kiri yang menempel (degradasi aman).
+- Offset kolom ke-3 = lebar kolom No + lebar kolom Aksi, diatur lewat
+  `--espmi-table-sticky-left-3` (default `11.5rem`); lebar kolom Aksi lewat
+  `--espmi-table-sticky-aksi` (default `7rem`). Keduanya **wajib** disesuaikan
+  bersama bila lebar kolom No/Aksi diubah.
 
 **Kenapa begitu** — tabel memakai `table-layout: auto`, sehingga lebar kolom dihitung
 dari lebar min-content isinya (kolom `text-nowrap`) dan `width` pada sel **bisa
@@ -758,8 +841,8 @@ sticky dan tidak ada lagi kolom yang bisa di-scroll (mis.
 
 ### 8.1 Kolom Aksi (wajib di setiap datatable)
 
-Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon**
-(`Ubah` dan `Hapus`) memakai **varian soft**:
+Setiap tabel data punya kolom **Aksi** di **kolom ke-2 (tepat setelah No)**
+berisi **dua tombol ikon** (`Ubah` dan `Hapus`) memakai **varian soft**:
 
 ```html
 <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
@@ -782,7 +865,7 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 | Pembungkus | `<div class="d-flex gap-1">` |
 | Atribut | `title="Ubah"` / `title="Hapus"` **dan** `aria-label` yang sama |
 | Lebar kolom | `style="width: 7rem"` |
-| Kelas `<th>` | `class="aksi"` — penanda kolom Aksi; dipakai `.table-sticky` agar kolom menempel di kanan (bagian 8.2) |
+| Kelas `<th>` | `class="aksi"` — penanda kolom Aksi; dipakai `.table-sticky` agar **kolom ke-3** ikut menempel (bagian 8.2) |
 | `data-list` | Kolom Aksi **tidak** dimasukkan ke `data-list` (tidak dicari/diurutkan) |
 | `listjs-sorter` | **Tidak** dipakai pada `<th>` Aksi (tidak ada `data-sort`) |
 
@@ -792,9 +875,10 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
 - **Jangan** memakai varian solid (`btn-info`, `btn-danger`, `btn-success`,
   `btn-primary`) pada tombol aksi tabel — lihat bagian 16.5.
 - Bila ada baris *empty state*, `colspan`-nya = **jumlah kolom termasuk Aksi**.
-- Pada tabel lebar yang memakai `.table-sticky`, kolom Aksi **menempel di kanan**
-  sehingga tombol tetap terjangkau tanpa scroll horizontal (bagian 8.2) — ini
-  aktif hanya karena `<th>` Aksi diberi `class="aksi"`.
+- Pada tabel lebar yang memakai `.table-sticky`, kolom Aksi berada di **kolom
+  ke-2** dan ikut menempel di kiri bersama **kolom ke-3**, sehingga tombol tetap
+  terjangkau tanpa scroll horizontal (bagian 8.2) — ini aktif hanya karena
+  `<th>` Aksi diberi `class="aksi"`.
 
 ---
 
@@ -808,6 +892,13 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
   Saat baris filter terbuka, `aria-expanded="true"` (di-set Bootstrap) membuat
   CSS memberi latar `--ds-gray-100` dan border `--ds-gray-200` agar tombol
   tampak "tertekan" — berlaku di light & dark mode.
+  Selain itu, tombol menampilkan **chevron status** (bawah = tertutup, atas =
+  terbuka) di **paling kanan** tombol lewat pseudo-element `::after` — juga
+  CSS-only (lihat bagian 7).
+- **Tombol dropdown Kolom datatable**: `btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2`
+  + `<i class="ti ti-columns fs-5"></i>` + teks `Kolom`, dengan
+  `data-bs-toggle="dropdown"` + `data-bs-auto-close="outside"` (lihat bagian 7
+  → *Kontrol Kolom*).
 - **Aksi tabel (Ubah / Hapus)**: varian **soft** —
   `btn btn-icon btn-xs btn-subtle-info` (Ubah) & `btn-subtle-danger` (Hapus)
   (lihat bagian 8.1).
@@ -840,6 +931,10 @@ Setiap tabel data punya kolom **Aksi** di paling kanan berisi **dua tombol ikon*
   - **Value** (teks yang sudah diisi/dipilih) memakai warna teks normal
     (gray-800 / `--ds-body-color`) agar jelas terbaca.
   - **Placeholder** memakai gray-500 (tetap samar), sesuai theme.
+  - **Saat kontrol fokus**, warna teks value **tidak boleh** ikut berubah
+    menjadi gray-500 (perilaku bawaan theme yang salah). Override
+    `.form-control:focus` / `.form-select:focus` di `espmi-app.css` bagian 12
+    mempertahankan warna value (gray-800; dark gray-100).
   - Pada `<select>`, opsi default ("-- SEMUA --" / "-- Pilih --") dianggap
     placeholder dan diredupkan lewat class `.is-placeholder`, yang ditambahkan
     otomatis oleh `espmi-form-select.js` (dimuat di semua halaman ber-`select`).
@@ -883,6 +978,7 @@ Urutan pemuatan script:
 <script src="../dist/assets/js/vendors/espmi-form-select.js"></script>
 <!-- hanya pada halaman daftar data -->
 <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
+<script src="assets/js/espmi-datatable-columns.js"></script>
 <!-- Skrip khusus halaman -->
 <script>
   // eSPMI - {deskripsi halaman}
@@ -898,6 +994,10 @@ Urutan pemuatan script:
   `if (!listElement || typeof List === 'undefined') return;`.
 - Komentar berbahasa Indonesia dan diawali `// eSPMI - ...`.
 - Muat `list.min.js` **hanya** pada halaman yang memakai tabel List.js.
+- `assets/js/espmi-datatable-columns.js` adalah skrip **bersama** eSPMI
+  (berada di `espmi-admin/assets/js/`, bukan `dist/assets/`) yang mengisi menu
+  dropdown **Kolom**. Muat tepat setelah `list.min.js` pada **semua** halaman
+  ber-datatable (lihat bagian 7 → *Kontrol Kolom*).
 
 ---
 
@@ -911,23 +1011,35 @@ Urutan pemuatan script:
 - Kelas kustom yang sudah tersedia di proyek:
   - `.tree-toggle`, `.tree-lvl-2/3/4` — tree view (halaman Daftar Standar Mutu).
   - `.badge-violet`, `.badge-violet-subtle` — badge warna khusus di luar palet theme.
-  - `.navbar-glass`, `#content`, `#miniSidebar` — override tampilan eSPMI.
+  - `.navbar-glass`, `#content` (latar area konten = `--ds-gray-100`), `#miniSidebar` — override tampilan eSPMI.
   - `.bg-gradient-info/success/warning/danger` — gradient card eSPMI
     (**light mode saja**; dark mode tetap memakai gradient bawaan theme).
   - `.dashboard-widget*`, `.dashboard-customizing-only` — grid widget Dashboard yang
     dapat dikostumasi (bagian 18).
-  - `.table-sticky` — kolom tetap (2 kiri + Aksi kanan) untuk tabel lebar
-    (bagian 8.2); variabel `--espmi-table-sticky-left` = lebar kolom No =
-    offset kolom ke-2 = lebar penutup celah; latar sel sticky di `<thead>`
-    memakai `--ds-gray-100` dan di `<tbody>` memakai `--ds-card-bg`.
+  - `.table-sticky` — kolom tetap untuk tabel lebar (bagian 8.2). Tabel ber-Aksi:
+    No + Aksi + kolom ke-3; tabel laporan tanpa Aksi: No + kolom ke-2. Variabel
+    `--espmi-table-sticky-left` = lebar kolom No = offset kolom ke-2;
+    `--espmi-table-sticky-aksi` = lebar kolom Aksi (7rem);
+    `--espmi-table-sticky-left-3` = offset kolom ke-3 (11.5rem); latar sel sticky
+    di `<thead>` memakai `--ds-gray-100` dan di `<tbody>` memakai `--ds-card-bg`.
   - `.listjs-search` — lebar baku input pencarian datatable (`width: 200px`),
     menggantikan inline `style="max-width: 22rem"` (bagian 7).
+  - `.border-gray-300` — mengeset `border-color` ke `--ds-gray-300`; dipakai
+    garis pemisah **dashed** (`border-top border-dashed`) di atas baris filter
+    datatable (bagian 7).
+  - `.espmi-columns-menu` — menu dropdown **Kolom** (kontrol visibilitas kolom):
+    lebar minimum, tinggi maksimum, dan `overflow-y: auto`; item terkunci
+    diredupkan (bagian 7 → *Kontrol Kolom*).
   - `.datatable-filter-toggle[aria-expanded='true']` — keadaan "tertekan" tombol
     Filter saat baris filter terbuka (bagian 7 & 9).
+  - `.datatable-filter-toggle::after` — chevron status tombol Filter (bawah =
+    tertutup, atas = terbuka) di **paling kanan** tombol; CSS-only, tanpa
+    markup ikon di HTML (bagian 7 & 9).
   - `.active-filter-badge` — badge angka jumlah filter aktif di dalam tombol
     Filter (bagian 7 → *Indikator Filter Aktif*; dihitung `espmi-filter-badge.js`).
   - `.form-control`, `.form-select` + `.is-placeholder` — warna **value** (gray-800)
-    vs **placeholder** (gray-500) pada input & select (bagian 10 & 12; class
+    vs **placeholder** (gray-500) pada input & select, termasuk **saat fokus**
+    (`.form-control:focus` / `.form-select:focus`) (bagian 10 & 12; class
     `.is-placeholder` diset `espmi-form-select.js`).
   - `html[data-espmi-font='...']` + `.font-option*` — preferensi font sistem &
     kartu pilihan font (bagian 11 & 20).
@@ -965,14 +1077,16 @@ Urutan pemuatan script:
 4. Sesuaikan **Periode Aktif** di navbar bila perlu.
 5. Siapkan card list: `id`, `data-list`, kelas `<td>`, dan header kolom urut.
 6. Susun **toolbar** sesuai standar: **kiri** = pencarian 200px (`.listjs-search`,
-   tanpa inline style lebar), **kanan** = `Per page` (10/25/50/100) — bagian 7 &
-   16.5. Bila ada filter, tambahkan tombol `Filter`
-   (`.datatable-filter-toggle`) di grup kiri + baris `collapse` filter di dalam
-   `.card-body` (bagian 7 → *Tata Letak Toolbar*), dan **badge indikator filter
-   aktif** `.active-filter-badge` di dalam tombol (bagian 7 → *Indikator Filter
-   Aktif*).
-7. Tambahkan kolom **Aksi** di kolom terakhir berisi tombol ikon **soft**
-   Ubah (`btn-subtle-info` + `ti ti-pencil`) dan Hapus
+   tanpa inline style lebar) + tombol `Filter` (bila ada) di sebelah kanan input
+   + tombol dropdown **Kolom**; **kanan** = selector `Per page` (10/25/50/100) —
+   bagian 7 & 16.5. Bila ada filter, tambahkan tombol `Filter`
+   (`.datatable-filter-toggle`) + baris `collapse` filter di dalam `.card-body`
+   (bagian 7 → *Tata Letak Toolbar*), dan **badge indikator filter aktif**
+   `.active-filter-badge` di dalam tombol (bagian 7 → *Indikator Filter Aktif*).
+   Tambahkan juga dropdown **Kolom** (`data-columns-menu`) — bagian 7 →
+   *Kontrol Kolom*.
+7. Tambahkan kolom **Aksi** di **kolom ke-2 (setelah No)** berisi tombol ikon
+   **soft** Ubah (`btn-subtle-info` + `ti ti-pencil`) dan Hapus
    (`btn-subtle-danger` + `ti ti-trash`) — bagian 8.1 & 16.5.
 8. Bila tabel akan melebar (≥ 5 kolom / isi panjang), tambahkan `table-sticky`
    pada `<table>` — bagian 8.2.
@@ -985,7 +1099,9 @@ Urutan pemuatan script:
 15. Periksa semua path aset (`../dist/assets/...`, `assets/css/...`).
 16. Uji: pencarian, sorting, ubah "Per page", tombol Filter (buka/tutup baris
     filter), **badge indikator filter aktif** (pilih filter → angka tampil;
-    kembalikan ke `-- SEMUA --` → badge hilang), dan navigasi Prev/Next.
+    kembalikan ke `-- SEMUA --` → badge hilang), dropdown **Kolom**
+    (uncheck kolom → kolom hilang; kolom No/Aksi/ke-3 tetap terkunci), dan
+    navigasi Prev/Next.
 17. Uji **light & dark mode** serta tampilan **desktop & mobile** — dan bila
     tabel memakai `table-sticky`, pastikan header No + kolom identitas tetap
     menempel saat tabel di-scroll horizontal.
@@ -1052,6 +1168,11 @@ dengan ikon menu sidebar halaman tersebut.
 | Pelaksanaan › Lihat Data Penelitian › Data Penelitian | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Penelitian › Data Karya Ilmiah | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Lihat Data Penelitian › Data Publikasi Jurnal | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pengabdian › Data Kegiatan PKM | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pengabdian › Data Publikasi PKM | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pengabdian › Data Bahan Ajar PKM | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pengabdian › Data Isi PKM | 3 | `<i class="ti ti-clipboard-list"></i>` |
+| Pelaksanaan › Lihat Data Pengabdian › Data Mutu Pelaksana PKM | 3 | `<i class="ti ti-clipboard-list"></i>` |
 | Preferensi (`akun-preferensi.html`) | — *(menu profile dropdown)* | `<i class="ti ti-typography"></i>` |
 
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
@@ -1115,13 +1236,14 @@ tidak dapat dihapus."), gunakan **alert** `alert-info` dengan ikon — **bukan**
 
 ### 16.5 Tata Letak Toolbar & Kolom Aksi Datatable
 
-Tiga aturan wajib untuk **setiap card datatable**:
+Empat aturan wajib untuk **setiap card datatable**:
 
 1. **Toolbar** — sisi **kiri** = input pencarian (**lebar tetap 200px** lewat
    kelas `.listjs-search`, **tanpa** inline style lebar) + tombol **Filter**
-   (hanya bila ada filter); sisi **kanan** = selector **Per page
-   (10, 25, 50, 100)**. Filter **tidak boleh** diletakkan di kanan atau di luar
-   card (lihat bagian 7 → *Tata Letak Toolbar*).
+   (hanya bila ada filter) di **sebelah kanan** input + tombol dropdown
+   **Kolom**; sisi **kanan** = selector **Per page (10, 25, 50, 100)**. Tombol
+   Filter **tidak boleh** diletakkan di grup kanan atau di luar card (lihat
+   bagian 7 → *Tata Letak Toolbar*).
 2. **Baris filter** — bila datatable punya filter, baris filter diletakkan di
    dalam `.card-body` (tepat setelah baris toolbar), disembunyikan default
    sebagai `<div class="collapse" id="{idFilters}">`, dan dibuka oleh tombol
@@ -1130,15 +1252,21 @@ Tiga aturan wajib untuk **setiap card datatable**:
    `aria-controls="{idFilters}"`. Tidak perlu JS tambahan (Bootstrap bundle sudah
    dimuat). Saat terbuka, tombol otomatis tampak "tertekan"
    (`.datatable-filter-toggle[aria-expanded='true']`).
-3. **Kolom Aksi** — setiap datatable **wajib** memiliki kolom `Aksi` di kolom
-   **terakhir**, berisi tombol ikon **Ubah** (`ti ti-pencil`) dan **Hapus**
-   (`ti ti-trash`) dengan **varian soft** `btn-subtle-*`
+3. **Kolom Aksi** — setiap datatable **wajib** memiliki kolom `Aksi` di
+   **kolom ke-2 (setelah No)**, berisi tombol ikon **Ubah** (`ti ti-pencil`)
+   dan **Hapus** (`ti ti-trash`) dengan **varian soft** `btn-subtle-*`
    (lihat bagian 8.1). Bila tabel lebar memakai `.table-sticky`, kolom Aksi
-   otomatis menempel di kanan (bagian 8.2).
+   otomatis ikut menempel bersama **kolom ke-3** di kiri (bagian 8.2).
+4. **Kontrol Kolom** — setiap datatable menampilkan tombol dropdown **Kolom**
+   di sebelah kanan tombol Filter untuk menampilkan/menyembunyikan kolom
+   (`checked` = tampil). **Tiga kolom pertama (No, Aksi, kolom ke-3) wajib
+   selalu tampil** dan checkbox-nya `checked` + `disabled` (lihat bagian 7 →
+   *Kontrol Kolom*). Menu diisi otomatis oleh
+   `assets/js/espmi-datatable-columns.js`.
 
 ```html
-<!-- header -->
-<th scope="col" style="width: 7rem">Aksi</th>
+<!-- header (kolom ke-2, tepat setelah kolom No) -->
+<th scope="col" class="aksi" style="width: 7rem">Aksi</th>
 
 <!-- sel -->
 <td>
@@ -1191,10 +1319,13 @@ Tiga aturan wajib untuk **setiap card datatable**:
   Tersembunyi berada di luar grid dengan kelas `.dashboard-customizing-only`.
 - Jangan merender chart pada container yang sedang `display: none`; gunakan
   `isChartVisible()` (lihat bagian 18.4).
-- Jangan meletakkan filter datatable di sisi kanan toolbar, di luar card, atau
-  langsung terlihat tanpa tombol toggle — filter selalu di baris `collapse`
-  di dalam `.card-body` yang dibuka tombol `Filter` di grup **kiri**
-  (lihat bagian 7 & 16.5).
+- Jangan meletakkan tombol `Filter` datatable di grup **kanan** toolbar, di luar
+  card, atau langsung menampilkan barisnya tanpa tombol toggle — tombol `Filter`
+  selalu berada di grup **kiri** (di sebelah kanan input pencarian) dan membuka
+  baris `collapse` di dalam `.card-body` (lihat bagian 7 & 16.5).
+- Jangan menghilangkan tombol dropdown **Kolom** dari toolbar datatable, dan
+  jangan mengizinkan kolom **No / Aksi / kolom ke-3** disembunyikan — tiga kolom
+  itu wajib `checked` + `disabled` (lihat bagian 7 & 16.5).
 - Jangan menulis inline `style="max-width: 22rem"` pada input pencarian
   datatable — lebar baku 200px sudah diatur `.listjs-search` (bagian 7 & 13).
 - Jangan memakai `table-sticky` pada tabel yang tidak bisa scroll horizontal
@@ -1203,11 +1334,12 @@ Tiga aturan wajib untuk **setiap card datatable**:
 - Jangan memberi latar `--ds-card-bg` pada sel sticky di `<thead>` — header sticky
   wajib memakai `--ds-gray-100` yang sama dengan `.table thead`, kalau tidak kolom
   No/kolom identitas/Aksi berbeda warna dari kolom header lain (lihat bagian 8.2).
-- Jangan mengubah offset `left` kolom sticky ke-2 tanpa menyesuaikan lebar kolom No
-  dan penutup celahnya; celah antar dua kolom sticky tampil sebagai garis putih pada
-  baris hover (lihat bagian 8.2).
-- Jangan membuat datatable tanpa kolom **Aksi** (Ubah + Hapus) di kolom terakhir
-  (lihat bagian 8.1 & 16.5).
+- Jangan mengubah offset `left` kolom sticky ke-2 (dan ke-3) tanpa menyesuaikan
+  lebar kolom No / kolom Aksi dan penutup celahnya (`--espmi-table-sticky-left`,
+  `--espmi-table-sticky-aksi`, `--espmi-table-sticky-left-3`); celah antar kolom
+  sticky tampil sebagai garis putih pada baris hover (lihat bagian 8.2).
+- Jangan membuat datatable (non-read-only) tanpa kolom **Aksi** (Ubah + Hapus)
+  di **kolom ke-2** setelah No (lihat bagian 8.1 & 16.5).
 - Jangan memakai varian tombol **solid** (`btn-info`, `btn-danger`,
   `btn-success`, `btn-primary`) untuk aksi di dalam tabel; pakai varian **soft**
   `btn-subtle-*` (lihat bagian 8.1 & 9).
@@ -1233,7 +1365,7 @@ pengguna: kartu bisa **digeser urutannya** (drag & drop) dan **diubah lebarnya**
 <div class="row g-6 mb-6" id="dashboardWidgetGrid">
 
   <div class="dashboard-widget-col col-12 col-md-6 col-xl-3" data-widget="auditee" data-span="1">
-    <div class="card card-lg bg-gradient-info h-100 dashboard-widget dashboard-widget--gradient">
+    <div class="card card-lg border-1 bg-gradient-info h-100 dashboard-widget dashboard-widget--gradient">
       <div class="card-body d-flex flex-column gap-6">
         <div class="d-flex justify-content-between align-items-start gap-3">
           <div class="text-white fw-semibold">Auditee</div>
@@ -1472,12 +1604,13 @@ Struktur konten, berurutan:
    (mis. *Monitoring IPK / Evaluasi IPK / Evaluasi Masa Studi*), diikuti
    `div.tab-content` berisi `div.tab-pane`.
 3. **Tabel data** — mengikuti **pola datatable baku (bagian 7 & 16.5)**:
-   satu `div.card.card-lg` berisi **toolbar → baris filter (collapse) →
+   satu `div.card.card-lg.border-1` berisi **toolbar → baris filter (collapse) →
    tabel → footer pagination**. Toolbar memakai
    `justify-content-md-between`: **kiri** = input pencarian
    (`form-control listjs-search`) + tombol **Filter**
-   (`btn btn-white datatable-filter-toggle`); **kanan** = selector
-   **Per page**. Filter (Tahun Lulus, Auditee) **tidak** lagi diletakkan di
+   (`btn btn-white datatable-filter-toggle`) di sebelah kanan input + tombol
+   dropdown **Kolom**; **kanan** = selector **Per page**.
+   Filter (Tahun Lulus, Auditee) **tidak** lagi diletakkan di
    card terpisah, melainkan di dalam `<div class="collapse" id="{idFilters}">`
    tepat setelah baris toolbar, dibuka oleh tombol Filter. Kolom: No, NIM,
    Nama Lulusan, IPK, Tahun Lulus, Lama Studi, Prodi; selaraskan `class` sel
@@ -1505,8 +1638,12 @@ Catatan:
   `pelaksanaan-lihat-data-penelitian-data-penelitian.html`,
   `pelaksanaan-lihat-data-penelitian-data-karya-ilmiah.html`,
   `pelaksanaan-lihat-data-penelitian-data-haki.html`,
-  `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`, dan
-  `pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html` — mengikuti **hanya**
+  `pelaksanaan-lihat-data-penelitian-data-publikasi-jurnal.html`,
+  `pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html`,
+  `pelaksanaan-lihat-data-pengabdian-data-publikasi-pkm.html`,
+  `pelaksanaan-lihat-data-pengabdian-data-bahan-ajar-pkm.html`,
+  `pelaksanaan-lihat-data-pengabdian-data-isi-pkm.html`, dan
+  `pelaksanaan-lihat-data-pengabdian-data-mutu-pelaksana-pkm.html` — mengikuti **hanya**
   langkah 1 + 3 di atas (page header + datatable baku), tanpa tab, statistik,
   atau grafik. Kolom disesuaikan dengan data tiap laporan.
 
@@ -1549,7 +1686,7 @@ seluruh halaman eSPMI. Saat ini berisi satu preferensi: **Font Sistem**.
    ```html
    <div class="col-12 col-md-6 col-xl-3 font-option" data-font="roboto">
      <input type="radio" class="btn-check" name="espmiFont" id="espmiFontRoboto" value="roboto" autocomplete="off" />
-     <label class="card card-lg h-100 mb-0" for="espmiFontRoboto">
+     <label class="card card-lg border-1 h-100 mb-0" for="espmiFontRoboto">
        <div class="card-body d-flex flex-column gap-3">
          <div class="d-flex align-items-center justify-content-between gap-2">
            <span class="fw-semibold">Roboto</span>

@@ -8,16 +8,16 @@
 
 /* --------------------------------------------------------------------------
    1. Background area konten (#content)
-   Light mode : bg-gray-50 (#fcfdfd)  --- sama dengan utility .bg-gray-50
+   Light mode : ds-gray-100 (#f9fafb)  --- sama dengan utility .bg-gray-100
    Dark mode  : tetap mengikuti dark mode (transparan -> terlihat --ds-body-bg)
 
-   Kenapa butuh override dark mode: utility .bg-gray-50 di-bundle sebagai
-   `background-color:#fcfdfd!important` (hardcoded, tidak memakai variabel)
-   dan variabel --ds-gray-50 tidak di-remap di _darkmode.scss, sehingga tanpa
+   Kenapa butuh override dark mode: utility .bg-gray-100 di-bundle sebagai
+   `background-color:#f9fafb!important` (hardcoded, tidak memakai variabel)
+   dan variabel --ds-gray-100 tidak di-remap di _darkmode.scss, sehingga tanpa
    rule dark mode di bawah area konten akan berwarna nyaris putih.
    -------------------------------------------------------------------------- */
 #content {
-  background-color: var(--ds-gray-50);
+  background-color: var(--ds-gray-100);
 }
 
 [data-bs-theme='dark'] #content {
@@ -82,11 +82,12 @@ html.collapsed #miniSidebar {
 /* a. Kolom tetap (sticky) untuk tabel lebar - dipakai lewat kelas
    `.table-sticky` pada <table> (bagian 8.2 design-rules.md).
 
-   Kolom ke-1 (No) dan ke-2 menempel di kiri. Kolom **Aksi** (kolom terakhir
-   yang headernya ditandai `class="aksi"`) menempel di kanan; kolom data biasa
-   TIDAK menempel, sehingga tabel laporan tanpa kolom Aksi hanya menempelkan
-   dua kolom kiri. Dengan begitu identitas baris + tombol aksi tetap terlihat
-   saat tabel di-scroll horizontal di dalam `.table-responsive`.
+   Kolom ke-1 (No) dan ke-2 menempel di kiri. Untuk tabel ber-kolom **Aksi**
+   (kini kolom ke-2, ditandai `class="aksi"` pada headernya), kolom ke-3 juga
+   menempel di kiri sehingga blok tetap = No + Aksi + kolom identitas; kolom
+   data biasa TIDAK menempel, sehingga tabel laporan tanpa kolom Aksi hanya
+   menempelkan dua kolom kiri. Dengan begitu identitas baris + tombol aksi
+   tetap terlihat saat tabel di-scroll horizontal di dalam `.table-responsive`.
 
    Catatan penting:
    - theme mewarnai sel dari `--ds-table-bg` (default: transparent) + menimpa
@@ -145,9 +146,10 @@ html.collapsed #miniSidebar {
   background-color: var(--ds-table-bg-state, var(--ds-table-bg-type, var(--ds-table-bg)));
 }
 
-/* Garis penanda batas kolom tetap (1px) di tepi kanan blok kiri dan tepi kiri
-   kolom Aksi. Pseudo-element absolute diposisikan terhadap sel, dan sel sticky
-   sudah menjadi containing block (position: sticky). */
+/* Garis penanda batas kolom tetap (1px) di tepi kanan blok kiri. Untuk tabel
+   ber-Aksi, penanda dipindah ke tepi kanan kolom ke-3 (lihat poin e). Pseudo-
+   element absolute diposisikan terhadap sel, dan sel sticky sudah menjadi
+   containing block (position: sticky). */
 .table-sticky > :not(caption) > * > *:nth-child(2)::after {
   content: '';
   position: absolute;
@@ -158,28 +160,47 @@ html.collapsed #miniSidebar {
   right: 0;
 }
 
-.table-sticky:has(> thead > tr > th:last-child.aksi) > :not(caption) > * > *:last-child::after {
+/* e. Kolom Aksi kini kolom ke-2 (setelah No). Bila header kolom ke-2 ditandai
+   `class="aksi"`, kolom ke-3 ikut menempel di kiri sehingga blok tetap =
+   No + Aksi + kolom identitas. Lebar kolom Aksi dikunci (7rem) agar offset
+   kolom ke-3 tetap; memakai :has(); bila tidak didukung, hanya dua kolom kiri
+   yang menempel (degradasi aman). */
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(2) {
+  width: var(--espmi-table-sticky-aksi, 7rem);
+  min-width: var(--espmi-table-sticky-aksi, 7rem);
+}
+
+/* Penutup celah kolom Aksi (sama seperti penutup celah kolom No). */
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  right: auto;
+  width: var(--espmi-table-sticky-aksi, 7rem);
+  background-color: var(--ds-table-bg-state, var(--ds-table-bg-type, var(--ds-table-bg)));
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(3) {
+  position: sticky;
+  z-index: 2;
+  left: var(--espmi-table-sticky-left-3, 11.5rem);
+  --ds-table-bg: var(--ds-card-bg);
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > thead > tr > *:nth-child(3) {
+  --ds-table-bg: var(--ds-gray-100);
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(3)::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
   width: 1px;
   background-color: var(--ds-border-color);
-  left: 0;
-}
-
-/* e. Kolom Aksi (kanan) - HANYA bila header kolom terakhir ditandai `.aksi`.
-   Kolom data biasa pada tabel laporan tidak ikut menempel. Memakai :has();
-   bila tidak didukung, hanya dua kolom kiri yang menempel (degradasi aman). */
-.table-sticky:has(> thead > tr > th:last-child.aksi) > :not(caption) > * > *:last-child {
-  position: sticky;
   right: 0;
-  z-index: 2;
-  --ds-table-bg: var(--ds-card-bg);
-}
-
-.table-sticky:has(> thead > tr > th:last-child.aksi) > thead > tr > *:last-child {
-  --ds-table-bg: var(--ds-gray-100);
 }
 
 /* f. Header multi-baris (thead > tr ke-2 dst., mis. grup "Jumlah Biaya" pada
@@ -453,6 +474,29 @@ body:not(.dashboard-customizing) .dashboard-customizing-only {
   border-color: var(--ds-gray-200);
 }
 
+/* b2. Chevron pada tombol Filter: menunjuk ke bawah saat baris filter tertutup
+   dan berputar ke atas saat terbuka. Keadaan diambil dari `aria-expanded`
+   yang di-update otomatis oleh Bootstrap collapse (tanpa JS tambahan).
+   Ditulis sebagai pseudo-element ::after supaya tidak perlu menyisipkan ikon
+   di setiap file HTML ber-data filter; `margin-left: auto` menaruhnya di
+   paling kanan isi tombol (setelah teks "Filter" & badge indikator). */
+.datatable-filter-toggle::after {
+  content: '';
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: auto;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.2s ease;
+}
+
+.datatable-filter-toggle[aria-expanded='true']::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+
 /* c. Indikator filter aktif: badge angka di sebelah kanan teks "Filter"
    pada tombol `.datatable-filter-toggle` (lihat design-rules.md bagian 7 ->
    "Indikator Filter Aktif"). Isi angka & keadaan hidden dikelola
@@ -695,6 +739,21 @@ html[data-espmi-font='inter'], html:not([data-espmi-font]) {
   color: var(--ds-gray-100);
 }
 
+/* Saat fokus: theme men-set `.form-control:focus { color: gray-500 }`, sehingga
+   teks yang sedang diketik kembali menyamar seperti placeholder. Paksa warna
+   value (gray-800, dark gray-100) selama fokus. Diletakkan SEBELUM rule
+   placeholder & `.form-select.is-placeholder` agar select kosong yang sedang
+   fokus tetap diredupkan (placeholder menang, specificity sama dimuat belakangan). */
+.form-control:focus,
+.form-select:focus {
+  color: var(--ds-gray-800);
+}
+
+[data-bs-theme='dark'] .form-control:focus,
+[data-bs-theme='dark'] .form-select:focus {
+  color: var(--ds-gray-100);
+}
+
 .form-control::placeholder,
 .form-select::placeholder,
 textarea.form-control::placeholder {
@@ -707,5 +766,36 @@ textarea.form-control::placeholder {
    yang diset `espmi-form-select.js`. */
 .form-select.is-placeholder {
   color: var(--ds-gray-500);
+}
+
+/* --------------------------------------------------------------------------
+   10. Utilitas tambahan
+   -------------------------------------------------------------------------- */
+
+/* Warna border abu-abu (`--ds-gray-300`). Dipakai untuk garis pemisah
+   dashed di atas baris filter datatable (design-rules.md bagian 7). */
+.border-gray-300 {
+  border-color: var(--ds-gray-300) !important;
+}
+
+/* Menu dropdown "Kolom" (kontrol visibilitas kolom datatable). Item berupa
+   label + checkbox; item kolom terkunci (No, Aksi, kolom ke-3) diredupkan
+   dan tidak bisa diubah (lihat design-rules.md bagian 7 & 16.5). */
+.espmi-columns-menu {
+  min-width: 12rem;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.espmi-columns-menu .dropdown-item {
+  cursor: pointer;
+}
+
+.espmi-columns-menu .dropdown-item.disabled {
+  cursor: default;
+}
+
+.espmi-columns-menu .dropdown-item.disabled .form-check-input {
+  opacity: 0.6;
 }
 
