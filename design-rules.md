@@ -26,8 +26,8 @@ espmi-admin/
 ├── index.html                                # Halaman login
 ├── akun-preferensi.html                       # Preferensi (font sistem)
 ├── manajemen-referensi-tahun-periode.html     # HALAMAN ACUAN (baseline)
-├── penetapan-standar-mutu.html
-├── penetapan-daftar-standar-mutu.html
+├── penetapan-standar-mutu.html                 # Penetapan › Daftar Nilai Mutu
+├── penetapan-daftar-standar-mutu.html          # Penetapan › Daftar Standar Mutu
 ├── pelaksanaan-pengaturan-periode.html
 ├── pelaksanaan-target-nilai-mutu.html
 ├── pelaksanaan-evaluasi-diri.html
@@ -49,10 +49,22 @@ espmi-admin/
 ├── manajemen-dokumen-jenis-dokumen.html
 ├── manajemen-referensi-manajemen-dokumen.html
 ├── assets/
-│   └── css/
-│       └── espmi-app.css                      # override tema eSPMI
+│   ├── css/
+│   │   ├── espmi-app.css                      # override tema eSPMI
+│   │   └── vendor/                            # CSS pihak ketiga (mis. driver.css)
+│   └── js/
+│       ├── espmi-toast.js                     # toast notifikasi (semua halaman)
+│       ├── espmi-truncate.js                  # tooltip teks terpotong (semua halaman)
+│       ├── espmi-datatable-columns.js         # kontrol kolom datatable
+│       ├── espmi-datatable-crud.js            # aksi Hapus datatable
+│       ├── espmi-tour.js                      # mesin tour halaman
+│       └── vendor/                            # JS pihak ketiga (mis. driver.js)
 └── ../dist/assets/...                         # libs + theme (hasil build Dasher)
 ```
+
+- Aset **pihak ketiga** (vendor) tidak ditulis ulang di `dist/assets/**`, tetapi
+  diletakkan di `espmi-admin/assets/{css,js}/vendor/` dan dimuat hanya pada
+  halaman yang memakainya (lihat bagian 12 & 16.8).
 
 - Semua halaman diletakkan **flat** di dalam `espmi-admin/` (tanpa sub-folder)
   agar semua path relatif ke `../dist/assets/...` dan `assets/css/...` seragam.
@@ -469,14 +481,14 @@ proyek, termasuk card non-datatable).
         <!-- kontrol visibilitas kolom (selalu ada pada datatable) -->
         <div class="dropdown">
           <button
-            class="btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2"
+            class="btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2"
             type="button"
             data-bs-toggle="dropdown"
             data-bs-auto-close="outside"
             aria-expanded="false"
             aria-label="Pilih kolom yang ditampilkan"
           >
-            <i class="ti ti-columns fs-5"></i>
+            <i class="ti ti-table-minus fs-5"></i>
             Kolom
           </button>
           <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
@@ -597,14 +609,14 @@ Markup (identik di semua halaman; isi menu dibangun otomatis oleh
 ```html
 <div class="dropdown">
   <button
-    class="btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2"
+    class="btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2"
     type="button"
     data-bs-toggle="dropdown"
     data-bs-auto-close="outside"
     aria-expanded="false"
     aria-label="Pilih kolom yang ditampilkan"
   >
-    <i class="ti ti-columns fs-5"></i>
+    <i class="ti ti-table-minus fs-5"></i>
     Kolom
   </button>
   <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
@@ -612,6 +624,13 @@ Markup (identik di semua halaman; isi menu dibangun otomatis oleh
   </ul>
 </div>
 ```
+
+- **Ikon** tombol: `ti ti-table-minus`.
+- **Chevron**: tombol memakai class `.datatable-columns-toggle` sehingga caret
+  bawaan `.dropdown-toggle` diganti chevron border yang **berputar** mengikuti
+  `aria-expanded` (di-update otomatis oleh Bootstrap dropdown) — gayanya
+  **sama persis** dengan chevron tombol Filter (`.datatable-filter-toggle`,
+  bagian 9). Bila dropdown terbuka, chevron mengarah ke atas.
 
 - **Tiga kolom pertama selalu tampil dan tidak bisa disembunyikan**: kolom
   **No** (ke-1), kolom **Aksi** (ke-2), dan **kolom ke-3**. Ketiga checkbox-nya
@@ -895,10 +914,11 @@ berisi **dua tombol ikon** (`Ubah` dan `Hapus`) memakai **varian soft**:
   Selain itu, tombol menampilkan **chevron status** (bawah = tertutup, atas =
   terbuka) di **paling kanan** tombol lewat pseudo-element `::after` — juga
   CSS-only (lihat bagian 7).
-- **Tombol dropdown Kolom datatable**: `btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2`
-  + `<i class="ti ti-columns fs-5"></i>` + teks `Kolom`, dengan
+- **Tombol dropdown Kolom datatable**: `btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2`
+  + `<i class="ti ti-table-minus fs-5"></i>` + teks `Kolom`, dengan
   `data-bs-toggle="dropdown"` + `data-bs-auto-close="outside"` (lihat bagian 7
-  → *Kontrol Kolom*).
+  → *Kontrol Kolom*). Chevron `::after`-nya memakai gaya **sama** dengan tombol
+  Filter (berputar mengikuti `aria-expanded`).
 - **Aksi tabel (Ubah / Hapus)**: varian **soft** —
   `btn btn-icon btn-xs btn-subtle-info` (Ubah) & `btn-subtle-danger` (Hapus)
   (lihat bagian 8.1).
@@ -976,9 +996,17 @@ Urutan pemuatan script:
 <script src="../dist/assets/js/vendors/sidebarnav.js"></script>
 <script src="../dist/assets/js/vendors/espmi-filter-badge.js"></script>
 <script src="../dist/assets/js/vendors/espmi-form-select.js"></script>
+<!-- skrip bersama eSPMI (semua halaman) -->
+<script src="assets/js/espmi-toast.js"></script>
+<script src="assets/js/espmi-truncate.js"></script>
 <!-- hanya pada halaman daftar data -->
 <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
 <script src="assets/js/espmi-datatable-columns.js"></script>
+<script src="assets/js/espmi-datatable-crud.js"></script>
+<!-- Vendor (mis. tour driver.js, hanya halaman yang memakai) -->
+<link rel="stylesheet" href="assets/css/vendor/driver.css" /> <!-- di <head> -->
+<script src="assets/js/vendor/driver.js"></script> <!-- opsional, sebelum skrip halaman -->
+<script src="assets/js/espmi-tour.js"></script>
 <!-- Skrip khusus halaman -->
 <script>
   // eSPMI - {deskripsi halaman}
@@ -998,6 +1026,19 @@ Urutan pemuatan script:
   (berada di `espmi-admin/assets/js/`, bukan `dist/assets/`) yang mengisi menu
   dropdown **Kolom**. Muat tepat setelah `list.min.js` pada **semua** halaman
   ber-datatable (lihat bagian 7 → *Kontrol Kolom*).
+- `assets/js/espmi-datatable-crud.js` adalah skrip **bersama** yang menangani
+  aksi **Hapus** (modal konfirmasi + hapus baris) dan mendaftarkan instance
+  List.js. Muat tepat setelah `espmi-datatable-columns.js` pada **semua**
+  halaman ber-datatable (lihat bagian 16.6).
+- `assets/js/espmi-toast.js` adalah skrip **bersama** (semua halaman) yang
+  menyediakan `window.espmiToast(message, opts)` untuk notifikasi toast
+  Bootstrap (lihat bagian 16.6 → *Notifikasi Toast*).
+- `assets/js/espmi-truncate.js` adalah skrip **bersama** (semua halaman) yang
+  memberi tooltip otomatis pada teks yang terpotong ellipsis (bagian 16.7).
+- Aset **vendor pihak ketiga** (mis. `driver.js`) diletakkan di subfolder
+  khusus — `assets/js/vendor/` dan `assets/css/vendor/` — dan dimuat **hanya**
+  pada halaman yang memakainya. Ini bukan override tema, sehingga tidak
+  melanggar larangan mengubah `dist/assets/**`.
 
 ---
 
@@ -1035,6 +1076,9 @@ Urutan pemuatan script:
   - `.datatable-filter-toggle::after` — chevron status tombol Filter (bawah =
     tertutup, atas = terbuka) di **paling kanan** tombol; CSS-only, tanpa
     markup ikon di HTML (bagian 7 & 9).
+  - `.datatable-columns-toggle::after` — chevron tombol **Kolom** dengan gaya
+    **sama** seperti tombol Filter (menimpa caret bawaan `.dropdown-toggle::after`),
+    berputar mengikuti `aria-expanded` dropdown (bagian 7 → *Kontrol Kolom*).
   - `.active-filter-badge` — badge angka jumlah filter aktif di dalam tombol
     Filter (bagian 7 → *Indikator Filter Aktif*; dihitung `espmi-filter-badge.js`).
   - `.form-control`, `.form-select` + `.is-placeholder` — warna **value** (gray-800)
@@ -1117,12 +1161,20 @@ Urutan pemuatan script:
     (bagian 3), page header berikon (bagian 6), petunjuk `alert alert-info`
     (bagian 16.4), dan footer (bagian 11). Bila menambah preferensi baru, ikuti
     kontrak di bagian 20.
+21. Verifikasi **notifikasi toast**: simpan form Tambah → muncul toast
+    `Data berhasil disimpan`; hapus baris → muncul toast `Data berhasil dihapus`
+    (bagian 16.6 → *Notifikasi Toast*).
+22. Verifikasi **tooltip teks terpotong**: persempit jendela/sidebar hingga label
+    menu terpotong → hover menampilkan teks lengkap (bagian 16.7).
+23. Bila halaman menyediakan **tour** (driver.js): tombol
+    `btn-subtle-secondary btn-icon` + `ti-help-circle` di **kiri** grup aksi page
+    header; klik → tour berjalan dan langkah tersembunyi dilewati (bagian 16.8).
 
 ---
 
 ## 16. Aturan Tambahan (Standar Wajib)
 
-Lima aturan berikut berlaku untuk **semua halaman** eSPMI dan wajib dipatuhi.
+Aturan-aturan berikut berlaku untuk **semua halaman** eSPMI dan wajib dipatuhi.
 
 ### 16.1 Judul Halaman Memakai Ikon Menu
 
@@ -1156,7 +1208,7 @@ dengan ikon menu sidebar halaman tersebut.
 | Manajemen Dokumen › Kategori Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
 | Manajemen Dokumen › Jenis Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
 | Manajemen Dokumen › Manajemen Dokumen | 2 | `<i class="ti ti-file-text"></i>` |
-| Penetapan › Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
+| Penetapan › Daftar Nilai Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
 | Penetapan › Daftar Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
 | Pelaksanaan › Pengaturan Periode | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Target Nilai Mutu | 2 | `<i class="ti ti-clipboard-list"></i>` |
@@ -1282,6 +1334,141 @@ Empat aturan wajib untuk **setiap card datatable**:
   `listjs-sorter`.
 - `colspan` baris *empty state* harus menghitung kolom Aksi.
 
+### 16.6 Modal Dialog & Aksi Datatable (Tambah / Ubah / Hapus)
+
+Aksi datatable berjalan **front-end saja** (tanpa backend). Semua dialog
+memakai komponen **Bootstrap modal** (`bootstrap.bundle.min.js` sudah dimuat di
+setiap halaman). Aturan tombol modal: batal = `btn btn-white`, simpan =
+`btn btn-dark`, aksi destruktif (Hapus) = `btn btn-danger`.
+
+#### Form Tambah
+
+- Pemicu di **page header**: `btn btn-dark d-md-flex align-items-center gap-2`
+  berikon Tabler (mis. `icon-tabler-plus`) + teks `Tambah`, dengan
+  `type="button"` + `data-bs-toggle="modal"` + `data-bs-target="#{idModal}"`.
+- Modal: `div.modal.fade` → `div.modal-dialog.modal-dialog-centered` →
+  `div.modal-content` → `form` (wajib `novalidate`).
+
+```html
+<div class="modal fade" id="{idModal}" tabindex="-1" aria-labelledby="{idModalLabel}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="{idForm}" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="{idModalLabel}">Tambah {Entitas}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="{idField}">{Label}</label>
+            <input type="text" class="form-control" id="{idField}" required />
+            <div class="invalid-feedback">{pesan validasi}</div>
+          </div>
+          <!-- field lain ... -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-dark">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+```
+
+- Validasi: pasang `novalidate` pada `<form>`, `form.classList.add('was-validated')`
+  saat submit, lalu `if (!form.checkValidity()) return;`.
+- `Simpan` menambah baris lewat `listjs.add({ ... })` (kunci objek = nama di
+  `valueNames` datatable). Baris baru diletakkan di **paling atas**
+  (`listjs.items.unshift` + `listjs.update()`), lalu kolom `No` diurutkan ulang
+  dengan `window.espmiDatatable.renumber(listjs)`.
+- Setelah simpan: tutup modal (`bootstrap.Modal.getOrCreateInstance(id).hide()`),
+  reset form, lalu tampilkan **toast** `Data berhasil disimpan` (lihat
+  *Notifikasi Toast* di bawah).
+- Contoh acuan: `penetapan-standar-mutu.html` (modal *Tambah Nilai Mutu*).
+
+#### Hapus (semua datatable)
+
+- Tombol Hapus (`.btn-subtle-danger` + `title="Hapus"`) di dalam `tbody.list`
+  otomatis membuka **modal konfirmasi** lewat skrip bersama
+  `assets/js/espmi-datatable-crud.js`. Tidak perlu JS tambahan di halaman.
+- Modal konfirmasi memakai judul `Konfirmasi Hapus` dan tombol **Batal**
+  (`btn btn-white`) + **Hapus** (`btn btn-danger`).
+- Setelah dikonfirmasi, baris benar-benar dihapus: item List.js di-`splice`,
+  `<tr>` dibuang dari DOM, `list.update()`, lalu `No` diurutkan ulang dan
+  muncul toast `Data berhasil dihapus`.
+- Skrip juga membungkus konstruktor `List` untuk mendaftarkan instance
+  (`window.espmiDatatableLists`) agar helper halaman bisa mengaksesnya.
+
+#### Notifikasi Toast
+
+- Helper bersama: `window.espmiToast(message, opts)` dari
+  `assets/js/espmi-toast.js` (dimuat di semua halaman). Container
+  `#espmiToastContainer` dibuat otomatis di pojok **kanan bawah**
+  (`toast-container position-fixed bottom-0 end-0 p-3`).
+- Opsi: `variant` (`success` default, `danger`, `warning`, `info`), `icon`
+  (nama ikon Tabler tanpa `ti-`), `delay` (ms, default `3000`).
+- Contoh: `window.espmiToast('Data berhasil disimpan')` dan
+  `window.espmiToast('Data berhasil dihapus', { variant: 'danger', icon: 'trash' })`.
+- Selalu bungkus dengan guard `if (window.espmiToast) { ... }`.
+
+### 16.7 Tooltip Teks Terpotong (Ellipsis)
+
+Setiap teks yang terpotong `text-overflow: ellipsis` **wajib** menampilkan
+tooltip berisi **teks lengkap** saat di-hover. Ditangani otomatis oleh
+`assets/js/espmi-truncate.js` (dimuat di semua halaman):
+
+- Memindai elemen kandidat lalu hanya yang **benar-benar terpotong**
+  (`scrollWidth > clientWidth` + `text-overflow: ellipsis`) yang diberi
+  atribut `title` (tooltip bawaan peramban).
+- Kandidat yang dipantau: `.nav-link .text` (**label menu sidebar**),
+  `.text-truncate`, `.dropdown-item`, `.dropdown-header`, `.breadcrumb-item`,
+  `.card-title`, `.list-group-item`, `.form-label`, `.table td`, `.table th`,
+  dan elemen bertanda `data-truncate-tooltip`.
+- Untuk elemen di luar daftar itu, tambahkan `data-truncate-tooltip`. Teks
+  tooltip bisa dioverride lewat `data-truncate-text="..."`.
+- Pemindaian ulang otomatis (debounced) saat: resize, toggle sidebar
+  (perubahan class pada `<html>`), offcanvas/dropdown terbuka, dan perubahan
+  isi DOM (pagination List.js, tambah/hapus baris).
+- Larangan: jangan menulis teks ellipsis manual tanpa mekanisme ini, dan
+  jangan menimpa `title` yang sudah dipakai untuk keperluan lain.
+
+### 16.8 Tour Halaman (driver.js)
+
+Tour langkah-per-langkah memakai **driver.js** (vendored di
+`assets/js/vendor/driver.js` + `assets/css/vendor/driver.css`). Mesin tour
+`assets/js/espmi-tour.js` bersifat deklaratif:
+
+- Pemicu: tombol dengan `data-tour-start` (mis. `#btnTourHalaman`).
+- Langkah: elemen dengan `data-tour-step` (urut sesuai DOM); isi popover dari
+  `data-tour-title` + `data-tour-text`; posisi opsional lewat `data-tour-side`
+  (`top|bottom|left|right`) dan `data-tour-align` (`start|center|end`).
+- Langkah pembuka (opsional, popover di tengah): `data-tour-intro-title` +
+  `data-tour-intro-text` pada tombol pemicu.
+- Elemen yang tersembunyi (mis. panel khusus mode kostumasi) otomatis
+  **dilewati**.
+
+**Tombol pemicu** di page header — taruh sebagai item **pertama** di grup aksi
+(di sebelah kiri tombol aksi lain), ikon saja:
+
+```html
+<button
+  type="button"
+  id="btnTourHalaman"
+  class="btn btn-subtle-secondary btn-icon"
+  data-tour-start
+  data-tour-intro-title="Tour Halaman"
+  data-tour-intro-text="{ringkasan singkat halaman}"
+  aria-label="Mulai tour halaman"
+  title="Tur halaman"
+>
+  <i class="ti ti-help-circle fs-5"></i>
+</button>
+```
+
+- Muat `driver.js` + `espmi-tour.js` **hanya** di halaman yang punya tour
+  (contoh acuan: `dashboard.html`).
+
 ---
 
 ## 17. Do & Don't
@@ -1294,6 +1481,13 @@ Empat aturan wajib untuk **setiap card datatable**:
 - Jaga konsistensi label (judul = breadcrumb = menu sidebar).
 - Pakai `.listjs-search` (200px) & `table-sticky` bila tabel memang melebar
   horizontal (bagian 7, 8.2, 16.5).
+- Gunakan modal Bootstrap untuk form **Tambah** & konfirmasi **Hapus**
+  (bagian 16.6).
+- Tampilkan notifikasi aksi memakai `window.espmiToast(...)` (bagian 16.6 →
+  *Notifikasi Toast*), dan andalkan `espmi-truncate.js` untuk tooltip teks
+  terpotong (bagian 16.7).
+- Pakai tombol `btn-subtle-secondary btn-icon` berikon `ti-help-circle` sebagai
+  pemicu tour halaman bila halaman menyediakan tour (bagian 16.8).
 
 **Don't**
 
@@ -1340,6 +1534,19 @@ Empat aturan wajib untuk **setiap card datatable**:
   sticky tampil sebagai garis putih pada baris hover (lihat bagian 8.2).
 - Jangan membuat datatable (non-read-only) tanpa kolom **Aksi** (Ubah + Hapus)
   di **kolom ke-2** setelah No (lihat bagian 8.1 & 16.5).
+- Jangan menghapus baris datatable tanpa **modal konfirmasi**, dan jangan
+  memakai varian tombol lain di modal: Batal `btn-white`, Simpan `btn-dark`,
+  Hapus `btn-danger` (lihat bagian 16.6).
+- Jangan menulis logika hapus/tambah baris per halaman; pakai skrip bersama
+  `espmi-datatable-crud.js` (bagian 12 & 16.6).
+- Jangan menutup form Tambah tanpa menampilkan toast `Data berhasil disimpan`,
+  dan jangan membuat sistem toast sendiri — pakai `window.espmiToast`
+  (bagian 16.6).
+- Jangan membiarkan teks yang terpotong ellipsis tanpa tooltip teks lengkap,
+  dan jangan menimpa `title` yang sudah dipakai untuk keperluan lain
+  (bagian 16.7).
+- Jangan memakai tombol/label teks untuk pemicu tour — gunakan tombol ikon
+  `btn-subtle-secondary btn-icon` + `ti-help-circle` (bagian 16.8).
 - Jangan memakai varian tombol **solid** (`btn-info`, `btn-danger`,
   `btn-success`, `btn-primary`) untuk aksi di dalam tabel; pakai varian **soft**
   `btn-subtle-*` (lihat bagian 8.1 & 9).

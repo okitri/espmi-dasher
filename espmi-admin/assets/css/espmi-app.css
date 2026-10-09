@@ -769,7 +769,7 @@ textarea.form-control::placeholder {
 }
 
 /* --------------------------------------------------------------------------
-   10. Utilitas tambahan
+   13. Utilitas tambahan
    -------------------------------------------------------------------------- */
 
 /* Warna border abu-abu (`--ds-gray-300`). Dipakai untuk garis pemisah
@@ -797,5 +797,31 @@ textarea.form-control::placeholder {
 
 .espmi-columns-menu .dropdown-item.disabled .form-check-input {
   opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   14. Datatable - chevron tombol "Kolom" (sama dengan tombol Filter, bagian 9)
+   -------------------------------------------------------------------------- */
+
+/* Chevron border yang berputar mengikuti `aria-expanded` (di-update otomatis
+   oleh Bootstrap dropdown). Menimpa caret bawaan `.dropdown-toggle::after`
+   supaya tampil identik dengan `.datatable-filter-toggle::after`. */
+.btn.datatable-columns-toggle::after {
+  content: '';
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: auto;
+  vertical-align: 0;
+  border: 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.2s ease;
+}
+
+.btn.datatable-columns-toggle[aria-expanded='true']::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
 }
 

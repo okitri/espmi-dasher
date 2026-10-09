@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Standar Mutu | eSPMI</title>
+    <title>Daftar Nilai Mutu | eSPMI</title>
     <!-- Favicon icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
@@ -87,7 +87,7 @@
     <li class="nav-item">
       <a class="nav-link active" href="./penetapan-standar-mutu.html">
         <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75z" /><path d="M9 12v2" /><path d="M6 12v3" /><path d="M12 12v3" /><path d="M18 12v3" /><path d="M15 12v2" /><path d="M3 3v4" /><path d="M3 5h18" /><path d="M21 3v4" /></svg></span>
-        <span class="text">Standar Mutu</span>
+        <span class="text">Daftar Nilai Mutu</span>
       </a>
     </li>
     <li class="nav-item">
@@ -375,7 +375,7 @@
     <li class="nav-item">
       <a class="nav-link active" href="./penetapan-standar-mutu.html">
         <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75z" /><path d="M9 12v2" /><path d="M6 12v3" /><path d="M12 12v3" /><path d="M18 12v3" /><path d="M15 12v2" /><path d="M3 3v4" /><path d="M3 5h18" /><path d="M21 3v4" /></svg></span>
-        <span class="text">Standar Mutu</span>
+        <span class="text">Daftar Nilai Mutu</span>
       </a>
     </li>
     <li class="nav-item">
@@ -749,17 +749,22 @@
               <!-- Page header -->
               <div class="mb-6 d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h1 class="mb-3 h2"><i class="ti ti-clipboard-check"></i> Standar Mutu</h1>
+                  <h1 class="mb-3 h2"><i class="ti ti-clipboard-check"></i> Daftar Nilai Mutu</h1>
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
                       <li class="breadcrumb-item"><a href="#!">Penetapan</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Standar Mutu</li>
+                      <li class="breadcrumb-item active" aria-current="page">Daftar Nilai Mutu</li>
                     </ol>
                   </nav>
                 </div>
                 <div>
-                  <a href="#!" class="btn btn-dark d-md-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-dark d-md-flex align-items-center gap-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#tambahNilaiMutuModal"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
@@ -776,20 +781,20 @@
                       <path d="M12 5l0 14" />
                       <path d="M5 12l14 0" />
                     </svg>
-                    Tambah</a
-                  >
+                    Tambah
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Daftar Standar Mutu -->
+          <!-- Daftar Nilai Mutu -->
           <div class="card card-lg border-1" id="standarMutuList" data-list="nilai,deskripsi,periode,lembaga_akreditasi">
             <div class="card-body pb-0">
               <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
                 <!-- Kiri: pencarian + tombol filter + pilih kolom -->
                 <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
-                  <input type="search" placeholder="Cari.." class="form-control listjs-search" aria-label="Cari standar mutu" />
+                  <input type="search" placeholder="Cari.." class="form-control listjs-search" aria-label="Cari nilai mutu" />
                   <button
                     class="btn btn-white datatable-filter-toggle d-inline-flex align-items-center gap-2"
                     type="button"
@@ -804,14 +809,14 @@
                   </button>
                   <div class="dropdown">
                     <button
-                      class="btn btn-white dropdown-toggle d-inline-flex align-items-center gap-2"
+                      class="btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2"
                       type="button"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="outside"
                       aria-expanded="false"
                       aria-label="Pilih kolom yang ditampilkan"
                     >
-                      <i class="ti ti-columns fs-5"></i>
+                      <i class="ti ti-table-minus fs-5"></i>
                       Kolom
                     </button>
                     <ul class="dropdown-menu espmi-columns-menu" data-columns-menu>
@@ -1053,6 +1058,61 @@
               </div>
             </div>
           </div>
+
+          <!-- Modal: Tambah Nilai Mutu -->
+          <div class="modal fade" id="tambahNilaiMutuModal" tabindex="-1" aria-labelledby="tambahNilaiMutuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <form id="tambahNilaiMutuForm" novalidate>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="tambahNilaiMutuModalLabel">Tambah Nilai Mutu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label class="form-label" for="tambahNilaiMutuTahun">Tahun</label>
+                      <select class="form-select" id="tambahNilaiMutuTahun" required>
+                        <option value="" selected disabled>-- Pilih --</option>
+                        <option>Maret 2025 - Mei 2025</option>
+                        <option>2026</option>
+                        <option>2025</option>
+                        <option>2024</option>
+                      </select>
+                      <div class="invalid-feedback">Tahun wajib dipilih.</div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="tambahNilaiMutuLembaga">Lembaga Akreditasi</label>
+                      <select class="form-select" id="tambahNilaiMutuLembaga" required>
+                        <option value="" selected disabled>-- Pilih --</option>
+                        <option>LSIP</option>
+                        <option>LAMDIK</option>
+                        <option>LAMTEKNIK</option>
+                        <option>LAMEMBA</option>
+                        <option>LAMSPAK</option>
+                        <option>LAM SKI</option>
+                        <option>BAN-PT</option>
+                      </select>
+                      <div class="invalid-feedback">Lembaga akreditasi wajib dipilih.</div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="tambahNilaiMutuNilai">Nilai Mutu</label>
+                      <input type="number" class="form-control" id="tambahNilaiMutuNilai" min="0" max="100" step="0.01" placeholder="0.00" required />
+                      <div class="invalid-feedback">Nilai mutu wajib diisi (0&ndash;100).</div>
+                    </div>
+                    <div class="mb-0">
+                      <label class="form-label" for="tambahNilaiMutuKeterangan">Keterangan</label>
+                      <textarea class="form-control" id="tambahNilaiMutuKeterangan" rows="3" placeholder="Keterangan nilai mutu" required></textarea>
+                      <div class="invalid-feedback">Keterangan wajib diisi.</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-dark">Simpan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /.custom-container -->
       </div>
@@ -1070,11 +1130,14 @@
     <script src="../dist/assets/js/vendors/sidebarnav.js"></script>
     <script src="../dist/assets/js/vendors/espmi-filter-badge.js"></script>
     <script src="../dist/assets/js/vendors/espmi-form-select.js"></script>
+    <script src="assets/js/espmi-toast.js"></script>
+    <script src="assets/js/espmi-truncate.js"></script>
     <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
     <script src="assets/js/espmi-datatable-columns.js"></script>
+    <script src="assets/js/espmi-datatable-crud.js"></script>
 
     <script>
-      // eSPMI - daftar Standar Mutu (List.js: pencarian, sorting, dan pagination)
+      // eSPMI - daftar Nilai Mutu (List.js: pencarian, sorting, dan pagination)
       (function () {
         var listElement = document.getElementById('standarMutuList');
         if (!listElement || typeof List === 'undefined') return;
@@ -1193,6 +1256,56 @@
         }
 
         renderView();
+
+        // eSPMI - modal "Tambah Nilai Mutu": menambah baris ke datatable (front-end, tanpa backend)
+        var addForm = document.getElementById('tambahNilaiMutuForm');
+        var addModalEl = document.getElementById('tambahNilaiMutuModal');
+        if (addForm && addModalEl) {
+          addForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            addForm.classList.add('was-validated');
+            if (!addForm.checkValidity()) return;
+
+            var tahun = document.getElementById('tambahNilaiMutuTahun');
+            var lembaga = document.getElementById('tambahNilaiMutuLembaga');
+            var nilai = document.getElementById('tambahNilaiMutuNilai');
+            var keterangan = document.getElementById('tambahNilaiMutuKeterangan');
+
+            // Bersihkan pencarian agar baris baru pasti ikut tampil.
+            var searchField = listElement.querySelector('.listjs-search');
+            if (searchField && searchField.value) {
+              searchField.value = '';
+              searchField.dispatchEvent(new Event('input'));
+            }
+
+            var added = listjs.add({
+              nilai: Number(nilai.value).toFixed(2),
+              deskripsi: keterangan.value.trim(),
+              periode: tahun.value,
+              lembaga_akreditasi: lembaga.value,
+            });
+
+            // Letakkan baris baru di paling atas agar langsung terlihat.
+            if (added && added[0] && listjs.items.indexOf(added[0]) > 0) {
+              listjs.items.splice(listjs.items.indexOf(added[0]), 1);
+              listjs.items.unshift(added[0]);
+              listjs.update();
+            }
+            if (window.espmiDatatable && window.espmiDatatable.renumber) {
+              window.espmiDatatable.renumber(listjs);
+            }
+
+            if (window.espmiToast) {
+              window.espmiToast('Data berhasil disimpan');
+            }
+
+            addForm.reset();
+            addForm.classList.remove('was-validated');
+            if (window.bootstrap && window.bootstrap.Modal) {
+              window.bootstrap.Modal.getOrCreateInstance(addModalEl).hide();
+            }
+          });
+        }
       })();
     </script>
   </body>

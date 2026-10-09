@@ -25,6 +25,9 @@
   }
 
   function initMenu(menu) {
+    if (menu.getAttribute('data-espmi-columns-init') === '1') return;
+    menu.setAttribute('data-espmi-columns-init', '1');
+
     var dropdown = menu.closest('.dropdown');
     var card = menu.closest('.card');
     if (!dropdown || !card) return;
@@ -35,7 +38,6 @@
 
     var headRows = Array.prototype.slice.call(table.querySelectorAll('thead tr'));
     if (!headRows.length) return;
-    var bodyRows = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
 
     // Simpan colspan asli header agar bisa dihitung ulang saat kolom disembunyikan.
     headRows.forEach(function (tr) {
@@ -81,7 +83,8 @@
     for (var h = 0; h < total; h += 1) hidden.push(false);
 
     function apply() {
-      bodyRows.forEach(function (tr) {
+      // Re-query tiap kali agar baris yang baru ditambah/dihapus ikut terbarui.
+      Array.prototype.forEach.call(table.querySelectorAll('tbody tr'), function (tr) {
         Array.prototype.forEach.call(tr.children, function (cell, index) {
           if (index < total) cell.hidden = !!hidden[index];
         });
@@ -102,6 +105,15 @@
           }
         });
       });
+    }
+
+    // Terapkan ulang setiap kali baris masuk/keluar DOM (pagination, tambah,
+    // hapus) supaya kolom yang disembunyikan tetap konsisten di tiap halaman.
+    var body = table.querySelector('tbody.list') || table.querySelector('tbody');
+    if (body && typeof MutationObserver === 'function') {
+      new MutationObserver(function () {
+        apply();
+      }).observe(body, { childList: true });
     }
 
     // Bangun item menu.
