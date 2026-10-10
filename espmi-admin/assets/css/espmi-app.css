@@ -257,6 +257,17 @@ html.collapsed #miniSidebar {
   padding-left: 3rem;
 }
 
+/* Pencarian baris tree (halaman Daftar Standar Mutu): saat mencari, semua grup
+   dibuka agar baris yang cocok terlihat; baris yang tidak cocok disembunyikan.
+   `display: table-row` (bukan `block`) supaya lebar kolom tabel tetap sejajar. */
+.espmi-tree-searching tr.collapse:not(.espmi-tree-hidden) {
+  display: table-row !important;
+}
+
+.espmi-tree-searching tr.espmi-tree-hidden {
+  display: none !important;
+}
+
 .badge-violet {
   background-color: #7c5cff;
   color: #fff;
@@ -881,6 +892,40 @@ html.expanded #miniSidebar .nav-heading,
 
 .espmi-readiness .progress-bar {
   border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   18. Modal "Tambah / Ubah Data Standar Mutu" (form panjang + tab)
+   Modal memakai `modal-dialog-scrollable`. Theme hanya memberi `max-height`
+   pada `.modal-content` (tinggi `auto`/tidak pasti), sehingga `.modal-body`
+   yang panjang tidak memampat dan isinya terpotong (`overflow:hidden`) -
+   `modal-footer` berisi tombol aksi jadi tidak terlihat. Beri tinggi PASTI
+   pada `.modal-dialog` & `.modal-content` agar `.modal-body` benar-benar
+   memampat dan bisa di-scroll, sementara header/footer tetap di tempatnya.
+   -------------------------------------------------------------------------- */
+#espmiTambahStandarModal .modal-dialog {
+  height: calc(100vh - var(--ds-modal-margin) * 2);
+}
+
+#espmiTambahStandarModal .modal-content {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Form pembungkus memuat header/body/footer sehingga rantai flex-column
+   `.modal-content` terputus. Jadikan form kolom-flex yang mengisi tinggi agar
+   `.modal-body` ikut memampat (menyisakan header/footer tetap terlihat). */
+#espmiTambahStandarModal .modal-content > form {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#espmiTambahStandarModal .modal-body {
+  min-height: 0;
+  overflow-y: auto;
 }
 
 

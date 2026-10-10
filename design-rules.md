@@ -641,18 +641,31 @@ Markup (identik di semua halaman; isi menu dibangun otomatis oleh
   **sama persis** dengan chevron tombol Filter (`.datatable-filter-toggle`,
   bagian 9). Bila dropdown terbuka, chevron mengarah ke atas.
 
-- **Tiga kolom pertama selalu tampil dan tidak bisa disembunyikan**: kolom
-  **No** (ke-1), kolom **Aksi** (ke-2), dan **kolom ke-3**. Ketiga checkbox-nya
+- **Kolom terkunci selalu tampil dan tidak bisa disembunyikan**. Secara default
+  yang terkunci adalah **tiga kolom pertama**: kolom **No** (ke-1), kolom
+  **Aksi** (ke-2), dan **kolom ke-3** (bagian 16.5). Untuk tabel yang menaruh
+  kolom Aksi di posisi lain (mis. halaman tree **Daftar Standar Mutu** yang
+  menaruh Aksi di paling kanan, bagian 16.10), tandai kolom terkunci secara
+  **eksplisit** dengan atribut `data-espmi-locked` pada `<th>`; bila atribut ini
+  ada, `espmi-datatable-columns.js` memakai daftar eksplisit tersebut dan
+  mengabaikan aturan "tiga kolom pertama". Checkbox kolom terkunci tetap
   `checked` + `disabled` dan itemnya diredupkan.
 - Skrip mengisi menu dari `<th>` tabel, **mendukung header bertingkat
   (`rowspan`/`colspan`)**, lalu menampilkan/menyembunyikan kolom lewat atribut
-  `hidden` pada `<th>`/`<td>`. Karena kolom sticky (No/Aksi/ke-3) selalu tampil,
-  geometri `.table-sticky` tidak pernah terpengaruh.
+  `hidden` pada `<th>`/`<td>`. Karena kolom terkunci selalu tampil, geometri
+  `.table-sticky` tidak pernah terpengaruh.
 - `data-bs-auto-close="outside"` menjaga menu tetap terbuka saat beberapa
   checkbox diubah.
 - Bila tabel punya ≤ 3 kolom (tidak ada kolom yang bisa disembunyikan), tombol
   dropdown dan menu tidak berfungsi — halaman tetap memuat markup yang sama
   demi konsistensi.
+- **Kolom tersembunyi default** — bila sebuah kolom harus sudah tersembunyi saat
+  halaman dibuka (checkbox **tidak** tercentang), tambahkan atribut
+  `data-espmi-hidden-default` pada `<th>`-nya (disertai atribut `hidden` pada
+  `<th>`/`<td>` agar tidak "berkedip" sebelum JS jalan). `espmi-datatable-columns.js`
+  membaca atribut ini, memulai kolom dalam keadaan tersembunyi, dan hanya
+  mencentang checkbox kolom yang tampil. Contoh: kolom **Info Jenjang** pada
+  halaman `penetapan-daftar-standar-mutu.html` (bagian 16.10).
 
 ### Indikator Filter Aktif (badge pada tombol Filter)
 
@@ -893,7 +906,8 @@ halaman; fitur ini otomatis aktif di semua tabel yang bisa scroll horizontal.
 ### 8.1 Kolom Aksi (wajib di setiap datatable)
 
 Setiap tabel data punya kolom **Aksi** di **kolom ke-2 (tepat setelah No)**
-berisi **dua tombol ikon** (`Ubah` dan `Hapus`) memakai **varian soft**:
+berisi tombol aksi **ikon** memakai **varian soft** berukuran **`btn-sm`** dengan
+warna **sesuai fungsi aksi** (lihat tabel standarisasi di bawah):
 
 ```html
 <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
@@ -902,29 +916,46 @@ berisi **dua tombol ikon** (`Ubah` dan `Hapus`) memakai **varian soft**:
 ```html
 <td>
   <div class="d-flex gap-1">
-    <a href="#!" class="btn btn-icon btn-xs btn-subtle-info" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-    <a href="#!" class="btn btn-icon btn-xs btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+    <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+    <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
   </div>
 </td>
 ```
 
+**Standarisasi tombol Aksi (wajib):** semua tombol berukuran **`btn-sm`**,
+warna *soft* ditentukan **per fungsi aksi**:
+
+| Fungsi aksi | Warna (`btn-subtle-*`) | Ikon | `title` |
+| --- | --- | --- | --- |
+| Edit / Ubah | `warning` | `<i class="ti ti-pencil"></i>` | `Ubah` |
+| Hapus | `danger` | `<i class="ti ti-trash"></i>` | `Hapus` |
+| Detail / Lihat | `info` | `<i class="ti ti-file-search"></i>` | `Detail` / `Lihat` |
+| Download / Unduh | `success` | `<i class="ti ti-download"></i>` | `Unduh` / `Download` |
+| Aksi lain (tak terdefinisi) | `secondary` | sesuai kebutuhan | sesuai aksi |
+
 | Aspek | Ketentuan |
 | --- | --- |
-| Kelas tombol | `btn btn-icon btn-xs btn-subtle-{color}` — **ikon saja**, ukuran `btn-xs` (1.75rem) |
-| Ubah | `btn-subtle-info` + `<i class="ti ti-pencil"></i>` |
+| Kelas tombol | `btn btn-icon btn-sm btn-subtle-{color}` — **ikon saja**, ukuran `btn-sm` (2.1875rem) |
+| Ubah | `btn-subtle-warning` + `<i class="ti ti-pencil"></i>` |
 | Hapus | `btn-subtle-danger` + `<i class="ti ti-trash"></i>` |
 | Pembungkus | `<div class="d-flex gap-1">` |
-| Atribut | `title="Ubah"` / `title="Hapus"` **dan** `aria-label` yang sama |
+| Atribut | `title="{aksi}"` **dan** `aria-label` yang sama |
 | Lebar kolom | `style="width: 7rem"` |
 | Kelas `<th>` | `class="aksi"` — penanda kolom Aksi; dipakai `.table-sticky` agar **kolom ke-3** ikut menempel (bagian 8.2) |
 | `data-list` | Kolom Aksi **tidak** dimasukkan ke `data-list` (tidak dicari/diurutkan) |
 | `listjs-sorter` | **Tidak** dipakai pada `<th>` Aksi (tidak ada `data-sort`) |
 
-- Aksi **hanya** `Ubah` dan `Hapus`; aksi tambahan khusus (mis. "Tambah sub
-  standar", "Kelola indikator") boleh mengikuti bila halaman memang butuh,
-  tetap dengan varian **soft**.
+- Tombol **Ubah** = `btn-subtle-warning`, **Hapus** = `btn-subtle-danger`.
+  Aksi tambahan khusus (mis. "Kelola indikator", "Tambah sub standar") boleh
+  mengikuti bila halaman memang butuh — memakai **`btn-subtle-secondary`**
+  (semua aksi yang **tidak** termasuk edit/hapus/detail/download).
+- Halaman **dokumen** (mis. **Laporan AMI**, **Upload Laporan RTM**) memakai
+  aksi khusus varian **soft**: **Unduh/Download** = `btn-subtle-success` +
+  `<i class="ti ti-download"></i>`, **Lihat** = `btn-subtle-info` +
+  `<i class="ti ti-file-search"></i>` (keduanya `btn btn-icon btn-sm`).
 - **Jangan** memakai varian solid (`btn-info`, `btn-danger`, `btn-success`,
   `btn-primary`) pada tombol aksi tabel — lihat bagian 16.5.
+- Semua tombol Aksi memakai ukuran **`btn-sm`** — **jangan** `btn-xs`/`btn-lg`.
 - Bila ada baris *empty state*, `colspan`-nya = **jumlah kolom termasuk Aksi**.
 - Pada tabel lebar yang memakai `.table-sticky`, kolom Aksi berada di **kolom
   ke-2** dan ikut menempel di kiri bersama **kolom ke-3**, sehingga tombol tetap
@@ -951,9 +982,14 @@ berisi **dua tombol ikon** (`Ubah` dan `Hapus`) memakai **varian soft**:
   `data-bs-toggle="dropdown"` + `data-bs-auto-close="outside"` (lihat bagian 7
   → *Kontrol Kolom*). Chevron `::after`-nya memakai gaya **sama** dengan tombol
   Filter (berputar mengikuti `aria-expanded`).
-- **Aksi tabel (Ubah / Hapus)**: varian **soft** —
-  `btn btn-icon btn-xs btn-subtle-info` (Ubah) & `btn-subtle-danger` (Hapus)
-  (lihat bagian 8.1).
+- **Aksi tabel**: varian **soft** berukuran **`btn-sm`** —
+  `btn btn-icon btn-sm btn-subtle-warning` (Ubah), `btn-subtle-danger` (Hapus),
+  `btn-subtle-info` (Detail/Lihat), `btn-subtle-success` (Download/Unduh),
+  `btn-subtle-secondary` (aksi lain) — lihat bagian 8.1.
+- **Aksi halaman non-form** (mis. **Export Excel**): memakai gaya aksi utama —
+  `btn btn-dark d-md-flex align-items-center gap-2` + ikon (mis.
+  `<i class="ti ti-download"></i>`), diletakkan di **area aksi page header**
+  (bagian 7), di samping tombol tour.
 - **Varian soft** di theme ini bernama `btn-subtle-{color}`
   (`primary`, `secondary`, `success`, `danger`, `warning`, `info`, `dark`,
   `light`, `white`): background *tint* transparan (`rgba(color, .11)`) dan
@@ -1074,6 +1110,12 @@ Urutan pemuatan script:
   memberi tooltip otomatis pada teks yang terpotong ellipsis (bagian 16.7).
 - `assets/js/espmi-drag-scroll.js` adalah skrip **bersama** (semua halaman) yang
   mengaktifkan geser horizontal tabel lebar dengan drag (bagian 8.3).
+- `assets/js/espmi-editor.js` menginisialisasi **editor rich text Quill** pada
+  elemen `[data-espmi-editor]` dan menyimpan instance di `element.espmiQuill`.
+  Quill adalah editor **base template** (`../dist/assets/libs/quill/dist/quill.js`
+  + `quill.snow.css` di `<head>`), jadi dimuat dari `dist` — sama seperti
+  `bootstrap`/`list.js`, bukan disalin ke `assets/`. Pustaka Quill + skrip ini
+  dimuat **hanya** pada halaman yang memakai editor (lihat bagian 16.10).
 - Aset **vendor pihak ketiga** (mis. `driver.js`) diletakkan di subfolder
   khusus — `assets/js/vendor/` dan `assets/css/vendor/` — dan dimuat **hanya**
   pada halaman yang memakainya. Ini bukan override tema, sehingga tidak
@@ -1263,6 +1305,15 @@ dengan ikon menu sidebar halaman tersebut.
 | Penetapan › Daftar Standar Mutu | 2 | `<i class="ti ti-clipboard-check"></i>` |
 | Evaluasi (AMI) › Manajemen Auditor | 2 | `<i class="ti ti-checklist"></i>` |
 | Evaluasi (AMI) › Jenis Temuan | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Kategori Temuan | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Daftar Temuan Kolektif | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Rekap Desk Evaluation | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Laporan AMI | 2 | `<i class="ti ti-checklist"></i>` |
+| Evaluasi (AMI) › Visualisasi Akreditasi | 2 | `<i class="ti ti-checklist"></i>` |
+| Pengendalian & Peningkatan › Daftar Temuan | 2 | `<i class="ti ti-chart-line"></i>` |
+| Pengendalian & Peningkatan › Daftar Kesesuaian | 2 | `<i class="ti ti-chart-line"></i>` |
+| Pengendalian & Peningkatan › Draft Laporan RTM | 2 | `<i class="ti ti-chart-line"></i>` |
+| Pengendalian & Peningkatan › Upload Laporan RTM | 2 | `<i class="ti ti-chart-line"></i>` |
 | Pelaksanaan › Pengaturan Periode | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Target Nilai Mutu | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Evaluasi Diri | 2 | `<i class="ti ti-clipboard-list"></i>` |
@@ -1282,7 +1333,8 @@ dengan ikon menu sidebar halaman tersebut.
 
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
   Manajemen Dokumen = `ti-file-text`, Penetapan = `ti-clipboard-check`,
-  Pelaksanaan = `ti-clipboard-list`, Evaluasi (AMI) = `ti-checklist`.
+  Pelaksanaan = `ti-clipboard-list`, Evaluasi (AMI) = `ti-checklist`,
+  Pengendalian & Peningkatan = `ti-chart-line`.
 - Nama ikon = nama ikon sidebar **tanpa** prefix `icon-tabler-`.
 - **Semua** halaman wajib punya judul berikon, termasuk Dashboard: `dashboard.html`
   memakai `<h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>` dengan
@@ -1360,8 +1412,10 @@ Empat aturan wajib untuk **setiap card datatable**:
 3. **Kolom Aksi** — setiap datatable **wajib** memiliki kolom `Aksi` di
    **kolom ke-2 (setelah No)**, berisi tombol ikon **Ubah** (`ti ti-pencil`)
    dan **Hapus** (`ti ti-trash`) dengan **varian soft** `btn-subtle-*`
-   (lihat bagian 8.1). Bila tabel lebar memakai `.table-sticky`, kolom Aksi
-   otomatis ikut menempel bersama **kolom ke-3** di kiri (bagian 8.2).
+   berukuran **`btn-sm`** (Ubah = `btn-subtle-warning`, Hapus =
+   `btn-subtle-danger`; lihat standarisasi warna di bagian 8.1). Bila tabel
+   lebar memakai `.table-sticky`, kolom Aksi otomatis ikut menempel bersama
+   **kolom ke-3** di kiri (bagian 8.2).
 4. **Kontrol Kolom** — setiap datatable menampilkan tombol dropdown **Kolom**
    di sebelah kanan tombol Filter untuk menampilkan/menyembunyikan kolom
    (`checked` = tampil). **Tiga kolom pertama (No, Aksi, kolom ke-3) wajib
@@ -1376,13 +1430,16 @@ Empat aturan wajib untuk **setiap card datatable**:
 <!-- sel -->
 <td>
   <div class="d-flex gap-1">
-    <a href="#!" class="btn btn-icon btn-xs btn-subtle-info" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-    <a href="#!" class="btn btn-icon btn-xs btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+    <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+    <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
   </div>
 </td>
 ```
 
-- Tombol aksi tabel **wajib ikon saja** (`btn-icon`), ukuran `btn-xs`.
+- Tombol aksi tabel **wajib ikon saja** (`btn-icon`), ukuran **`btn-sm`**, dengan
+  warna soft **sesuai fungsi** (Ubah = `btn-subtle-warning`, Hapus =
+  `btn-subtle-danger`, Detail/Lihat = `btn-subtle-info`, Download =
+  `btn-subtle-success`, aksi lain = `btn-subtle-secondary`) — lihat bagian 8.1.
 - Kolom Aksi **tidak** dimasukkan ke `data-list` dan **tidak** diberi
   `listjs-sorter`.
 - `colspan` baris *empty state* harus menghitung kolom Aksi.
@@ -1588,6 +1645,123 @@ profil di navbar, **tepat di bawah** menu **Pengaturan Akun**:
   **Tutup** (`btn btn-white`).
 - Modal memakai `modal-dialog-centered`; tombol tutup sudut kanan atas
   (`btn-close`) juga disediakan.
+
+### 16.10 Halaman Tree - Daftar Standar Mutu (`penetapan-daftar-standar-mutu.html`)
+
+Halaman ini memakai **tree bertingkat** (baris `<tr class="collapse show g-*">`),
+bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
+**tanpa** `Per page`, pagination, dan `data-list`. Aturan standar halaman ini:
+
+- **Kolom** (4): `Standar Mutu` (45%) | `Indikator` (15%, `text-center`) |
+  `Info Jenjang` (15%, `text-center`, `data-espmi-hidden-default` + atribut
+  `hidden`) | `Aksi` (25%, `class="aksi"`, **paling kanan**). Setiap sel
+  `Info Jenjang` bernilai **`Prodi`** pada data contoh.
+- **Kolom Aksi di paling kanan** (menyimpang dari bagian 8.1 yang menaruhnya di
+  kolom ke-2, karena halaman ini tanpa kolom No). Karena itu kolom terkunci
+  ditentukan eksplisit lewat `data-espmi-locked` pada `<th>` **Standar Mutu**,
+  **Indikator**, dan **Aksi** (bagian 7 → *Kontrol Kolom*); **`Info Jenjang`**
+  adalah satu-satunya kolom yang bisa disembunyikan dan **tersembunyi secara
+  default**.
+- **Tombol Aksi per tingkatan** (semua `btn-sm`, urut kiri→kanan):
+  - **Standar Level 1-3** (punya turunan): **Tambah** (ikon `ti ti-plus`,
+    `btn-subtle-secondary`, `data-espmi-add`) → **Ubah** (ikon `ti ti-pencil`,
+    `btn-subtle-warning`, `data-espmi-edit`) → **Hapus** (ikon `ti ti-trash`,
+    `btn-subtle-danger`, `data-espmi-hapus`).
+  - **Standar Level 4** (daun, tanpa turunan): hanya **Ubah** + **Hapus**.
+- **Tombol toolbar tambahan**, memakai gaya objek yang sama
+  (`btn btn-white d-inline-flex align-items-center gap-2`), diletakkan di
+  **grup kanan toolbar** (sisi kanan baris pencarian/filter, menggantikan
+  `Per page` yang tidak dipakai halaman ini):
+  1. **Buka/Tutup semua** — `id="espmiTreeToggleAll"`, ikon `ti ti-arrows-minimize`
+     saat terbuka dan `ti ti-arrows-maximize` saat tertutup, label berganti
+     `Collapse all` / `Expand all`; membuka/menutup **seluruh** tingkatan.
+  2. **Atur urutan** — pembuka modal `#espmiAturUrutanModal` (ikon
+     `ti ti-arrows-sort`). Modal menampilkan daftar **standar level-1** (baris
+     tanpa class grup `g-*`) dengan tombol naik/turun (`btn-icon btn-sm
+     btn-subtle-secondary`); tombol **Simpan** (`btn btn-dark`) menata ulang
+     **blok** baris (level-1 + seluruh turunannya) di `tbody` lalu menampilkan
+     toast `Data berhasil disimpan`.
+- **Pencarian** (`#daftarStandarMutuSearch`, tetap `.listjs-search` 200px)
+  menyaring **baris tree**: saat mengetik, `<table>` diberi class
+  `.espmi-tree-searching` (CSS `espmi-app.css` bagian 6 membuka semua
+  `tr.collapse` dan menyembunyikan `tr.espmi-tree-hidden`) agar baris yang cocok
+  tetap terlihat walaupun berada di grup yang tertutup.
+- **Filter** (pola baku bagian 7): **Tahun** (`width: 10rem`), **Lembaga
+  Akreditasi** (`width: 12rem`), dan **Jenjang** (`width: 10rem`); opsi pertama
+  tiap select = `-- SEMUA --`. Opsi filter **Jenjang**: `-- SEMUA --`, `Prodi`,
+  `Direktorat`.
+- **Tambah / Ubah Data Standar Mutu** — memakai **satu modal bersama**
+  `#espmiTambahStandarModal` (`modal-lg`, `modal-dialog-centered
+  modal-dialog-scrollable`). Isi form (label di atas field, footer `btn btn-white`
+  Batal + `btn btn-dark` Simpan — bagian 16.6):
+  **Parent Standar Mutu** (input teks, `disabled`, hanya tampil saat relevan),
+  **Tahun** (select: 2022-2026, **`disabled`**), **Lembaga Akreditasi** (select:
+  SPMI, BAN-PT, LAM-PTKes, LAMEMBA, LAMDIK, LAM Teknik, LAM INFOKOM,
+  **`disabled`**), **Nama Standar** (rich text editor), **Kategori** (select,
+  **`disabled`**), dan **Jenjang** (select: Prodi, Direktorat). Field
+  **Tahun/Lembaga/Kategori selalu `disabled`** (konteks halaman, tidak diubah
+  user).
+  - **Rich text editor**: memakai **Quill** (editor bawaan base template,
+    `dist/assets/libs/quill/dist/{quill.js,quill.snow.css}`) yang diinisialisasi
+    oleh `assets/js/espmi-editor.js` pada elemen `[data-espmi-editor]`
+    (`assets/js/vendor/*` untuk aset pihak ketiga; Quill berasal dari `dist`,
+    jadi dimuat dari sana). Instance tersimpan di `element.espmiQuill`; halaman
+    membacanya lewat `espmiQuill.getText().trim()` (fallback ke `textContent`) dan
+    mengisinya kembali lewat `espmiQuill.setText(...)`.
+  - **Tambah (header)** — tombol header (`btn btn-dark` + `ti ti-plus`) membuka
+    modal berjudul `Tambah Data Standar Mutu`, **Parent disembunyikan**; Simpan
+    menambah **standar level-1 (root)** baru di akhir `tbody`
+    (`table-light fw-semibold`), lengkap dengan caret + grup anaknya sendiri.
+  - **Tambah (baris level 1-3)** — tombol **Tambah** membuka modal **yang sama
+    persis** (judul `Tambah Data Standar Mutu`) dengan tambahan field **Parent
+    Standar Mutu**: otomatis terisi **nama baris yang diklik** dan `disabled`.
+    Simpan menambah **sub-standar (anak)** satu tingkat lebih dalam, disisipkan
+    setelah seluruh turunan induknya; anak level-4 tidak diberi tombol Tambah.
+  - **Tambah (baris level 3 → Standar Mutu Level 4)** — hasilnya adalah standar
+    **daun (level 4)**, sehingga modal memakai **form lengkap**: muncul **tab
+    navigasi** (`ul.nav.nav-pills` + `data-bs-toggle="pill"`, bagian 20.2)
+    berisi **`Standar Mutu`** dan **`Manajemen Risiko`** — **tanpa `nav-fill`**,
+    sehingga lebar tiap pill mengikuti labelnya (*fit-content*), bukan memenuhi
+    lebar container — plus field
+    tambahan (tersembunyi pada mode simpel) mengikuti urutan:
+    `Tahun` → `Lembaga Akreditasi` → `Parent Standar Mutu` → `Nama Standar` →
+    **`Data Dukung`** (rich text) → `Kategori` (**`Sub Standar`**) → `Jenjang` →
+    **`Deskripsi`** (rich text) → **`Jenis Indikator`** (select: Kuantitatif,
+    Kualitatif) → **`Plotting Unit Kerja`** (input teks) →
+    **`Syarat Perlu Akreditasi`** (select: Tidak, Ya).
+    - Tab **Manajemen Risiko**: **Aktifkan Manajemen Risiko** (radio Ya/Tidak,
+      default **Tidak**), **Risiko** (textarea), **Penyebab Risiko**,
+      **Dampak Risiko**, **Tingkat** (select: Rendah, Sedang, Tinggi, default
+      Tinggi), **Strategi Mitigasi** — semua `textarea.form-control`.
+    - Saat modal dibuka, tab aktif selalu dikembalikan ke **`Standar Mutu`** dan
+      field tambahan di-reset.
+    - Karena form cukup panjang, **body modal dibuat *scrollable*** agar
+      `modal-footer` (tombol **Batal**/**Simpan**) tetap terlihat: modal memakai
+      `modal-dialog-scrollable` + tinggi pasti pada `.modal-dialog`,
+      `.modal-content`, dan `.modal-content > form` (dijadikan kolom flex,
+      sebab form membungkus header/body/footer), lalu `.modal-body` diberi
+      `overflow-y:auto`. Aturan di `espmi-admin/assets/css/espmi-app.css`
+      bagian 18 (di-scope ke `#espmiTambahStandarModal`).
+  - **Ubah (semua baris)** — tombol **Ubah** membuka modal berjudul
+    `Ubah Data Standar Mutu`, terisi data baris tsb: **Nama Standar** (editable)
+    dan **Jenjang** (editable), sedangkan **Tahun/Lembaga/Kategori** (dan
+    **Parent**, bila baris punya induk) tetap `disabled`. Simpan **mengubah data
+    di tabel** (teks nama + sel `Info Jenjang` baris itu).
+  - Nama kosong → pesan error, tidak ada perubahan. Setelah Simpan: toast
+    `Data berhasil disimpan`, modal ditutup, form + editor dikosongkan.
+- **Hapus** — tombol **Hapus** membuka modal konfirmasi
+  `#espmiHapusStandarModal` (judul `Konfirmasi Hapus`, menampilkan nama standar)
+  dengan tombol **Batal** (`btn btn-white`) + **Hapus** (`btn btn-danger`,
+  bagian 16.6). Setelah dikonfirmasi, baris **beserta seluruh turunannya**
+  dibuang dari DOM, lalu toast `Data berhasil dihapus`
+  (`{ variant: 'danger', icon: 'trash' }`).
+- **Tour** (bagian 16.8) mencakup langkah pencarian, filter, kolom, buka/tutup
+  semua, atur urutan, dan tabel; tombol tour berada di kiri tombol **Tambah**.
+- Baris level-1 memakai `<tr class="table-light fw-semibold">`; grup anak memakai
+  class `g-*` yang menjadi target `data-bs-target=".g-*"` pada caret
+  `.tree-toggle` (caret berputar mengikuti `aria-expanded`, bagian 13). Skrip
+  menyimpan grup anak tiap baris pada `data-espmi-cg` agar penambahan anak tahu
+  class collapse yang dipakai.
 
 ---
 

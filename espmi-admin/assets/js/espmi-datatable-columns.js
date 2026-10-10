@@ -7,8 +7,15 @@
      2. Mengisi menu dengan checkbox per kolom (checked = tampil).
      3. Menyembunyikan / menampilkan kolom saat checkbox diubah.
 
-   Aturan: tiga kolom pertama (No + Aksi + kolom ke-3) SELALU tampil dan
-   tidak bisa disembunyikan (lihat design-rules.md bagian 7 & 16.5).
+   Aturan: secara default tiga kolom pertama (No + Aksi + kolom ke-3) SELALU
+   tampil dan tidak bisa disembunyikan (lihat design-rules.md bagian 7 & 16.5).
+   Bila pada <th> ada atribut `data-espmi-locked`, kolom terkunci ditentukan
+   eksplisit oleh atribut itu (dipakai halaman tree "Daftar Standar Mutu" yang
+   menaruh kolom Aksi di paling kanan).
+
+   Kolom dengan atribut `data-espmi-hidden-default` pada <th>-nya dimulai dalam
+   keadaan tersembunyi (checkbox tidak tercentang) - dipakai kolom "Info Jenjang"
+   pada halaman Daftar Standar Mutu.
 
    Tidak bergantung pada List.js; aman dijalankan sebelum/sesudah list.min.js
    karena hanya bekerja saat event change pada checkbox.
@@ -51,6 +58,8 @@
     // Susun model grid header: label + posisi kolom tiap sel (rowspan/colspan aware).
     var labels = [];
     var rowspanLeft = [];
+    var defaultHidden = {};
+    var explicitLocked = {};
     var total = 0;
 
     headRows.forEach(function (tr) {
@@ -61,8 +70,12 @@
         var rowspan = parseInt(cell.getAttribute('rowspan') || 1, 10);
         var text = (cell.textContent || '').replace(/\s+/g, ' ').trim();
         cell.setAttribute('data-espmi-col', col);
+        var hideByDefault = cell.hasAttribute('data-espmi-hidden-default');
+        var lockExplicit = cell.hasAttribute('data-espmi-locked');
         for (var k = 0; k < span; k += 1) {
           var index = col + k;
+          if (hideByDefault) defaultHidden[index] = true;
+          if (lockExplicit) explicitLocked[index] = true;
           if (text) {
             labels[index] = labels[index] ? labels[index] + ' ' + text : text;
           }
@@ -79,8 +92,19 @@
 
     if (total < LOCKED_COLUMNS) total = LOCKED_COLUMNS;
 
+    // Kolom terkunci: pakai data-espmi-locked bila ada, jika tidak pakai aturan
+    // "tiga kolom pertama" (No + Aksi + kolom ke-3) - lihat design-rules bagian 7.
+    var hasExplicitLock = Object.keys(explicitLocked).length > 0;
+    function isLocked(index) {
+      return hasExplicitLock ? !!explicitLocked[index] : index < LOCKED_COLUMNS;
+    }
+
     var hidden = [];
-    for (var h = 0; h < total; h += 1) hidden.push(false);
+    var hasDefaultHidden = false;
+    for (var h = 0; h < total; h += 1) {
+      hidden.push(!!defaultHidden[h]);
+      if (defaultHidden[h]) hasDefaultHidden = true;
+    }
 
     function apply() {
       // Re-query tiap kali agar baris yang baru ditambah/dihapus ikut terbarui.
@@ -124,7 +148,7 @@
 
     for (var c = 0; c < total; c += 1) {
       (function (index) {
-        var locked = index < LOCKED_COLUMNS;
+        var locked = isLocked(index);
         var li = document.createElement('li');
         var label = document.createElement('label');
         label.className = 'dropdown-item d-flex align-items-center gap-2' + (locked ? ' disabled text-secondary' : '');
@@ -132,7 +156,7 @@
         var input = document.createElement('input');
         input.type = 'checkbox';
         input.className = 'form-check-input m-0 flex-shrink-0';
-        input.checked = true;
+        input.checked = locked ? true : !hidden[index];
         if (locked) {
           input.disabled = true;
           input.setAttribute('aria-disabled', 'true');
@@ -153,6 +177,9 @@
         menu.appendChild(li);
       })(c);
     }
+
+    // Terapkan kolom yang disembunyikan default (mis. "Info Jenjang").
+    if (hasDefaultHidden) apply();
   }
 
   function boot() {

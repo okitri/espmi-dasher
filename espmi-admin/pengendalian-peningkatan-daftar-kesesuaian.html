@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Manajemen Dokumen | eSPMI</title>
+    <title>Daftar Kesesuaian | eSPMI</title>
     <!-- Favicon icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
@@ -52,6 +52,9 @@
 
     <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
     <link rel="stylesheet" href="assets/css/espmi-app.css" />
+
+    <!-- Vendor CSS: driver.js (tour halaman, design-rules 16.8) -->
+    <link rel="stylesheet" href="assets/css/vendor/driver.css" />
   </head>
 
   <body>
@@ -280,11 +283,11 @@
           </li>
           <!-- Nav item -->
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-line"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg></span>
               <span class="text">Pengendalian &amp; Peningkatan</span>
             </a>
-            <ul class="dropdown-menu flex-column">
+            <ul class="dropdown-menu flex-column show">
               <li class="nav-item">
                 <a class="nav-link" href="./pengendalian-peningkatan-daftar-temuan.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
@@ -292,7 +295,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./pengendalian-peningkatan-daftar-kesesuaian.html">
+                <a class="nav-link active" href="./pengendalian-peningkatan-daftar-kesesuaian.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
                   <span class="text">Daftar Kesesuaian</span>
                 </a>
@@ -364,11 +367,11 @@
           <!-- Nav item -->
           <!-- Nav item : Manajemen Dokumen (submenu) -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-text"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M9 9l1 0" /><path d="M9 13l6 0" /><path d="M9 17l6 0" /></svg></span>
               <span class="text">Manajemen Dokumen</span>
             </a>
-            <ul class="dropdown-menu flex-column show">
+            <ul class="dropdown-menu flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="./manajemen-dokumen-kategori-dokumen.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v6h-6l0 -6" /><path d="M14 4h6v6h-6l0 -6" /><path d="M4 14h6v6h-6l0 -6" /><path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
@@ -382,7 +385,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="./manajemen-referensi-manajemen-dokumen.html">
+                <a class="nav-link" href="./manajemen-referensi-manajemen-dokumen.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 3v4a1 1 0 0 0 1 1h4" /><path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2" /><path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" /></svg></span>
                   <span class="text">Manajemen Dokumen</span>
                 </a>
@@ -652,7 +655,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./pengendalian-peningkatan-daftar-kesesuaian.html">
+                  <a class="nav-link active" href="./pengendalian-peningkatan-daftar-kesesuaian.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
                     <span class="text">Daftar Kesesuaian</span>
                   </a>
@@ -724,11 +727,11 @@
             <!-- Nav item -->
             <!-- Nav item : Manajemen Dokumen (submenu) -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-text"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M9 9l1 0" /><path d="M9 13l6 0" /><path d="M9 17l6 0" /></svg></span>
                 <span class="text">Manajemen Dokumen</span>
               </a>
-              <ul class="dropdown-menu flex-column show">
+              <ul class="dropdown-menu flex-column">
                 <li class="nav-item">
                   <a class="nav-link" href="./manajemen-dokumen-kategori-dokumen.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v6h-6l0 -6" /><path d="M14 4h6v6h-6l0 -6" /><path d="M4 14h6v6h-6l0 -6" /><path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
@@ -742,7 +745,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="./manajemen-referensi-manajemen-dokumen.html">
+                  <a class="nav-link" href="./manajemen-referensi-manajemen-dokumen.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 3v4a1 1 0 0 0 1 1h4" /><path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2" /><path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" /></svg></span>
                     <span class="text">Manajemen Dokumen</span>
                   </a>
@@ -894,54 +897,59 @@
               <!-- Page header -->
               <div class="mb-6 d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h1 class="mb-3 h2"><i class="ti ti-file-text"></i> Manajemen Dokumen</h1>
+                  <h1 class="mb-3 h2"><i class="ti ti-chart-line"></i> Daftar Kesesuaian</h1>
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
-                      <li class="breadcrumb-item"><a href="#!">Manajemen Dokumen</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Manajemen Dokumen</li>
+                      <li class="breadcrumb-item"><a href="#!">Pengendalian &amp; Peningkatan</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Daftar Kesesuaian</li>
                     </ol>
                   </nav>
                 </div>
-                <div>
-                  <a href="#!" class="btn btn-dark d-md-flex align-items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M12 5l0 14" />
-                      <path d="M5 12l14 0" />
-                    </svg>
-                    Tambah</a
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    id="btnTourHalaman"
+                    class="btn btn-subtle-secondary btn-icon"
+                    data-tour-start
+                    data-tour-intro-title="Tour Daftar Kesesuaian"
+                    data-tour-intro-text="Ikuti langkah singkat untuk mengenal halaman Daftar Kesesuaian: pencarian, filter, kontrol kolom, dan tabel penilaian."
+                    aria-label="Mulai tour halaman"
+                    title="Tur halaman"
                   >
+                    <i class="ti ti-help-circle fs-5"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Daftar Dokumen -->
-          <div class="card card-lg border-1" id="manajemenDokumenList" data-list="nama_dokumen,tahun,kategori_dokumen,jenis_dokumen,unit_pengunggah,user_pengunggah">
+          <!-- Daftar Kesesuaian -->
+          <div class="card card-lg border-1" id="daftarKesesuaianList" data-list="standar_mutu,deskripsi,auditee">
             <div class="card-body pb-0">
               <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-                <!-- Kiri: pencarian + tombol filter + pilih kolom -->
                 <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
-                  <input type="search" placeholder="Cari.." class="form-control listjs-search" aria-label="Cari dokumen" />
+                  <input
+                    type="search"
+                    placeholder="Cari.."
+                    class="form-control listjs-search"
+                    aria-label="Cari standar mutu"
+                    data-tour-step
+                    data-tour-title="Pencarian"
+                    data-tour-text="Ketik standar mutu, deskripsi, atau auditee untuk mencari data secara instan."
+                    data-tour-side="bottom"
+                  />
                   <button
                     class="btn btn-white datatable-filter-toggle d-inline-flex align-items-center gap-2"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#manajemenDokumenFilters"
+                    data-bs-target="#daftarKesesuaianFilters"
                     aria-expanded="false"
-                    aria-controls="manajemenDokumenFilters"
+                    aria-controls="daftarKesesuaianFilters"
+                    data-tour-step
+                    data-tour-title="Filter"
+                    data-tour-text="Buka filter data untuk menyaring berdasarkan Tahun, Lembaga Akreditasi, dan Data List."
+                    data-tour-side="bottom"
                   >
                     <i class="ti ti-filter fs-5"></i>
                     Filter
@@ -955,6 +963,10 @@
                       data-bs-auto-close="outside"
                       aria-expanded="false"
                       aria-label="Pilih kolom yang ditampilkan"
+                      data-tour-step
+                      data-tour-title="Kolom"
+                      data-tour-text="Pilih kolom yang ditampilkan atau disembunyikan."
+                      data-tour-side="bottom"
                     >
                       <i class="ti ti-table-minus fs-5"></i>
                       Kolom
@@ -966,8 +978,8 @@
                 </div>
                 <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
                   <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="manajemenDokumenPerPage">Per page:</label>
-                    <select class="form-select listjs-items-per-page" id="manajemenDokumenPerPage" style="width: 5.5rem">
+                    <label class="form-label text-nowrap mb-0" for="daftarKesesuaianPerPage">Per page:</label>
+                    <select class="form-select listjs-items-per-page" id="daftarKesesuaianPerPage" style="width: 5.5rem" aria-label="Jumlah data per halaman" data-tour-step data-tour-title="Jumlah per halaman" data-tour-text="Atur berapa baris kesesuaian yang ditampilkan per halaman." data-tour-side="bottom" data-tour-align="end">
                       <option value="10" selected>10</option>
                       <option value="25">25</option>
                       <option value="50">50</option>
@@ -976,262 +988,143 @@
                   </div>
                 </div>
               </div>
-              <!-- Baris filter: tampil setelah tombol Filter diklik -->
-              <div class="collapse" id="manajemenDokumenFilters">
+              <div class="collapse" id="daftarKesesuaianFilters">
                 <div class="d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300">
                   <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="filterKategoriDokumen">Kategori</label>
-                    <select class="form-select" id="filterKategoriDokumen" aria-label="Kategori dokumen" style="width: 10rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>KEBIJAKAN MUTU</option>
-                      <option>SOP</option>
-                      <option>MANUAL MUTU</option>
-                      <option>STANDAR PENELITIAN</option>
-                      <option>DOKUMEN PENDUKUNG</option>
+                    <label class="form-label text-nowrap mb-0" for="filterTahunKesesuaian">Tahun</label>
+                    <select class="form-select" id="filterTahunKesesuaian" aria-label="Tahun" style="width: 10rem">
+                      <option selected>2026</option>
+                      <option>2025</option>
+                      <option>2024</option>
+                      <option>2023</option>
+                      <option>2022</option>
                     </select>
                   </div>
                   <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="filterUnitPengunggah">Unit Pengunggah</label>
-                    <select class="form-select" id="filterUnitPengunggah" aria-label="Unit pengunggah" style="width: 10rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>Pusat</option>
-                      <option>Prodi</option>
-                      <option>Unit Penunjang</option>
+                    <label class="form-label text-nowrap mb-0" for="filterLembagaKesesuaian">Lembaga Akreditasi</label>
+                    <select class="form-select" id="filterLembagaKesesuaian" aria-label="Lembaga Akreditasi" style="width: 24rem">
+                      <option selected>Badan Akreditasi Nasional Perguruan Tinggi</option>
+                      <option>LAM-PTKes</option>
+                      <option>LAMEMBA</option>
+                      <option>LAMDIK</option>
+                      <option>LAM Teknik</option>
+                      <option>LAM INFOKOM</option>
                     </select>
                   </div>
                   <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="filterUserPengunggah">User Pengunggah</label>
-                    <select class="form-select" id="filterUserPengunggah" aria-label="User pengunggah" style="width: 12rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>Administrator Pusat</option>
-                      <option>Admin SPMI eCampuz</option>
-                      <option>SASTRA JEPANG</option>
-                      <option>SASTRA JERMAN</option>
-                      <option>S1 Fisika</option>
-                      <option>Unit Kepegawaian</option>
-                    </select>
+                    <span class="form-label text-nowrap mb-0">Data List</span>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="radio" name="dataListKesesuaian" id="dataListSemua" checked />
+                        <label class="form-check-label" for="dataListSemua">Semua</label>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="radio" name="dataListKesesuaian" id="dataListPerProdi" />
+                        <label class="form-check-label" for="dataListPerProdi">Per Program Studi</label>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="table-responsive mt-6">
-              <table class="table text-nowrap table-hover mb-0 table-sticky">
+              <table class="table align-middle mb-0" data-tour-step data-tour-title="Tabel Data" data-tour-text="Daftar kesesuaian standar mutu. Ubah kolom Peningkatan secara langsung, atau buka Detail untuk nilai mutu & temuan positif." data-tour-side="top">
                 <thead>
                   <tr>
                     <th scope="col" style="width: 4.5rem">No</th>
-                    <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
-                    <th scope="col" class="listjs-sorter" data-sort="nama_dokumen">Nama Dokumen</th>
-                    <th scope="col" class="listjs-sorter" data-sort="tahun" style="width: 6rem">Tahun</th>
-                    <th scope="col" class="listjs-sorter" data-sort="kategori_dokumen">Kategori Dokumen</th>
-                    <th scope="col" class="listjs-sorter" data-sort="jenis_dokumen">Jenis Dokumen</th>
-                    <th scope="col" class="listjs-sorter" data-sort="unit_pengunggah">Unit Pengunggah</th>
-                    <th scope="col" class="listjs-sorter" data-sort="user_pengunggah">User Pengunggah</th>
+                    <th scope="col" style="width: 26%">Standar Mutu</th>
+                    <th scope="col" style="width: 18%">Deskripsi</th>
+                    <th scope="col" style="width: 20%">Peningkatan</th>
+                    <th scope="col">Auditee</th>
+                    <th scope="col">Nilai Mutu, Temuan Positif</th>
                   </tr>
                 </thead>
                 <tbody class="list">
                   <tr>
                     <td class="no">1</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                    <td class="standar_mutu">Kesesuaian Visi, Misi, Tujuan dan Strategi (VMTS) UPPS (UPPS) terhadap VMTS Perguruan Tinggi (PT) dan visi keilmuan Program Studi (PS) yang dikelolanya.</td>
+                    <td class="deskripsi">APS: APS 03 ISO: 4.1, 4.2, 4.3 SPMI IKU-IKT: IKU 01.02</td>
+                    <td class="peningkatan">
+                      <div class="espmi-edit-cell">
+                        <div class="espmi-edit-view d-flex align-items-center gap-2">
+                          <span class="espmi-edit-value">test</span>
+                          <button type="button" class="btn btn-sm btn-subtle-warning espmi-edit-start">Ubah</button>
+                        </div>
+                        <div class="espmi-edit-editing d-none">
+                          <textarea class="form-control" rows="4" aria-label="Peningkatan"></textarea>
+                          <button type="button" class="btn btn-sm btn-subtle-secondary espmi-edit-save mt-2">Simpan</button>
+                        </div>
                       </div>
                     </td>
-                    <td class="nama_dokumen">asasas</td>
-                    <td class="tahun">2024</td>
-                    <td class="kategori_dokumen">KEBIJAKAN MUTU</td>
-                    <td class="jenis_dokumen">Landasan penjaminan mutu internal</td>
-                    <td class="unit_pengunggah">Pusat</td>
-                    <td class="user_pengunggah">Administrator Pusat - [ecampuz]</td>
+                    <td class="auditee">SASTRA JERMAN</td>
+                    <td class="nilai_mutu"><button type="button" class="btn btn-sm btn-subtle-info espmi-detail-btn" data-standar="Kesesuaian Visi, Misi, Tujuan dan Strategi (VMTS) UPPS (UPPS) terhadap VMTS Perguruan Tinggi (PT) dan visi keilmuan Program Studi (PS) yang dikelolanya.">Detail</button></td>
                   </tr>
                   <tr>
                     <td class="no">2</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                    <td class="standar_mutu">Mekanisme dan keterlibatan pemangku kepentingan dalam penyusunan VMTS UPPS.</td>
+                    <td class="deskripsi">APS: APS 04 ISO: 4.1, 4.2, 4.3 SPMI IKU-IKT: IKU 01.03</td>
+                    <td class="peningkatan">
+                      <div class="espmi-edit-cell">
+                        <div class="espmi-edit-view d-flex align-items-center gap-2 d-none">
+                          <span class="espmi-edit-value"></span>
+                          <button type="button" class="btn btn-sm btn-subtle-warning espmi-edit-start">Ubah</button>
+                        </div>
+                        <div class="espmi-edit-editing">
+                          <textarea class="form-control" rows="4" aria-label="Peningkatan"></textarea>
+                          <button type="button" class="btn btn-sm btn-subtle-secondary espmi-edit-save mt-2">Simpan</button>
+                        </div>
                       </div>
                     </td>
-                    <td class="nama_dokumen">SOP Internal</td>
-                    <td class="tahun">2025</td>
-                    <td class="kategori_dokumen">SOP</td>
-                    <td class="jenis_dokumen">SOP Internal Prodi</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">SASTRA JEPANG - [sastrajepang]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">3</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Dokumen Pendukung Keuangan Privat 2026</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">KEBIJAKAN MUTU</td>
-                    <td class="jenis_dokumen">Landasan penjaminan mutu internal</td>
-                    <td class="unit_pengunggah">Pusat</td>
-                    <td class="user_pengunggah">Admin SPMI eCampuz - [spmi]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">4</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Manual Penggunaan</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">MANUAL MUTU</td>
-                    <td class="jenis_dokumen">Manual SPMI</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">SASTRA JERMAN - [sastrajerman]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">5</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Mutu Privat FISIKA</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">MANUAL MUTU</td>
-                    <td class="jenis_dokumen">Manual SPMI</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">S1 Fisika - [fisika]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">6</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Doc test mutu Publik FISIKA</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">KEBIJAKAN MUTU</td>
-                    <td class="jenis_dokumen">Landasan penjaminan mutu internal</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">S1 Fisika - [fisika]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">7</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">SOP Panduan Penelitian Privat Bersama Unit Kepegawaian dan S1 Fisika</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">STANDAR PENELITIAN</td>
-                    <td class="jenis_dokumen">SOP Penelitian Nasional</td>
-                    <td class="unit_pengunggah">Unit Penunjang</td>
-                    <td class="user_pengunggah">Unit Kepegawaian - [kepegawaian]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">8</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Laporan Keuangan Publik Bersama Kepegawaian &amp; S1 Fisika</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">DOKUMEN PENDUKUNG</td>
-                    <td class="jenis_dokumen">RAB Laporan Keuangan</td>
-                    <td class="unit_pengunggah">Unit Penunjang</td>
-                    <td class="user_pengunggah">Unit Kepegawaian - [kepegawaian]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">9</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Laporan Keuangan Privat Unit Kepegawaian Universitas SKI</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">DOKUMEN PENDUKUNG</td>
-                    <td class="jenis_dokumen">RAB Laporan Keuangan</td>
-                    <td class="unit_pengunggah">Unit Penunjang</td>
-                    <td class="user_pengunggah">Unit Kepegawaian - [kepegawaian]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">10</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Dokumen Publik Kualitas SDM Kepegawaian</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">KEBIJAKAN MUTU</td>
-                    <td class="jenis_dokumen">Landasan penjaminan mutu internal</td>
-                    <td class="unit_pengunggah">Unit Penunjang</td>
-                    <td class="user_pengunggah">Unit Kepegawaian - [kepegawaian]</td>
-                  </tr>
-                  <!-- 2 baris berikut adalah placeholder (isi halaman 2), ganti dengan data dari API -->
-                  <tr>
-                    <td class="no">11</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">SOP Pengabdian kepada Masyarakat</td>
-                    <td class="tahun">2025</td>
-                    <td class="kategori_dokumen">SOP</td>
-                    <td class="jenis_dokumen">SOP Internal Prodi</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">S1 Fisika - [fisika]</td>
-                  </tr>
-                  <tr>
-                    <td class="no">12</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="nama_dokumen">Pedoman Penelitian FIB</td>
-                    <td class="tahun">2026</td>
-                    <td class="kategori_dokumen">STANDAR PENELITIAN</td>
-                    <td class="jenis_dokumen">SOP Penelitian Nasional</td>
-                    <td class="unit_pengunggah">Prodi</td>
-                    <td class="user_pengunggah">SASTRA JEPANG - [sastrajepang]</td>
+                    <td class="auditee">SASTRA JERMAN</td>
+                    <td class="nilai_mutu"><button type="button" class="btn btn-sm btn-subtle-info espmi-detail-btn" data-standar="Mekanisme dan keterlibatan pemangku kepentingan dalam penyusunan VMTS UPPS.">Detail</button></td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="card-footer border-top d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-              <p class="mb-0 listjs-showing-items-label">Showing 1 to 10 of 12 entries</p>
+              <p class="mb-0 listjs-showing-items-label">Showing 1 to 2 of 2 entries</p>
               <div class="pagination-buttons d-flex align-items-center">
                 <button class="btn btn-white prev" type="button" disabled>Previous</button>
                 <ul class="pagination mb-0 ms-1">
                   <li class="page-item active"><a class="page-link page" href="#" data-page="1">1</a></li>
-                  <li class="page-item"><a class="page-link page" href="#" data-page="2">2</a></li>
                 </ul>
                 <button class="btn btn-white next" type="button">Next</button>
               </div>
             </div>
           </div>
 
-          <!-- footer -->
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 py-4 small text-secondary">
-                <div>&copy; 2021 PT. Solusi Kampus Indonesia</div>
-                <div>version 3.1.7.0</div>
+          <!-- Modal: Detail Nilai Mutu -->
+          <div class="modal fade" id="detailNilaiMutuModal" tabindex="-1" aria-labelledby="detailNilaiMutuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="detailNilaiMutuModalLabel">Detail Nilai Mutu &amp; Temuan Positif</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="mb-4"><span class="fw-semibold">Standar Mutu:</span> <span id="detailNilaiMutuStandar">-</span></p>
+                  <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col">Komponen</th>
+                          <th scope="col">Nilai Mutu</th>
+                          <th scope="col">Temuan Positif</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>APS 03</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-white" data-bs-dismiss="modal">Tutup</button>
+                </div>
               </div>
             </div>
           </div>
@@ -1256,14 +1149,16 @@
     <script src="assets/js/espmi-about.js"></script>
     <script src="assets/js/espmi-truncate.js"></script>
     <script src="assets/js/espmi-drag-scroll.js"></script>
+    <script src="assets/js/vendor/driver.js"></script>
+    <script src="assets/js/espmi-tour.js"></script>
     <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
     <script src="assets/js/espmi-datatable-columns.js"></script>
     <script src="assets/js/espmi-datatable-crud.js"></script>
 
     <script>
-      // eSPMI - daftar Dokumen (List.js: pencarian, sorting, dan pagination)
+      // eSPMI - daftar Daftar Kesesuaian (List.js: pencarian, sorting, dan pagination)
       (function () {
-        var listElement = document.getElementById('manajemenDokumenList');
+        var listElement = document.getElementById('daftarKesesuaianList');
         if (!listElement || typeof List === 'undefined') return;
 
         var perPageSelect = listElement.querySelector('.listjs-items-per-page');
@@ -1277,7 +1172,7 @@
         var syncing = false;
 
         var listjs = new List(listElement.id, {
-          valueNames: (listElement.getAttribute('data-list') || 'nama_dokumen,tahun,kategori_dokumen,jenis_dokumen,unit_pengunggah,user_pengunggah').split(','),
+          valueNames: (listElement.getAttribute('data-list') || 'standar_mutu,deskripsi,auditee').split(','),
           page: itemsPerPage,
           searchClass: 'listjs-search',
           sortClass: 'listjs-sorter',
@@ -1325,20 +1220,16 @@
         function goToPage(page) {
           currentPage = Math.min(Math.max(1, page), totalPages());
           syncing = true;
-          // List.js memakai indeks awal 1-based, jadi start index = (halaman - 1) * perPage + 1
           listjs.show((currentPage - 1) * itemsPerPage + 1, itemsPerPage);
           syncing = false;
           renderView();
         }
 
-        // Setiap hasil pencarian / sorting berubah, kembali ke halaman pertama
         listjs.on('updated', function () {
           if (syncing) return;
           goToPage(1);
         });
 
-        // Pencarian: panggil listjs.search() secara eksplisit agar tidak bergantung
-        // pada binding internal List.js (input & keyup, duplikat di-skip lewat lastSearch)
         var searchInput = listElement.querySelector('.listjs-search');
         if (searchInput) {
           var lastSearch = null;
@@ -1378,6 +1269,47 @@
             goToPage(parseInt(target.getAttribute('data-page'), 10));
           });
         }
+
+        // eSPMI - edit inline kolom "Peningkatan"
+        listElement.addEventListener('click', function (event) {
+          var start = event.target.closest('.espmi-edit-start');
+          if (start) {
+            var cell = start.closest('.espmi-edit-cell');
+            var view = cell.querySelector('.espmi-edit-view');
+            var editing = cell.querySelector('.espmi-edit-editing');
+            var textarea = cell.querySelector('textarea');
+            var value = cell.querySelector('.espmi-edit-value');
+            if (textarea && value) textarea.value = value.textContent.trim();
+            if (view) view.classList.add('d-none');
+            if (editing) editing.classList.remove('d-none');
+            if (textarea) textarea.focus();
+            return;
+          }
+
+          var save = event.target.closest('.espmi-edit-save');
+          if (save) {
+            var cellSave = save.closest('.espmi-edit-cell');
+            var viewSave = cellSave.querySelector('.espmi-edit-view');
+            var editingSave = cellSave.querySelector('.espmi-edit-editing');
+            var textareaSave = cellSave.querySelector('textarea');
+            var valueSave = cellSave.querySelector('.espmi-edit-value');
+            if (textareaSave && valueSave) valueSave.textContent = textareaSave.value;
+            if (editingSave) editingSave.classList.add('d-none');
+            if (viewSave) viewSave.classList.remove('d-none');
+            if (window.espmiToast) window.espmiToast('Data berhasil disimpan');
+            return;
+          }
+
+          var detail = event.target.closest('.espmi-detail-btn');
+          if (detail) {
+            var target = document.getElementById('detailNilaiMutuStandar');
+            if (target) target.textContent = detail.getAttribute('data-standar') || '-';
+            var modalEl = document.getElementById('detailNilaiMutuModal');
+            if (modalEl && window.bootstrap && window.bootstrap.Modal) {
+              window.bootstrap.Modal.getOrCreateInstance(modalEl).show();
+            }
+          }
+        });
 
         renderView();
       })();
