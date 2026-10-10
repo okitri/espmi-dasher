@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Data Penelitian | eSPMI</title>
+    <title>Manajemen Group | eSPMI</title>
     <!-- Favicon icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
@@ -52,6 +52,9 @@
 
     <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
     <link rel="stylesheet" href="assets/css/espmi-app.css" />
+
+    <!-- Vendor CSS: driver.js (tour halaman, design-rules 16.8) -->
+    <link rel="stylesheet" href="assets/css/vendor/driver.css" />
   </head>
 
   <body>
@@ -104,7 +107,7 @@
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
               <span class="text">Pelaksanaan</span>
             </a>
-            <ul class="dropdown-menu flex-column show">
+            <ul class="dropdown-menu flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="./pelaksanaan-pengaturan-periode.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-cog"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 21h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19.001 15.5v1.5" /><path d="M19.001 21v1.5" /><path d="M22.032 17.25l-1.299 .75" /><path d="M17.27 20l-1.3 .75" /><path d="M15.97 17.25l1.3 .75" /><path d="M20.733 20l1.3 .75" /></svg></span>
@@ -156,13 +159,13 @@
                 </ul>
               </li>
               <li class="nav-item dropdown-submenu">
-                <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></span>
                   <span class="text">Lihat Data Penelitian</span>
                 </a>
-                <ul class="dropdown-menu flex-column show">
+                <ul class="dropdown-menu flex-column">
                   <li class="nav-item">
-                    <a class="nav-link active" href="./pelaksanaan-lihat-data-penelitian-data-penelitian.html">
+                    <a class="nav-link" href="./pelaksanaan-lihat-data-penelitian-data-penelitian.html">
                       <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></span>
                       <span class="text">Data Penelitian</span>
                     </a>
@@ -434,11 +437,11 @@
           </li>
           <!-- Nav item -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg></span>
               <span class="text">Pengaturan Sistem</span>
             </a>
-            <ul class="dropdown-menu flex-column">
+            <ul class="dropdown-menu flex-column show">
               <li class="nav-item">
                 <a class="nav-link" href="./pengaturan-sistem-pengguna-portal.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg></span>
@@ -458,7 +461,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./pengaturan-sistem-pengaturan-grup.html">
+                <a class="nav-link active" href="./pengaturan-sistem-pengaturan-grup.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg></span>
                   <span class="text">Manajemen Group</span>
                 </a>
@@ -519,11 +522,11 @@
 </li>
             <!-- Nav item -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
                 <span class="text">Pelaksanaan</span>
               </a>
-              <ul class="dropdown-menu flex-column show">
+              <ul class="dropdown-menu flex-column">
                 <li class="nav-item">
                   <a class="nav-link" href="./pelaksanaan-pengaturan-periode.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-cog"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 21h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19.001 15.5v1.5" /><path d="M19.001 21v1.5" /><path d="M22.032 17.25l-1.299 .75" /><path d="M17.27 20l-1.3 .75" /><path d="M15.97 17.25l1.3 .75" /><path d="M20.733 20l1.3 .75" /></svg></span>
@@ -575,13 +578,13 @@
                   </ul>
                 </li>
                 <li class="nav-item dropdown-submenu">
-                  <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                  <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></span>
                     <span class="text">Lihat Data Penelitian</span>
                   </a>
-                  <ul class="dropdown-menu flex-column show">
+                  <ul class="dropdown-menu flex-column">
                     <li class="nav-item">
-                      <a class="nav-link active" href="./pelaksanaan-lihat-data-penelitian-data-penelitian.html">
+                      <a class="nav-link" href="./pelaksanaan-lihat-data-penelitian-data-penelitian.html">
                         <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-microscope"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg></span>
                         <span class="text">Data Penelitian</span>
                       </a>
@@ -854,11 +857,11 @@
             </li>
             <!-- Nav item -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                 <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg></span>
                 <span class="text">Pengaturan Sistem</span>
               </a>
-              <ul class="dropdown-menu flex-column">
+              <ul class="dropdown-menu flex-column show">
                 <li class="nav-item">
                   <a class="nav-link" href="./pengaturan-sistem-pengguna-portal.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg></span>
@@ -878,7 +881,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./pengaturan-sistem-pengaturan-grup.html">
+                  <a class="nav-link active" href="./pengaturan-sistem-pengaturan-grup.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg></span>
                     <span class="text">Manajemen Group</span>
                   </a>
@@ -1008,44 +1011,67 @@
 
         <!-- container -->
         <div class="custom-container">
-          <!-- Page header -->
           <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
+              <!-- Page header -->
               <div class="mb-6 d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h1 class="mb-3 h2"><i class="ti ti-clipboard-list"></i> Data Penelitian</h1>
+                  <h1 class="mb-3 h2"><i class="ti ti-settings"></i> Manajemen Group</h1>
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
-                      <li class="breadcrumb-item"><a href="#!">Pelaksanaan</a></li>
-                      <li class="breadcrumb-item"><a href="#!">Lihat Data Penelitian</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Data Penelitian</li>
+                      <li class="breadcrumb-item"><a href="#!">Pengaturan Sistem</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Manajemen Group</li>
                     </ol>
                   </nav>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    id="btnTourHalaman"
+                    class="btn btn-subtle-secondary btn-icon"
+                    data-tour-start
+                    data-tour-intro-title="Tour Manajemen Group"
+                    data-tour-intro-text="Ikuti langkah singkat untuk mengenal halaman Manajemen Group: aksi Tambah, pencarian, kontrol kolom, dan tabel data group."
+                    aria-label="Mulai tour halaman"
+                    title="Tur halaman"
+                  >
+                    <i class="ti ti-help-circle fs-5"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-dark d-md-flex align-items-center gap-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#tambahGroup"
+                    data-tour-step
+                    data-tour-title="Tambah Group"
+                    data-tour-text="Tombol aksi utama untuk membuka form dan menambahkan data baru."
+                    data-tour-side="bottom"
+                    data-tour-align="end"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                    Tambah
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Tabel Data Penelitian (sesuai design-rules bagian 7) -->
-          <div class="card card-lg border-1" id="dataPenelitianList" data-list="tahun,prodi,sumber_pembiayaan,ts2,ts1,ts">
+          <!-- Daftar Manajemen Group -->
+          <div class="card card-lg border-1" id="manajemenGroupList" data-list="nama,deskripsi">
             <div class="card-body pb-0">
               <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-                <!-- KIRI: pencarian + tombol Filter + pilih kolom -->
                 <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
-                  <input type="search" placeholder="Cari.." class="form-control listjs-search" aria-label="Cari data Penelitian" />
-                  <button
-                    class="btn btn-white datatable-filter-toggle d-inline-flex align-items-center gap-2"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#dataPenelitianFilters"
-                    aria-expanded="false"
-                    aria-controls="dataPenelitianFilters"
-                  >
-                    <i class="ti ti-filter fs-5"></i>
-                    Filter
-                    <span class="badge bg-primary-subtle text-primary-emphasis active-filter-badge" hidden>0</span>
-                  </button>
+                  <input
+                    type="search"
+                    placeholder="Cari.."
+                    class="form-control listjs-search"
+                    aria-label="Cari group"
+                    data-tour-step
+                    data-tour-title="Pencarian"
+                    data-tour-text="Ketik nama group atau deskripsi untuk mencari data secara instan."
+                    data-tour-side="bottom"
+                  />
                   <div class="dropdown">
                     <button
                       class="btn btn-white dropdown-toggle datatable-columns-toggle d-inline-flex align-items-center gap-2"
@@ -1054,6 +1080,10 @@
                       data-bs-auto-close="outside"
                       aria-expanded="false"
                       aria-label="Pilih kolom yang ditampilkan"
+                      data-tour-step
+                      data-tour-title="Kolom"
+                      data-tour-text="Pilih kolom yang ditampilkan atau disembunyikan. Kolom No, Aksi, dan Nama selalu tampil."
+                      data-tour-side="bottom"
                     >
                       <i class="ti ti-table-minus fs-5"></i>
                       Kolom
@@ -1063,11 +1093,10 @@
                     </ul>
                   </div>
                 </div>
-                <!-- KANAN: Per page -->
                 <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
                   <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="dataPenelitianPerPage">Per page:</label>
-                    <select class="form-select listjs-items-per-page" id="dataPenelitianPerPage" style="width: 5.5rem" aria-label="Jumlah data per halaman">
+                    <label class="form-label text-nowrap mb-0" for="manajemenGroupPerPage">Per page:</label>
+                    <select class="form-select listjs-items-per-page" id="manajemenGroupPerPage" style="width: 5.5rem" aria-label="Jumlah data per halaman" data-tour-step data-tour-title="Jumlah per halaman" data-tour-text="Atur berapa baris group yang ditampilkan per halaman." data-tour-side="bottom" data-tour-align="end">
                       <option value="10" selected>10</option>
                       <option value="25">25</option>
                       <option value="50">50</option>
@@ -1076,161 +1105,134 @@
                   </div>
                 </div>
               </div>
-              <!-- Baris filter (collapse) -->
-              <div class="collapse" id="dataPenelitianFilters">
-                <div class="d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300">
-                  <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="filterTahun">Tahun</label>
-                    <select class="form-select" id="filterTahun" aria-label="Tahun" style="width: 10rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>2026</option>
-                      <option>2025</option>
-                      <option>2024</option>
-                      <option>2023</option>
-                      <option>2022</option>
-                      <option>2021</option>
-                    </select>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-nowrap mb-0" for="filterAuditee">Auditee</label>
-                    <select class="form-select" id="filterAuditee" aria-label="Auditee" style="width: 12rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>NUTRISI DAN MAKANAN TERNAK</option>
-                      <option>MANAJEMEN LAHAN KERING</option>
-                      <option>TEOLOGI</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="table-responsive mt-6">
-              <table class="table text-nowrap table-hover mb-0 table-sticky">
+              <table class="table text-nowrap table-hover mb-0" data-tour-step data-tour-title="Tabel Data" data-tour-text="Daftar group pengguna beserta deskripsinya." data-tour-side="top">
                 <thead>
                   <tr>
                     <th scope="col" style="width: 4.5rem">No</th>
-                    <th scope="col" class="listjs-sorter" data-sort="tahun">Tahun</th>
-                    <th scope="col" class="listjs-sorter" data-sort="prodi">Prodi</th>
-                    <th scope="col" class="listjs-sorter" data-sort="sumber_pembiayaan">Sumber Pembiayaan</th>
-                    <th scope="col" class="listjs-sorter" data-sort="ts2">TS-2</th>
-                    <th scope="col" class="listjs-sorter" data-sort="ts1">TS-1</th>
-                    <th scope="col" class="listjs-sorter" data-sort="ts">TS</th>
+                    <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
+                    <th scope="col" class="listjs-sorter" data-sort="nama">Nama</th>
+                    <th scope="col" class="listjs-sorter" data-sort="deskripsi">Deskripsi</th>
                   </tr>
                 </thead>
                 <tbody class="list">
                   <tr>
                     <td class="no">1</td>
-                    <td class="tahun">2026</td>
-                    <td class="prodi">Pendidikan dan Pengajaran Agama Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 0.00</td>
-                    <td class="ts2">2</td>
-                    <td class="ts1">3</td>
-                    <td class="ts">1</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Admin</td>
+                    <td class="deskripsi">Admin</td>
                   </tr>
                   <tr>
                     <td class="no">2</td>
-                    <td class="tahun">2026</td>
-                    <td class="prodi">Pendidikan Keagamaan Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 0.00</td>
-                    <td class="ts2">2</td>
-                    <td class="ts1">3</td>
-                    <td class="ts">1</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Superadmin</td>
+                    <td class="deskripsi">Hak Akses Superadmin</td>
                   </tr>
                   <tr>
                     <td class="no">3</td>
-                    <td class="tahun">2025</td>
-                    <td class="prodi">Pendidikan dan Pengajaran Agama Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">1</td>
-                    <td class="ts1">2</td>
-                    <td class="ts">3</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Prodi</td>
+                    <td class="deskripsi">Akses Prodi</td>
                   </tr>
                   <tr>
                     <td class="no">4</td>
-                    <td class="tahun">2025</td>
-                    <td class="prodi">Pendidikan Keagamaan Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">1</td>
-                    <td class="ts1">2</td>
-                    <td class="ts">3</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Auditor</td>
+                    <td class="deskripsi">Akses Asesor</td>
                   </tr>
                   <tr>
                     <td class="no">5</td>
-                    <td class="tahun">2024</td>
-                    <td class="prodi">Pendidikan dan Pengajaran Agama Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 5.000.000.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">1</td>
-                    <td class="ts1">1</td>
-                    <td class="ts">2</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Fakultas</td>
+                    <td class="deskripsi">Akses Fakultas</td>
                   </tr>
                   <tr>
                     <td class="no">6</td>
-                    <td class="tahun">2024</td>
-                    <td class="prodi">Pendidikan Keagamaan Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 5.000.000.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">1</td>
-                    <td class="ts1">1</td>
-                    <td class="ts">2</td>
-                  </tr>
-                  <tr>
-                    <td class="no">7</td>
-                    <td class="tahun">2023</td>
-                    <td class="prodi">Pendidikan dan Pengajaran Agama Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 0.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">2</td>
-                    <td class="ts1">1</td>
-                    <td class="ts">1</td>
-                  </tr>
-                  <tr>
-                    <td class="no">8</td>
-                    <td class="tahun">2023</td>
-                    <td class="prodi">Pendidikan Keagamaan Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 0.00<br />Institusi Lain : 30.000.000.00</td>
-                    <td class="ts2">2</td>
-                    <td class="ts1">1</td>
-                    <td class="ts">1</td>
-                  </tr>
-                  <tr>
-                    <td class="no">9</td>
-                    <td class="tahun">2022</td>
-                    <td class="prodi">Pendidikan dan Pengajaran Agama Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 0.00</td>
-                    <td class="ts2"></td>
-                    <td class="ts1">2</td>
-                    <td class="ts">1</td>
-                  </tr>
-                  <tr>
-                    <td class="no">10</td>
-                    <td class="tahun">2022</td>
-                    <td class="prodi">Pendidikan Keagamaan Katolik S1</td>
-                    <td class="sumber_pembiayaan">Dikti : 0.00<br />Perguruan Tinggi : 3.000.000.00<br />Institusi Lain : 0.00</td>
-                    <td class="ts2"></td>
-                    <td class="ts1">2</td>
-                    <td class="ts">1</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail"><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
+                    <td class="nama">Unit Penunjang</td>
+                    <td class="deskripsi">Akses Unit Penunjang</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="card-footer border-top d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-              <p class="mb-0 listjs-showing-items-label">Showing 1 to 10 of 10 entries</p>
+              <p class="mb-0 listjs-showing-items-label">Showing 1 to 6 of 6 entries</p>
               <div class="pagination-buttons d-flex align-items-center">
                 <button class="btn btn-white prev" type="button" disabled>Previous</button>
                 <ul class="pagination mb-0 ms-1">
                   <li class="page-item active"><a class="page-link page" href="#" data-page="1">1</a></li>
                 </ul>
-                <button class="btn btn-white next" type="button">Next</button>
+                <button class="btn btn-white next" type="button" disabled>Next</button>
               </div>
             </div>
           </div>
 
-<!-- footer -->
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 py-4 small text-secondary">
-                <div>&copy; 2021 PT. Solusi Kampus Indonesia</div>
-                <div>version 3.1.7.0</div>
+          <!-- Modal: Tambah Group -->
+          <div class="modal fade" id="tambahGroup" tabindex="-1" aria-labelledby="tambahGroupLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <form id="tambahGroupForm" novalidate>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="tambahGroupLabel">Tambah Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label class="form-label" for="tambahGroupNama">Nama</label>
+                      <input type="text" class="form-control" id="tambahGroupNama" placeholder="Contoh: Admin" required />
+                      <div class="invalid-feedback">Nama wajib diisi.</div>
+                    </div>                    <div class="mb-3">
+                      <label class="form-label" for="tambahGroupDeskripsi">Deskripsi</label>
+                      <input type="text" class="form-control" id="tambahGroupDeskripsi" placeholder="Contoh: Hak Akses Admin" required />
+                      <div class="invalid-feedback">Deskripsi wajib diisi.</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-dark">Simpan</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
+
         </div>
         <!-- /.custom-container -->
       </div>
@@ -1252,14 +1254,16 @@
     <script src="assets/js/espmi-about.js"></script>
     <script src="assets/js/espmi-truncate.js"></script>
     <script src="assets/js/espmi-drag-scroll.js"></script>
+    <script src="assets/js/vendor/driver.js"></script>
+    <script src="assets/js/espmi-tour.js"></script>
     <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
     <script src="assets/js/espmi-datatable-columns.js"></script>
     <script src="assets/js/espmi-datatable-crud.js"></script>
 
     <script>
-      // eSPMI - daftar Data Penelitian (List.js: pencarian, sorting, dan pagination)
+      // eSPMI - daftar manajemenGroupList (List.js: pencarian, sorting, dan pagination)
       (function () {
-        var listElement = document.getElementById('dataPenelitianList');
+        var listElement = document.getElementById('manajemenGroupList');
         if (!listElement || typeof List === 'undefined') return;
 
         var perPageSelect = listElement.querySelector('.listjs-items-per-page');
@@ -1273,7 +1277,7 @@
         var syncing = false;
 
         var listjs = new List(listElement.id, {
-          valueNames: (listElement.getAttribute('data-list') || 'tahun,prodi,sumber_pembiayaan,ts2,ts1,ts').split(','),
+          valueNames: (listElement.getAttribute('data-list') || 'nama,deskripsi').split(','),
           page: itemsPerPage,
           searchClass: 'listjs-search',
           sortClass: 'listjs-sorter',
@@ -1321,20 +1325,16 @@
         function goToPage(page) {
           currentPage = Math.min(Math.max(1, page), totalPages());
           syncing = true;
-          // List.js memakai indeks awal 1-based, jadi start index = (halaman - 1) * perPage + 1
           listjs.show((currentPage - 1) * itemsPerPage + 1, itemsPerPage);
           syncing = false;
           renderView();
         }
 
-        // Setiap hasil pencarian / sorting berubah, kembali ke halaman pertama
         listjs.on('updated', function () {
           if (syncing) return;
           goToPage(1);
         });
 
-        // Pencarian: panggil listjs.search() secara eksplisit agar tidak bergantung
-        // pada binding internal List.js (input & keyup, duplikat di-skip lewat lastSearch)
         var searchInput = listElement.querySelector('.listjs-search');
         if (searchInput) {
           var lastSearch = null;
@@ -1376,6 +1376,43 @@
         }
 
         renderView();
+
+        // eSPMI - modal Tambah: menambah baris ke datatable (front-end, tanpa backend).
+        var addForm = document.getElementById('tambahGroupForm');
+        var addModalEl = document.getElementById('tambahGroup');
+        if (addForm && addModalEl) {
+          addForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            addForm.classList.add('was-validated');
+            if (!addForm.checkValidity()) return;
+            var nama = document.getElementById('tambahGroupNama').value.trim();
+            var deskripsi = document.getElementById('tambahGroupDeskripsi').value.trim();
+            // Bersihkan pencarian agar baris baru pasti ikut tampil.
+            var searchField = listElement.querySelector('.listjs-search');
+            if (searchField && searchField.value) {
+              searchField.value = '';
+              searchField.dispatchEvent(new Event('input'));
+            }
+            var added = listjs.add({ nama: nama, deskripsi: deskripsi });
+            // Letakkan baris baru di paling atas agar langsung terlihat.
+            if (added && added[0] && listjs.items.indexOf(added[0]) > 0) {
+              listjs.items.splice(listjs.items.indexOf(added[0]), 1);
+              listjs.items.unshift(added[0]);
+              listjs.update();
+            }
+            if (window.espmiDatatable && window.espmiDatatable.renumber) {
+              window.espmiDatatable.renumber(listjs);
+            }
+            if (window.espmiToast) {
+              window.espmiToast('Data berhasil disimpan');
+            }
+            addForm.reset();
+            addForm.classList.remove('was-validated');
+            if (window.bootstrap && window.bootstrap.Modal) {
+              window.bootstrap.Modal.getOrCreateInstance(addModalEl).hide();
+            }
+          });
+        }
       })();
     </script>
   </body>

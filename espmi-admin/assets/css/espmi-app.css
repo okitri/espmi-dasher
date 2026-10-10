@@ -928,4 +928,30 @@ html.expanded #miniSidebar .nav-heading,
   overflow-y: auto;
 }
 
+/* --------------------------------------------------------------------------
+   19. Tree "Daftar Standar Mutu" - mode "Atur Urutan" (dynamic drag reorder)
+   Saat mode aktif seluruh baris tree dapat diseret. Baris yang sedang diseret
+   diredupkan, dan baris target yang valid diberi garis penanda atas/bawah
+   (--ds-primary) sebagai penunjuk posisi sisip. Hanya tombol aksi (Tambah
+   header + Aksi tiap baris) yang dinonaktifkan; pencarian, Filter, Kolom, dan
+   Buka/Tutup semua tetap aktif. Tombol "Atur urutan" berganti menjadi "Batal" +
+   "Simpan".
+   -------------------------------------------------------------------------- */
+table.espmi-reordering tbody tr {
+  cursor: grab;
+}
+
+table.espmi-reordering tbody tr.espmi-dragging {
+  cursor: grabbing;
+  opacity: 0.45;
+}
+
+table.espmi-reordering tbody tr.espmi-drop-before > td {
+  box-shadow: inset 0 2px 0 0 var(--ds-primary);
+}
+
+table.espmi-reordering tbody tr.espmi-drop-after > td {
+  box-shadow: inset 0 -2px 0 0 var(--ds-primary);
+}
+
 

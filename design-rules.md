@@ -50,6 +50,15 @@ espmi-admin/
 ├── manajemen-dokumen-kategori-dokumen.html
 ├── manajemen-dokumen-jenis-dokumen.html
 ├── manajemen-referensi-manajemen-dokumen.html
+├── integrasi-sister-aktivasi-sister.html        # Integrasi SISter › Aktivasi Sister
+├── integrasi-sister-referensi.html              # Integrasi SISter › Referensi Sister
+├── integrasi-sister-data.html                   # Integrasi SISter › Data Sister
+├── integrasi-akademik-data.html                 # Integrasi Akademik › Data Akademik
+├── pengaturan-sistem-pengguna-portal.html       # Pengaturan Sistem › Data Pengguna Portal
+├── pengaturan-sistem-pengguna-backoffice.html   # Pengaturan Sistem › Manajemen Pengguna
+├── pengaturan-sistem-pengaturan-menu.html       # Pengaturan Sistem › Manajemen Menu
+├── pengaturan-sistem-pengaturan-grup.html       # Pengaturan Sistem › Manajemen Group
+├── pengaturan-sistem-pengaturan-modul.html      # Pengaturan Sistem › Manajemen Module
 ├── assets/
 │   ├── css/
 │   │   ├── espmi-app.css                      # override tema eSPMI
@@ -334,6 +343,93 @@ Aturan:
    - **Data Kegiatan PKM dkk. adalah item level 3** di dalam grup **Lihat Data
      Pengabdian**. Item-item tersebut **tidak boleh** muncul sebagai menu
      top-level (`li.nav-item` tingkat 1) di luar grupnya.
+
+### 4.2 Submenu Integrasi SISter
+
+Dropdown level 1 **Integrasi SISter** (ikon `icon-tabler-plug-connected`) berisi
+tiga item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
+
+| Urutan | Label | Level | Halaman |
+| --- | --- | --- | --- |
+| 1 | Aktivasi Sister | 2 | `integrasi-sister-aktivasi-sister.html` |
+| 2 | Referensi Sister | 2 | `integrasi-sister-referensi.html` |
+| 3 | Data Sister | 2 | `integrasi-sister-data.html` |
+
+- **Aktivasi Sister** adalah halaman **form** (non-datatable): form kredensial
+  SISTER (`Id Pengguna` readonly, `Username`/`Password` berupa `<textarea>`,
+  tombol **Aktifasi** = `btn btn-dark` dan **Reset** = `btn btn-white`), dipisah
+  garis **dashed** (`<hr class="border-dashed border-gray-300" />`) dari blok
+  `Id Satuan Perguruan Tinggi` + `Universitas` yang **disabled**. Wajib memenuhi
+  kerangka halaman + page header berikon + **petunjuk `alert alert-info`**
+  (bagian 16.4) + footer. Label kolom memakai `row align-items-start` +
+  `col-md-3 col-form-label` + `col-md-5`.
+- **Referensi Sister** dan **Data Sister** adalah halaman **datatable** dengan
+  kolom `No | Aksi | Data | Progress | Terakhir Diperbaharui`. Kolom Aksi berisi
+  **satu** tombol ikon **Sinkronisasi** (`btn btn-icon btn-sm btn-subtle-secondary`
+  + `ti ti-refresh`) — aksi khusus di luar Ubah/Hapus (bagian 8.1). Kolom
+  *Progress* memakai progress bar ramping `.espmi-readiness` (bagian 21) dengan
+  sel `<td class="progres">` (nama kolom dihindari `progress` karena bentrok
+  dengan kelas `.progress` Bootstrap). Kolom *Progress* & *Terakhir Diperbaharui*
+  dapat disembunyikan; tiga kolom pertama terkunci (bagian 16.5 butir 4).
+- Terapkan perubahan sidebar pada **desktop + offcanvas** di **semua** halaman
+  (bagian 4.1 butir 5).
+
+### 4.3 Submenu Integrasi Akademik
+
+Dropdown level 1 **Integrasi Akademik** (ikon `icon-tabler-school`) berisi **satu**
+item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
+
+| Urutan | Label | Level | Halaman |
+| --- | --- | --- | --- |
+| 1 | Data Akademik | 2 | `integrasi-akademik-data.html` |
+
+- **Data Akademik** adalah halaman **datatable** dengan kolom
+  `No | Aksi | Data | Progress | Terakhir Diperbaharui`. Kolom Aksi berisi
+  **satu** tombol ikon **Sinkronisasi** (`btn btn-icon btn-sm btn-subtle-secondary`
+  + `ti ti-refresh`, atribut `data-espmi-sinkron`) — aksi khusus (bagian 8.1).
+  Kolom *Progress* memakai progress bar ramping `.espmi-readiness` (bagian 21)
+  dengan sel `<td class="progres">`. Tiga kolom pertama terkunci (bagian 16.5
+  butir 4). Tanpa tombol **Tambah**, tanpa **Filter**, dan tanpa blok **Petunjuk**
+  (sesuai halaman asal).
+- Judul halaman (`<h1>`) memakai ikon menu level 1: `ti ti-school` (bagian 16.1).
+- Aksi **Sinkronisasi** menganimasikan progress bar hingga 100% lalu memperbarui
+  sel *Terakhir Diperbaharui* dan menampilkan toast "Sinkronisasi berhasil".
+- Terapkan perubahan sidebar pada **desktop + offcanvas** di **semua** halaman.
+
+### 4.4 Submenu Pengaturan Sistem
+
+Dropdown level 1 **Pengaturan Sistem** (ikon `icon-tabler-settings`) berisi **lima**
+item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
+
+| Urutan | Label | Level | Halaman |
+| --- | --- | --- | --- |
+| 1 | Data Pengguna Portal | 2 | `pengaturan-sistem-pengguna-portal.html` |
+| 2 | Manajemen Pengguna | 2 | `pengaturan-sistem-pengguna-backoffice.html` |
+| 3 | Manajemen Menu | 2 | `pengaturan-sistem-pengaturan-menu.html` |
+| 4 | Manajemen Group | 2 | `pengaturan-sistem-pengaturan-grup.html` |
+| 5 | Manajemen Module | 2 | `pengaturan-sistem-pengaturan-modul.html` |
+
+- Semua halaman memakai judul `<h1>` berikon menu level 1: `ti ti-settings`
+  (bagian 16.1).
+- Kolom & pola setiap halaman:
+  | Halaman | Kolom | Tambah | Petunjuk | Aksi |
+  | --- | --- | --- | --- | --- |
+  | Data Pengguna Portal | No, Aksi, Nama Pengguna, Nama Asli, Group, Status | ya | ya | Ubah, Hapus, Detail |
+  | Manajemen Pengguna | No, Aksi, Nama Pengguna, Nama Lengkap, Group, Unit, Status | ya | ya | Ubah, Hapus, Detail |
+  | Manajemen Menu | No, Aksi, Nama, Tingkat, Induk | ya | tidak | Ubah, Hapus |
+  | Manajemen Group | No, Aksi, Nama, Deskripsi | ya | tidak | Ubah, Hapus, Detail |
+  | Manajemen Module | No, Aksi, Module, Jumlah Submodule, Terdaftar, Belum Terdaftar | tidak | tidak | Registrasi (tunggal) |
+- **Manajemen Menu** memakai tab `nav-pills` (bagian 19): tab **Back Office**
+  (datatable) dan tab **Portal Kepegawaian** (placeholder `alert alert-info`,
+  belum ada tabel).
+- **Manajemen Module** memakai kontrol **toolbar kiri** (bagian 16.5): select
+  `Back Office`/`Portal Kepegawaian` + tombol `btn btn-dark` **Cek Module**
+  (`ti ti-refresh`). Kolom Aksi berisi **satu** tombol ikon **Registrasi**
+  (`btn btn-icon btn-sm btn-subtle-secondary` + `ti ti-checkbox`).
+- Status pengguna memakai badge subtle (bagian 16.2): **Data Pengguna Portal**
+  memakai nilai `Aktif` (hijau), **Manajemen Pengguna** memakai nilai `aktif`
+  (hijau) seperti pada halaman asal.
+- Terapkan perubahan sidebar pada **desktop + offcanvas** di **semua** halaman.
 
 ---
 
@@ -1314,6 +1410,15 @@ dengan ikon menu sidebar halaman tersebut.
 | Pengendalian & Peningkatan › Daftar Kesesuaian | 2 | `<i class="ti ti-chart-line"></i>` |
 | Pengendalian & Peningkatan › Draft Laporan RTM | 2 | `<i class="ti ti-chart-line"></i>` |
 | Pengendalian & Peningkatan › Upload Laporan RTM | 2 | `<i class="ti ti-chart-line"></i>` |
+| Integrasi SISter › Aktivasi Sister | 2 | `<i class="ti ti-plug-connected"></i>` |
+| Integrasi SISter › Referensi Sister | 2 | `<i class="ti ti-plug-connected"></i>` |
+| Integrasi SISter › Data Sister | 2 | `<i class="ti ti-plug-connected"></i>` |
+| Integrasi Akademik › Data Akademik | 2 | `<i class="ti ti-school"></i>` |
+| Pengaturan Sistem › Data Pengguna Portal | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Manajemen Pengguna | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Manajemen Menu | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Manajemen Group | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Manajemen Module | 2 | `<i class="ti ti-settings"></i>` |
 | Pelaksanaan › Pengaturan Periode | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Target Nilai Mutu | 2 | `<i class="ti ti-clipboard-list"></i>` |
 | Pelaksanaan › Evaluasi Diri | 2 | `<i class="ti ti-clipboard-list"></i>` |
@@ -1334,7 +1439,9 @@ dengan ikon menu sidebar halaman tersebut.
 - Ikon menu induk level 1: Manajemen Referensi = `ti-folders`,
   Manajemen Dokumen = `ti-file-text`, Penetapan = `ti-clipboard-check`,
   Pelaksanaan = `ti-clipboard-list`, Evaluasi (AMI) = `ti-checklist`,
-  Pengendalian & Peningkatan = `ti-chart-line`.
+  Pengendalian & Peningkatan = `ti-chart-line`, Integrasi SISter =
+  `ti-plug-connected`, Integrasi Akademik = `ti-school`, Pengaturan Sistem =
+  `ti-settings`.
 - Nama ikon = nama ikon sidebar **tanpa** prefix `icon-tabler-`.
 - **Semua** halaman wajib punya judul berikon, termasuk Dashboard: `dashboard.html`
   memakai `<h1 class="mb-3 h2"><i class="ti ti-layout-dashboard"></i> Dashboard</h1>` dengan
@@ -1668,6 +1775,33 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
     `btn-subtle-warning`, `data-espmi-edit`) → **Hapus** (ikon `ti ti-trash`,
     `btn-subtle-danger`, `data-espmi-hapus`).
   - **Standar Level 4** (daun, tanpa turunan): hanya **Ubah** + **Hapus**.
+- **Isi sel khusus baris Standar Level 4**:
+  - **Kolom `Standar Mutu`** — setelah nama standar ditambahkan **badge risiko**
+    dari input **`Tingkat`** (tab *Manajemen Risiko*) saat tambah:
+    **`Resiko Rendah`** = `badge bg-success-subtle text-success-emphasis`,
+    **`Resiko Sedang`** = `badge bg-warning-subtle text-warning-emphasis`,
+    **`Resiko Tinggi`** = `badge bg-danger-subtle text-danger-emphasis`
+    (semua `text-nowrap`). Nilai disimpan pada `data-espmi-risiko`
+    (`Rendah` / `Sedang` / `Tinggi`).
+  - **Kolom `Indikator`** — berisi dua hal (sel `text-center`):
+    1. **Link `N Indikator`** (`a.link-primary.fw-semibold.d-block`, atribut
+       `data-espmi-indikator`) yang membuka modal **`#espmiIndikatorModal`**;
+       `N` = jumlah textarea terisi pada modal (default **0**).
+    2. **Badge jenis indikator** dari input **`Jenis Indikator`** saat tambah
+       (tepat di bawah link, `mt-1`; **tanpa label `Informasi`**):
+       **`Kualitatif`** = `badge bg-success-subtle text-success-emphasis`,
+       **`Kuantitatif`** = `badge bg-info-subtle text-info-emphasis`. Nilai
+       disimpan pada `data-espmi-jenis`.
+- **Modal `#espmiIndikatorModal`** (`Input Indikator`,
+  `modal-dialog-centered`): form `#espmiIndikatorForm` (di dalam `modal-body`)
+  berisi **5 `textarea.form-control`** (`data-espmi-ind`, `rows="2"`)
+  berpasangan dengan label: `1 (Kurang)`, `2 (Cukup Baik)`, `3 (Baik)`,
+  `4 (Sangat Baik)`, `0 (kurang banget)` (layout
+  `row g-3 align-items-center`, label `col-4`, textarea `col-8`). Footer
+  **`Batal`** (`btn-white`) + **`Simpan`** (`btn-dark`, tombol memakai
+  atribut `form="espmiIndikatorForm"`). Simpan menyimpan nilai ke
+  `data-espmi-ind` (JSON array 5 elemen) pada baris terkait, memperbarui teks
+  link menjadi `N Indikator`, lalu toast `Data berhasil disimpan`.
 - **Tombol toolbar tambahan**, memakai gaya objek yang sama
   (`btn btn-white d-inline-flex align-items-center gap-2`), diletakkan di
   **grup kanan toolbar** (sisi kanan baris pencarian/filter, menggantikan
@@ -1675,12 +1809,30 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   1. **Buka/Tutup semua** — `id="espmiTreeToggleAll"`, ikon `ti ti-arrows-minimize`
      saat terbuka dan `ti ti-arrows-maximize` saat tertutup, label berganti
      `Collapse all` / `Expand all`; membuka/menutup **seluruh** tingkatan.
-  2. **Atur urutan** — pembuka modal `#espmiAturUrutanModal` (ikon
-     `ti ti-arrows-sort`). Modal menampilkan daftar **standar level-1** (baris
-     tanpa class grup `g-*`) dengan tombol naik/turun (`btn-icon btn-sm
-     btn-subtle-secondary`); tombol **Simpan** (`btn btn-dark`) menata ulang
-     **blok** baris (level-1 + seluruh turunannya) di `tbody` lalu menampilkan
-     toast `Data berhasil disimpan`.
+  2. **Atur urutan** — `id="espmiTreeAtur"`, ikon `ti ti-arrows-sort`. Klik =
+     masuk **mode drag-to-reorder** (bukan modal):
+     - `<table>` diberi class `.espmi-reordering`; seluruh `tr` di `tbody`
+       menjadi `draggable="true"` (kursor `grab`).
+     - **Aturan valid**: **Level 1** boleh dipindah antar sesama Level 1
+       (satu **blok** = baris level-1 + seluruh turunannya); **Level 2-4**
+       hanya boleh dipindah **dalam lingkup satu level pada induk (parent)
+       yang sama**.
+     - Baris target valid diberi penanda garis atas/bawah (`inset box-shadow`
+       warna `--ds-primary`, class `espmi-drop-before`/`espmi-drop-after`);
+       baris yang diseret diredupkan (`espmi-dragging`).
+     - Selama mode aktif, hanya **tombol aksi** yang dinonaktifkan
+       (`disabled`; tombol `<a class="btn">` memakai class `.disabled` +
+       `aria-disabled`): tombol **Tambah** header dan **tombol Aksi** tiap
+       baris. Input **pencarian**, **Filter**, **Kolom**, dan tombol
+       **Buka/Tutup semua** tetap **aktif**. Tombol **Atur urutan** berganti
+       menjadi **`Batal`** (`btn-white`, `id="espmiTreeAturBatal"`, **tanpa
+       ikon**) + **`Simpan`** (`btn-dark`, `id="espmiTreeAturSimpan"`, **tanpa
+       ikon**) di grup kanan toolbar, dengan **Buka/Tutup semua tetap tampil
+       di sebelah kiri `Batal`**.
+     - **Simpan** keluar dari mode + toast `Data berhasil disimpan`;
+       **Batal** mengembalikan urutan seperti saat masuk mode (snapshot) lalu
+       keluar tanpa toast. Banner petunjuk `#espmiReorderHint` (alert) tampil
+       selama mode aktif. (CSS: `espmi-app.css` bagian 19.)
 - **Pencarian** (`#daftarStandarMutuSearch`, tetap `.listjs-search` 200px)
   menyaring **baris tree**: saat mengetik, `<table>` diberi class
   `.espmi-tree-searching` (CSS `espmi-app.css` bagian 6 membuka semua
