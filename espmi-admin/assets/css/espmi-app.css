@@ -954,4 +954,25 @@ table.espmi-reordering tbody tr.espmi-drop-after > td {
   box-shadow: inset 0 -2px 0 0 var(--ds-primary);
 }
 
+/* --------------------------------------------------------------------------
+   20. Dropdown di dalam tabel datatable
+   Menu dropdown pada kolom Aksi terpotong pembungkus .table-responsive
+   (overflow-x: auto membuat sumbu-y ikut tersembunyi). Saat ada menu yang
+   terbuka, buat pembungkus terlihat penuh agar menu tampil di atas baris
+   tabel di bawahnya. Selektor :has() juga dipakai bagian 8.2, jadi sudah
+   menjadi ketergantungan yang diterima proyek ini.
+   -------------------------------------------------------------------------- */
+.table-responsive:has(.dropdown-menu.show) {
+  overflow: visible;
+}
+
+/* Sel sticky (.table-sticky memakai z-index: 2) membentuk stacking context
+   per sel, sehingga menu dropdown yang terbuka di suatu baris tertimpa sel
+   sticky baris-baris di bawahnya (yang se-z-index tetapi muncul belakangan
+   di DOM). Saat ada menu yang terbuka, naikkan sel pemilik menu di atas
+   sel baris lain. Spesifisitas selektor ini mengalahkan aturan sticky. */
+.table-sticky > tbody > tr > *:has(.dropdown-menu.show) {
+  z-index: 5;
+}
+
 

@@ -651,8 +651,23 @@ justify-content-md-between align-items-md-center gap-3` dengan pembagian:
 | Posisi | Isi |
 | --- | --- |
 | **Kiri** | Input pencarian (`form-control listjs-search`, **lebar tetap 200px**) + tombol **Filter** (hanya bila halaman punya filter) di **sebelah kanan** input + tombol dropdown **Kolom** (kontrol visibilitas kolom) |
-| **Kanan** | Selector `Per page:` (`form-select listjs-items-per-page`) |
+| **Kanan** | Info jumlah data (bila ada — **sebelah kiri** kontrol `Per page:`) + Selector `Per page:` (`form-select listjs-items-per-page`) |
 
+- **Info jumlah data** — bila halaman menampilkan hitungan (mis. `Total
+  Lembaga Akreditasi 17`), tulis sebagai `<span class="text-nowrap me-4">`
+  (angka boleh dibungkus badge, mis. `badge bg-danger-subtle
+  text-danger-emphasis rounded-pill`) dan letakkan di **grup kanan toolbar**,
+  tepat **di sebelah kiri** kontrol `Per page:` (bukan di grup kiri, bukan di
+  atas card). Contoh:
+  ```html
+  <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+    <span class="text-nowrap me-4">Total Lembaga Akreditasi <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill">17</span></span>
+    <div class="d-flex align-items-center gap-2">
+      <label class="form-label text-nowrap mb-0" for="{idPerPage}">Per page:</label>
+      ...
+    </div>
+  </div>
+  ```
 - **Lebar input pencarian = 200px** dan diatur CSS, bukan HTML. **Jangan** menulis
   `style="max-width: 22rem"` (atau inline style lebar lain) di input pencarian —
   kelas `.listjs-search` sudah menetapkan `width: 200px`
@@ -806,6 +821,25 @@ Kontrak:
   bila user memilih filter lain).
 - Jangan menghitung "Per page" select atau select di luar baris filter —
   hanya `<select>` di dalam `div.collapse` yang dijadikan target tombol.
+
+### Filter Fungsional (front-end)
+
+Halaman yang datanya sudah lengkap di markup (mis. `audit-upload-laporan-ami.html`,
+`laporan-rekap-daftar-temuan.html`, `laporan-rekap-daftar-kesesuaian.html`)
+**wajib** membuat select filter benar-benar menyaring baris (bukan sekadar
+badge), memakai `listjs.filter()`:
+
+- Dimensi non-kolom (mis. Tahun, Lembaga Akreditasi) ditulis sebagai atribut
+  `data-*` pada `<tr>` (mis. `data-tahun="2026" data-lembaga="BAN-PT"`);
+  dimensi yang sekaligus kolom tabel dibaca lewat `item.values().{kolom}`.
+- Opsi default `-- SEMUA --` memakai `value=""` (dianggap tidak aktif,
+  konsisten dengan aturan hitung badge).
+- Saat tidak ada filter aktif, panggil `listjs.filter()` **tanpa argumen**
+  (reset penuh — flag list ikut mati) agar baris yang ditambah belakangan
+  tetap ikut tampil; jangan memanggil `filter(fn)` yang selalu true.
+- Label jumlah memakai format baku; bila hasil tersaring lebih sedikit dari
+  total baris, tambahkan `(filtered from N total entries)`:
+  `Showing X to Y of M entries (filtered from N total entries)`.
 
 ### Kontrak List.js
 
@@ -1058,6 +1092,50 @@ warna *soft* ditentukan **per fungsi aksi**:
   terjangkau tanpa scroll horizontal (bagian 8.2) — ini aktif hanya karena
   `<th>` Aksi diberi `class="aksi"`.
 
+### 8.4 Dropdown di dalam Tabel (Kolom Aksi)
+
+Tombol Aksi ber-dropdown (mis. *Pilih Auditee / Unit Penunjang* pada
+`audit-desk-evaluation.html`) memakai `btn-group` + `dropdown-toggle-split`
+dengan varian **`btn-subtle-secondary`** berukuran **`btn-sm`** (bagian 8.1 —
+aksi lain), lengkap dengan `title`/`aria-label`:
+
+```html
+<td>
+  <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-sm btn-subtle-secondary" title="..." aria-label="...">Label Aksi</button>
+    <button type="button" class="btn btn-sm btn-subtle-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" title="..." aria-label="...">
+      <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><h6 class="dropdown-header">...</h6></li>
+      <li><a class="dropdown-item" href="#!">...</a></li>
+    </ul>
+  </div>
+</td>
+```
+
+**Menu tidak boleh terpotong/tertutup baris tabel** — dua mekanisme
+menyebabkan menu dropdown di dalam sel tidak terlihat penuh:
+
+1. Pembungkus `.table-responsive` (`overflow-x: auto`) ikut menyembunyikan
+   sumbu-y sehingga menu terpotong di batas bawah tabel.
+2. Sel sticky (`.table-sticky` memakai `z-index: 2`) membentuk *stacking
+   context* per sel, sehingga menu yang terbuka di suatu baris tertimpa sel
+   sticky baris-baris di bawahnya (se-`z-index` tetapi muncul belakangan di
+   DOM).
+
+Perbaikannya CSS-only di `espmi-app.css` bagian 20 dan berlaku otomatis di
+semua tabel (tanpa markup atau JS tambahan):
+
+```css
+.table-responsive:has(.dropdown-menu.show) {
+  overflow: visible;
+}
+.table-sticky > tbody > tr > *:has(.dropdown-menu.show) {
+  z-index: 5;
+}
+```
+
 ---
 
 ## 9. Tombol, Ikon, & Badge
@@ -1270,6 +1348,9 @@ Urutan pemuatan script:
   - `.espmi-readiness` — progress bar **kesiapan akreditasi** yang ramping (tinggi
     `0.5rem`, tepi membulat penuh, `min-width: 6rem`); dipakai di kolom
     *Visualisasi Akreditasi* (bagian 21).
+  - `.table-responsive:has(.dropdown-menu.show)` — saat menu dropdown di dalam
+    sel tabel terbuka, pembungkus tabel dibuat `overflow: visible` agar menu
+    tidak terpotong baris di bawahnya (bagian 8.4).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
   untuk toolbar datatable), bukan sebagai inline style di HTML.
 - Override gradasi bertema (warna palet aplikasi) **hanya** ditulis untuk light
@@ -1321,7 +1402,8 @@ Urutan pemuatan script:
 10. Tambahkan ikon pada judul halaman (sama dengan ikon menu sidebar — bagian 16.1).
 11. Ubah nilai kolom status menjadi badge *subtle* (bagian 16.2).
 12. Pastikan tidak ada `table-bordered` pada tabel (bagian 16.3).
-13. Bila ada petunjuk/catatan, ubah menjadi `alert alert-info` + ikon (bagian 16.4).
+13. Bila ada petunjuk/catatan, ubah menjadi `alert alert-info` + ikon (bagian 16.4),
+    diletakkan **di atas** card data.
 14. Pastikan **footer** ada dengan teks versi yang konsisten.
 15. Periksa semua path aset (`../dist/assets/...`, `assets/css/...`).
 16. Uji: pencarian, sorting, ubah "Per page", tombol Filter (buka/tutup baris
@@ -1497,6 +1579,10 @@ tidak dapat dihapus."), gunakan **alert** `alert-info` dengan ikon — **bukan**
 - Selalu sertakan `role="alert"`.
 - Pakai `d-flex align-items-start gap-2` agar ikon tetap sejajar bila teks
   membungkus ke beberapa baris.
+- **Posisi**: alert petunjuk diletakkan **di atas card data** (antara page
+  header dan card, memakai `mb-6`), **bukan** di bawah card / di dalam
+  `card-body`. Pengecualian: banner kontekstual di dalam card (mis. indikator
+  mode Atur Urutan) dan *empty-state* di dalam panel/tab.
 
 ### 16.5 Tata Letak Toolbar & Kolom Aksi Datatable
 
