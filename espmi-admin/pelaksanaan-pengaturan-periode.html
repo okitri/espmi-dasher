@@ -52,6 +52,7 @@
 
     <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
     <link rel="stylesheet" href="assets/css/espmi-app.css" />
+    <link rel="stylesheet" href="assets/css/vendor/driver.css" />
   </head>
 
   <body>
@@ -1023,7 +1024,19 @@
                     </ol>
                   </nav>
                 </div>
-                <div>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    id="btnTourHalaman"
+                    class="btn btn-subtle-secondary btn-icon"
+                    data-tour-start
+                    data-tour-intro-title="Tour Pengaturan Periode"
+                    data-tour-intro-text="Ikuti langkah singkat untuk memfilter dan membaca daftar pengaturan periode."
+                    aria-label="Mulai tour halaman"
+                    title="Tur halaman"
+                  >
+                    <i class="ti ti-help-circle fs-5"></i>
+                  </button>
                   <a href="#!" class="btn btn-dark d-md-flex align-items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -1074,6 +1087,7 @@
                     data-bs-target="#pengaturanPeriodeFilters"
                     aria-expanded="false"
                     aria-controls="pengaturanPeriodeFilters"
+                    data-tour-step data-tour-title="Filter" data-tour-text="Saring baris berdasarkan status periode yang sedang berjalan." data-tour-side="bottom"
                   >
                     <i class="ti ti-filter fs-5"></i>
                     Filter
@@ -1113,16 +1127,18 @@
                 <div class="d-flex flex-wrap align-items-center gap-3 pt-4 mt-4 border-top border-dashed border-gray-300">
                   <div class="d-flex align-items-center gap-2">
                     <label class="form-label text-nowrap mb-0" for="filterStatus">Filter Status</label>
-                    <select class="form-select" id="filterStatus" aria-label="Filter status periode" style="width: 10rem">
-                      <option selected>-- SEMUA --</option>
-                      <option>Aktif</option>
-                      <option>Tidak Aktif</option>
+                    <select class="form-select" id="filterStatus" aria-label="Filter status periode" style="width: 12rem">
+                      <option value="" selected>-- SEMUA --</option>
+                      <option value="berlangsung">Sedang Berlangsung (4)</option>
+                      <option value="ed">Sedang ED (3)</option>
+                      <option value="de">Sedang DE (4)</option>
+                      <option value="visitasi">Sedang Visitasi (4)</option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="table-responsive mt-6">
+            <div class="table-responsive mt-6" data-tour-step data-tour-title="Tabel Pengaturan Periode" data-tour-text="Daftar periode beserta rentang evaluasi diri, desk evaluation, dan visitasi." data-tour-side="top">
               <table class="table text-nowrap table-hover mb-0 table-sticky">
                 <thead>
                   <tr>
@@ -1144,11 +1160,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">Maret 2025 - Mei 2025</td>
-                    <td class="lembaga_akreditasi">SPMIRU</td>
-                    <td class="periode_evaluasi_diri">12/08/2025 - 30/08/2025</td>
-                    <td class="periode_desk_evaluation">12/08/2025 - 30/08/2025</td>
-                    <td class="periode_visitasi">12/08/2025 - 30/08/2025</td>
+                    <td class="periode">2030</td>
+                    <td class="lembaga_akreditasi">SPMI</td>
+                    <td class="periode_evaluasi_diri">02/09/2026 - 30/09/2026</td>
+                    <td class="periode_desk_evaluation">02/09/2026 - 30/09/2026</td>
+                    <td class="periode_visitasi">02/09/2026 - 30/09/2026</td>
                   </tr>
                   <tr>
                     <td class="no">2</td>
@@ -1158,11 +1174,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">Maret 2025 - Mei 2025</td>
-                    <td class="lembaga_akreditasi">SPMI</td>
-                    <td class="periode_evaluasi_diri">23/09/2026 - 23/09/2026</td>
-                    <td class="periode_desk_evaluation">02/09/2026 - 30/09/2026</td>
-                    <td class="periode_visitasi">09/09/2026 - 23/09/2026</td>
+                    <td class="periode">2030</td>
+                    <td class="lembaga_akreditasi">SPMI UNIT 2026</td>
+                    <td class="periode_evaluasi_diri">26/01/2026 - 01/11/2026</td>
+                    <td class="periode_desk_evaluation">26/01/2026 - 01/11/2026</td>
+                    <td class="periode_visitasi">26/01/2026 - 01/11/2026</td>
                   </tr>
                   <tr>
                     <td class="no">3</td>
@@ -1172,11 +1188,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2045</td>
-                    <td class="lembaga_akreditasi">SPMI 3</td>
-                    <td class="periode_evaluasi_diri">01/08/2026 - 14/08/2026</td>
-                    <td class="periode_desk_evaluation">01/08/2026 - 14/08/2026</td>
-                    <td class="periode_visitasi">01/08/2026 - 14/08/2026</td>
+                    <td class="periode">2030</td>
+                    <td class="lembaga_akreditasi">SPMI UNIT</td>
+                    <td class="periode_evaluasi_diri">26/01/2026 - 30/09/2026</td>
+                    <td class="periode_desk_evaluation">26/01/2026 - 31/01/2026</td>
+                    <td class="periode_visitasi">26/01/2026 - 31/01/2026</td>
                   </tr>
                   <tr>
                     <td class="no">4</td>
@@ -1186,11 +1202,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2045</td>
-                    <td class="lembaga_akreditasi">SPMI</td>
-                    <td class="periode_evaluasi_diri">02/08/2026 - 08/08/2026</td>
-                    <td class="periode_desk_evaluation">09/08/2026 - 15/08/2026</td>
-                    <td class="periode_visitasi">16/08/2026 - 22/08/2026</td>
+                    <td class="periode">2029</td>
+                    <td class="lembaga_akreditasi">2029 JAMITU</td>
+                    <td class="periode_evaluasi_diri">01/12/2025 - 31/12/2025</td>
+                    <td class="periode_desk_evaluation">01/12/2025 - 31/12/2025</td>
+                    <td class="periode_visitasi">01/12/2025 - 31/12/2025</td>
                   </tr>
                   <tr>
                     <td class="no">5</td>
@@ -1200,11 +1216,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2032</td>
+                    <td class="periode">2029</td>
                     <td class="lembaga_akreditasi">SPMI</td>
-                    <td class="periode_evaluasi_diri">01/04/2026 - 01/05/2026</td>
-                    <td class="periode_desk_evaluation">01/04/2026 - 01/05/2026</td>
-                    <td class="periode_visitasi">01/04/2026 - 01/05/2026</td>
+                    <td class="periode_evaluasi_diri">10/11/2025 - 31/01/2026</td>
+                    <td class="periode_desk_evaluation">10/11/2025 - 31/01/2026</td>
+                    <td class="periode_visitasi">11/11/2025 - 31/01/2026</td>
                   </tr>
                   <tr>
                     <td class="no">6</td>
@@ -1214,11 +1230,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2031</td>
+                    <td class="periode">2028</td>
                     <td class="lembaga_akreditasi">SPMI</td>
-                    <td class="periode_evaluasi_diri">01/12/2025 - 31/01/2026</td>
-                    <td class="periode_desk_evaluation">01/12/2025 - 31/01/2026</td>
-                    <td class="periode_visitasi">01/12/2025 - 31/01/2026</td>
+                    <td class="periode_evaluasi_diri">29/10/2025 - 14/11/2025</td>
+                    <td class="periode_desk_evaluation">29/10/2025 - 14/11/2025</td>
+                    <td class="periode_visitasi">29/10/2025 - 14/11/2025</td>
                   </tr>
                   <tr>
                     <td class="no">7</td>
@@ -1228,11 +1244,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2031</td>
-                    <td class="lembaga_akreditasi">Badan Akreditasi Nasional Perguruan Tinggi</td>
-                    <td class="periode_evaluasi_diri">01/01/2026 - 31/01/2026</td>
-                    <td class="periode_desk_evaluation">01/01/2026 - 31/01/2026</td>
-                    <td class="periode_visitasi">01/01/2026 - 31/01/2026</td>
+                    <td class="periode">2027</td>
+                    <td class="lembaga_akreditasi">LAMPTKES</td>
+                    <td class="periode_evaluasi_diri">11/02/2026 - 28/02/2026</td>
+                    <td class="periode_desk_evaluation">11/02/2026 - 28/02/2026</td>
+                    <td class="periode_visitasi">11/02/2026 - 28/02/2026</td>
                   </tr>
                   <tr>
                     <td class="no">8</td>
@@ -1242,11 +1258,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2030</td>
+                    <td class="periode">2027</td>
                     <td class="lembaga_akreditasi">SPMI</td>
-                    <td class="periode_evaluasi_diri">01/12/2025 - 31/12/2025</td>
-                    <td class="periode_desk_evaluation">01/12/2025 - 31/12/2025</td>
-                    <td class="periode_visitasi">01/12/2025 - 31/12/2025</td>
+                    <td class="periode_evaluasi_diri">29/10/2025 - 01/11/2026</td>
+                    <td class="periode_desk_evaluation">29/10/2025 - 01/11/2026</td>
+                    <td class="periode_visitasi">29/10/2025 - 01/11/2026</td>
                   </tr>
                   <tr>
                     <td class="no">9</td>
@@ -1256,11 +1272,11 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2030</td>
-                    <td class="lembaga_akreditasi">Badan Akreditasi Nasional Perguruan Tinggi</td>
-                    <td class="periode_evaluasi_diri">01/01/2026 - 28/02/2026</td>
-                    <td class="periode_desk_evaluation">01/01/2026 - 28/02/2026</td>
-                    <td class="periode_visitasi">01/01/2026 - 28/02/2026</td>
+                    <td class="periode">2027</td>
+                    <td class="lembaga_akreditasi">LAMDIK</td>
+                    <td class="periode_evaluasi_diri">19/05/2026 - 31/07/2026</td>
+                    <td class="periode_desk_evaluation">19/05/2026 - 31/07/2026</td>
+                    <td class="periode_visitasi">19/05/2026 - 31/07/2026</td>
                   </tr>
                   <tr>
                     <td class="no">10</td>
@@ -1270,45 +1286,17 @@
                         <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
                       </div>
                     </td>
-                    <td class="periode">2030</td>
-                    <td class="lembaga_akreditasi">SPMI 2 Matrix</td>
-                    <td class="periode_evaluasi_diri">03/11/2025 - 29/11/2025</td>
-                    <td class="periode_desk_evaluation">03/11/2025 - 29/11/2025</td>
-                    <td class="periode_visitasi">03/11/2025 - 29/11/2025</td>
-                  </tr>
-                  <tr>
-                    <td class="no">11</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="periode">2029</td>
-                    <td class="lembaga_akreditasi">SPMI 2025</td>
-                    <td class="periode_evaluasi_diri">15/01/2026 - 15/02/2026</td>
-                    <td class="periode_desk_evaluation">01/02/2026 - 28/02/2026</td>
-                    <td class="periode_visitasi">01/03/2026 - 15/03/2026</td>
-                  </tr>
-                  <tr>
-                    <td class="no">12</td>
-                    <td>
-                      <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
-                      </div>
-                    </td>
-                    <td class="periode">2028</td>
-                    <td class="lembaga_akreditasi">LAM SKI</td>
-                    <td class="periode_evaluasi_diri">01/07/2026 - 31/07/2026</td>
-                    <td class="periode_desk_evaluation">01/08/2026 - 31/08/2026</td>
-                    <td class="periode_visitasi">01/09/2026 - 30/09/2026</td>
+                    <td class="periode">2027</td>
+                    <td class="lembaga_akreditasi">lamdik</td>
+                    <td class="periode_evaluasi_diri">11/02/2026 - 28/02/2026</td>
+                    <td class="periode_desk_evaluation">11/02/2026 - 28/02/2026</td>
+                    <td class="periode_visitasi">11/02/2026 - 28/02/2026</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="card-footer border-top d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3">
-              <p class="mb-0 listjs-showing-items-label">Showing 1 to 10 of 12 entries</p>
+              <p class="mb-0 listjs-showing-items-label">Showing 1 to 10 of 10 entries</p>
               <div class="pagination-buttons d-flex align-items-center">
                 <button class="btn btn-white prev" type="button" disabled>Previous</button>
                 <ul class="pagination mb-0 ms-1">
@@ -1352,6 +1340,8 @@
     <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
     <script src="assets/js/espmi-datatable-columns.js"></script>
     <script src="assets/js/espmi-datatable-crud.js"></script>
+    <script src="assets/js/vendor/driver.js"></script>
+    <script src="assets/js/espmi-tour.js"></script>
 
     <script>
       // eSPMI - daftar Pengaturan Periode (List.js: pencarian, sorting, dan pagination)
@@ -1369,6 +1359,60 @@
         var currentPage = 1;
         var syncing = false;
 
+        // Status periode berjalan dihitung dari tanggal hari ini (front-end,
+        // tanpa backend). Sel yang rentangnya memuat hari ini dibungkus badge
+        // (ED hijau, DE biru, Visitasi ungu); baris ditandai atribut data-st-*
+        // untuk filter; label opsi filter ditulis ulang beserta hitungannya.
+        var STATUS_COLS = [
+          { key: 'ed', cell: 'periode_evaluasi_diri', badge: 'bg-success-subtle text-success-emphasis' },
+          { key: 'de', cell: 'periode_desk_evaluation', badge: 'bg-info-subtle text-info-emphasis' },
+          { key: 'visitasi', cell: 'periode_visitasi', badge: 'badge-violet-subtle' },
+        ];
+        function parseRange(text) {
+          var m = /(\d{2})\/(\d{2})\/(\d{4})\s*-\s*(\d{2})\/(\d{2})\/(\d{4})/.exec(text || '');
+          if (!m) return null;
+          return {
+            from: new Date(+m[3], +m[2] - 1, +m[1]),
+            to: new Date(+m[6], +m[5] - 1, +m[4]),
+          };
+        }
+        var todayPP = new Date();
+        todayPP.setHours(0, 0, 0, 0);
+        var statusCount = { berlangsung: 0, ed: 0, de: 0, visitasi: 0 };
+        Array.prototype.forEach.call(listElement.querySelectorAll('tbody.list tr'), function (tr) {
+          var active = {};
+          STATUS_COLS.forEach(function (col) {
+            var td = tr.querySelector('td.' + col.cell);
+            if (!td) return;
+            var r = parseRange(td.textContent);
+            var on = !!r && todayPP >= r.from && todayPP <= r.to;
+            tr.setAttribute('data-st-' + col.key, on ? '1' : '');
+            if (on) {
+              active[col.key] = true;
+              var span = document.createElement('span');
+              span.className = 'badge ' + col.badge + ' text-nowrap';
+              span.textContent = td.textContent;
+              td.textContent = '';
+              td.appendChild(span);
+            }
+          });
+          var all = active.ed && active.de && active.visitasi;
+          tr.setAttribute('data-st-berlangsung', all ? '1' : '');
+          if (all) statusCount.berlangsung += 1;
+          if (active.ed) statusCount.ed += 1;
+          if (active.de) statusCount.de += 1;
+          if (active.visitasi) statusCount.visitasi += 1;
+        });
+        var filterStatus = document.getElementById('filterStatus');
+        if (filterStatus) {
+          var statusLabels = { berlangsung: 'Sedang Berlangsung', ed: 'Sedang ED', de: 'Sedang DE', visitasi: 'Sedang Visitasi' };
+          Array.prototype.forEach.call(filterStatus.options, function (opt) {
+            if (!opt.value) return;
+            var n = statusCount[opt.value];
+            if (typeof n === 'number') opt.textContent = statusLabels[opt.value] + ' (' + n + ')';
+          });
+        }
+
         var listjs = new List(listElement.id, {
           valueNames: (listElement.getAttribute('data-list') || 'periode,lembaga_akreditasi,periode_evaluasi_diri,periode_desk_evaluation,periode_visitasi').split(','),
           page: itemsPerPage,
@@ -1385,7 +1429,8 @@
           var total = listjs.matchingItems.length;
           var start = total === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
           var end = Math.min(currentPage * itemsPerPage, total);
-          label.textContent = 'Showing ' + start + ' to ' + end + ' of ' + total + ' entries';
+          var totalAll = listjs.items.length;
+          label.textContent = 'Showing ' + start + ' to ' + end + ' of ' + total + ' entries' + (total < totalAll ? ' (filtered from ' + totalAll + ' total entries)' : '');
         }
 
         function updateButtons() {
@@ -1471,6 +1516,20 @@
             goToPage(parseInt(target.getAttribute('data-page'), 10));
           });
         }
+
+        // Filter Status: cocok dengan penanda data-st-* pada baris.
+        function applyStatusFilter() {
+          var v = filterStatus ? filterStatus.value : '';
+          // Tanpa argumen, listjs.filter() me-reset penuh (flag list ikut mati).
+          if (!v) { listjs.filter(); return; }
+          listjs.filter(function (item) {
+            var tr = item.elm;
+            if (v === 'berlangsung') return tr.getAttribute('data-st-berlangsung') === '1';
+            return tr.getAttribute('data-st-' + v) === '1';
+          });
+        }
+        if (filterStatus) filterStatus.addEventListener('change', applyStatusFilter);
+        applyStatusFilter();
 
         renderView();
       })();

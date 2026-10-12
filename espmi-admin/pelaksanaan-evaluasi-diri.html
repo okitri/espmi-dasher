@@ -52,6 +52,7 @@
 
     <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
     <link rel="stylesheet" href="assets/css/espmi-app.css" />
+    <link rel="stylesheet" href="assets/css/vendor/driver.css" />
   </head>
 
   <body>
@@ -100,7 +101,7 @@
 </li>
           <!-- Nav item -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
               <span class="text">Pelaksanaan</span>
             </a>
@@ -498,7 +499,7 @@
             </li>
 <!-- Nav item : Penetapan (submenu) -->
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg></span>
     <span class="text">Penetapan</span>
   </a>
@@ -1023,6 +1024,20 @@
                     </ol>
                   </nav>
                 </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    id="btnTourHalaman"
+                    class="btn btn-subtle-secondary btn-icon"
+                    data-tour-start
+                    data-tour-intro-title="Tour Evaluasi Diri"
+                    data-tour-intro-text="Ikuti langkah singkat untuk memfilter dan melihat detail evaluasi diri."
+                    aria-label="Mulai tour halaman"
+                    title="Tur halaman"
+                  >
+                    <i class="ti ti-help-circle fs-5"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -1041,6 +1056,7 @@
                     data-bs-target="#evaluasiDiriFilters"
                     aria-expanded="false"
                     aria-controls="evaluasiDiriFilters"
+                    data-tour-step data-tour-title="Filter" data-tour-text="Saring baris berdasarkan tahun dan lembaga akreditasi." data-tour-side="bottom"
                   >
                     <i class="ti ti-filter fs-5"></i>
                     Filter
@@ -1103,7 +1119,7 @@
                 </div>
               </div>
             </div>
-            <div class="table-responsive mt-6">
+            <div class="table-responsive mt-6" data-tour-step data-tour-title="Tabel Evaluasi Diri" data-tour-text="Daftar nilai evaluasi diri per auditee. Klik Lihat untuk membuka detail." data-tour-side="top">
               <table class="table text-nowrap table-hover mb-0">
                 <thead>
                   <tr>
@@ -1119,8 +1135,7 @@
                     <td class="no">1</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA JERMAN</td>
@@ -1131,8 +1146,7 @@
                     <td class="no">2</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA JEPANG</td>
@@ -1143,8 +1157,7 @@
                     <td class="no">3</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA INGGRIS</td>
@@ -1155,8 +1168,7 @@
                     <td class="no">4</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA ARAB</td>
@@ -1167,8 +1179,7 @@
                     <td class="no">5</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">FISIKA</td>
@@ -1179,8 +1190,7 @@
                     <td class="no">6</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">DOKTOR TEKNIK ELEKTRO</td>
@@ -1191,8 +1201,7 @@
                     <td class="no">7</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">DOKTOR TEKNIK INFORMATIKA</td>
@@ -1203,8 +1212,7 @@
                     <td class="no">8</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">ILMU KESEHATAN MASYARAKAT</td>
@@ -1215,8 +1223,7 @@
                     <td class="no">9</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">ILMU SEJARAH</td>
@@ -1227,8 +1234,7 @@
                     <td class="no">10</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">MAGISTER TEKNOLOGI INFORMASI</td>
@@ -1239,8 +1245,7 @@
                     <td class="no">11</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SISTEM INFORMASI</td>
@@ -1251,8 +1256,7 @@
                     <td class="no">12</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-warning" title="Ubah" aria-label="Ubah"><i class="ti ti-pencil"></i></a>
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-danger" title="Hapus" aria-label="Hapus"><i class="ti ti-trash"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">TEKNIK SIPIL</td>
@@ -1307,6 +1311,8 @@
     <script src="../dist/assets/libs/list.js/dist/list.min.js"></script>
     <script src="assets/js/espmi-datatable-columns.js"></script>
     <script src="assets/js/espmi-datatable-crud.js"></script>
+    <script src="assets/js/vendor/driver.js"></script>
+    <script src="assets/js/espmi-tour.js"></script>
 
     <script>
       // eSPMI - daftar Evaluasi Diri (List.js: pencarian, sorting, dan pagination)
@@ -1426,6 +1432,21 @@
             goToPage(parseInt(target.getAttribute('data-page'), 10));
           });
         }
+
+        // eSPMI - tombol Lihat: buka detail evaluasi diri (konteks auditee
+        // baris + filter Tahun/Lembaga aktif; default 2026/SPMI).
+        document.addEventListener('click', function (event) {
+          var btn = event.target.closest('[data-espmi-lihat]');
+          if (!btn) return;
+          event.preventDefault();
+          var tr = btn.closest('tr');
+          var auditee = tr ? tr.querySelector('.auditee').textContent.trim() : '';
+          var tahunSel = document.getElementById('filterTahun');
+          var lembagaSel = document.getElementById('filterLembagaAkreditasi');
+          var tahun = tahunSel && tahunSel.selectedIndex > 0 ? tahunSel.value : '2026';
+          var lembaga = lembagaSel && lembagaSel.selectedIndex > 0 ? lembagaSel.value : 'SPMI';
+          window.location.href = './pelaksanaan-evaluasi-diri-detail.html?auditee=' + encodeURIComponent(auditee) + '&tahun=' + encodeURIComponent(tahun) + '&lembaga=' + encodeURIComponent(lembaga);
+        });
 
         renderView();
       })();

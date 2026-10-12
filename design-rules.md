@@ -846,6 +846,13 @@ badge), memakai `listjs.filter()`:
 - Label jumlah memakai format baku; bila hasil tersaring lebih sedikit dari
   total baris, tambahkan `(filtered from N total entries)`:
   `Showing X to Y of M entries (filtered from N total entries)`.
+- Status berjalan yang dihitung dari tanggal hari ini (mis. periode
+ -cell berisi rentang `DD/MM/YYYY - DD/MM/YYYY` pada
+  `pelaksanaan-pengaturan-periode.html`): hitung saat halaman dimuat
+  (sebelum `new List`), bungkus sel aktif dengan badge
+  (`bg-success-subtle` / `bg-info-subtle` / `badge-violet-subtle`), tandai
+  baris dengan atribut `data-st-*`, dan tulis ulang label opsi filter
+  beserta hitungan live-nya.
 
 ### Kontrak List.js
 
@@ -2040,6 +2047,14 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   `.tree-toggle` (caret berputar mengikuti `aria-expanded`, bagian 13). Skrip
   menyimpan grup anak tiap baris pada `data-espmi-cg` agar penambahan anak tahu
   class collapse yang dipakai.
+- **Varian detail read-only** (`pelaksanaan-evaluasi-diri-detail.html`):
+  memakai kembali baris tree halaman ini dengan kolom **Standar Mutu |
+  Hasil Evaluasi Diri | Lampiran** (tanpa Indikator/Info Jenjang/Aksi),
+  **tanpa** tombol Atur Urutan/Tambah dan tanpa modal; toolbar hanya
+  pencarian + Buka/Tutup semua. Konteks (auditee/tahun/lembaga) dibaca dari
+  query string dan mengisi info card + judul; tautan Lihat di halaman daftar
+  membangun URL tersebut dari auditee baris + filter aktif (default
+  2026/SPMI).
 
 ---
 
