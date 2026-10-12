@@ -975,4 +975,46 @@ table.espmi-reordering tbody tr.espmi-drop-after > td {
   z-index: 5;
 }
 
+/* --------------------------------------------------------------------------
+   21. Gagang ubah lebar kolom target datatable (design-rules 8.5)
+   Kolom target adalah kolom ke-3 bila kolom ke-2 adalah Aksi, atau kolom
+   ke-2 bila tidak ada kolom Aksi. Tepi kanan header DAN setiap sel body
+   kolom target diberi gagang seret (disuntik espmi-drag-scroll.js). Gagang
+   hanya terlihat saat header di-hover agar tidak berisik; kursor col-resize.
+   -------------------------------------------------------------------------- */
+.table-sticky th .espmi-col-resize-handle,
+.table-sticky td .espmi-col-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 3;
+}
+.table-sticky th .espmi-col-resize-handle::after,
+.table-sticky td .espmi-col-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--ds-primary);
+}
+.table-sticky th:hover .espmi-col-resize-handle,
+.table-sticky td:hover .espmi-col-resize-handle {
+  opacity: 1;
+}
+body.espmi-col-resizing,
+body.espmi-col-resizing .espmi-col-resize-handle {
+  cursor: col-resize !important;
+}
+body.espmi-col-resizing {
+  user-select: none;
+}
+
 

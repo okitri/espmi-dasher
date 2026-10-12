@@ -435,7 +435,7 @@
                   </tr>
                 </thead>
                 <tbody class="list">
-                  <tr>
+                  <tr data-auditee="S1 Peternakan">
                     <td class="no">1</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -446,7 +446,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2025</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="S1 Peternakan">
                     <td class="no">2</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -457,7 +457,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="SASTRA JERMAN">
                     <td class="no">3</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -468,7 +468,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="SASTRA INGGRIS">
                     <td class="no">4</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -479,7 +479,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2025</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="S1 Teknik Informatika">
                     <td class="no">5</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -490,7 +490,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2025</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="S1 Filsafat">
                     <td class="no">6</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -501,7 +501,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="Unit Kepegawaian">
                     <td class="no">7</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -512,7 +512,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="S1 Fisika">
                     <td class="no">8</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -523,7 +523,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="SASTRA JEPANG">
                     <td class="no">9</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -534,7 +534,7 @@
                     <td class="jenis_laporan_ami">Laporan AMI</td>
                     <td class="tahun_laporan_ami text-center">2026</td>
                   </tr>
-                  <tr>
+                  <tr data-auditee="Software-Quality Assurance">
                     <td class="no">10</td>
                     <td>
                       <div class="d-flex gap-1">
@@ -770,7 +770,8 @@
           });
         }
 
-        // Filter Auditee: cocok persis dengan nilai select (front-end, tanpa backend)
+        // Filter Auditee: cocok persis via atribut data-auditee.
+        // (values() tidak dipakai karena innerHTML sel kini memuat markup gagang resize.)
         var filterAuditee = document.getElementById('filterUploadAuditee');
         function applyFilters() {
           var a = filterAuditee ? filterAuditee.value : '';
@@ -778,7 +779,7 @@
           // baris yang ditambah belakangan tetap ikut tampil.
           if (!a) { listjs.filter(); return; }
           listjs.filter(function (item) {
-            return item.values().auditee === a;
+            return item.elm.getAttribute('data-auditee') === a;
           });
         }
         if (filterAuditee) filterAuditee.addEventListener('change', applyFilters);
@@ -839,6 +840,7 @@
                 listjs.update();
               }
               // Baris klonan mewarisi tombol baris pertama: ganti dengan data yang benar.
+              added[0].elm.setAttribute('data-auditee', auditee);
               var aksiCell = added[0].elm.children[1];
               if (aksiCell) aksiCell.innerHTML = aksiButtons(auditee, tahun);
             }

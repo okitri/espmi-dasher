@@ -1,0 +1,1036 @@
+/* ==========================================================================
+   eSPMI - Tema tampilan aplikasi
+   --------------------------------------------------------------------------
+   File ini dipanggil SETELAH ../dist/assets/css/theme.min.css pada SEMUA
+   halaman eSPMI (dashboard.html, index.html, dan halaman berikutnya).
+   Semua rule di bawah adalah override dari theme Dasher bawaan.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Background area konten (#content)
+   Light mode : ds-gray-100 (#f9fafb)  --- sama dengan utility .bg-gray-100
+   Dark mode  : tetap mengikuti dark mode (transparan -> terlihat --ds-body-bg)
+
+   Kenapa butuh override dark mode: utility .bg-gray-100 di-bundle sebagai
+   `background-color:#f9fafb!important` (hardcoded, tidak memakai variabel)
+   dan variabel --ds-gray-100 tidak di-remap di _darkmode.scss, sehingga tanpa
+   rule dark mode di bawah area konten akan berwarna nyaris putih.
+   -------------------------------------------------------------------------- */
+#content {
+  background-color: var(--ds-gray-100);
+}
+
+[data-bs-theme='dark'] #content {
+  background-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Sidebar - border kanan solid (theme bawaan memakai dashed)
+   Sumber theme: _navbar-vertical.scss
+     html.expanded  #miniSidebar { border-right: 1px dashed ... }
+     html.collapsed #miniSidebar { border-right: 1px dashed ... }
+     .offcanvasNav                { border-right: 1px dashed ... !important }
+   Hanya mengubah style-nya, lebar (1px) dan warna (--ds-gray-300) tetap.
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar,
+html.collapsed #miniSidebar {
+  border-right-style: solid;
+}
+
+/* Sidebar offcanvas untuk mobile */
+.offcanvasNav {
+  border-right-style: solid !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navbar glass - blur 16px + border bawah solid (theme bawaan dashed)
+   Sumber theme: _navbar-vertical.scss
+     .navbar-glass { backdrop-filter: blur(6px); border-bottom: 1px dashed ... }
+   Blok dark mode di bawah diperlukan karena _darkmode.scss men-set ulang
+   .navbar-glass ke blur(6px) saat [data-bs-theme='dark'].
+   -------------------------------------------------------------------------- */
+.navbar-glass {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom-style: solid;
+}
+
+[data-bs-theme='dark'] .navbar-glass {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Offset konten saat sidebar expanded: 15.5rem (theme bawaan 15.875rem)
+   Dibatasi min-width 991px agar tidak menimpa rule theme pada
+   @media (max-width: 990px) { html.expanded #content { margin-left: 0 } }
+   -------------------------------------------------------------------------- */
+@media (min-width: 991px) {
+  html.expanded #content {
+    margin-left: 15.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Tabel - garis pemisah baris solid (theme light mode memakai dashed
+   melalui --ds-border-style: dashed; dark mode theme sudah solid)
+   -------------------------------------------------------------------------- */
+.table > :not(caption) > * > * {
+  border-bottom-style: solid;
+}
+
+/* a. Kolom tetap (sticky) untuk tabel lebar - dipakai lewat kelas
+   `.table-sticky` pada <table> (bagian 8.2 design-rules.md).
+
+   Kolom ke-1 (No) dan ke-2 menempel di kiri. Untuk tabel ber-kolom **Aksi**
+   (kini kolom ke-2, ditandai `class="aksi"` pada headernya), kolom ke-3 juga
+   menempel di kiri sehingga blok tetap = No + Aksi + kolom identitas; kolom
+   data biasa TIDAK menempel, sehingga tabel laporan tanpa kolom Aksi hanya
+   menempelkan dua kolom kiri. Dengan begitu identitas baris + tombol aksi
+   tetap terlihat saat tabel di-scroll horizontal di dalam `.table-responsive`.
+
+   Catatan penting:
+   - theme mewarnai sel dari `--ds-table-bg` (default: transparent) + menimpa
+     baris hover lewat `box-shadow: inset 0 0 0 9999px var(--ds-table-bg-state,
+     var(--ds-table-bg-type, var(--ds-table-accent-bg)))`. Sel sticky WAJIB
+     opaque, jadi variabelnya di-set ke `--ds-card-bg` (putih di light mode,
+     #1c252e di dark mode). Hover tetap bekerja karena box-shadow bawaan theme
+     digambar di atas background sel.
+   - header TIDAK memakai `--ds-card-bg`: theme mewarnai header dari
+     `.table thead { background-color: var(--ds-gray-100) }`, jadi sel sticky
+     di <thead> memakai variabel yang sama supaya warnanya sama persis dengan
+     kolom header lain (light #f9fafb, dark #141a21).
+   - `left` kolom ke-2 = lebar kolom No (4.5rem, lihat §8.2 design-rules) dan
+     dapat di-override per halaman lewat `--espmi-table-sticky-left`. Pada
+     `table-layout: auto`, lebar kolom diambil dari lebar min-content isinya
+     (kolom `text-nowrap`), sehingga lebar kolom No bisa lebih kecil dari
+     offset dan menyisakan celah antar dua kolom sticky. Celah itu tampil
+     sebagai garis putih di header dan pada baris hover, jadi wajib ditutup
+     penutup celah pada poin d; lebar kolom No dikunci pada poin c. */
+.table-sticky > :not(caption) > * > *:nth-child(-n + 2) {
+  position: sticky;
+  z-index: 2;
+  --ds-table-bg: var(--ds-card-bg);
+}
+
+/* b. Header sticky - pakai latar yang sama dengan thead theme. */
+.table-sticky > thead > tr > *:nth-child(-n + 2) {
+  --ds-table-bg: var(--ds-gray-100);
+}
+
+/* c. Kolom No - lebar dikunci = offset kolom ke-2. */
+.table-sticky > :not(caption) > * > *:nth-child(1) {
+  left: 0;
+  width: var(--espmi-table-sticky-left, 4.5rem);
+  min-width: var(--espmi-table-sticky-left, 4.5rem);
+}
+
+.table-sticky > :not(caption) > * > *:nth-child(2) {
+  left: var(--espmi-table-sticky-left, 4.5rem);
+}
+
+/* d. Penutup celah antar dua kolom sticky kiri - blok warna selebar offset
+   kolom ke-2 di tepi kanan kolom No. Hanya terlihat bila lebar kolom No <
+   offset (mis. saat lebar min-content lebih kecil dari 4.5rem pada browser
+   yang mengabaikan `min-width` sel). Kolom ke-2 (urutan DOM setelahnya,
+   z-index sama) dilukis di atasnya, jadi tidak ada isi kolom yang tertutup.
+   Warnanya memakai rantai variabel yang sama dengan background sel theme
+   (state -> type -> bg), sehingga otomatis ikut header / baris normal / hover. */
+.table-sticky > :not(caption) > * > *:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: var(--espmi-table-sticky-left, 4.5rem);
+  background-color: var(--ds-table-bg-state, var(--ds-table-bg-type, var(--ds-table-bg)));
+}
+
+/* Garis penanda batas kolom tetap (1px) di tepi kanan blok kiri. Untuk tabel
+   ber-Aksi, penanda dipindah ke tepi kanan kolom ke-3 (lihat poin e). Pseudo-
+   element absolute diposisikan terhadap sel, dan sel sticky sudah menjadi
+   containing block (position: sticky). */
+.table-sticky > :not(caption) > * > *:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--ds-border-color);
+  right: 0;
+}
+
+/* e. Kolom Aksi kini kolom ke-2 (setelah No). Bila header kolom ke-2 ditandai
+   `class="aksi"`, kolom ke-3 ikut menempel di kiri sehingga blok tetap =
+   No + Aksi + kolom identitas. Lebar kolom Aksi dikunci (7rem) agar offset
+   kolom ke-3 tetap; memakai :has(); bila tidak didukung, hanya dua kolom kiri
+   yang menempel (degradasi aman). */
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(2) {
+  width: var(--espmi-table-sticky-aksi, 7rem);
+  min-width: var(--espmi-table-sticky-aksi, 7rem);
+}
+
+/* Penutup celah kolom Aksi (sama seperti penutup celah kolom No). */
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  right: auto;
+  width: var(--espmi-table-sticky-aksi, 7rem);
+  background-color: var(--ds-table-bg-state, var(--ds-table-bg-type, var(--ds-table-bg)));
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(3) {
+  position: sticky;
+  z-index: 2;
+  left: var(--espmi-table-sticky-left-3, 11.5rem);
+  --ds-table-bg: var(--ds-card-bg);
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > thead > tr > *:nth-child(3) {
+  --ds-table-bg: var(--ds-gray-100);
+}
+
+.table-sticky:has(> thead > tr > th:nth-child(2).aksi) > :not(caption) > * > *:nth-child(3)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--ds-border-color);
+  right: 0;
+}
+
+/* f. Header multi-baris (thead > tr ke-2 dst., mis. grup "Jumlah Biaya" pada
+   halaman pelaksanaan-lihat-data-pengabdian-data-kegiatan-pkm.html).
+   Poin a-e menghitung nth-child PER BARIS DOM, jadi sel pertama baris ke-2
+   header adalah kolom ke-3 secara visual (bukan kolom No). Tanpa pengecualian
+   ini sel header baris ke-2 ikut sticky, lebarnya dipaksa 4.5rem, dan pseudo
+   penutup celah (poin d) menutupi header grup. Nonaktifkan posisi/lebar/pseudo
+   pada baris ke-2; latar tetap mengikuti background thead theme. */
+.table-sticky > thead > tr:nth-child(n + 2) > * {
+  position: static;
+  left: auto;
+  width: auto;
+  min-width: auto;
+}
+
+.table-sticky > thead > tr:nth-child(n + 2) > *::after {
+  content: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. Tree "Daftar Standar Mutu" (halaman penetapan-daftar-standar-mutu.html)
+   a. .tree-toggle  : caret yang berputar mengikuti aria-expanded (Bootstrap
+                      collapse meng-update aria-expanded otomatis)
+   b. .tree-lvl-*   : jarak indentasi per level (1rem per level)
+   c. .badge-violet : warna badge indikator/status ungu - tidak tersedia di
+                      palet theme (theme hanya punya primary/secondary/success/
+                      danger/warning/info)
+   -------------------------------------------------------------------------- */
+.tree-toggle {
+  color: var(--ds-gray-500);
+  line-height: 1;
+}
+
+.tree-toggle .ti {
+  display: inline-block;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.tree-toggle[aria-expanded='true'] .ti {
+  transform: rotate(90deg);
+}
+
+.tree-lvl-2 {
+  padding-left: 1rem;
+}
+
+.tree-lvl-3 {
+  padding-left: 2rem;
+}
+
+.tree-lvl-4 {
+  padding-left: 3rem;
+}
+
+/* Pencarian baris tree (halaman Daftar Standar Mutu): saat mencari, semua grup
+   dibuka agar baris yang cocok terlihat; baris yang tidak cocok disembunyikan.
+   `display: table-row` (bukan `block`) supaya lebar kolom tabel tetap sejajar. */
+.espmi-tree-searching tr.collapse:not(.espmi-tree-hidden) {
+  display: table-row !important;
+}
+
+.espmi-tree-searching tr.espmi-tree-hidden {
+  display: none !important;
+}
+
+.badge-violet {
+  background-color: #7c5cff;
+  color: #fff;
+}
+
+/* badge-violet versi subtle (light mode + dark mode).
+   Dipakai untuk badge STATUS di datatable, mengikuti standar
+   "status memakai badge subtle". Violet tidak ada di palet theme, jadi
+   warning/subtle-nya dibuat khusus di sini. */
+.badge-violet-subtle {
+  background-color: #ede9ff;
+  color: #5b3fd6;
+}
+
+[data-bs-theme='dark'] .badge-violet-subtle {
+  background-color: #2f2657;
+  color: #c3b6ff;
+}
+
+/* --------------------------------------------------------------------------
+   7. Card gradient (bg-gradient-info / success / warning / danger)
+   Mengganti gradient bawaan theme (gradasi putih lembut) dengan gradient
+   warna solid eSPMI, HANYA pada light mode.
+
+   Sumber theme: utilities/_background.scss
+     .bg-gradient-info { background: linear-gradient(320deg, rgba(...) 0%, var(--ds-white) 70%) }
+   Theme tidak punya override khusus dark mode untuk class ini; dark mode hanya
+   mengandalkan remap --ds-white (light #fff / dark #1c252e).
+
+   Karena itu scope ditulis `html:not([data-bs-theme='dark'])` (bukan
+   `[data-bs-theme='light']`) supaya:
+     - light mode        -> memakai gradient eSPMI di bawah;
+     - dark mode         -> TIDAK terpengaruh, tetap gradient bawaan theme;
+     - sebelum/ketika attribute belum ter-set (mis. JS belum jalan) -> tetap
+       memakai gradient eSPMI.
+   Specificity (0,2,1) > theme (0,1,0) dan file dimuat setelah theme.min.css.
+   -------------------------------------------------------------------------- */
+html:not([data-bs-theme='dark']) .bg-gradient-info {
+  background: linear-gradient(140deg, rgba(110, 168, 254, 1) 0%, rgba(10, 88, 202, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-success {
+  background: linear-gradient(140deg, rgba(121, 223, 193, 1) 0%, rgba(26, 161, 121, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-warning {
+  background: linear-gradient(140deg, rgba(254, 178, 114, 1) 0%, rgba(202, 101, 16, 1) 100%);
+}
+
+html:not([data-bs-theme='dark']) .bg-gradient-danger {
+  background: linear-gradient(140deg, rgba(252, 120, 127, 1) 0%, rgba(226, 33, 59, 1) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   8. Grid widget Dashboard yang dapat dikostumasi (dashboard.html)
+   Kartu statistik + kartu chart disusun dalam SATU grid 4 kolom
+   (`#dashboardWidgetGrid`); setiap widget adalah `.dashboard-widget-col`
+   yang lebar tampilannya diatur lewat atribut `data-span` (1-4).
+
+   a. `.dashboard-widget-handle` / `.dashboard-widget-toolbar` /
+      `.dashboard-widget-remove`
+      Hanya muncul saat mode kostumasi. Secara default memakai `display: none`
+      + `!important` agar tidak perlu mengalahkan utility theme
+      (`d-flex`, `justify-content-between`, dst.) yang tetap terpasang di
+      markup saat mode non-aktif.
+   b. Kartu gradien (kartu KPI) memakai teks putih, sehingga toolbar-nya
+      memakai angka opacity putih (bukan utility `text-*`) supaya tetap
+      terbaca di light mode. Di dark mode gradient bawaan theme sudah gelap,
+      jadi putih tetap sesuai.
+   c. `.gu-mirror` = elemen "kembaran" yang mengikuti kursor saat drag.
+      `pointer-events: none` wajib supaya dragula selalu membaca elemen di
+      bawah kursor (termasuk saat kursor keluar dari elemen target).
+      `.gu-transit` = elemen asli yang ditinggal; dragula otomatis memberi
+      `opacity: .2`, jadi tidak perlu ditimpa lagi.
+   d. `.dashboard-widget-hidden` = kartu chart yang "dihapus" pengguna.
+      Kartu tidak di-`remove()` dari DOM (urutan tetap terjaga saat
+      dipulihkan lewat panel Kartu Tersembunyi atau tombol Reset).
+   e. Widget terkunci (`data-locked="true"`, mis. panel filter kartu chart)
+      tidak diberi outline & tidak punya pegangan, sehingga terlihat jelas
+      bahwa ia tidak dapat digeser.
+   -------------------------------------------------------------------------- */
+.dashboard-widget-handle,
+.dashboard-widget-toolbar,
+.dashboard-widget-remove {
+  display: none !important;
+}
+
+body.dashboard-customizing .dashboard-widget-handle,
+body.dashboard-customizing .dashboard-widget-remove {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: -0.25rem 0 0 0.25rem;
+  color: var(--ds-gray-500);
+}
+
+body.dashboard-customizing .dashboard-widget-handle {
+  cursor: grab;
+  touch-action: none;
+}
+
+/* Tombol hapus kartu chart: hanya muncul di mode kostumasi */
+body.dashboard-customizing .dashboard-widget-remove {
+  cursor: pointer;
+}
+
+body.dashboard-customizing .dashboard-widget-toolbar {
+  display: flex !important;
+}
+
+/* Pegangan pada kartu KPI bergradasi memakai warna putih transparan */
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-handle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-remove {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dashboard-widget-handle:active {
+  cursor: grabbing;
+}
+
+.dashboard-widget-remove:hover {
+  color: var(--ds-danger) !important;
+}
+
+/* Kartu chart yang disembunyikan pengguna (mode kostumasi -> tombol hapus).
+   Kartu tidak dihapus dari DOM agar urutannya tetap terjaga saat dipulihkan,
+   baik lewat chip di panel "Kartu Tersembunyi" maupun tombol Reset. */
+.dashboard-widget-hidden {
+  display: none !important;
+}
+
+/* Kartu gradien: tombol pilih lebar memakai putih transparan dengan teks gelap.
+   `.btn-white` theme mewarnai teks dari `--ds-white` (= #1c252e di dark mode),
+   sehingga pada kartu gradien gelap teksnya tetap kontras. */
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-toolbar .btn-white {
+  --ds-btn-color: #1c252e;
+  opacity: 0.85;
+}
+
+html:not([data-bs-theme='dark']) .dashboard-widget--gradient .dashboard-widget-toolbar .btn-white.active {
+  --ds-btn-color: #1c252e;
+  opacity: 1;
+}
+
+/* b. Outline kartu saat mode kostumasi (batas area drag).
+   Hanya kartu yang DAPAT digeser yang diberi outline; widget terkunci
+   (`data-locked="true"`, mis. panel filter) dibiarkan bersih sebagai penanda. */
+body.dashboard-customizing .dashboard-widget-col:not([data-locked='true']) .dashboard-widget {
+  outline: 2px dashed var(--ds-gray-400);
+  outline-offset: 2px;
+}
+
+html:not([data-bs-theme='dark']) body.dashboard-customizing .dashboard-widget-col:not([data-locked='true']) .dashboard-widget--gradient {
+  outline-color: rgba(255, 255, 255, 0.6);
+}
+
+/* c. Mirror & transit dragula */
+.gu-mirror {
+  pointer-events: none;
+  border-radius: 1rem;
+  z-index: 1200;
+}
+
+.gu-transit {
+  visibility: hidden;
+}
+
+/* Khusus area chart pada kartu KPI: tinggi minimum agar sparkline tetap
+   terlihat saat kartu masih dimuat atau grafik di-render ulang. */
+.dashboard-widget-chart {
+  min-height: 3.5rem;
+}
+
+/* Tombol bantu mode kostumasi (Reset) memakai tombol putih theme. */
+body.dashboard-customizing #btnResetDashboard {
+  display: inline-flex !important;
+}
+
+/* Petunjuk mode kostumasi (alert alert-info) hanya tampil saat mode aktif.
+   `display: none !important` wajib karena elemen tetap memakai utility
+   `d-flex` dari theme agar ikon sejajar saat ditampilkan. */
+body:not(.dashboard-customizing) .dashboard-customizing-only {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Toolbar datatable (card list di halaman daftar data)
+   Standar (lihat bagian 7, 9 & 16.5 design-rules.md):
+     - input pencarian SELALU 200px, tanpa inline style di HTML
+     - bila datatable punya filter, filter dipindah ke baris kedua
+       (Bootstrap collapse) dan dipicu tombol `.datatable-filter-toggle`.
+   -------------------------------------------------------------------------- */
+
+/* a. Lebar baku input pencarian List.js. Didefinisikan sekali di sini supaya
+   tidak perlu inline style `max-width` pada setiap halaman. */
+.listjs-search {
+  width: 200px;
+}
+
+/* b. Tombol pemicu baris filter: tampak "tertekan" ketika baris filter terbuka
+   (aria-expanded di-update otomatis oleh Bootstrap collapse).
+   Nilai langsung (bukan variabel --ds-btn-*) dipakai agar keadaan aktif tidak
+   tertimpa `.btn-white:hover`. Varian dark mode tetap ditulis karena
+   `[data-bs-theme=dark] .btn-white:hover` memiliki specificity lebih tinggi. */
+.datatable-filter-toggle[aria-expanded='true'] {
+  background-color: var(--ds-gray-100);
+  border-color: var(--ds-gray-200);
+}
+
+[data-bs-theme='dark'] .datatable-filter-toggle[aria-expanded='true'] {
+  background-color: var(--ds-gray-100);
+  border-color: var(--ds-gray-200);
+}
+
+/* b2. Chevron pada tombol Filter: menunjuk ke bawah saat baris filter tertutup
+   dan berputar ke atas saat terbuka. Keadaan diambil dari `aria-expanded`
+   yang di-update otomatis oleh Bootstrap collapse (tanpa JS tambahan).
+   Ditulis sebagai pseudo-element ::after supaya tidak perlu menyisipkan ikon
+   di setiap file HTML ber-data filter; `margin-left: auto` menaruhnya di
+   paling kanan isi tombol (setelah teks "Filter" & badge indikator). */
+.datatable-filter-toggle::after {
+  content: '';
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: auto;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.2s ease;
+}
+
+.datatable-filter-toggle[aria-expanded='true']::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+
+/* c. Indikator filter aktif: badge angka di sebelah kanan teks "Filter"
+   pada tombol `.datatable-filter-toggle` (lihat design-rules.md bagian 7 ->
+   "Indikator Filter Aktif"). Isi angka & keadaan hidden dikelola
+   `espmi-filter-badge.js`; badge tampil hanya bila ada select filter yang
+   terpilih (bukan opsi default "-- SEMUA --"). */
+.active-filter-badge {
+  min-width: 1.25rem;
+  line-height: 1;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. Sidebar - menu bertingkat (level 3, li.dropdown-submenu)
+   Theme mewarnai tautan level 3 lewat selector yang sangat spesifik
+   (`html.expanded #miniSidebar .dropdown-menu .dropdown-submenu
+   .dropdown-menu .nav-link { color: gray-600 }`), sehingga `.nav-link.active`
+   bawaan kalah specificity dan item aktif tidak tersorot. Rule di bawah
+   menyamai/melampaui specificity tersebut agar state aktif tetap terlihat
+   (sama seperti menu level 1 & 2), baik pada sidebar desktop maupun offcanvas.
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active,
+html.collapsed #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.active {
+  color: var(--ds-primary-text-emphasis);
+  background-color: var(--ds-primary-bg-subtle);
+}
+
+/* ============================================================================
+   SIDEBAR LAYOUT FIX
+   - Chevron (::after) selalu menempel di pojok kanan
+   - Lebar label menu/submenu/sub-submenu konsisten (fixed)
+   - Label panjang dipotong dengan ellipsis (...)
+   Struktur HTML existing: <a.nav-link><span.nav-icon/><span.text/></a>
+   Chevron dihasilkan oleh pseudo-element ::after pada .dropdown-toggle.
+   ============================================================================ */
+
+/* --- Level 1: nav-link (menu utama) --- */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Label text: ambil sisa ruang, truncate bila panjang */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link > .text,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Icon: ukuran tetap, tidak menyusut */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link > .nav-icon,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link > .nav-icon {
+  flex: 0 0 auto;
+}
+
+/* Chevron: selalu di pojok kanan, tidak terdorong ke bawah */
+html.expanded #miniSidebar .navbar-nav > .nav-item > .nav-link.dropdown-toggle::after,
+.offcanvasNav .navbar-nav > .nav-item > .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* --- Level 2: submenu di dalam .dropdown-menu --- */
+html.expanded #miniSidebar .dropdown-menu .nav-link,
+.offcanvasNav .dropdown-menu .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: .125rem .5rem;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link > .text,
+.offcanvasNav .dropdown-menu .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link > .nav-icon,
+.offcanvasNav .dropdown-menu .nav-link > .nav-icon {
+  flex: 0 0 auto;
+  /* Hidden for level 2 items per requirement */
+  display: none !important;
+}
+
+html.expanded #miniSidebar .dropdown-menu .nav-link.dropdown-toggle::after,
+.offcanvasNav .dropdown-menu .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* --- Level 3: sub-submenu (dropdown-submenu > .dropdown-menu) --- */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0 .5rem;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .text,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .nav-icon,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link > .nav-icon {
+  flex: 0 0 auto;
+  /* Hidden for level 3 items per requirement */
+  display: none !important;
+}
+
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.dropdown-toggle::after,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu .nav-link.dropdown-toggle::after {
+  float: none !important;
+  flex: 0 0 auto;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+/* Force level-3 submenu visibility with proper display property */
+html.expanded #miniSidebar .dropdown-menu .dropdown-submenu .dropdown-menu.show,
+.offcanvasNav .dropdown-menu .dropdown-submenu .dropdown-menu.show {
+  display: block !important;
+}
+
+/* --- Collapsed mode (mini sidebar): sembunyikan chevron --- */
+html.collapsed #miniSidebar .nav-link.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Preferensi font sistem (halaman akun-preferensi.html)
+   Pilihan font disimpan di localStorage (key: `espmiFont`) dan diterapkan ke
+   seluruh halaman lewat atribut `data-espmi-font` pada <html>. Atribut ini
+   memetakan nilai ke variabel CSS `--ds-font-sans-serif`, yang kemudian dipakai
+   oleh `--ds-body-font-family` dan berbagai komponen theme. Dengan demikian,
+   teks di SELURUH halaman (termasuk sidebar, navbar, body) mengikuti pilihan.
+   Ikon Tabler memakai font-family `tabler-icons` tersendiri sehingga tidak
+   terpengaruh.
+   ========================================================================== */
+html[data-espmi-font='roboto'] {
+  --ds-font-sans-serif: 'Roboto', sans-serif;
+}
+
+html[data-espmi-font='google-sans'] {
+  --ds-font-sans-serif: 'Google Sans', 'Inter', sans-serif;
+}
+
+html[data-espmi-font='open-sans'] {
+  --ds-font-sans-serif: 'Open Sans', sans-serif;
+}
+
+html[data-espmi-font='inter'], html:not([data-espmi-font]) {
+  --ds-font-sans-serif: 'Inter', sans-serif;
+}
+
+/* Kartu pilihan font untuk halaman Preferensi — style hover & selected state */
+.font-option label.card {
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.font-option:hover label.card {
+  border-color: var(--ds-gray-400);
+}
+
+/* Radio disembunyikan (btn-check); label kartu menjadi penanda terpilih */
+.font-option .btn-check:checked + label.card {
+  border-color: var(--ds-primary) !important;
+  box-shadow: 0 0 0 0.15rem var(--ds-primary-bg-subtle);
+  background-color: var(--ds-primary-bg-subtle);
+}
+
+/* Ikon centang hanya muncul pada pilihan aktif */
+.font-option-check {
+  visibility: hidden;
+}
+
+.font-option .btn-check:checked + label.card .font-option-check {
+  visibility: visible;
+}
+
+/* Preview contoh teks pada kartu pilihan — memakai font-family masing-masing */
+.font-option-preview {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.font-option[data-font='inter'] .font-option-preview {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-option[data-font='roboto'] .font-option-preview {
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-option[data-font='google-sans'] .font-option-preview {
+  font-family: 'Google Sans', 'Inter', sans-serif;
+}
+
+.font-option[data-font='open-sans'] .font-option-preview {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Form - bedakan warna VALUE vs PLACEHOLDER
+   Latar masalah: theme Dasher men-set `$input-color` dan
+   `$input-placeholder-color` ke nilai yang SAMA (gray-500 / #919eab), dan
+   `$form-select-color` juga memakai `$input-color`. Akibatnya nilai yang
+   sudah dipilih/diisi tidak bisa dibedakan dari placeholder.
+   Override di bawah:
+     - VALUE     -> gray-800 (sama dengan `--ds-body-color`, teks normal)
+     - PLACEHOLDER -> gray-500 (tetap samar, sesuai theme)
+   Dipakai variabel theme (--ds-gray-*) agar light & dark mode ikut menyesuaikan.
+   -------------------------------------------------------------------------- */
+.form-control,
+.form-select {
+  color: var(--ds-gray-800);
+}
+
+[data-bs-theme='dark'] .form-control,
+[data-bs-theme='dark'] .form-select {
+  color: var(--ds-gray-100);
+}
+
+/* Saat fokus: theme men-set `.form-control:focus { color: gray-500 }`, sehingga
+   teks yang sedang diketik kembali menyamar seperti placeholder. Paksa warna
+   value (gray-800, dark gray-100) selama fokus. Diletakkan SEBELUM rule
+   placeholder & `.form-select.is-placeholder` agar select kosong yang sedang
+   fokus tetap diredupkan (placeholder menang, specificity sama dimuat belakangan). */
+.form-control:focus,
+.form-select:focus {
+  color: var(--ds-gray-800);
+}
+
+[data-bs-theme='dark'] .form-control:focus,
+[data-bs-theme='dark'] .form-select:focus {
+  color: var(--ds-gray-100);
+}
+
+.form-control::placeholder,
+.form-select::placeholder,
+textarea.form-control::placeholder {
+  color: var(--ds-gray-500);
+  opacity: 1;
+}
+
+/* Select yang belum memilih apa pun (opsi pertama = placeholder
+   "-- SEMUA --" / "-- Pilih --") tetap diredupkan lewat atribut data
+   yang diset `espmi-form-select.js`. */
+.form-select.is-placeholder {
+  color: var(--ds-gray-500);
+}
+
+/* --------------------------------------------------------------------------
+   13. Utilitas tambahan
+   -------------------------------------------------------------------------- */
+
+/* Warna border abu-abu (`--ds-gray-300`). Dipakai untuk garis pemisah
+   dashed di atas baris filter datatable (design-rules.md bagian 7). */
+.border-gray-300 {
+  border-color: var(--ds-gray-300) !important;
+}
+
+/* Menu dropdown "Kolom" (kontrol visibilitas kolom datatable). Item berupa
+   label + checkbox; item kolom terkunci (No, Aksi, kolom ke-3) diredupkan
+   dan tidak bisa diubah (lihat design-rules.md bagian 7 & 16.5). */
+.espmi-columns-menu {
+  min-width: 12rem;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.espmi-columns-menu .dropdown-item {
+  cursor: pointer;
+}
+
+.espmi-columns-menu .dropdown-item.disabled {
+  cursor: default;
+}
+
+.espmi-columns-menu .dropdown-item.disabled .form-check-input {
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   14. Datatable - chevron tombol "Kolom" (sama dengan tombol Filter, bagian 9)
+   -------------------------------------------------------------------------- */
+
+/* Chevron border yang berputar mengikuti `aria-expanded` (di-update otomatis
+   oleh Bootstrap dropdown). Menimpa caret bawaan `.dropdown-toggle::after`
+   supaya tampil identik dengan `.datatable-filter-toggle::after`. */
+.btn.datatable-columns-toggle::after {
+  content: '';
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: auto;
+  vertical-align: 0;
+  border: 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.2s ease;
+}
+
+.btn.datatable-columns-toggle[aria-expanded='true']::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+
+/* --------------------------------------------------------------------------
+   15. Datatable - geser horizontal dengan drag (drag-to-scroll)
+   Dipakai oleh assets/js/espmi-drag-scroll.js. Kursor `grab` hanya muncul
+   ketika container memang bisa di-scroll horizontal (banyak kolom).
+   -------------------------------------------------------------------------- */
+.table-responsive.espmi-drag-scrollable {
+  cursor: grab;
+}
+
+.table-responsive.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.table-responsive.is-dragging * {
+  cursor: grabbing !important;
+}
+
+/* Matikan seleksi teks di seluruh halaman selama drag agar tidak "mem-blok"
+   teks tabel; dikembalikan otomatis saat pointer dilepas. */
+body.espmi-is-dragging {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   16. Sidebar - garis tipis pemisah antar grup menu
+   Grup menu (design-rules.md bagian 4.0) dipisah garis tipis. Tema hanya
+   menampilkan label `.nav-heading` saat sidebar *expanded* dan
+   `<hr class="nav-line">` saat *collapsed*; rule ini menambahkan garis tipis
+   di ATAS label grup agar pemisah antar grup tetap terlihat saat *expanded*
+   maupun pada *offcanvas*. Warna mengikuti `--ds-gray-300` (ikut dark mode).
+   -------------------------------------------------------------------------- */
+html.expanded #miniSidebar .nav-heading,
+.offcanvasNav .nav-heading {
+  background-image: linear-gradient(var(--ds-gray-300), var(--ds-gray-100));
+  background-repeat: no-repeat;
+  background-size: calc(100% - 2.5rem) 1px;
+  background-position: 1.25rem top;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   17. Progress bar "kesiapan akreditasi" (halaman Visualisasi Akreditasi)
+   Menampilkan persentase kesiapan akreditasi. Tema memakai variabel
+   `--ds-progress-*`; track dimampatkan (0.5rem) dan tepinya dibulatkan penuh
+   agar tetap rapi di dalam sel tabel.
+   -------------------------------------------------------------------------- */
+.espmi-readiness {
+  --ds-progress-height: 0.5rem;
+  --ds-progress-border-radius: 999px;
+  min-width: 6rem;
+}
+
+.espmi-readiness .progress-bar {
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   18. Modal "Tambah / Ubah Data Standar Mutu" (form panjang + tab)
+   Modal memakai `modal-dialog-scrollable`. Theme hanya memberi `max-height`
+   pada `.modal-content` (tinggi `auto`/tidak pasti), sehingga `.modal-body`
+   yang panjang tidak memampat dan isinya terpotong (`overflow:hidden`) -
+   `modal-footer` berisi tombol aksi jadi tidak terlihat. Beri tinggi PASTI
+   pada `.modal-dialog` & `.modal-content` agar `.modal-body` benar-benar
+   memampat dan bisa di-scroll, sementara header/footer tetap di tempatnya.
+   -------------------------------------------------------------------------- */
+#espmiTambahStandarModal .modal-dialog {
+  height: calc(100vh - var(--ds-modal-margin) * 2);
+}
+
+#espmiTambahStandarModal .modal-content {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Form pembungkus memuat header/body/footer sehingga rantai flex-column
+   `.modal-content` terputus. Jadikan form kolom-flex yang mengisi tinggi agar
+   `.modal-body` ikut memampat (menyisakan header/footer tetap terlihat). */
+#espmiTambahStandarModal .modal-content > form {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#espmiTambahStandarModal .modal-body {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* --------------------------------------------------------------------------
+   19. Tree "Daftar Standar Mutu" - mode "Atur Urutan" (dynamic drag reorder)
+   Saat mode aktif seluruh baris tree dapat diseret. Baris yang sedang diseret
+   diredupkan, dan baris target yang valid diberi garis penanda atas/bawah
+   (--ds-primary) sebagai penunjuk posisi sisip. Hanya tombol aksi (Tambah
+   header + Aksi tiap baris) yang dinonaktifkan; pencarian, Filter, Kolom, dan
+   Buka/Tutup semua tetap aktif. Tombol "Atur urutan" berganti menjadi "Batal" +
+   "Simpan".
+   -------------------------------------------------------------------------- */
+table.espmi-reordering tbody tr {
+  cursor: grab;
+}
+
+table.espmi-reordering tbody tr.espmi-dragging {
+  cursor: grabbing;
+  opacity: 0.45;
+}
+
+table.espmi-reordering tbody tr.espmi-drop-before > td {
+  box-shadow: inset 0 2px 0 0 var(--ds-primary);
+}
+
+table.espmi-reordering tbody tr.espmi-drop-after > td {
+  box-shadow: inset 0 -2px 0 0 var(--ds-primary);
+}
+
+/* --------------------------------------------------------------------------
+   20. Dropdown di dalam tabel datatable
+   Menu dropdown pada kolom Aksi terpotong pembungkus .table-responsive
+   (overflow-x: auto membuat sumbu-y ikut tersembunyi). Saat ada menu yang
+   terbuka, buat pembungkus terlihat penuh agar menu tampil di atas baris
+   tabel di bawahnya. Selektor :has() juga dipakai bagian 8.2, jadi sudah
+   menjadi ketergantungan yang diterima proyek ini.
+   -------------------------------------------------------------------------- */
+.table-responsive:has(.dropdown-menu.show) {
+  overflow: visible;
+}
+
+/* Sel sticky (.table-sticky memakai z-index: 2) membentuk stacking context
+   per sel, sehingga menu dropdown yang terbuka di suatu baris tertimpa sel
+   sticky baris-baris di bawahnya (yang se-z-index tetapi muncul belakangan
+   di DOM). Saat ada menu yang terbuka, naikkan sel pemilik menu di atas
+   sel baris lain. Spesifisitas selektor ini mengalahkan aturan sticky. */
+.table-sticky > tbody > tr > *:has(.dropdown-menu.show) {
+  z-index: 5;
+}
+
+/* --------------------------------------------------------------------------
+   21. Kolom Standar Mutu ramping (Daftar Temuan & Daftar Kesesuaian)
+   Teks standar mutu yang panjang membuat kolom terlalu lebar (table memakai
+   .text-nowrap yang !important) sehingga kolom lain tidak terlihat. Aturan
+   ini mengizinkan teks membungkus dan membatasi lebar kolom menjadi sekitar
+   separuh dari lebar alaminya, agar kolom lain kebagian ruang.
+   -------------------------------------------------------------------------- */
+#daftarTemuanList td.standar_mutu,
+#daftarTemuanList th[data-sort="standar_mutu"],
+#daftarKesesuaianList td.standar_mutu,
+#daftarKesesuaianList th[data-sort="standar_mutu"] {
+  white-space: normal !important;
+  min-width: 16rem;
+  max-width: 24rem;
+}
+
+/* --------------------------------------------------------------------------
+   22. Gagang ubah lebar kolom target datatable (design-rules 8.5)
+   Kolom target adalah kolom ke-3 bila kolom ke-2 adalah Aksi, atau kolom
+   ke-2 bila tidak ada kolom Aksi. Tepi kanan header DAN setiap sel body
+   kolom target diberi gagang seret (disuntik espmi-drag-scroll.js). Gagang
+   hanya terlihat saat header di-hover agar tidak berisik; kursor col-resize.
+   -------------------------------------------------------------------------- */
+.table-sticky th .espmi-col-resize-handle,
+.table-sticky td .espmi-col-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 3;
+}
+.table-sticky th .espmi-col-resize-handle::after,
+.table-sticky td .espmi-col-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--ds-primary);
+}
+.table-sticky th:hover .espmi-col-resize-handle,
+.table-sticky td:hover .espmi-col-resize-handle {
+  opacity: 1;
+}
+body.espmi-col-resizing,
+body.espmi-col-resizing .espmi-col-resize-handle {
+  cursor: col-resize !important;
+}
+body.espmi-col-resizing {
+  user-select: none;
+}
+
+

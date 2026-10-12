@@ -832,6 +832,12 @@ badge), memakai `listjs.filter()`:
 - Dimensi non-kolom (mis. Tahun, Lembaga Akreditasi) ditulis sebagai atribut
   `data-*` pada `<tr>` (mis. `data-tahun="2026" data-lembaga="BAN-PT"`);
   dimensi yang sekaligus kolom tabel dibaca lewat `item.values().{kolom}`.
+  **Pengecualian**: kolom yang dipakai filter cocok-persis WAJIB memakai
+  atribut `data-*` (bukan `values()`), karena `innerHTML` sel kini memuat
+  markup gagang resize (bagian 8.5) sehingga perbandingan persis via
+  `values()` tidak pernah cocok. Baris yang ditambah via `listjs.add()`
+  wajib diberi atribut `data-*` yang sama (mis.
+  `added[0].elm.setAttribute('data-auditee', auditee)`).
 - Opsi default `-- SEMUA --` memakai `value=""` (dianggap tidak aktif,
   konsisten dengan aturan hitung badge).
 - Saat tidak ada filter aktif, panggil `listjs.filter()` **tanpa argumen**
@@ -1136,6 +1142,28 @@ semua tabel (tanpa markup atau JS tambahan):
 }
 ```
 
+### 8.5 Ubah Lebar Kolom Target dengan Drag (column resize)
+
+Kolom target adalah kolom ke-3 bila kolom ke-2 adalah Aksi (`th.aksi`),
+atau kolom ke-2 bila tidak ada kolom Aksi. Berlaku otomatis untuk tabel
+`.table-sticky` dengan minimal 3 kolom — **tanpa** markup atau JS tambahan
+per halaman (diimplementasikan di `assets/js/espmi-drag-scroll.js` +
+`espmi-app.css` bagian 21; di folder auditee bagian 22):
+
+- Gagang (`.espmi-col-resize-handle`) disuntik di tepi kanan header DAN
+  setiap sel body kolom target, sehingga drag bisa dimulai dari mana saja
+  di kolom tersebut; baris yang ditambah belakangan (mis. via List.js)
+  dapatkan gagang otomatis lewat MutationObserver. Gagang hanya terlihat
+  saat sel di-hover, kursor `col-resize`, tooltip menjelaskan cara pakai.
+- Hanya pointer mouse; ambang gerak 4px; klik pada gagang tidak memicu
+  sorting; `pointerdown` pada gagang tidak diteruskan ke drag-to-scroll.
+- Lebar tersimpan per halaman+tabel di `localStorage` (`espmi.colWidth:*`)
+  dan diterapkan saat halaman dibuka; **klik ganda** pada gagang
+  mengembalikan lebar bawaan.
+- Lebar minimum 72px; tidak bisa lebih sempit dari isi terpanjang
+  (`table-layout: auto` + `text-nowrap`). Lebar kolom No/Aksi dan offset
+  sticky tidak berubah (kolom target tumbuh ke kanan).
+
 ---
 
 ## 9. Tombol, Ikon, & Badge
@@ -1283,7 +1311,8 @@ Urutan pemuatan script:
 - `assets/js/espmi-truncate.js` adalah skrip **bersama** (semua halaman) yang
   memberi tooltip otomatis pada teks yang terpotong ellipsis (bagian 16.7).
 - `assets/js/espmi-drag-scroll.js` adalah skrip **bersama** (semua halaman) yang
-  mengaktifkan geser horizontal tabel lebar dengan drag (bagian 8.3).
+  mengaktifkan geser horizontal tabel lebar dengan drag (bagian 8.3) **dan**
+  ubah lebar kolom target dengan drag (bagian 8.5).
 - `assets/js/espmi-editor.js` menginisialisasi **editor rich text Quill** pada
   elemen `[data-espmi-editor]` dan menyimpan instance di `element.espmiQuill`.
   Quill adalah editor **base template** (`../dist/assets/libs/quill/dist/quill.js`
@@ -1351,6 +1380,16 @@ Urutan pemuatan script:
   - `.table-responsive:has(.dropdown-menu.show)` — saat menu dropdown di dalam
     sel tabel terbuka, pembungkus tabel dibuat `overflow: visible` agar menu
     tidak terpotong baris di bawahnya (bagian 8.4).
+  - `.table-sticky > tbody > tr > *:has(.dropdown-menu.show)` — menaikkan
+    `z-index` sel pemilik menu di atas sel sticky baris lain (bagian 8.4).
+  - `#daftarTemuanList / #daftarKesesuaianList ... .standar_mutu` — kolom
+    Standar Mutu membungkus teks (`white-space: normal !important`,
+    `min-width: 16rem`, `max-width: 24rem`) agar tidak mendesak kolom lain
+    (bagian 20 `espmi-app.css` folder auditee).
+  - `.espmi-col-resize-handle` — gagang seret di tepi kanan header dan sel
+    body kolom target (kolom ke-3 bila ada Aksi, kolom ke-2 bila tidak);
+    tampil saat sel di-hover + `body.espmi-col-resizing` saat drag
+    (bagian 8.5).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
   untuk toolbar datatable), bukan sebagai inline style di HTML.
 - Override gradasi bertema (warna palet aplikasi) **hanya** ditulis untuk light
@@ -1397,7 +1436,8 @@ Urutan pemuatan script:
    **soft** Ubah (`btn-subtle-info` + `ti ti-pencil`) dan Hapus
    (`btn-subtle-danger` + `ti ti-trash`) — bagian 8.1 & 16.5.
 8. Bila tabel akan melebar (≥ 5 kolom / isi panjang), tambahkan `table-sticky`
-   pada `<table>` — bagian 8.2.
+   pada `<table>` — bagian 8.2. Kolom target otomatis bisa diubah lebarnya
+   dengan drag oleh pengguna (bagian 8.5); tidak perlu markup tambahan.
 9. Sesuaikan skrip List.js (`getElementById`, fallback `data-list`, komentar).
 10. Tambahkan ikon pada judul halaman (sama dengan ikon menu sidebar — bagian 16.1).
 11. Ubah nilai kolom status menjadi badge *subtle* (bagian 16.2).
@@ -2067,6 +2107,9 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
 - Jangan mengandalkan **scroll bar** saja untuk tabel lebar — area tabel wajib
   bisa digeser dengan **drag** (klik-tahan-geser) via `espmi-drag-scroll.js`
   (lihat bagian 8.3).
+- Jangan membuat gagang/JS pengatur lebar kolom sendiri — pakai standar drag
+  kolom target bawaan (lihat bagian 8.5); jangan menaruh gagang di kolom
+  selain kolom target (kolom ke-3 bila ada Aksi, kolom ke-2 bila tidak).
 - Jangan memberi latar `--ds-card-bg` pada sel sticky di `<thead>` — header sticky
   wajib memakai `--ds-gray-100` yang sama dengan `.table thead`, kalau tidak kolom
   No/kolom identitas/Aksi berbeda warna dari kolom header lain (lihat bagian 8.2).
