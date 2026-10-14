@@ -1149,27 +1149,30 @@ semua tabel (tanpa markup atau JS tambahan):
 }
 ```
 
-### 8.5 Ubah Lebar Kolom Target dengan Drag (column resize)
+### 8.5 Ubah Lebar Kolom dengan Drag (column resize)
 
-Kolom target adalah kolom ke-3 bila kolom ke-2 adalah Aksi (`th.aksi`),
-atau kolom ke-2 bila tidak ada kolom Aksi. Berlaku otomatis untuk tabel
-`.table-sticky` dengan minimal 3 kolom — **tanpa** markup atau JS tambahan
-per halaman (diimplementasikan di `assets/js/espmi-drag-scroll.js` +
-`espmi-app.css` bagian 21; di folder auditee bagian 22):
+Semua kolom pada tabel di dalam `.table-responsive` bisa diubah lebarnya:
+gagang (`.espmi-col-resize-handle`) disuntik di tepi kanan header DAN setiap
+sel body, sehingga drag bisa dimulai dari mana saja di kolom tersebut.
+Berlaku otomatis — **tanpa** markup atau JS tambahan per halaman
+(diimplementasikan di `assets/js/espmi-drag-scroll.js` + `espmi-app.css`
+bagian 21; di folder auditee bagian 22):
 
-- Gagang (`.espmi-col-resize-handle`) disuntik di tepi kanan header DAN
-  setiap sel body kolom target, sehingga drag bisa dimulai dari mana saja
-  di kolom tersebut; baris yang ditambah belakangan (mis. via List.js)
-  dapatkan gagang otomatis lewat MutationObserver. Gagang hanya terlihat
-  saat sel di-hover, kursor `col-resize`, tooltip menjelaskan cara pakai.
+- Gagang hanya terlihat saat sel di-hover, kursor `col-resize`, tooltip
+  menjelaskan cara pakai; baris yang ditambah belakangan (mis. via List.js)
+  dapatkan gagang otomatis lewat MutationObserver.
 - Hanya pointer mouse; ambang gerak 4px; klik pada gagang tidak memicu
   sorting; `pointerdown` pada gagang tidak diteruskan ke drag-to-scroll.
-- Lebar tersimpan per halaman+tabel di `localStorage` (`espmi.colWidth:*`)
-  dan diterapkan saat halaman dibuka; **klik ganda** pada gagang
-  mengembalikan lebar bawaan.
+- Lebar tersimpan per halaman+tabel di `localStorage` (`espmi.colWidths:*`
+  berisi peta `{nomorKolom: px}`) dan diterapkan saat halaman dibuka;
+  **klik ganda** pada gagang mengembalikan lebar bawaan kolom itu.
 - Lebar minimum 72px; tidak bisa lebih sempit dari isi terpanjang
-  (`table-layout: auto` + `text-nowrap`). Lebar kolom No/Aksi dan offset
-  sticky tidak berubah (kolom target tumbuh ke kanan).
+  (`table-layout: auto` + `text-nowrap`).
+- Pada tabel `.table-sticky`, offset kolom fixed (No/Aksi/ketiga) diselaraskan
+  otomatis dari lebar terukur agar tidak tumpang tindih
+  (`--espmi-table-sticky-left`, `--espmi-table-sticky-aksi`,
+  `--espmi-table-sticky-left-3` ditulis ulang di elemen tabel; dikembalikan
+  saat tidak ada lagi lebar kustom).
 
 ---
 
@@ -1394,9 +1397,8 @@ Urutan pemuatan script:
     `min-width: 16rem`, `max-width: 24rem`) agar tidak mendesak kolom lain
     (bagian 20 `espmi-app.css` folder auditee).
   - `.espmi-col-resize-handle` — gagang seret di tepi kanan header dan sel
-    body kolom target (kolom ke-3 bila ada Aksi, kolom ke-2 bila tidak);
-    tampil saat sel di-hover + `body.espmi-col-resizing` saat drag
-    (bagian 8.5).
+    body SEMUA kolom (tampil saat sel di-hover) + `body.espmi-col-resizing`
+    saat drag (bagian 8.5).
 - Kelas baru **ditulis di `espmi-app.css`** pada bagian bernomor (mis. bagian 9
   untuk toolbar datatable), bukan sebagai inline style di HTML.
 - Override gradasi bertema (warna palet aplikasi) **hanya** ditulis untuk light
@@ -1443,7 +1445,7 @@ Urutan pemuatan script:
    **soft** Ubah (`btn-subtle-info` + `ti ti-pencil`) dan Hapus
    (`btn-subtle-danger` + `ti ti-trash`) — bagian 8.1 & 16.5.
 8. Bila tabel akan melebar (≥ 5 kolom / isi panjang), tambahkan `table-sticky`
-   pada `<table>` — bagian 8.2. Kolom target otomatis bisa diubah lebarnya
+   pada `<table>` — bagian 8.2. Semua kolom otomatis bisa diubah lebarnya
    dengan drag oleh pengguna (bagian 8.5); tidak perlu markup tambahan.
 9. Sesuaikan skrip List.js (`getElementById`, fallback `data-list`, komentar).
 10. Tambahkan ikon pada judul halaman (sama dengan ikon menu sidebar — bagian 16.1).
@@ -2123,8 +2125,7 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   bisa digeser dengan **drag** (klik-tahan-geser) via `espmi-drag-scroll.js`
   (lihat bagian 8.3).
 - Jangan membuat gagang/JS pengatur lebar kolom sendiri — pakai standar drag
-  kolom target bawaan (lihat bagian 8.5); jangan menaruh gagang di kolom
-  selain kolom target (kolom ke-3 bila ada Aksi, kolom ke-2 bila tidak).
+  semua kolom bawaan (lihat bagian 8.5).
 - Jangan memberi latar `--ds-card-bg` pada sel sticky di `<thead>` — header sticky
   wajib memakai `--ds-gray-100` yang sama dengan `.table thead`, kalau tidak kolom
   No/kolom identitas/Aksi berbeda warna dari kolom header lain (lihat bagian 8.2).

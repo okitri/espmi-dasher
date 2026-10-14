@@ -118,23 +118,22 @@
 })();
 
 /* ==========================================================================
-   eSPMI - Ubah lebar kolom target datatable dengan drag (column resize)
+   eSPMI - Ubah lebar kolom datatable dengan drag (column resize)
    --------------------------------------------------------------------------
-   Kolom target adalah kolom ke-3 bila kolom ke-2 adalah Aksi (`th.aksi`),
-   atau kolom ke-2 bila tidak ada kolom Aksi. Berlaku untuk tabel
-   `.table-sticky` dengan minimal 3 kolom. Gagang disuntik di tepi kanan
-   header DAN setiap sel body kolom target, sehingga pengguna bisa menyeret
-   dari mana saja di kolom tersebut. Klik ganda pada gagang mengembalikan
-   lebar bawaan.
+   SEMUA kolom pada tabel di dalam `.table-responsive` bisa diubah lebarnya
+   dengan menyeret gagang di tepi kanan header MAUPUN sel body kolom
+   tersebut. Klik ganda pada gagang mengembalikan lebar bawaan kolom itu.
 
    Perilaku:
      - Hanya pointer mouse; ambang gerak 4px; klik pada gagang tidak
        memicu sorting; pointerdown pada gagang tidak diteruskan ke
        drag-to-scroll (stopPropagation).
-     - Lebar tersimpan per halaman+tabel di localStorage (`espmi.colWidth:*`)
-       dan diterapkan saat halaman dibuka.
+     - Lebar tersimpan per halaman+tabel di localStorage (`espmi.colWidths:*`
+       berisi peta {nomorKolom: px}) dan diterapkan saat halaman dibuka.
      - Lebar minimum 72px; tidak bisa lebih sempit dari isi terpanjang
        (table-layout auto + text-nowrap).
+     - Pada tabel `.table-sticky`, offset kolom fixed (No/Aksi/ketiga)
+       diselaraskan otomatis dari lebar terukur agar tidak tumpang tindih.
      - Event di-delegasi per tabel; MutationObserver menyuntik gagang ke
        baris yang ditambah belakangan (mis. via List.js).
      - Kolom yang dipakai filter cocok-persis WAJIB memakai atribut data-*
@@ -178,17 +177,18 @@
     }
   }
 
-  // Nomor kolom target (1-based): 3 bila kolom ke-2 adalah Aksi, 2 bila tidak.
-  // 0 = tabel tidak memenuhi syarat (bukan sticky / <3 kolom / header span).
-  function targetIndex(table) {
-    if (!table.classList.contains('table-sticky')) return 0;
+  // Daftar nomor kolom (1-based) yang boleh diubah: semua sel header baris
+  // pertama tanpa span. [] = tabel tidak memenuhi syarat.
+  function resizableColumns(table) {
     var headRow = table.querySelector('thead > tr');
-    if (!headRow || headRow.children.length < 3) return 0;
-    for (var i = 0; i < 3; i += 1) {
+    if (!headRow || headRow.children.length < 2) return [];
+    var cols = [];
+    for (var i = 0; i < headRow.children.length; i += 1) {
       var c = headRow.children[i];
-      if ((c.getAttribute('colspan') || '1') !== '1' || (c.getAttribute('rowspan') || '1') !== '1') return 0;
+      if ((c.getAttribute('colspan') || '1') !== '1' || (c.getAttribute('rowspan') || '1') !== '1') return [];
+      cols.push(i + 1);
     }
-    return headRow.children[1].classList.contains('aksi') ? 3 : 2;
+    return cols;
   }
 
   function ensurePositioned(el) {
@@ -211,29 +211,118 @@
     return handle;
   }
 
-  function targetCells(table, target) {
+  function columnCells(table, col) {
     var cells = [];
-    var th = table.querySelector('thead > tr > :nth-child(' + target + ')');
+    var th = table.querySelector('thead > tr > :nth-child(' + col + ')');
     if (th) cells.push(th);
-    var tds = table.querySelectorAll('tbody > tr > :nth-child(' + target + ')');
+    var tds = table.querySelectorAll('tbody > tr > :nth-child(' + col + ')');
     for (var i = 0; i < tds.length; i += 1) cells.push(tds[i]);
     return cells;
   }
 
-  function applyWidth(table, target, px) {
-    var cells = targetCells(table, target);
+  function applyWidth(table, col, px) {
+    var cells = columnCells(table, col);
     for (var i = 0; i < cells.length; i += 1) {
       cells[i].style.width = px + 'px';
       cells[i].style.minWidth = px + 'px';
     }
   }
 
-  function clearWidth(table, target) {
-    var cells = targetCells(table, target);
+  function clearWidth(table, col) {
+    var cells = columnCells(table, col);
     for (var i = 0; i < cells.length; i += 1) {
       cells[i].style.width = '';
       cells[i].style.minWidth = '';
     }
+  }
+
+  function isStickyTable(table) {
+    return table.classList.contains('table-sticky');
+  }
+
+  // Selaraskan offset kolom fixed (No/Aksi/ketiga) dengan lebar kolom 1-2:
+  // diukur dari render, jatuh kembali ke inline, lalu ke bawaan (px pada
+  // root 16px). Dipanggil setiap ada perubahan agar tidak tumpang tindih.
+  function colWidthPx(table, col, fallback) {
+    var th = table.querySelector('thead > tr > :nth-child(' + col + ')');
+    if (!th) return fallback;
+    var rect = th.getBoundingClientRect ? th.getBoundingClientRect() : null;
+    var w = Math.round((rect && rect.width) || 0);
+    if (w > 0) return w;
+    var inline = parseInt(th.style.width, 10);
+    if (inline > 0) return inline;
+    return fallback;
+  }
+  function syncStickyVars(table) {
+    if (!isStickyTable(table)) return;
+    var w1 = colWidthPx(table, 1, 72);
+    var w2 = colWidthPx(table, 2, 112);
+    if (w1 <= 0 || w2 <= 0) return;
+    table.style.setProperty('--espmi-table-sticky-left', w1 + 'px');
+    table.style.setProperty('--espmi-table-sticky-aksi', w2 + 'px');
+    table.style.setProperty('--espmi-table-sticky-left-3', w1 + w2 + 'px');
+  }
+
+  function hasCustomWidth(table) {
+    var ths = table.querySelectorAll('thead > tr > *');
+    for (var i = 0; i < ths.length; i += 1) {
+      if (parseInt(ths[i].style.width, 10)) return true;
+    }
+    return false;
+  }
+
+  function refreshSticky(table) {
+    if (!isStickyTable(table)) return;
+    if (!hasCustomWidth(table)) {
+      table.style.removeProperty('--espmi-table-sticky-left');
+      table.style.removeProperty('--espmi-table-sticky-aksi');
+      table.style.removeProperty('--espmi-table-sticky-left-3');
+      return;
+    }
+    syncStickyVars(table);
+  }
+
+  function collectWidths(table) {
+    var map = {};
+    var headRow = table.querySelector('thead > tr');
+    if (!headRow) return map;
+    for (var i = 0; i < headRow.children.length; i += 1) {
+      var w = parseInt(headRow.children[i].style.width, 10);
+      if (w && w >= MIN_WIDTH) map[i + 1] = w;
+    }
+    return map;
+  }
+
+  function saveWidths(table, key) {
+    var map = collectWidths(table);
+    if (!Object.keys(map).length) storeDel(key);
+    else {
+      try {
+        storeSet(key, JSON.stringify(map));
+      } catch (err) {
+        /* abaikan */
+      }
+    }
+  }
+
+  function restoreWidths(table, key) {
+    var map = null;
+    try {
+      map = JSON.parse(storeGet(key) || 'null');
+    } catch (err) {
+      map = null;
+    }
+    if (!map || typeof map !== 'object') return false;
+    var applied = false;
+    Object.keys(map).forEach(function (k) {
+      var col = parseInt(k, 10);
+      var px = parseInt(map[k], 10);
+      if (col > 0 && px >= MIN_WIDTH) {
+        applyWidth(table, col, px);
+        applied = true;
+      }
+    });
+    return applied;
   }
 
   function closestHandle(table, node) {
@@ -243,22 +332,23 @@
   }
 
   function enhance(table, index) {
-    var target = targetIndex(table);
-    if (!target) return;
+    var cols = resizableColumns(table);
+    if (!cols.length) return;
     if (table.getAttribute('data-espmi-col-resize') === '1') return;
     table.setAttribute('data-espmi-col-resize', '1');
-    var key = 'espmi.colWidth.' + pageKey() + '.' + index;
+    var key = 'espmi.colWidths.' + pageKey() + '.' + index;
 
-    var headCell = table.querySelector('thead > tr > :nth-child(' + target + ')');
-    if (headCell) injectHandle(headCell);
+    var headRow = table.querySelector('thead > tr');
+    for (var i = 0; i < cols.length; i += 1) injectHandle(headRow.children[cols[i] - 1]);
     var rows = table.querySelectorAll('tbody > tr');
-    for (var i = 0; i < rows.length; i += 1) {
-      var td = rows[i].children[target - 1];
-      if (td) injectHandle(td);
+    for (var r = 0; r < rows.length; r += 1) {
+      for (var c = 0; c < cols.length; c += 1) {
+        var td = rows[r].children[cols[c] - 1];
+        if (td) injectHandle(td);
+      }
     }
 
-    var saved = parseInt(storeGet(key), 10);
-    if (saved && saved >= MIN_WIDTH) applyWidth(table, target, saved);
+    if (restoreWidths(table, key)) refreshSticky(table);
 
     // Baris yang ditambah belakangan (sort/paginasi ulang List.js, tambah
     // baris) dapatkan gagang otomatis; baris lama yang dipasang ulang dilewati.
@@ -270,10 +360,14 @@
           for (var a = 0; a < added.length; a += 1) {
             var node = added[a];
             if (!node || node.nodeType !== 1) continue;
-            var cell = null;
-            if (node.tagName === 'TR') cell = node.children[target - 1] || null;
-            else if ((node.tagName === 'TD' || node.tagName === 'TH') && node.cellIndex === target - 1) cell = node;
-            if (cell) injectHandle(cell);
+            if (node.tagName === 'TR') {
+              for (var q = 0; q < cols.length; q += 1) {
+                var cell = node.children[cols[q] - 1];
+                if (cell) injectHandle(cell);
+              }
+            } else if (node.tagName === 'TD' || node.tagName === 'TH') {
+              injectHandle(node);
+            }
           }
         }
       });
@@ -283,19 +377,29 @@
     var dragging = false;
     var moved = false;
     var downOnHandle = false;
+    var dragCol = 0;
     var startX = 0;
     var startW = 0;
 
+    function headerCell(col) {
+      return table.querySelector('thead > tr > :nth-child(' + col + ')');
+    }
+
     table.addEventListener('pointerdown', function (event) {
-      if (!closestHandle(table, event.target)) return;
+      var handle = closestHandle(table, event.target);
+      if (!handle) return;
       if (event.pointerType !== 'mouse' || event.button !== 0) return;
       event.stopPropagation();
       event.preventDefault();
+      var cell = handle.parentElement;
+      dragCol = cell && typeof cell.cellIndex === 'number' ? cell.cellIndex + 1 : 0;
+      if (!dragCol) return;
       dragging = true;
       moved = false;
       downOnHandle = true;
       startX = event.clientX;
-      var rect = headCell ? headCell.getBoundingClientRect() : null;
+      var head = headerCell(dragCol);
+      var rect = head ? head.getBoundingClientRect() : null;
       startW = Math.max(MIN_WIDTH, Math.round((rect && rect.width) || MIN_WIDTH));
       document.body.classList.add('espmi-col-resizing');
     });
@@ -313,26 +417,29 @@
       if (!closestHandle(table, event.target)) return;
       event.stopPropagation();
       event.preventDefault();
-      clearWidth(table, target);
-      storeDel(key);
+      var cell = event.target.closest('.espmi-col-resize-handle').parentElement;
+      var col = cell && typeof cell.cellIndex === 'number' ? cell.cellIndex + 1 : 0;
+      if (!col) return;
+      clearWidth(table, col);
+      refreshSticky(table);
+      saveWidths(table, key);
     });
 
     window.addEventListener('pointermove', function (event) {
-      if (!dragging) return;
+      if (!dragging || !dragCol) return;
       var dx = event.clientX - startX;
       if (!moved && Math.abs(dx) <= THRESHOLD) return;
       moved = true;
-      applyWidth(table, target, Math.max(MIN_WIDTH, Math.round(startW + dx)));
+      applyWidth(table, dragCol, Math.max(MIN_WIDTH, Math.round(startW + dx)));
+      refreshSticky(table);
     });
 
     function finish(save) {
       if (!dragging) return;
       dragging = false;
+      dragCol = 0;
       document.body.classList.remove('espmi-col-resizing');
-      if (save && moved && headCell) {
-        var w = parseInt(headCell.style.width, 10);
-        if (w && w >= MIN_WIDTH) storeSet(key, String(w));
-      }
+      if (save && moved) saveWidths(table, key);
       moved = false;
     }
     window.addEventListener('pointerup', function () {
@@ -344,10 +451,10 @@
   }
 
   function boot() {
-    var tables = document.querySelectorAll('table.table-sticky');
+    var tables = document.querySelectorAll('.table-responsive table');
     var n = 0;
     for (var i = 0; i < tables.length; i += 1) {
-      if (targetIndex(tables[i])) {
+      if (resizableColumns(tables[i]).length) {
         enhance(tables[i], n);
         n += 1;
       }

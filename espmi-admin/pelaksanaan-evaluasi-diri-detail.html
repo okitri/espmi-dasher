@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Detail Evaluasi Diri | eSPMI</title>
+    <title>Daftar Nilai Evaluasi | eSPMI</title>
     <!-- Favicon icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
@@ -1014,7 +1014,7 @@
             <div class="col-lg-12 col-md-12 col-12">
               <div class="mb-6 d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h1 class="mb-3 h2"><i class="ti ti-clipboard-list"></i> <span id="detailJudul">Detail Evaluasi Diri</span></h1>
+                  <h1 class="mb-3 h2"><i class="ti ti-clipboard-list"></i> Daftar Nilai Evaluasi</h1>
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
@@ -1130,7 +1130,7 @@
                     <td class="text-center"></td>
                   </tr>
                   <tr class="collapse show g-s1-2 g-s1-3 g-s1-4">
-                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 1.4</span><span class="badge bg-success-subtle text-success-emphasis text-nowrap">Resiko Rendah</span></div></td>
+                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 1.4</span></div></td>
                     <td class="text-center">4.00</td>
                     <td class="text-center"></td>
                   </tr>
@@ -1150,7 +1150,7 @@
                     <td class="text-center"></td>
                   </tr>
                   <tr class="collapse show g-s2-2 g-s2-3 g-s2-4">
-                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 2.4</span><span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">Resiko Tinggi</span></div></td>
+                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 2.4</span></div></td>
                     <td class="text-center">4.00</td>
                     <td class="text-center"></td>
                   </tr>
@@ -1170,7 +1170,7 @@
                     <td class="text-center"></td>
                   </tr>
                   <tr class="collapse show g-s3-2 g-s3-3 g-s3-4">
-                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 3.4</span><span class="badge bg-warning-subtle text-warning-emphasis text-nowrap">Resiko Sedang</span></div></td>
+                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 3.4</span></div></td>
                     <td class="text-center">4.00</td>
                     <td class="text-center"></td>
                   </tr>
@@ -1190,7 +1190,7 @@
                     <td class="text-center"></td>
                   </tr>
                   <tr class="collapse show g-s4-2 g-s4-3 g-s4-4">
-                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 4.4</span><span class="badge bg-success-subtle text-success-emphasis text-nowrap">Resiko Rendah</span></div></td>
+                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 4.4</span></div></td>
                     <td class="text-center">4.00</td>
                     <td class="text-center"></td>
                   </tr>
@@ -1210,7 +1210,7 @@
                     <td class="text-center"></td>
                   </tr>
                   <tr class="collapse show g-s5-2 g-s5-3 g-s5-4">
-                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 5.4</span><span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">Resiko Tinggi</span></div></td>
+                    <td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Standar Level 5.4</span></div></td>
                     <td class="text-center">4.00</td>
                     <td class="text-center"></td>
                   </tr>
@@ -1270,10 +1270,6 @@
         if (elAuditee) elAuditee.textContent = auditee;
         if (elTahun) elTahun.textContent = tahun;
         if (elLembaga) elLembaga.textContent = lembaga;
-        var judulText = 'Daftar Nilai Evaluasi | Auditee - ' + auditee + ' | Tahun - ' + tahun + ' | Lembaga - ' + lembaga;
-        var elJudul = document.getElementById('detailJudul');
-        if (elJudul) elJudul.textContent = judulText;
-        document.title = judulText + ' | eSPMI';
 
         // 2) Tree standar mutu read-only (pola Daftar Standar Mutu tanpa
         //    Tambah/Ubah/Hapus/Atur Urutan).
