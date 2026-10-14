@@ -1160,14 +1160,18 @@ bagian 21; di folder auditee bagian 22):
 
 - Gagang hanya terlihat saat sel di-hover, kursor `col-resize`, tooltip
   menjelaskan cara pakai; baris yang ditambah belakangan (mis. via List.js)
-  dapatkan gagang otomatis lewat MutationObserver.
+  dapatkan gagang otomatis lewat MutationObserver. Warna gagang abu-abu
+  netral (`--ds-gray-100`, `--ds-gray-300` saat di-hover langsung).
 - Hanya pointer mouse; ambang gerak 4px; klik pada gagang tidak memicu
   sorting; `pointerdown` pada gagang tidak diteruskan ke drag-to-scroll.
 - Lebar tersimpan per halaman+tabel di `localStorage` (`espmi.colWidths:*`
   berisi peta `{nomorKolom: px}`) dan diterapkan saat halaman dibuka;
   **klik ganda** pada gagang mengembalikan lebar bawaan kolom itu.
-- Lebar minimum 72px; tidak bisa lebih sempit dari isi terpanjang
-  (`table-layout: auto` + `text-nowrap`).
+- Lebar minimum 72px. Sel body (`tbody > td`) diizinkan membungkus teks
+  menjadi multi-baris (`espmi-app.css` bagian 21a; di folder auditee bagian
+  22a; kolom `No` dan sel berisi tombol tetap satu baris), sehingga kolom
+  bernilai panjang bisa dirampingkan tanpa memaksa tabel melebar satu baris.
+  Header tetap satu baris (`text-nowrap`).
 - Pada tabel `.table-sticky`, offset kolom fixed (No/Aksi/ketiga) diselaraskan
   otomatis dari lebar terukur agar tidak tumpang tindih
   (`--espmi-table-sticky-left`, `--espmi-table-sticky-aksi`,

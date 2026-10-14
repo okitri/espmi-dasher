@@ -980,7 +980,8 @@ table.espmi-reordering tbody tr.espmi-drop-after > td {
    Semua kolom pada tabel di dalam `.table-responsive` bisa diubah lebarnya.
    Tepi kanan header DAN setiap sel body diberi gagang seret (disuntik
    espmi-drag-scroll.js). Gagang
-   hanya terlihat saat header di-hover agar tidak berisik; kursor col-resize.
+   hanya terlihat saat sel di-hover agar tidak berisik; kursor col-resize.
+   Warna gagang abu-abu netral (bagian 21a mengatur teks sel multi-baris).
    -------------------------------------------------------------------------- */
 .table-responsive .espmi-col-resize-handle {
   position: absolute;
@@ -1001,7 +1002,11 @@ table.espmi-reordering tbody tr.espmi-drop-after > td {
   left: 4px;
   width: 2px;
   border-radius: 2px;
-  background: var(--ds-primary);
+  background: var(--ds-gray-100);
+  transition: background-color 0.15s ease;
+}
+.table-responsive .espmi-col-resize-handle:hover::after {
+  background: var(--ds-gray-300);
 }
 .table-responsive th:hover .espmi-col-resize-handle,
 .table-responsive td:hover .espmi-col-resize-handle {
@@ -1013,6 +1018,24 @@ body.espmi-col-resizing .espmi-col-resize-handle {
 }
 body.espmi-col-resizing {
   user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   21a. Sel body membungkus teks panjang (multi-baris, design-rules 8.5)
+   Tabel tetap memakai class `text-nowrap` agar header satu baris, tetapi sel
+   body diizinkan membungkus: kolom bernilai panjang tidak lagi memaksa tabel
+   melebar satu baris — cukup rampingkan kolom via gagang dan teks mengalir
+   ke baris berikut. `max-width` membuat kolom panjang langsung terbungkus
+   sejak awal; kolom No dan sel berisi tombol tetap satu baris.
+   -------------------------------------------------------------------------- */
+.table-responsive .table.text-nowrap > tbody > tr > td {
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  max-width: 24rem;
+}
+.table-responsive .table.text-nowrap > tbody > tr > td.no,
+.table-responsive .table.text-nowrap > tbody > tr > td:has(.btn) {
+  white-space: nowrap !important;
 }
 
 

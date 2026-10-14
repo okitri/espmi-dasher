@@ -130,8 +130,8 @@
        drag-to-scroll (stopPropagation).
      - Lebar tersimpan per halaman+tabel di localStorage (`espmi.colWidths:*`
        berisi peta {nomorKolom: px}) dan diterapkan saat halaman dibuka.
-     - Lebar minimum 72px; tidak bisa lebih sempit dari isi terpanjang
-       (table-layout auto + text-nowrap).
+     - Lebar minimum 72px; sel body membungkus teks panjang (multi-baris,
+       espmi-app.css bagian 22a) sehingga kolom bisa dirampingkan.
      - Pada tabel `.table-sticky`, offset kolom fixed (No/Aksi/ketiga)
        diselaraskan otomatis dari lebar terukur agar tidak tumpang tindih.
      - Event di-delegasi per tabel; MutationObserver menyuntik gagang ke
