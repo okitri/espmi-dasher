@@ -54,8 +54,8 @@ espmi-admin/
 ├── integrasi-sister-referensi.html              # Integrasi SISter › Referensi Sister
 ├── integrasi-sister-data.html                   # Integrasi SISter › Data Sister
 ├── integrasi-akademik-data.html                 # Integrasi Akademik › Data Akademik
-├── pengaturan-sistem-pengguna-portal.html       # Pengaturan Sistem › Data Pengguna Portal
-├── pengaturan-sistem-pengguna-backoffice.html   # Pengaturan Sistem › Manajemen Pengguna
+├── pengaturan-sistem-pengguna-portal.html       # Pengaturan Sistem › Pengguna Portal
+├── pengaturan-sistem-pengguna-backoffice.html   # Pengaturan Sistem › Pengguna Backoffice
 ├── pengaturan-sistem-pengaturan-menu.html       # Pengaturan Sistem › Manajemen Menu
 ├── pengaturan-sistem-pengaturan-grup.html       # Pengaturan Sistem › Manajemen Group
 ├── pengaturan-sistem-pengaturan-modul.html      # Pengaturan Sistem › Manajemen Module
@@ -403,8 +403,8 @@ item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
 
 | Urutan | Label | Level | Halaman |
 | --- | --- | --- | --- |
-| 1 | Data Pengguna Portal | 2 | `pengaturan-sistem-pengguna-portal.html` |
-| 2 | Manajemen Pengguna | 2 | `pengaturan-sistem-pengguna-backoffice.html` |
+| 1 | Pengguna Portal | 2 | `pengaturan-sistem-pengguna-portal.html` |
+| 2 | Pengguna Backoffice | 2 | `pengaturan-sistem-pengguna-backoffice.html` |
 | 3 | Manajemen Menu | 2 | `pengaturan-sistem-pengaturan-menu.html` |
 | 4 | Manajemen Group | 2 | `pengaturan-sistem-pengaturan-grup.html` |
 | 5 | Manajemen Module | 2 | `pengaturan-sistem-pengaturan-modul.html` |
@@ -414,8 +414,8 @@ item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
 - Kolom & pola setiap halaman:
   | Halaman | Kolom | Tambah | Petunjuk | Aksi |
   | --- | --- | --- | --- | --- |
-  | Data Pengguna Portal | No, Aksi, Nama Pengguna, Nama Asli, Group, Status | ya | ya | Ubah, Hapus, Detail |
-  | Manajemen Pengguna | No, Aksi, Nama Pengguna, Nama Lengkap, Group, Unit, Status | ya | ya | Ubah, Hapus, Detail |
+  | Pengguna Portal | No, Aksi, Nama Pengguna, Nama Asli, Group, Status | ya | ya | Ubah, Hapus, Detail |
+  | Pengguna Backoffice | No, Aksi, Nama Pengguna, Nama Lengkap, Group, Unit, Status | ya | ya | Ubah, Hapus, Ganti Password |
   | Manajemen Menu | No, Aksi, Nama, Tingkat, Induk | ya | tidak | Ubah, Hapus |
   | Manajemen Group | No, Aksi, Nama, Deskripsi | ya | tidak | Ubah, Hapus, Detail |
   | Manajemen Module | No, Aksi, Module, Jumlah Submodule, Terdaftar, Belum Terdaftar | tidak | tidak | Registrasi (tunggal) |
@@ -426,8 +426,8 @@ item **level 2** (tanpa ikon tampil, lihat bagian 4.1):
   `Back Office`/`Portal Kepegawaian` + tombol `btn btn-dark` **Cek Module**
   (`ti ti-refresh`). Kolom Aksi berisi **satu** tombol ikon **Registrasi**
   (`btn btn-icon btn-sm btn-subtle-secondary` + `ti ti-checkbox`).
-- Status pengguna memakai badge subtle (bagian 16.2): **Data Pengguna Portal**
-  memakai nilai `Aktif` (hijau), **Manajemen Pengguna** memakai nilai `aktif`
+- Status pengguna memakai badge subtle (bagian 16.2): **Pengguna Portal**
+  memakai nilai `Aktif` (hijau), **Pengguna Backoffice** memakai nilai `aktif`
   (hijau) seperti pada halaman asal.
 - Terapkan perubahan sidebar pada **desktop + offcanvas** di **semua** halaman.
 
@@ -552,6 +552,29 @@ Page header **wajib** memakai pola berikut (judul + breadcrumb di kiri, aksi di 
   `icon-tabler-plus` dan `d-md-flex align-items-center gap-2`.
 - Tombol sekunder/ikon (mis. **filter**) memakai `btn btn-icon btn-white` +
   ikon `<i class="ti ti-filter fs-5"></i>`.
+- **Tombol kembali halaman detail**: setiap halaman detail **wajib**
+  menampilkan tombol kembali di **sebelah kiri judul** — tautan
+  `btn btn-light btn-icon` berikon `<i class="ti ti-arrow-left fs-4"></i>`
+  dengan `aria-label="Kembali"` + `title="Kembali"`, mengarah ke halaman
+  daftar induknya. Judul halaman detail **tanpa ikon menu**; breadcrumb tetap
+  berada **di dalam blok judul** (sejajar judul), sesuai pola page header
+  bagian ini. Informasi tambahan (mis. Auditee/Tahun/Lembaga) **tidak** ditulis
+  di judul, tetapi di kartu informasi di bawah header:
+
+  ```html
+  <div class="mb-6 d-md-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-start gap-3">
+      <a href="./halaman-daftar.html" class="btn btn-light btn-icon" aria-label="Kembali" title="Kembali"><i class="ti ti-arrow-left fs-4"></i></a>
+      <div>
+        <h1 class="mb-3 h2">Judul Halaman Detail</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">...</ol>
+        </nav>
+      </div>
+    </div>
+    <!-- aksi kanan (mis. tombol tur halaman) -->
+  </div>
+  ```
 
 ---
 
@@ -1074,6 +1097,8 @@ warna *soft* ditentukan **per fungsi aksi**:
 | Hapus | `danger` | `<i class="ti ti-trash"></i>` | `Hapus` |
 | Detail / Lihat | `info` | `<i class="ti ti-file-search"></i>` | `Detail` / `Lihat` |
 | Download / Unduh | `success` | `<i class="ti ti-download"></i>` | `Unduh` / `Download` |
+| Copy URL / Salin tautan | `secondary` | `<i class="ti ti-link"></i>` | `Copy URL` |
+| Ganti Password | `secondary` | `<i class="ti ti-key"></i>` | `Ganti Password` |
 | Aksi lain (tak terdefinisi) | `secondary` | sesuai kebutuhan | sesuai aksi |
 
 | Aspek | Ketentuan |
@@ -1096,6 +1121,11 @@ warna *soft* ditentukan **per fungsi aksi**:
   aksi khusus varian **soft**: **Unduh/Download** = `btn-subtle-success` +
   `<i class="ti ti-download"></i>`, **Lihat** = `btn-subtle-info` +
   `<i class="ti ti-file-search"></i>` (keduanya `btn btn-icon btn-sm`).
+  Halaman **Manajemen Dokumen** (`manajemen-referensi-manajemen-dokumen.html`,
+  folder `espmi-admin` & `espmi-auditee`) memakai **tiga** aksi baku ini:
+  **Lihat** (`btn-subtle-info` + `ti-file-search`), **Download**
+  (`btn-subtle-success` + `ti-download`), dan **Copy URL**
+  (`btn-subtle-secondary` + `ti-link`) - **tanpa** Ubah/Hapus.
 - **Jangan** memakai varian solid (`btn-info`, `btn-danger`, `btn-success`,
   `btn-primary`) pada tombol aksi tabel — lihat bagian 16.5.
 - Semua tombol Aksi memakai ukuran **`btn-sm`** — **jangan** `btn-xs`/`btn-lg`.
@@ -1162,6 +1192,9 @@ bagian 21; di folder auditee bagian 22):
   menjelaskan cara pakai; baris yang ditambah belakangan (mis. via List.js)
   dapatkan gagang otomatis lewat MutationObserver. Warna gagang abu-abu
   netral (`--ds-gray-100`, `--ds-gray-300` saat di-hover langsung).
+- Gagang **tidak boleh menambah scroll**: posisikan di dalam sel
+  (`right: 0`, bukan negatif) agar tabel yang kolomnya muat tidak memunculkan
+  horizontal scrollbar yang tidak perlu.
 - Hanya pointer mouse; ambang gerak 4px; klik pada gagang tidak memicu
   sorting; `pointerdown` pada gagang tidak diteruskan ke drag-to-scroll.
 - Lebar tersimpan per halaman+tabel di `localStorage` (`espmi.colWidths:*`
@@ -1169,9 +1202,18 @@ bagian 21; di folder auditee bagian 22):
   **klik ganda** pada gagang mengembalikan lebar bawaan kolom itu.
 - Lebar minimum 72px. Sel body (`tbody > td`) diizinkan membungkus teks
   menjadi multi-baris (`espmi-app.css` bagian 21a; di folder auditee bagian
-  22a; kolom `No` dan sel berisi tombol tetap satu baris), sehingga kolom
-  bernilai panjang bisa dirampingkan tanpa memaksa tabel melebar satu baris.
-  Header tetap satu baris (`text-nowrap`).
+  22a; kolom `No` tetap satu baris, dan hanya **teks pada tombol** yang tetap
+  satu baris — bukan seluruh sel yang memuat tombol), sehingga kolom bernilai
+  panjang bisa dirampingkan tanpa memaksa tabel melebar satu baris. Header
+  tetap satu baris (`text-nowrap`).
+- **Nilai tidak boleh melewati batas kolomnya**: apa pun isinya (termasuk
+  token panjang tanpa spasi seperti URL, elemen ber-`text-nowrap`, dan sel
+  yang memuat tombol), nilai harus tetap berada di dalam kolomnya — bila tidak
+  muat, teks membungkus ke baris berikutnya (`overflow-wrap: anywhere` +
+  `word-break: break-word`; `text-nowrap` di dalam sel diangkat). Kolom `No`
+  tetap satu baris; tombol tetap satu baris, tetapi sel yang memuat teks +
+  tombol tetap membungkus teksnya (dulu `td:has(.btn)` memaksa seluruh sel
+  nowrap sehingga nilai Tindak Lanjut melewati kolom).
 - Pada tabel `.table-sticky`, offset kolom fixed (No/Aksi/ketiga) diselaraskan
   otomatis dari lebar terukur agar tidak tumpang tindih
   (`--espmi-table-sticky-left`, `--espmi-table-sticky-aksi`,
@@ -1391,6 +1433,9 @@ Urutan pemuatan script:
   - `.espmi-readiness` — progress bar **kesiapan akreditasi** yang ramping (tinggi
     `0.5rem`, tepi membulat penuh, `min-width: 6rem`); dipakai di kolom
     *Visualisasi Akreditasi* (bagian 21).
+  - `.progress.espmi-readiness-label` — progress bar **berlabel** (label di
+    dalam bar; tinggi `1.25rem`, teks putih berbayang agar terbaca termasuk
+    saat lebar 0%); dipakai di kolom *Visualisasi Akreditasi* (bagian 21.1).
   - `.table-responsive:has(.dropdown-menu.show)` — saat menu dropdown di dalam
     sel tabel terbuka, pembungkus tabel dibuat `overflow: visible` agar menu
     tidak terpotong baris di bawahnya (bagian 8.4).
@@ -1549,8 +1594,8 @@ dengan ikon menu sidebar halaman tersebut.
 | Integrasi SISter › Referensi Sister | 2 | `<i class="ti ti-plug-connected"></i>` |
 | Integrasi SISter › Data Sister | 2 | `<i class="ti ti-plug-connected"></i>` |
 | Integrasi Akademik › Data Akademik | 2 | `<i class="ti ti-school"></i>` |
-| Pengaturan Sistem › Data Pengguna Portal | 2 | `<i class="ti ti-settings"></i>` |
-| Pengaturan Sistem › Manajemen Pengguna | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Pengguna Portal | 2 | `<i class="ti ti-settings"></i>` |
+| Pengaturan Sistem › Pengguna Backoffice | 2 | `<i class="ti ti-settings"></i>` |
 | Pengaturan Sistem › Manajemen Menu | 2 | `<i class="ti ti-settings"></i>` |
 | Pengaturan Sistem › Manajemen Group | 2 | `<i class="ti ti-settings"></i>` |
 | Pengaturan Sistem › Manajemen Module | 2 | `<i class="ti ti-settings"></i>` |
@@ -1603,6 +1648,9 @@ biasa dan bukan badge solid (`text-bg-*`):
 
 Class tabel memakai **`table`** beserta modifier standar yang sudah disepakati
 pada bagian 8, dan **tidak boleh** memakai `table-bordered`.
+Satu-satunya pengecualian: **tabel rincian di dalam modal detail** (bagian
+16.11 - Daftar Kesesuaian) memakai `table-bordered` karena memang bergaya grid
+(bukan datatable, tanpa `text-nowrap`/`table-hover`).
 
 ```html
 <!-- benar -->
@@ -1755,6 +1803,25 @@ setiap halaman). Aturan tombol modal: batal = `btn btn-white`, simpan =
   muncul toast `Data berhasil dihapus`.
 - Skrip juga membungkus konstruktor `List` untuk mendaftarkan instance
   (`window.espmiDatatableLists`) agar helper halaman bisa mengaksesnya.
+
+#### Ganti Password (Pengguna Backoffice)
+
+Halaman **Pengguna Backoffice** (`pengaturan-sistem-pengguna-backoffice.html`,
+folder `espmi-admin` & `espmi-auditee`) memakai kolom Aksi **Ubah, Hapus,
+Ganti Password** (tanpa Detail). Tombol **Ganti Password** =
+`btn btn-icon btn-sm btn-subtle-secondary` + `<i class="ti ti-key"></i>` dengan
+hook `data-espmi-password`.
+
+- Modal `#gantiPasswordModal` (`modal-dialog-centered`), form
+  `#gantiPasswordForm` (`novalidate`), judul **Ganti Password**; footer
+  **Batal** (`btn btn-white`) + **Simpan** (`btn btn-dark`).
+- Field: **Nama Pengguna** (teks statis `#gantiPasswordNama`, diisi dari sel
+  `.nama_pengguna` baris yang diklik), **Password Baru** (`type="password"`,
+  `required`, `minlength="6"`), dan **Konfirmasi Password Baru** (`required`).
+- Submit: tambah `was-validated`, lalu bila password != konfirmasi set
+  `setCustomValidity('Konfirmasi password tidak sama.')`; bila valid tutup
+  modal dan tampilkan toast `Password berhasil diubah`. Nilai custom validity
+  dibersihkan saat input konfirmasi di-`input`.
 
 #### Notifikasi Toast
 
@@ -2061,6 +2128,54 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   query string dan mengisi info card + judul; tautan Lihat di halaman daftar
   membangun URL tersebut dari auditee baris + filter aktif (default
   2026/SPMI).
+
+### 16.11 Halaman Daftar Kesesuaian - Modal Detail "Temuan Positif"
+
+Halaman `pengendalian-peningkatan-daftar-kesesuaian.html` (folder `espmi-admin`
+dan `espmi-auditee`) memakai kolom terakhir **Nilai Mutu, Temuan Positif** berisi
+tombol **Detail** (`btn btn-sm btn-subtle-info .espmi-detail-btn`). Tombol membawa
+`data-standar` (teks Standar Mutu baris) dan membuka modal `#detailNilaiMutuModal`.
+
+- Modal: `div.modal.fade` -> `div.modal-dialog.modal-dialog-centered.modal-lg.modal-dialog-scrollable`
+  (rincian bisa panjang) dengan judul **Temuan Positif**.
+- Body diawali **dua** blok label-teks bertingkat (label `fw-semibold` di baris
+  atas, nilai di baris bawah): **`Standar Mutu :`** (`#detailNilaiMutuStandar`)
+  dan **`Deskripsi :`** (`#detailNilaiMutuDeskripsi`). Kedua nilai diisi skrip
+  dari `data-standar` dan sel `.deskripsi` baris yang diklik.
+- Rincian **per auditee**: satu tabel dengan baris **judul grup**
+  (`<th colspan="3">` berisi nama auditee, mis. `Manajemen Produksi Berita
+  [MANARITA]`), lalu baris header kolom **Nilai Mutu | Peningkatan | Temuan
+  Positif**, lalu baris data. Sel `Temuan Positif` memuat pasangan label-teks
+  yang dipisah `<hr class="my-2" />`: `Uraian Capaian`, `Jenis Temuan`,
+  `Kategori Temuan`, `Faktor Pendukung`, `Rekomendasi Auditor`.
+- Tabel rincian memakai `table table-bordered align-middle mb-0` - pengecualian
+  `table-bordered` (bagian 16.3) - dan **tanpa** `text-nowrap`/`table-hover`
+  karena bukan datatable.
+- Footer: satu tombol `btn btn-white` **Tutup**; tombol close header memakai
+  `btn-close` + `aria-label="Tutup"`.
+
+```html
+<table class="table table-bordered align-middle mb-0">
+  <tbody>
+    <tr><th scope="row" colspan="3" class="fw-semibold">{Auditee}</th></tr>
+    <tr class="text-center fw-semibold">
+      <th scope="col" style="width: 8rem">Nilai Mutu</th>
+      <th scope="col" style="width: 8rem">Peningkatan</th>
+      <th scope="col">Temuan Positif</th>
+    </tr>
+    <tr>
+      <td>{nilai}</td>
+      <td></td>
+      <td>
+        <div class="fw-semibold">Uraian Capaian :</div>
+        <div>{teks}</div>
+        <hr class="my-2" />
+        <!-- Jenis Temuan, Kategori Temuan, Faktor Pendukung, Rekomendasi Auditor ... -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ---
 
@@ -2545,7 +2660,7 @@ adalah acuan pola **halaman visualisasi read-only**. Struktur konten, berurutan:
    menu induk level 1 *Evaluasi (AMI)*, bagian 16.1); breadcrumb
    `Dashboard` → `Evaluasi (AMI)` → `Visualisasi Akreditasi`.
 2. **Petunjuk** — `alert alert-info` (bagian 16.4) di **atas** card, berisi
-   "Klik progress bar Visual Akreditasi untuk melihat detail Syarat Perlu
+   "Klik tombol Detail pada kolom Aksi untuk melihat detail Syarat Perlu
    Akreditasi."
 3. **Tabel data** — datatable baku (bagian 7 & 16.5): satu
    `div.card.card-lg.border-1` berisi **toolbar → baris filter (collapse) →
@@ -2555,10 +2670,12 @@ adalah acuan pola **halaman visualisasi read-only**. Struktur konten, berurutan:
      **Kolom**; **kanan** = selector **Per page**.
    - Filter (collapse): **Tahun** + **Lembaga Akreditasi** (select
      `-- SEMUA --`).
-   - Kolom: **No**, **Auditee** (`listjs-sorter` + `data-sort="auditee"`),
+   - Kolom: **No**, **Aksi** (tombol ikon **Detail**, `btn-subtle-info` +
+     `ti-file-search`, membuka halaman detail Syarat Perlu Akreditasi),
+     **Auditee** (`listjs-sorter` + `data-sort="auditee"`),
      **Visualisasi Akreditasi**.
-   - Karena halaman **read-only**, kolom **Aksi tidak ditampilkan** — pengecualian
-     terhadap bagian 8.1/16.2 (sama seperti bagian 19).
+   - Karena halaman **read-only**, kolom Aksi hanya berisi Detail (tanpa
+     Ubah/Hapus) — bandingkan bagian 8.1/16.2.
 
 ### 21.1 Progress Bar Kesiapan Akreditasi
 
@@ -2566,29 +2683,45 @@ Sel kolom **Visualisasi Akreditasi** memakai salah satu dari dua bentuk:
 
 - **Tidak ada syarat perlu** — teks biasa:
   `<span class="text-secondary">Tidak memiliki syarat perlu</span>`.
-- **Ada kesiapan** — badge persentase + progress bar ramping:
+- **Ada kesiapan** — progress bar **berlabel** (satu kesatuan, bukan badge
+  + bar terpisah):
 
   ```html
-  <div class="d-flex align-items-center gap-2">
-    <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
-    <div class="progress espmi-readiness flex-grow-1" role="progressbar"
-         aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-      <div class="progress-bar bg-danger" style="width: 0%"></div>
-    </div>
+  <div class="progress espmi-readiness-label" role="progressbar" aria-label="35% siap" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-danger" style="width: 35%">35%</div>
   </div>
   ```
 
-| Rentang kesiapan | Badge (varian soft) | Progress bar |
-| --- | --- | --- |
-| `< 50%` | `bg-danger-subtle text-danger-emphasis` | `bg-danger` |
-| `50% &ndash; 79%` | `bg-warning-subtle text-warning-emphasis` | `bg-warning` |
-| `&ge; 80%` | `bg-success-subtle text-success-emphasis` | `bg-success` |
+  Kelas `.espmi-readiness-label` (`espmi-app.css` bagian 17) membuat bar
+  cukup tinggi untuk teks (`1.25rem`); teks putih berbayang agar terbaca
+  di atas fill maupun track, termasuk saat lebar 0% (`overflow: visible`).
 
-- Badge persentase memakai varian **soft** (bagian 16.2); progress bar memakai
-  warna solid agar kontras terhadap track.
-- Track progress bar dimampatkan lewat kelas `.espmi-readiness`
-  (`espmi-app.css` bagian 17): tinggi `0.5rem`, tepi membulat penuh,
-  `min-width: 6rem`.
+| Rentang kesiapan | Label dalam bar | Progress bar |
+| --- | --- | --- |
+| `< 50%` | teks putih berbayang | `bg-danger` |
+| `50% &ndash; 79%` | teks putih berbayang | `bg-warning` |
+| `&ge; 80%` | teks putih berbayang | `bg-success` |
+
+- Label persentase berada **di dalam** `.progress-bar` (bukan badge
+  terpisah); progress bar memakai warna solid agar kontras terhadap track.
+
+### 21.2 Halaman Detail Syarat Perlu Akreditasi
+
+Halaman `evaluasi-ami-visualisasi-akreditasi-detail.html` dibuka dari tombol
+**Detail** tiap baris (bagian 21). Struktur konten, berurutan:
+
+1. **Page header** — `h1.h2` berikon `<i class="ti ti-checklist"></i>`;
+   breadcrumb `Dashboard` → `Evaluasi (AMI)` → `Visualisasi Akreditasi`
+   (tautan kembali ke daftar) → `Syarat Perlu Akreditasi` (aktif).
+2. **Banner ringkasan** — `alert alert-light` berisi hitungan
+   `N Terpenuhi dari M Syarat Perlu`, dihitung live dari baris.
+3. **Banner peringatan** — `alert alert-warning` berisi
+   `N Syarat Perlu belum terpenuhi...`.
+4. **Tabel data** — datatable baku read-only (tanpa kolom Aksi, tanpa
+   filter): **No | Syarat Perlu | Status Ketercapaian** (`Tercapai` =
+   `bg-success-subtle`, `Belum Tercapai` = `bg-danger-subtle`).
+5. Sidebar memakai state halaman daftar (induk aktif + anak aktif) karena
+   detail tidak punya item menu sendiri.
 
 
 

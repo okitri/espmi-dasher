@@ -986,7 +986,7 @@ table.espmi-reordering tbody tr.espmi-drop-after > td {
 .table-responsive .espmi-col-resize-handle {
   position: absolute;
   top: 0;
-  right: -5px;
+  right: 0;
   width: 10px;
   height: 100%;
   cursor: col-resize;
@@ -1030,12 +1030,22 @@ body.espmi-col-resizing {
    -------------------------------------------------------------------------- */
 .table-responsive .table.text-nowrap > tbody > tr > td {
   white-space: normal !important;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   max-width: 24rem;
 }
-.table-responsive .table.text-nowrap > tbody > tr > td.no,
-.table-responsive .table.text-nowrap > tbody > tr > td:has(.btn) {
+/* Elemen `text-nowrap` di dalam sel ikut membungkus supaya nilainya tidak
+   melewati batas kolom (design-rules bagian 8.5). */
+.table-responsive .table.text-nowrap > tbody > tr > td .text-nowrap {
+  white-space: normal !important;
+}
+.table-responsive .table.text-nowrap > tbody > tr > td.no {
   white-space: nowrap !important;
+}
+/* Tombol tetap satu baris, tetapi sel yang memuat teks + tombol tetap
+   membungkus teksnya agar tidak melewati batas kolom (design-rules 8.5). */
+.table-responsive .table.text-nowrap > tbody > tr > td .btn {
+  white-space: nowrap;
 }
 
 

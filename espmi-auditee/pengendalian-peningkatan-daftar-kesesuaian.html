@@ -694,30 +694,81 @@
             </div>
           </div>
 
-          <!-- Modal: Detail Nilai Mutu -->
+          <!-- Modal: Temuan Positif -->
           <div class="modal fade" id="detailNilaiMutuModal" tabindex="-1" aria-labelledby="detailNilaiMutuModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="detailNilaiMutuModalLabel">Detail Nilai Mutu &amp; Temuan Positif</h5>
+                  <h5 class="modal-title" id="detailNilaiMutuModalLabel">Temuan Positif</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
-                  <p class="mb-4"><span class="fw-semibold">Standar Mutu:</span> <span id="detailNilaiMutuStandar">-</span></p>
+                  <div class="mb-3">
+                    <div class="fw-semibold">Standar Mutu :</div>
+                    <div id="detailNilaiMutuStandar">-</div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="fw-semibold">Deskripsi :</div>
+                    <div id="detailNilaiMutuDeskripsi">-</div>
+                  </div>
                   <div class="table-responsive">
-                    <table class="table align-middle mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col">Komponen</th>
-                          <th scope="col">Nilai Mutu</th>
-                          <th scope="col">Temuan Positif</th>
-                        </tr>
-                      </thead>
+                    <table class="table table-bordered align-middle mb-0">
                       <tbody>
                         <tr>
-                          <td>APS 03</td>
-                          <td>-</td>
-                          <td>-</td>
+                          <th scope="row" colspan="3" class="fw-semibold">Manajemen Produksi Berita [MANARITA]</th>
+                        </tr>
+                        <tr class="text-center fw-semibold">
+                          <th scope="col" style="width: 8rem">Nilai Mutu</th>
+                          <th scope="col" style="width: 8rem">Peningkatan</th>
+                          <th scope="col">Temuan Positif</th>
+                        </tr>
+                        <tr>
+                          <td>2.00 (Cukup)</td>
+                          <td></td>
+                          <td>
+                            <div class="fw-semibold">Uraian Capaian :</div>
+                            <div>Ditemukan bahwa program studi menyediakan bantuan dana kompetisi mahasiswa, namun jumlah anggaran belum memadai dan belum tersedia skema dana tetap untuk mendukung kompetisi tingkat nasional maupun internasional.</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Jenis Temuan :</div>
+                            <div>Temuan positif (TP)</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Kategori Temuan :</div>
+                            <div>Melampaui</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Faktor Pendukung :</div>
+                            <div>Alokasi anggaran kompetisi mahasiswa masih terbatas dan belum memiliki perencanaan khusus yang berkelanjutan setiap tahun anggaran.</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Rekomendasi Auditor :</div>
+                            <div>Program studi disarankan menyusun perencanaan anggaran kompetisi mahasiswa secara tahunan dan mengusulkan peningkatan dukungan pendanaan kepada fakultas atau institusi guna meningkatkan partisipasi dan prestasi mahasiswa.</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" colspan="3" class="fw-semibold">S1 Ilmu Data</th>
+                        </tr>
+                        <tr class="text-center fw-semibold">
+                          <th scope="col" style="width: 8rem">Nilai Mutu</th>
+                          <th scope="col" style="width: 8rem">Peningkatan</th>
+                          <th scope="col">Temuan Positif</th>
+                        </tr>
+                        <tr>
+                          <td>3.00 (Baik)</td>
+                          <td></td>
+                          <td>
+                            <div class="fw-semibold">Uraian Capaian :</div>
+                            <div>Program studi secara konsisten mengalokasikan dana kompetisi dan mendampingi mahasiswa dalam mengikuti kompetisi tingkat nasional maupun internasional.</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Jenis Temuan :</div>
+                            <div>Temuan positif (TP)</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Kategori Temuan :</div>
+                            <div>Melampaui</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Faktor Pendukung :</div>
+                            <div>Dukungan fakultas berupa pendampingan dosen pembimbing dan kemitraan dengan penyelenggara kompetisi.</div>
+                            <hr class="my-2" />
+                            <div class="fw-semibold">Rekomendasi Auditor :</div>
+                            <div>Praktik baik ini dapat dipertahankan dan dijadikan contoh bagi program studi lain di lingkungan institusi.</div>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -903,8 +954,14 @@
 
           var detail = event.target.closest('.espmi-detail-btn');
           if (detail) {
+            var row = detail.closest('tr');
             var target = document.getElementById('detailNilaiMutuStandar');
             if (target) target.textContent = detail.getAttribute('data-standar') || '-';
+            var deskripsi = document.getElementById('detailNilaiMutuDeskripsi');
+            if (deskripsi) {
+              var cell = row ? row.querySelector('.deskripsi') : null;
+              deskripsi.textContent = cell ? cell.textContent.trim() : '-';
+            }
             var modalEl = document.getElementById('detailNilaiMutuModal');
             if (modalEl && window.bootstrap && window.bootstrap.Modal) {
               window.bootstrap.Modal.getOrCreateInstance(modalEl).show();

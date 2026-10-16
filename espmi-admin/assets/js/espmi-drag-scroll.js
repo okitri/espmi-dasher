@@ -50,6 +50,26 @@
       document.body.classList.remove('espmi-is-dragging');
     }
 
+    // Lepas pointer capture (diambil saat ambang drag) dan reset state.
+    // Pointer capture dilepas eksplisit agar klik berikutnya tidak ikut
+    // di-retarget ke container (tombol sorting/aksi/pagination jadi mati).
+    function finish(event) {
+      if (event && event.pointerId !== undefined && el.hasPointerCapture) {
+        try {
+          if (el.hasPointerCapture(event.pointerId)) {
+            el.releasePointerCapture(event.pointerId);
+          }
+        } catch (err) {
+          /* noop */
+        }
+      }
+      stop();
+    }
+
+    // CATATAN: capture pointer JANGAN diambil saat pointerdown — capture sejak
+    // tekan membuat event klik kompatibilitas (mousedown/mouseup/click) ikut
+    // di-retarget ke container sehingga tombol/link di dalam tabel terasa mati.
+    // Capture baru diambil ketika ambang drag terlampaui (lihat pointermove).
     el.addEventListener('pointerdown', function (event) {
       if (event.pointerType !== 'mouse') return;
       if (event.button !== 0) return;
@@ -59,14 +79,6 @@
       dragged = false;
       startX = event.clientX;
       startScroll = el.scrollLeft;
-
-      if (el.setPointerCapture) {
-        try {
-          el.setPointerCapture(event.pointerId);
-        } catch (err) {
-          /* noop */
-        }
-      }
     });
 
     el.addEventListener('pointermove', function (event) {
@@ -77,6 +89,15 @@
         dragged = true;
         el.classList.add('is-dragging');
         document.body.classList.add('espmi-is-dragging');
+        // Baru sekarang capture: pointer keluar container pun tetap terbaca,
+        // sementara klik biasa (tanpa gerak) tidak tersentuh capture sama sekali.
+        if (el.setPointerCapture) {
+          try {
+            el.setPointerCapture(event.pointerId);
+          } catch (err) {
+            /* noop */
+          }
+        }
       }
 
       if (dragged) {
@@ -85,8 +106,11 @@
       }
     });
 
-    el.addEventListener('pointerup', stop);
-    el.addEventListener('pointercancel', stop);
+    // Setelah drag selesai (pointerup/pointercancel), lepas capture + reset
+    // state drag agar interaksi berikutnya (klik tombol/sorting/pagination)
+    // berjalan normal.
+    el.addEventListener('pointerup', finish, true);
+    el.addEventListener('pointercancel', finish, true);
 
     // Cegah klik (sorting / tombol) bila ternyata user mendrag, bukan mengklik.
     el.addEventListener(

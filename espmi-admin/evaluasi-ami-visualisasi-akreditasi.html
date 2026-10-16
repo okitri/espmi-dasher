@@ -445,13 +445,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="./pengaturan-sistem-pengguna-portal.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg></span>
-                  <span class="text">Data Pengguna Portal</span>
+                  <span class="text">Pengguna Portal</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./pengaturan-sistem-pengguna-backoffice.html">
                   <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
-                  <span class="text">Manajemen Pengguna</span>
+                  <span class="text">Pengguna Backoffice</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -865,13 +865,13 @@
                 <li class="nav-item">
                   <a class="nav-link" href="./pengaturan-sistem-pengguna-portal.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg></span>
-                    <span class="text">Data Pengguna Portal</span>
+                    <span class="text">Pengguna Portal</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="./pengaturan-sistem-pengguna-backoffice.html">
                     <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></span>
-                    <span class="text">Manajemen Pengguna</span>
+                    <span class="text">Pengguna Backoffice</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -1047,7 +1047,7 @@
           <!-- Petunjuk -->
           <div class="alert alert-info d-flex align-items-start gap-2 mb-6" role="alert">
             <i class="ti ti-info-circle fs-5"></i>
-            <div><span class="fw-semibold">Petunjuk:</span> Klik progress bar Visual Akreditasi untuk melihat detail Syarat Perlu Akreditasi.</div>
+            <div><span class="fw-semibold">Petunjuk:</span> Klik tombol Detail pada kolom Aksi untuk melihat detail Syarat Perlu Akreditasi.</div>
           </div>
 
           <!-- Daftar Visualisasi Akreditasi -->
@@ -1091,7 +1091,7 @@
                       aria-label="Pilih kolom yang ditampilkan"
                       data-tour-step
                       data-tour-title="Kolom"
-                      data-tour-text="Pilih kolom yang ditampilkan atau disembunyikan. Kolom No dan Auditee selalu tampil."
+                      data-tour-text="Pilih kolom yang ditampilkan atau disembunyikan. Kolom No, Aksi, dan Auditee selalu tampil."
                       data-tour-side="bottom"
                     >
                       <i class="ti ti-table-minus fs-5"></i>
@@ -1144,10 +1144,11 @@
               </div>
             </div>
             <div class="table-responsive mt-6">
-              <table class="table text-nowrap table-hover mb-0" data-tour-step data-tour-title="Tabel Data" data-tour-text="Daftar auditee beserta visualisasi kesiapan akreditasi. Klik progress bar untuk melihat detail Syarat Perlu Akreditasi." data-tour-side="top">
+              <table class="table text-nowrap table-hover mb-0 table-sticky" data-tour-step data-tour-title="Tabel Data" data-tour-text="Daftar auditee beserta visualisasi kesiapan akreditasi. Klik progress bar untuk melihat detail Syarat Perlu Akreditasi." data-tour-side="top">
                 <thead>
                   <tr>
                     <th scope="col" style="width: 4.5rem">No</th>
+                    <th scope="col" class="aksi" style="width: 7rem">Aksi</th>
                     <th scope="col" class="listjs-sorter" data-sort="auditee">Auditee</th>
                     <th scope="col">Visualisasi Akreditasi</th>
                   </tr>
@@ -1155,275 +1156,479 @@
                 <tbody class="list">
                   <tr>
                     <td class="no">1</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Audi%20Fakultas%20Filsafat" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Audi Fakultas Filsafat</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">2</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=desi" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">desi</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-danger" style="width: 0%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: 0%">0%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">3</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=DOKTOR%20TEKNIK%20ELEKTRO" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">DOKTOR TEKNIK ELEKTRO</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">4</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=DOKTOR%20INFORMATIKA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">DOKTOR INFORMATIKA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">5</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=ILMU%20KESEHATAN%20MASYARAKAT" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">ILMU KESEHATAN MASYARAKAT</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">6</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=ILMU%20SEJARAH" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">ILMU SEJARAH</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">7</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Kemahasiswaan" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Kemahasiswaan</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">0% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-danger" style="width: 0%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="0% siap" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: 0%">0%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">8</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=KERJASAMA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">KERJASAMA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">9</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Lembaga%20Bahasa%20Universitas" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Lembaga Bahasa Universitas</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">10</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Manajemen%20Informasi%20Komunikasi%20%5BMIK%5D" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Manajemen Informasi Komunikasi [MIK]</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">11</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Manajemen%20Perkantoran" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Manajemen Perkantoran</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">12</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=MANAJEMEN%20SUMBER%20DAYA%20PERAIRAN" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">MANAJEMEN SUMBER DAYA PERAIRAN</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">13</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Matematika" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Matematika</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">14</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=NUTRISI%20DAN%20MAKANAN%20TERNAK" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">NUTRISI DAN MAKANAN TERNAK</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">15</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20AKUNTANSI" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN AKUNTANSI</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">35% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="35% siap" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-danger" style="width: 35%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="35% siap" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: 35%">35%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">16</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20BAHASA%20INGGRIS" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN BAHASA INGGRIS</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">17</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20BAHASA%20JERMAN" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN BAHASA JERMAN</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">18</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20GURU%20SEKOLAH%20DASAR" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN GURU SEKOLAH DASAR</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">19</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20JASMANI%20KESEHATAN%20DAN%20REKREASI" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN JASMANI KESEHATAN DAN REKREASI</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">20</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20LUAR%20BIASA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN LUAR BIASA</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-warning-subtle text-warning-emphasis text-nowrap">60% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="60% siap" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-warning" style="width: 60%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="60% siap" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning" style="width: 60%">60%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">21</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20MATEMATIKA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN MATEMATIKA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">22</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PENDIDIKAN%20SEJARAH" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PENDIDIKAN SEJARAH</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">23</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PERPUSTAKAAN" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PERPUSTAKAAN</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">24</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PERTANIAN" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PERTANIAN</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">25</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=PROFESI%20PENDIDIKAN%20GURU" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">PROFESI PENDIDIKAN GURU</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">26</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Psikologi" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Psikologi</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">27</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=SASTRA%20ARAB" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">SASTRA ARAB</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">28</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=SASTRA%20CHINA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">SASTRA CHINA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">29</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=SASTRA%20INDONESIA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">SASTRA INDONESIA</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger-subtle text-danger-emphasis text-nowrap">45% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="45% siap" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-danger" style="width: 45%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="45% siap" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger" style="width: 45%">45%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">30</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=SASTRA%20INGGRIS" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">SASTRA INGGRIS</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">31</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Sistem%20Informasi" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Sistem Informasi</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">32</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=STATISTIKA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">STATISTIKA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">33</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20ARSITEKTUR" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK ARSITEKTUR</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">34</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20ELEKTRO" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK ELEKTRO</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">35</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20INFORMATIKA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK INFORMATIKA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">36</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20KIMIA" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK KIMIA</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">37</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20MESIN" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK MESIN</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">38</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=TEKNIK%20SIPIL" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">TEKNIK SIPIL</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-warning-subtle text-warning-emphasis text-nowrap">75% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="75% siap" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-warning" style="width: 75%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="75% siap" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning" style="width: 75%">75%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">39</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Penjaminan%20Mutu" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Penjaminan Mutu</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">40</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Kerjasama%20dan%20Humas" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Kerjasama dan Humas</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">41</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Perpustakaan%20Pusat" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Perpustakaan Pusat</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">42</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Sistem%20Informasi" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Sistem Informasi</td>
                     <td class="visualisasi">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success-subtle text-success-emphasis text-nowrap">100% siap</span>
-                        <div class="progress espmi-readiness flex-grow-1" role="progressbar" aria-label="100% siap" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar bg-success" style="width: 100%"></div>
-                        </div>
+                      <div class="progress espmi-readiness-label" role="progressbar" aria-label="100% siap" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: 100%">100%</div>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td class="no">43</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Laboratorium%20Terpadu" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Laboratorium Terpadu</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">44</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Kemahasiswaan%20dan%20Alumni" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Kemahasiswaan dan Alumni</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
                   <tr>
                     <td class="no">45</td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="./evaluasi-ami-visualisasi-akreditasi-detail.html?auditee=Unit%20Penelitian%20dan%20Pengabdian" class="btn btn-icon btn-sm btn-subtle-info" title="Detail" aria-label="Detail" data-espmi-detail><i class="ti ti-file-search"></i></a>
+                      </div>
+                    </td>
                     <td class="auditee">Unit Penelitian dan Pengabdian</td>
                     <td class="visualisasi"><span class="text-secondary">Tidak memiliki syarat perlu</span></td>
                   </tr>
