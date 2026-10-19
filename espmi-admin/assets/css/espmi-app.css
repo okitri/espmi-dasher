@@ -257,6 +257,18 @@ html.collapsed #miniSidebar {
   padding-left: 3rem;
 }
 
+.tree-lvl-5 {
+  padding-left: 4rem;
+}
+
+.tree-lvl-6 {
+  padding-left: 5rem;
+}
+
+.tree-lvl-7 {
+  padding-left: 6rem;
+}
+
 /* Pencarian baris tree (halaman Daftar Standar Mutu): saat mencari, semua grup
    dibuka agar baris yang cocok terlihat; baris yang tidak cocok disembunyikan.
    `display: table-row` (bukan `block`) supaya lebar kolom tabel tetap sejajar. */

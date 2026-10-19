@@ -855,6 +855,7 @@
           updateLabel();
           updateButtons();
           renderPagination();
+          applyPeriodeState();
         }
 
         function goToPage(page) {
@@ -916,6 +917,30 @@
 
         renderView();
 
+        // Periode sudah berakhir -> tombol Aksi nonaktif (design-rules 8.4).
+        // Dipanggil ulang dari renderView() sebab List.js menyusun ulang baris
+        // saat pagination, pencarian, atau sorting berubah.
+        function applyPeriodeState() {
+          Array.prototype.forEach.call(listElement.querySelectorAll('tbody.list tr'), function (row) {
+            var status = row.querySelector('.status_periode');
+            var berakhir = !!status && status.textContent.indexOf('Periode sudah berakhir') !== -1;
+            Array.prototype.forEach.call(row.querySelectorAll('.btn'), function (btn) {
+              btn.disabled = berakhir;
+              btn.setAttribute('aria-disabled', berakhir ? 'true' : 'false');
+              btn.setAttribute('title', berakhir ? 'Periode sudah berakhir' : 'Pilih Auditee / Unit Penunjang');
+            });
+            Array.prototype.forEach.call(row.querySelectorAll('.dropdown-item'), function (item) {
+              item.classList.toggle('disabled', berakhir);
+              item.setAttribute('aria-disabled', berakhir ? 'true' : 'false');
+              if (berakhir) {
+                item.setAttribute('tabindex', '-1');
+              } else {
+                item.removeAttribute('tabindex');
+              }
+            });
+          });
+        }
+
         // Pilih Auditee / Unit Penunjang (front-end saja, tanpa backend)
         function toast(message, opts) {
           if (window.espmiToast) window.espmiToast(message, opts);
@@ -924,6 +949,7 @@
           var opt = event.target.closest('[data-espmi-auditee]');
           if (opt) {
             event.preventDefault();
+            if (opt.classList.contains('disabled')) return;
             toast('Membuka visitasi ' + opt.getAttribute('data-espmi-lembaga') + ' — ' + opt.getAttribute('data-espmi-auditee') + '.', { variant: 'info', icon: 'info-circle' });
             return;
           }

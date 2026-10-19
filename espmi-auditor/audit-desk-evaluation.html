@@ -855,6 +855,7 @@
           updateLabel();
           updateButtons();
           renderPagination();
+          applyPeriodeState();
         }
 
         function goToPage(page) {
@@ -916,7 +917,31 @@
 
         renderView();
 
-        // Pilih Auditee / Unit Penunjang (front-end saja, tanpa backend)
+        // Periode sudah berakhir -> tombol Aksi nonaktif (design-rules 8.4).
+        // Dipanggil ulang dari renderView() sebab List.js menyusun ulang baris
+        // saat pagination, pencarian, atau sorting berubah.
+        function applyPeriodeState() {
+          Array.prototype.forEach.call(listElement.querySelectorAll('tbody.list tr'), function (row) {
+            var status = row.querySelector('.status_periode');
+            var berakhir = !!status && status.textContent.indexOf('Periode sudah berakhir') !== -1;
+            Array.prototype.forEach.call(row.querySelectorAll('.btn'), function (btn) {
+              btn.disabled = berakhir;
+              btn.setAttribute('aria-disabled', berakhir ? 'true' : 'false');
+              btn.setAttribute('title', berakhir ? 'Periode sudah berakhir' : 'Pilih Auditee / Unit Penunjang');
+            });
+            Array.prototype.forEach.call(row.querySelectorAll('.dropdown-item'), function (item) {
+              item.classList.toggle('disabled', berakhir);
+              item.setAttribute('aria-disabled', berakhir ? 'true' : 'false');
+              if (berakhir) {
+                item.setAttribute('tabindex', '-1');
+              } else {
+                item.removeAttribute('tabindex');
+              }
+            });
+          });
+        }
+
+        // Pilih Auditee / Unit Penunjang -> buka Detail Desk Evaluation.
         function toast(message, opts) {
           if (window.espmiToast) window.espmiToast(message, opts);
         }
@@ -924,7 +949,11 @@
           var opt = event.target.closest('[data-espmi-auditee]');
           if (opt) {
             event.preventDefault();
-            toast('Membuka standar mutu ' + opt.getAttribute('data-espmi-lembaga') + ' — ' + opt.getAttribute('data-espmi-auditee') + '.', { variant: 'info', icon: 'info-circle' });
+            if (opt.classList.contains('disabled')) return;
+            var auditee = opt.getAttribute('data-espmi-auditee');
+            var lembaga = opt.getAttribute('data-espmi-lembaga');
+            window.location.href =
+              './audit-desk-evaluation-detail.html?auditee=' + encodeURIComponent(auditee) + '&lembaga=' + encodeURIComponent(lembaga);
             return;
           }
           if (event.target.closest('[data-espmi-auditee-pilih]')) {

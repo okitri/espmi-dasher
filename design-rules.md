@@ -1179,6 +1179,18 @@ semua tabel (tanpa markup atau JS tambahan):
 }
 ```
 
+**Nonaktif saat periode berakhir** — pada `audit-desk-evaluation.html` dan
+`audit-visitasi.html` (struktur Aksi identik), baris yang
+status periodenya **`Periode sudah berakhir`** (badge
+`bg-danger-subtle text-danger-emphasis`) menampilkan tombol Aksi dalam keadaan
+**nonaktif**: kedua `<button>` pada `btn-group` diberi atribut **`disabled`** +
+`aria-disabled="true"` + `title="Periode sudah berakhir"`, dan seluruh
+`dropdown-item` diberi class **`.disabled`** + `aria-disabled="true"` +
+`tabindex="-1"` (pola bagian 16.5). Tombol nonaktif tidak membuka dropdown dan
+tidak memicu navigasi; baris dengan periode masih berjalan tetap aktif.
+Status ini diterapkan ulang setiap tabel di-render (pagination / pencarian /
+sorting) sebab List.js menyusun ulang baris.
+
 ### 8.5 Ubah Lebar Kolom dengan Drag (column resize)
 
 Semua kolom pada tabel di dalam `.table-responsive` bisa diubah lebarnya:
@@ -1390,7 +1402,7 @@ Urutan pemuatan script:
 - Bila override menyasar tampilan **light mode**, tambahkan juga aturan untuk
   `[data-bs-theme='dark']` agar dark mode tidak rusak.
 - Kelas kustom yang sudah tersedia di proyek:
-  - `.tree-toggle`, `.tree-lvl-2/3/4` — tree view (halaman Daftar Standar Mutu).
+  - `.tree-toggle`, `.tree-lvl-2` s/d `.tree-lvl-7` — tree view (halaman Daftar Standar Mutu).
   - `.badge-violet`, `.badge-violet-subtle` — badge warna khusus di luar palet theme.
   - `.navbar-glass`, `#content` (latar area konten = `--ds-gray-100`), `#miniSidebar` — override tampilan eSPMI.
   - `.nav-heading` — label grup menu sidebar; diberi **garis tipis pemisah** di
@@ -2128,6 +2140,36 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   query string dan mengisi info card + judul; tautan Lihat di halaman daftar
   membangun URL tersebut dari auditee baris + filter aktif (default
   2026/SPMI).
+- **Varian detail Desk Evaluation**
+  (`espmi-auditor/audit-desk-evaluation-detail.html`): dibuka dari dropdown
+  *Pilih Auditee / Unit Penunjang* di `audit-desk-evaluation.html` dengan URL
+  `./audit-desk-evaluation-detail.html?auditee=&lembaga=` (konteks mengisi info
+  card **Auditee** / **Tahun** / **Lembaga Akreditasi**; **Tahun** default
+  `2026`). Halaman detail memakai baris tree halaman ini dengan **2 kolom** —
+  `Standar Mutu` (auto) | `Aksi` (`text-end`, `width: 12rem`) — **tanpa** kolom
+  Indikator/Info Jenjang dan tanpa tombol Tambah/Ubah/Hapus/Atur Urutan.
+  - **Toolbar**: **pencarian** (`#detailDeskEvaluationSearch`, `.listjs-search`)
+    di kiri, lalu **dua tombol terpisah** di kanan (keduanya
+    `btn btn-white d-inline-flex align-items-center gap-2`):
+    **`Expand all`** (`id="espmiTreeExpandAll"`, ikon `ti ti-arrows-maximize`,
+    membuka seluruh tingkatan) dan **`Collapse all`**
+    (`id="espmiTreeCollapseAll"`, ikon `ti ti-arrows-minimize`, menutup seluruh
+    tingkatan).
+  - **Header kartu**: label `Daftar Standar Mutu` (kiri) + badge jumlah baris
+    tree `N Standar Mutu` (`bg-danger-subtle text-danger-emphasis
+    rounded-pill`, kanan).
+  - **Baris daun** (tanpa turunan) memuat **lima badge** di bawah nama standar
+    (`d-flex flex-wrap gap-1 mt-1` + indentasi `tree-lvl-N` yang sama, varian
+    **subtle** bagian 16.2): `N Sub Standar Mutu` =
+    `bg-secondary-subtle text-secondary-emphasis`, `N Belum Evaluasi Diri` =
+    `bg-warning-subtle text-warning-emphasis`, `N Sudah Evaluasi Diri` =
+    `bg-info-subtle text-info-emphasis`, `N Belum Dinilai` =
+    `bg-danger-subtle text-danger-emphasis`, `N Sudah Dinilai` =
+    `bg-success-subtle text-success-emphasis`.
+  - **Tombol `Pilih`** di kolom Aksi setiap baris daun
+    (`btn btn-sm btn-subtle-secondary`, bagian 8.1; atribut `data-espmi-pilih`
+    + `data-espmi-standar`); front-end saja (toast `Membuka standar mutu ...`,
+    tanpa backend).
 
 ### 16.11 Halaman Daftar Kesesuaian - Modal Detail "Temuan Positif"
 
