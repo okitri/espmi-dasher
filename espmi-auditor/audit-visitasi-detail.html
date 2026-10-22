@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="Codescandy" name="author" />
+    <title>Detail Visitasi | eSPMI</title>
+    <!-- Favicon icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="../dist/assets/images/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../dist/assets/images/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../dist/assets/images/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../dist/assets/images/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../dist/assets/images/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../dist/assets/images/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../dist/assets/images/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../dist/assets/images/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../dist/assets/images/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../dist/assets/images/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../dist/assets/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../dist/assets/images/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../dist/assets/images/favicon/favicon-16x16.png" />
+
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="../dist/assets/images/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Color modes -->
+    <script src="../dist/assets/js/vendors/color-modes.js"></script>
+    <!-- Preferensi font (diterapkan sebelum render agar tidak berkedip) -->
+    <script src="../dist/assets/js/vendors/espmi-font.js"></script>
+    <script>
+      if (localStorage.getItem('sidebarExpanded') === 'false') {
+        document.documentElement.classList.add('collapsed');
+        document.documentElement.classList.remove('expanded');
+      } else {
+        document.documentElement.classList.remove('collapsed');
+        document.documentElement.classList.add('expanded');
+      }
+    </script>
+    <!-- Libs CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="../dist/assets/libs/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" href="../dist/assets/libs/@tabler/icons-webfont/tabler-icons.min.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="../dist/assets/css/theme.min.css" />
+
+    <!-- App CSS (override tampilan eSPMI: background content, sidebar, navbar glass) -->
+    <link rel="stylesheet" href="assets/css/espmi-app.css" />
+
+    <!-- Vendor CSS: driver.js (tour halaman, design-rules 16.7) -->
+    <link rel="stylesheet" href="assets/css/vendor/driver.css" />
+  </head>
+
+  <body>
+    <!-- Vertical Sidebar -->
+    <div>
+      <div id="miniSidebar">
+        <div class="brand-logo">
+          <span class="d-none d-md-flex align-items-center gap-2">
+            <img src="../dist/assets/images/brand/logo/logo-icon.svg" alt="" />
+            <span class="fw-bold fs-4 site-logo-text">eSPMI</span>
+          </span>
+        </div>
+        <ul class="navbar-nav flex-column">
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="./dashboard.html">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v8h-6z" /><path d="M4 16h6v4h-6z" /><path d="M14 12h6v8h-6z" /><path d="M14 4h6v4h-6z" /></svg></span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <!-- Nav item : Audit (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
+              <span class="text">Audit</span>
+            </a>
+            <ul class="dropdown-menu flex-column show">
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-desk-evaluation.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg></span>
+                  <span class="text">Desk Evaluation</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="./audit-visitasi.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 7v5l3 3" /></svg></span>
+                  <span class="text">Visitasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-download-laporan-ami.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg></span>
+                  <span class="text">Download Laporan AMI</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-upload-laporan-ami.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg></span>
+                  <span class="text">Upload Laporan AMI</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Nav item : Laporan (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-line"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg></span>
+              <span class="text">Laporan</span>
+            </a>
+            <ul class="dropdown-menu flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="./laporan-rekap-daftar-temuan.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
+                  <span class="text">Rekap Daftar Temuan</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./laporan-rekap-daftar-kesesuaian.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
+                  <span class="text">Rekap Daftar Kesesuaian</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- Offcanvas sidebar (mobile) -->
+      <div class="offcanvasNav offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <a class="d-flex align-items-center gap-2 text-inherit" href="./dashboard.html" id="offcanvasExampleLabel">
+            <img src="../dist/assets/images/brand/logo/logo-icon.svg" alt="" />
+            <span class="fw-bold fs-4">eSPMI</span>
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+          <ul class="navbar-nav flex-column">
+          <!-- Nav item -->
+          <li class="nav-item">
+            <a class="nav-link" href="./dashboard.html">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4h6v8h-6z" /><path d="M4 16h6v4h-6z" /><path d="M14 12h6v8h-6z" /><path d="M14 4h6v4h-6z" /></svg></span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <!-- Nav item : Audit (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg></span>
+              <span class="text">Audit</span>
+            </a>
+            <ul class="dropdown-menu flex-column show">
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-desk-evaluation.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 14l2 2l4 -4" /></svg></span>
+                  <span class="text">Desk Evaluation</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="./audit-visitasi.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 7v5l3 3" /></svg></span>
+                  <span class="text">Visitasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-download-laporan-ami.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg></span>
+                  <span class="text">Download Laporan AMI</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./audit-upload-laporan-ami.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg></span>
+                  <span class="text">Upload Laporan AMI</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Nav item : Laporan (submenu) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-line"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg></span>
+              <span class="text">Laporan</span>
+            </a>
+            <ul class="dropdown-menu flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="./laporan-rekap-daftar-temuan.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 12l.01 0" /><path d="M13 12l2 0" /><path d="M9 16l.01 0" /><path d="M13 16l2 0" /></svg></span>
+                  <span class="text">Rekap Daftar Temuan</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./laporan-rekap-daftar-kesesuaian.html">
+                  <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
+                  <span class="text">Rekap Daftar Kesesuaian</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div id="content" class="position-relative h-100">
+        <!-- navbar -->
+        <div class="navbar-glass navbar navbar-expand-lg px-0 px-lg-4">
+          <div class="container-fluid px-lg-0">
+            <div class="d-flex align-items-center gap-4">
+              <!-- Collapse (mobile) -->
+              <div class="d-block d-lg-none">
+                <a class="text-inherit" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+                </a>
+              </div>
+              <!-- Collapse (desktop) -->
+              <div class="d-none d-lg-block">
+                <a class="sidebar-toggle d-flex texttooltip p-3" href="javascript:void(0)" data-template="collapseMessage">
+                  <span class="collapse-mini">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-left text-secondary"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 12l10 0" /><path d="M4 12l4 4" /><path d="M4 12l4 -4" /><path d="M20 4l0 16" /></svg>
+                  </span>
+                  <span class="collapse-expanded">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-right text-secondary"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 12l-10 0" /><path d="M20 12l-4 4" /><path d="M20 12l-4 -4" /><path d="M4 4l0 16" /></svg>
+                    <div id="collapseMessage" class="d-none">
+                      <span class="small">Collapse</span>
+                    </div>
+                  </span>
+                </a>
+              </div>
+              <!-- Institution -->
+              <div class="d-flex align-items-center gap-3">
+                <img src="../dist/assets/images/brand/logo/img-campus-logo.png" width="34" alt="" />
+                <div class="lh-sm">
+                  <div class="small text-secondary d-none d-sm-block">Sistem Informasi Penjaminan Mutu Internal</div>
+                  <div class="fw-semibold">UNIVERSITAS SOLUSI KAMPUS INDONESIA</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navbar nav -->
+            <ul class="list-unstyled d-flex align-items-center mb-0 gap-2">
+              <!-- Periode aktif -->
+              <li class="d-none d-md-block">
+                <span class="small text-secondary">Periode Aktif: <span class="fw-semibold text-body">2026/2</span></span>
+              </li>
+              <!-- Light dark mode-->
+              <li>
+                <div class="dropdown">
+                  <button class="btn btn-ghost btn-icon rounded-circle d-flex align-items-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+                    <i class="ti theme-icon-active lh-1 fs-5"><i class="ti theme-icon ti-sun"></i></i>
+                    <span class="visually-hidden bs-theme-text">Toggle theme</span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
+                        <i class="ti theme-icon ti ti-sun"></i>
+                        <span class="ms-2">Light</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                        <i class="ti theme-icon ti ti-moon-stars"></i>
+                        <span class="ms-2">Dark</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                        <i class="ti theme-icon ti ti-circle-half-2"></i>
+                        <span class="ms-2">Auto</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- Bell icon -->
+              <li>
+                <a class="position-relative btn-icon btn-ghost btn rounded-circle" href="#!" role="button" aria-label="Notifications">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2 ms-n2">
+                    2
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </li>
+              <!-- User -->
+              <li>
+                <div class="dropdown">
+                  <a class="d-flex align-items-center gap-2 text-inherit dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../dist/assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-sm rounded-circle" />
+                    <span class="d-none d-md-block fw-semibold">Auditor</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#!"><i class="ti ti-user"></i><span class="ms-2">Profil</span></a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="./akun-preferensi.html"><i class="ti ti-typography"></i><span class="ms-2">Preferensi</span></a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#!"><i class="ti ti-user-cog"></i><span class="ms-2">Pengaturan Akun</span></a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#!" data-bs-toggle="modal" data-bs-target="#espmiAboutModal"><i class="ti ti-info-circle"></i><span class="ms-2">Tentang</span></a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center text-danger" href="./index.html"><i class="ti ti-logout"></i><span class="ms-2">Logout</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- container -->
+        <div class="custom-container">
+          <!-- Page Header : Detail Visitasi (tanpa ikon judul - design-rules 6) -->
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <div class="mb-6 d-md-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-start gap-3">
+                  <a href="./audit-visitasi.html" class="btn btn-light btn-icon" aria-label="Kembali" title="Kembali"><i class="ti ti-arrow-left fs-4"></i></a>
+                  <div>
+                    <h1 class="mb-3 h2">Detail Visitasi</h1>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./dashboard.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#!">Audit</a></li>
+                        <li class="breadcrumb-item"><a href="./audit-visitasi.html">Visitasi</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail Visitasi</li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button
+                    type="button"
+                    id="btnTourHalaman"
+                    class="btn btn-subtle-secondary btn-icon"
+                    data-tour-start
+                    data-tour-intro-title="Tour Detail Visitasi"
+                    data-tour-intro-text="Ikuti langkah singkat untuk menyaring standar mutu dan membaca status visitasinya."
+                    aria-label="Mulai tour halaman"
+                    title="Tur halaman"
+                  >
+                    <i class="ti ti-help-circle fs-5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informasi Auditee -->
+          <div class="card card-lg border-1 mb-6">
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-4 col-12">
+                  <div class="small text-secondary">Auditee</div>
+                  <div class="fw-semibold" id="detailAuditee">-</div>
+                </div>
+                <div class="col-md-4 col-12">
+                  <div class="small text-secondary">Tahun</div>
+                  <div class="fw-semibold" id="detailTahun">-</div>
+                </div>
+                <div class="col-md-4 col-12">
+                  <div class="small text-secondary">Lembaga Akreditasi</div>
+                  <div class="fw-semibold" id="detailLembaga">-</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Daftar Standar Mutu (tree read-only - design-rules 16.10) -->
+          <div class="card card-lg border-1" id="detailVisitasiCard">
+            <div class="card-body pb-0">
+              <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center gap-2">
+                <div class="fw-semibold">Daftar Standar Mutu</div>
+                <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill" id="detailStandarCount">19 Standar Mutu</span>
+              </div>
+              <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3 mt-3">
+                <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
+                  <input
+                    type="search"
+                    placeholder="Cari.."
+                    id="detailVisitasiSearch"
+                    class="form-control listjs-search"
+                    aria-label="Cari standar mutu"
+                    data-tour-step
+                    data-tour-title="Pencarian"
+                    data-tour-text="Ketik nama standar untuk menyaring baris pada tree."
+                    data-tour-side="bottom"
+                  />
+                </div>
+                <div class="d-flex flex-column flex-sm-row flex-wrap align-items-sm-center gap-3">
+                  <button
+                    class="btn btn-white d-inline-flex align-items-center gap-2"
+                    type="button"
+                    id="espmiTreeToggleAll"
+                    aria-expanded="true"
+                    title="Tutup semua tingkatan"
+                    data-tour-step
+                    data-tour-title="Buka / Tutup Semua"
+                    data-tour-text="Buka atau tutup seluruh tingkatan data sekaligus."
+                    data-tour-side="bottom"
+                    data-tour-align="end"
+                  >
+                    <i class="ti fs-5 ti-arrows-minimize" id="espmiTreeToggleAllIcon"></i>
+                    <span id="espmiTreeToggleAllLabel">Collapse all</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive mt-6">
+              <table
+                class="table align-middle mb-0"
+                data-tour-step
+                data-tour-title="Tabel Detail Visitasi"
+                data-tour-text="Daftar standar mutu bertingkat beserta jumlah sub standar mutu dan status visitasinya. Klik tanda panah untuk membuka atau menutup tingkatan."
+                data-tour-side="top"
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">Standar Mutu</th>
+                    <th scope="col" class="text-end" style="width: 12rem">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-light fw-semibold"><td><div class="d-flex align-items-center gap-2"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n1" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Standar Pendidikan</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1"><td><div class="d-flex align-items-center gap-2 tree-lvl-2"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n2" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">SPMI</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2"><td><div class="d-flex align-items-center gap-2 tree-lvl-3"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n3" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Standar Kompetensi Lulusan</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3"><td><div class="d-flex align-items-center gap-2 tree-lvl-4"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n4" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">K1. Visi Keilmuan Program Studi</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n4"><td><div class="d-flex align-items-center gap-2 tree-lvl-5"><span class="espmi-tree-name">Standar Kelulusan Mahasiswa</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-5"><span class="badge bg-secondary-subtle text-secondary-emphasis">7 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">5 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">2 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">5 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">2 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih Standar Kelulusan Mahasiswa" data-espmi-pilih data-espmi-standar="Standar Kelulusan Mahasiswa">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n4"><td><div class="d-flex align-items-center gap-2 tree-lvl-5"><span class="espmi-tree-name">K1.1 Ketepatan Rumusan Visi Keilmuan PS</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-5"><span class="badge bg-secondary-subtle text-secondary-emphasis">1 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">1 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">1 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih K1.1 Ketepatan Rumusan Visi Keilmuan PS" data-espmi-pilih data-espmi-standar="K1.1 Ketepatan Rumusan Visi Keilmuan PS">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n4"><td><div class="d-flex align-items-center gap-2 tree-lvl-5"><span class="espmi-tree-name">K1.2 Sosialisasi dan Tingkat Pemahaman Visi Keilmuan PS</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-5"><span class="badge bg-secondary-subtle text-secondary-emphasis">1 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">1 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">1 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih K1.2 Sosialisasi dan Tingkat Pemahaman Visi Keilmuan PS" data-espmi-pilih data-espmi-standar="K1.2 Sosialisasi dan Tingkat Pemahaman Visi Keilmuan PS">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3"><td><div class="d-flex align-items-center gap-2 tree-lvl-4"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n5" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Standar lain lain</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n5"><td><div class="d-flex align-items-center gap-2 tree-lvl-5"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n6" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Standar lain lain</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n5 g-n6"><td><div class="d-flex align-items-center gap-2 tree-lvl-6"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n7" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Instrumen pertanyaan 8</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n5 g-n6 g-n7"><td><div class="d-flex align-items-center gap-2 tree-lvl-7"><span class="espmi-tree-name">instrumen nomor 8</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-7"><span class="badge bg-secondary-subtle text-secondary-emphasis">6 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">6 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">6 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih instrumen nomor 8" data-espmi-pilih data-espmi-standar="instrumen nomor 8">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n5 g-n6"><td><div class="d-flex align-items-center gap-2 tree-lvl-6"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n8" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Instrumen pertanyaan 8</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n2 g-n3 g-n5 g-n6 g-n8"><td><div class="d-flex align-items-center gap-2 tree-lvl-7"><span class="espmi-tree-name">instrumen nomor 8</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-7"><span class="badge bg-secondary-subtle text-secondary-emphasis">6 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">6 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">6 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih instrumen nomor 8" data-espmi-pilih data-espmi-standar="instrumen nomor 8">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1"><td><div class="d-flex align-items-center gap-2 tree-lvl-2"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n9" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">Banpt</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n9"><td><div class="d-flex align-items-center gap-2 tree-lvl-3"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n10" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">BUDAYA MUTU</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n9 g-n10"><td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">Masukan</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-4"><span class="badge bg-secondary-subtle text-secondary-emphasis">1 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">1 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">1 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih Masukan" data-espmi-pilih data-espmi-standar="Masukan">Pilih</a></td></tr>
+                  <tr class="collapse show g-n1"><td><div class="d-flex align-items-center gap-2 tree-lvl-2"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n11" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">SPMI 1</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n11"><td><div class="d-flex align-items-center gap-2 tree-lvl-3"><a class="tree-toggle" role="button" tabindex="0" data-bs-toggle="collapse" data-bs-target=".g-n12" aria-expanded="true"><i class="ti ti-chevron-right"></i></a><span class="espmi-tree-name">SPMI 2</span></div></td><td class="text-end"></td></tr>
+                  <tr class="collapse show g-n1 g-n11 g-n12"><td><div class="d-flex align-items-center gap-2 tree-lvl-4"><span class="espmi-tree-name">SPMI 3</span></div><div class="d-flex flex-wrap gap-1 mt-1 tree-lvl-4"><span class="badge bg-secondary-subtle text-secondary-emphasis">1 Sub Standar Mutu</span><span class="badge bg-warning-subtle text-warning-emphasis">1 Belum Evaluasi Diri</span><span class="badge bg-info-subtle text-info-emphasis">0 Sudah Evaluasi Diri</span><span class="badge bg-danger-subtle text-danger-emphasis">1 Belum Dinilai</span><span class="badge bg-success-subtle text-success-emphasis">0 Sudah Dinilai</span></div></td><td class="text-end"><a href="#!" class="btn btn-sm btn-subtle-secondary" title="Pilih" aria-label="Pilih SPMI 3" data-espmi-pilih data-espmi-standar="SPMI 3">Pilih</a></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- footer -->
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 py-4 small text-secondary">
+                <div>&copy; 2021 PT. Solusi Kampus Indonesia</div>
+                <div>version 3.1.7.0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.custom-container -->
+      </div>
+      <!-- /#content -->
+    </div>
+    <!-- /.wrapper -->
+
+    <!-- Libs JS -->
+    <script src="../dist/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../dist/assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+    <!-- Theme JS -->
+    <script src="../dist/assets/js/theme.min.js"></script>
+
+    <script src="../dist/assets/js/vendors/sidebarnav.js"></script>
+    <script src="../dist/assets/js/vendors/espmi-filter-badge.js"></script>
+    <script src="assets/js/espmi-toast.js"></script>
+    <script src="assets/js/espmi-about.js"></script>
+    <script src="assets/js/espmi-truncate.js"></script>
+    <script src="assets/js/espmi-drag-scroll.js"></script>
+    <script src="assets/js/vendor/driver.js"></script>
+    <script src="assets/js/espmi-tour.js"></script>
+
+    <script>
+      // eSPMI - detail Visitasi (konteks query string + tree standar mutu read-only)
+      (function () {
+        'use strict';
+
+        // 1) Konteks dari query string (?auditee=&tahun=&lembaga=).
+        var params = new URLSearchParams(window.location.search);
+        function param(name, fallback) {
+          var v = params.get(name);
+          return v === null || v === '' ? fallback : v;
+        }
+        var auditee = param('auditee', 'S1 Teknik Informatika');
+        var tahun = param('tahun', '2026');
+        var lembaga = param('lembaga', 'SPMI');
+        var elAuditee = document.getElementById('detailAuditee');
+        var elTahun = document.getElementById('detailTahun');
+        var elLembaga = document.getElementById('detailLembaga');
+        if (elAuditee) elAuditee.textContent = auditee;
+        if (elTahun) elTahun.textContent = tahun;
+        if (elLembaga) elLembaga.textContent = lembaga;
+
+        // 2) Tree standar mutu read-only (pola Daftar Standar Mutu tanpa
+        //    Tambah/Ubah/Hapus/Atur Urutan; tombol aksi = Pilih per standar).
+        var table = document.querySelector('#detailVisitasiCard table');
+        if (!table) return;
+        var body = table.querySelector('tbody');
+        var search = document.getElementById('detailVisitasiSearch');
+        var toggleAllBtn = document.getElementById('espmiTreeToggleAll');
+        var toggleAllIcon = document.getElementById('espmiTreeToggleAllIcon');
+        var toggleAllLabel = document.getElementById('espmiTreeToggleAllLabel');
+        var countEl = document.getElementById('detailStandarCount');
+
+        function toggles() {
+          return Array.prototype.slice.call(table.querySelectorAll('.tree-toggle'));
+        }
+        function collapses() {
+          return Array.prototype.slice.call(table.querySelectorAll('.collapse'));
+        }
+        function anyShown() {
+          return collapses().some(function (el) {
+            return el.classList.contains('show');
+          });
+        }
+
+        // Sinkronkan caret + tombol buka/tutup semua dengan kondisi collapse.
+        function sync() {
+          toggles().forEach(function (toggle) {
+            var selector = toggle.getAttribute('data-bs-target');
+            if (!selector) return;
+            var shown = Array.prototype.some.call(table.querySelectorAll(selector), function (el) {
+              return el.classList.contains('show');
+            });
+            toggle.setAttribute('aria-expanded', shown ? 'true' : 'false');
+          });
+
+          if (!toggleAllBtn) return;
+          var expanded = anyShown();
+          toggleAllBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggleAllBtn.title = expanded ? 'Tutup semua tingkatan' : 'Buka semua tingkatan';
+          if (toggleAllIcon) toggleAllIcon.className = 'ti fs-5 ' + (expanded ? 'ti-arrows-minimize' : 'ti-arrows-maximize');
+          if (toggleAllLabel) toggleAllLabel.textContent = expanded ? 'Collapse all' : 'Expand all';
+        }
+
+        // Delegasi agar caret pada baris baru ikut tersinkron.
+        table.addEventListener('shown.bs.collapse', sync);
+        table.addEventListener('hidden.bs.collapse', sync);
+
+        function setCollapse(selector, isShown) {
+          table.querySelectorAll(selector).forEach(function (el) {
+            var collapse = bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+            isShown ? collapse.show() : collapse.hide();
+          });
+        }
+
+        if (toggleAllBtn) {
+          toggleAllBtn.addEventListener('click', function () {
+            if (anyShown()) {
+              setCollapse('.collapse.show', false);
+            } else {
+              collapses().forEach(function (el) {
+                bootstrap.Collapse.getOrCreateInstance(el, { toggle: false }).show();
+              });
+            }
+            window.setTimeout(sync, 350);
+          });
+        }
+
+        // Jumlah standar mutu = jumlah baris tree.
+        if (countEl) {
+          countEl.textContent = body.querySelectorAll('tr').length + ' Standar Mutu';
+        }
+
+        // Pencarian baris tree.
+        if (search) {
+          search.addEventListener('input', function () {
+            var q = search.value.trim().toLowerCase();
+            var rows = Array.prototype.slice.call(body.querySelectorAll('tr'));
+            if (!q) {
+              table.classList.remove('espmi-tree-searching');
+              rows.forEach(function (row) {
+                row.classList.remove('espmi-tree-hidden');
+              });
+              return;
+            }
+            table.classList.add('espmi-tree-searching');
+            rows.forEach(function (row) {
+              var match = row.textContent.toLowerCase().indexOf(q) !== -1;
+              row.classList.toggle('espmi-tree-hidden', !match);
+            });
+          });
+        }
+
+        // Pilih standar mutu (front-end saja, tanpa backend).
+        function toast(message, opts) {
+          if (window.espmiToast) window.espmiToast(message, opts);
+        }
+        document.addEventListener('click', function (event) {
+          var btn = event.target.closest('[data-espmi-pilih]');
+          if (!btn) return;
+          event.preventDefault();
+          toast('Membuka standar mutu ' + btn.getAttribute('data-espmi-standar') + '.', { variant: 'info', icon: 'info-circle' });
+        });
+      })();
+    </script>
+  </body>
+</html>

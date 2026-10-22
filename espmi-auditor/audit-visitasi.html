@@ -941,7 +941,7 @@
           });
         }
 
-        // Pilih Auditee / Unit Penunjang (front-end saja, tanpa backend)
+        // Pilih Auditee / Unit Penunjang -> buka Detail Visitasi.
         function toast(message, opts) {
           if (window.espmiToast) window.espmiToast(message, opts);
         }
@@ -950,7 +950,10 @@
           if (opt) {
             event.preventDefault();
             if (opt.classList.contains('disabled')) return;
-            toast('Membuka visitasi ' + opt.getAttribute('data-espmi-lembaga') + ' — ' + opt.getAttribute('data-espmi-auditee') + '.', { variant: 'info', icon: 'info-circle' });
+            var auditee = opt.getAttribute('data-espmi-auditee');
+            var lembaga = opt.getAttribute('data-espmi-lembaga');
+            window.location.href =
+              './audit-visitasi-detail.html?auditee=' + encodeURIComponent(auditee) + '&lembaga=' + encodeURIComponent(lembaga);
             return;
           }
           if (event.target.closest('[data-espmi-auditee-pilih]')) {

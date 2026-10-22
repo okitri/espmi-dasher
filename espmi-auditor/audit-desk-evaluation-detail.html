@@ -401,30 +401,17 @@
                   <button
                     class="btn btn-white d-inline-flex align-items-center gap-2"
                     type="button"
-                    id="espmiTreeExpandAll"
-                    title="Buka semua tingkatan"
-                    data-tour-step
-                    data-tour-title="Expand All"
-                    data-tour-text="Buka seluruh tingkatan standar mutu sekaligus."
-                    data-tour-side="bottom"
-                    data-tour-align="end"
-                  >
-                    <i class="ti ti-arrows-maximize fs-5"></i>
-                    <span>Expand all</span>
-                  </button>
-                  <button
-                    class="btn btn-white d-inline-flex align-items-center gap-2"
-                    type="button"
-                    id="espmiTreeCollapseAll"
+                    id="espmiTreeToggleAll"
+                    aria-expanded="true"
                     title="Tutup semua tingkatan"
                     data-tour-step
-                    data-tour-title="Collapse All"
-                    data-tour-text="Tutup seluruh tingkatan standar mutu sekaligus."
+                    data-tour-title="Buka / Tutup Semua"
+                    data-tour-text="Buka atau tutup seluruh tingkatan data sekaligus."
                     data-tour-side="bottom"
                     data-tour-align="end"
                   >
-                    <i class="ti ti-arrows-minimize fs-5"></i>
-                    <span>Collapse all</span>
+                    <i class="ti fs-5 ti-arrows-minimize" id="espmiTreeToggleAllIcon"></i>
+                    <span id="espmiTreeToggleAllLabel">Collapse all</span>
                   </button>
                 </div>
               </div>
@@ -527,17 +514,26 @@
         if (!table) return;
         var body = table.querySelector('tbody');
         var search = document.getElementById('detailDeskEvaluationSearch');
-        var expandAllBtn = document.getElementById('espmiTreeExpandAll');
-        var collapseAllBtn = document.getElementById('espmiTreeCollapseAll');
+        var toggleAllBtn = document.getElementById('espmiTreeToggleAll');
+        var toggleAllIcon = document.getElementById('espmiTreeToggleAllIcon');
+        var toggleAllLabel = document.getElementById('espmiTreeToggleAllLabel');
         var countEl = document.getElementById('detailStandarCount');
 
+        function toggles() {
+          return Array.prototype.slice.call(table.querySelectorAll('.tree-toggle'));
+        }
         function collapses() {
           return Array.prototype.slice.call(table.querySelectorAll('.collapse'));
         }
+        function anyShown() {
+          return collapses().some(function (el) {
+            return el.classList.contains('show');
+          });
+        }
 
-        // Sinkronkan caret dengan kondisi collapse.
+        // Sinkronkan caret + tombol buka/tutup semua dengan kondisi collapse.
         function sync() {
-          Array.prototype.forEach.call(table.querySelectorAll('.tree-toggle'), function (toggle) {
+          toggles().forEach(function (toggle) {
             var selector = toggle.getAttribute('data-bs-target');
             if (!selector) return;
             var shown = Array.prototype.some.call(table.querySelectorAll(selector), function (el) {
@@ -545,6 +541,13 @@
             });
             toggle.setAttribute('aria-expanded', shown ? 'true' : 'false');
           });
+
+          if (!toggleAllBtn) return;
+          var expanded = anyShown();
+          toggleAllBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggleAllBtn.title = expanded ? 'Tutup semua tingkatan' : 'Buka semua tingkatan';
+          if (toggleAllIcon) toggleAllIcon.className = 'ti fs-5 ' + (expanded ? 'ti-arrows-minimize' : 'ti-arrows-maximize');
+          if (toggleAllLabel) toggleAllLabel.textContent = expanded ? 'Collapse all' : 'Expand all';
         }
 
         // Delegasi agar caret pada baris baru ikut tersinkron.
@@ -558,18 +561,15 @@
           });
         }
 
-        if (expandAllBtn) {
-          expandAllBtn.addEventListener('click', function () {
-            collapses().forEach(function (el) {
-              bootstrap.Collapse.getOrCreateInstance(el, { toggle: false }).show();
-            });
-            window.setTimeout(sync, 350);
-          });
-        }
-
-        if (collapseAllBtn) {
-          collapseAllBtn.addEventListener('click', function () {
-            setCollapse('.collapse.show', false);
+        if (toggleAllBtn) {
+          toggleAllBtn.addEventListener('click', function () {
+            if (anyShown()) {
+              setCollapse('.collapse.show', false);
+            } else {
+              collapses().forEach(function (el) {
+                bootstrap.Collapse.getOrCreateInstance(el, { toggle: false }).show();
+              });
+            }
             window.setTimeout(sync, 350);
           });
         }

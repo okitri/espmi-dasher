@@ -1259,7 +1259,8 @@ bagian 21; di folder auditee bagian 22):
 - **Aksi halaman non-form** (mis. **Export Excel**): memakai gaya aksi utama —
   `btn btn-dark d-md-flex align-items-center gap-2` + ikon (mis.
   `<i class="ti ti-download"></i>`), diletakkan di **area aksi page header**
-  (bagian 7), di samping tombol tour.
+  (bagian 7), di samping tombol tour. Di dalam modal, tombol yang sama
+  diletakkan di kanan **baris info** awal `modal-body` (bagian 16.13).
 - **Varian soft** di theme ini bernama `btn-subtle-{color}`
   (`primary`, `secondary`, `success`, `danger`, `warning`, `info`, `dark`,
   `light`, `white`): background *tint* transparan (`rgba(color, .11)`) dan
@@ -1281,6 +1282,13 @@ bagian 21; di folder auditee bagian 22):
 ## 10. Form
 
 - Kontrol: `form-control`, `form-select`, `form-label`, `form-check`.
+- Kolom **tahun** (mis. *Tahun Laporan AMI*) memakai `input type="number"`
+  (`min`/`max`/`step` + `inputmode="numeric"` + `placeholder`), **bukan**
+  `form-select` (bagian 16.12).
+- Kolom **unggah berkas** (`input type="file"`) diberi teks bantuan
+  `.form-text` tepat di bawah kontrol (sebelum `.invalid-feedback`) berisi
+  format & ukuran berkas, mis. `File berupa .PDF, Ukuran maksimal 7 MB`
+  (bagian 16.12).
 - Label inline dengan kontrol memakai `class="form-label text-nowrap mb-0"`.
 - Select kecil (mis. per page) diberi `style="width: 5.5rem"`.
 - Selector "Per page" & pencarian **selalu** berada di dalam toolbar card list.
@@ -2140,21 +2148,23 @@ bukan datatable List.js, sehingga toolbar mengikuti pola baku (bagian 7 & 16.5)
   query string dan mengisi info card + judul; tautan Lihat di halaman daftar
   membangun URL tersebut dari auditee baris + filter aktif (default
   2026/SPMI).
-- **Varian detail Desk Evaluation**
-  (`espmi-auditor/audit-desk-evaluation-detail.html`): dibuka dari dropdown
-  *Pilih Auditee / Unit Penunjang* di `audit-desk-evaluation.html` dengan URL
-  `./audit-desk-evaluation-detail.html?auditee=&lembaga=` (konteks mengisi info
-  card **Auditee** / **Tahun** / **Lembaga Akreditasi**; **Tahun** default
-  `2026`). Halaman detail memakai baris tree halaman ini dengan **2 kolom** —
-  `Standar Mutu` (auto) | `Aksi` (`text-end`, `width: 12rem`) — **tanpa** kolom
-  Indikator/Info Jenjang dan tanpa tombol Tambah/Ubah/Hapus/Atur Urutan.
-  - **Toolbar**: **pencarian** (`#detailDeskEvaluationSearch`, `.listjs-search`)
-    di kiri, lalu **dua tombol terpisah** di kanan (keduanya
-    `btn btn-white d-inline-flex align-items-center gap-2`):
-    **`Expand all`** (`id="espmiTreeExpandAll"`, ikon `ti ti-arrows-maximize`,
-    membuka seluruh tingkatan) dan **`Collapse all`**
-    (`id="espmiTreeCollapseAll"`, ikon `ti ti-arrows-minimize`, menutup seluruh
-    tingkatan).
+- **Varian detail Desk Evaluation & Visitasi** (folder `espmi-auditor`):
+  `audit-desk-evaluation-detail.html` dan `audit-visitasi-detail.html` —
+  struktur **identik** (hanya identitas halaman yang berbeda). Dibuka dari
+  dropdown *Pilih Auditee / Unit Penunjang* di halaman daftar pasangannya
+  (`audit-desk-evaluation.html` / `audit-visitasi.html`) dengan URL
+  `./audit-{desk-evaluation|visitasi}-detail.html?auditee=&lembaga=` (konteks
+  mengisi info card **Auditee** / **Tahun** / **Lembaga Akreditasi**; **Tahun**
+  default `2026`). Halaman detail memakai baris tree halaman ini dengan **2
+  kolom** — `Standar Mutu` (auto) | `Aksi` (`text-end`, `width: 12rem`) —
+  **tanpa** kolom Indikator/Info Jenjang dan tanpa tombol
+  Tambah/Ubah/Hapus/Atur Urutan.
+  - **Toolbar**: **pencarian** (`.listjs-search`) + **satu tombol Buka/Tutup
+    semua** (`id="espmiTreeToggleAll"`, `btn btn-white d-inline-flex
+    align-items-center gap-2`, `aria-expanded`, ikon `ti ti-arrows-minimize`
+    saat terbuka / `ti ti-arrows-maximize` saat tertutup, label `Collapse all`
+    / `Expand all`) — sama seperti halaman `penetapan-daftar-standar-mutu.html`
+    di atas, **bukan** dua tombol terpisah.
   - **Header kartu**: label `Daftar Standar Mutu` (kiri) + badge jumlah baris
     tree `N Standar Mutu` (`bg-danger-subtle text-danger-emphasis
     rounded-pill`, kanan).
@@ -2218,6 +2228,69 @@ tombol **Detail** (`btn btn-sm btn-subtle-info .espmi-detail-btn`). Tombol memba
   </tbody>
 </table>
 ```
+
+---
+
+### 16.12 Halaman Upload Laporan AMI - Modal Tambah & Kolom Aksi
+
+Halaman `espmi-auditor/audit-upload-laporan-ami.html` memakai modal
+`#tambahLaporanAmiModal` (`modal-dialog-centered`) dengan form
+`#tambahLaporanAmiForm`:
+
+- **Tahun Laporan AMI** memakai `input type="number"
+  class="form-control"` (`min="2000" max="2100" step="1"
+  inputmode="numeric"`, `placeholder="Contoh: 2026"`, `required`) - **bukan**
+  `form-select` - dengan `.invalid-feedback` **Tahun wajib diisi.**
+- **Dokumen** (`input type="file"`) diberi teks bantuan `.form-text`
+  **File berupa .PDF, Ukuran maksimal 7 MB** tepat di atas
+  `.invalid-feedback`.
+- Kolom **Aksi** datatable memuat **dua** aksi di setiap baris, di dalam
+  `div.d-flex.gap-1`: **Download**
+  (`btn btn-icon btn-sm btn-subtle-success` + `ti ti-download` +
+  `data-espmi-download`) dan **Lihat**
+  (`btn btn-icon btn-sm btn-subtle-info` + `ti ti-file-search` +
+  `data-espmi-lihat`). Keduanya front-end saja (toast).
+
+### 16.13 Halaman Rekap Daftar Temuan - Modal Detail "Daftar Temuan"
+
+Halaman `espmi-auditor/laporan-rekap-daftar-temuan.html` menjadikan **nilai**
+kolom **Jumlah Temuan** sebagai pemicu modal: teks nilai dibungkus anchor
+`a.link-danger` + `title` + atribut `data-espmi-detail-temuan` dan
+`data-espmi-jumlah` (angka), mis.
+`<a href="#!" class="link-danger" title="Lihat daftar temuan" data-espmi-detail-temuan data-espmi-jumlah="3">3 temuan</a>`.
+Konteks **Auditee / Tahun / Lembaga** dibaca dari baris (`td.auditee` +
+`data-tahun` / `data-lembaga`), lalu modal `#daftarTemuanModal` dibuka -
+**tidak** membuat halaman detail baru.
+
+- Modal: `div.modal.fade` -> `div.modal-dialog.modal-dialog-centered.modal-xl.modal-dialog-scrollable`
+  (`modal-xl` dipakai karena tabelnya 8 kolom) dengan judul **Daftar Temuan**.
+- Body diawali blok **label-teks** sejajar (`d-flex flex-wrap gap-4`):
+  **Auditee :** (`#daftarTemuanAuditee`), **Tahun :**
+  (`#daftarTemuanTahun`), **Lembaga :** (`#daftarTemuanLembaga`), dan di
+  kanannya tombol **Export Excel** (`btn btn-dark d-flex align-items-center
+  gap-2` + `ti ti-download`, bagian 9). Informasi auditee **tidak** ditaruh di
+  judul modal (bagian 16.11 juga begitu).
+- Tabel rincian: `table table-bordered align-middle mb-0` di dalam
+  `.table-responsive` - pengecualian `table-bordered` (bagian 16.3) - dengan
+  kolom **No | Standar Mutu | Deskripsi | Nilai Mutu | Daftar Temuan | Tindak
+  Lanjut | Status | Aksi**, `tbody` `#daftarTemuanBody` diisi skrip.
+- Sel **Daftar Temuan** & **Tindak Lanjut** memuat pasangan label-teks dipisah
+  `<hr class="my-2" />`: `Temuan`, `Jenis Temuan`, `Kategori Temuan`,
+  `Akar Masalah`, `Rekomendasi Auditor` dan `Rencana Aksi`,
+  `Penanggung Jawab`, `Target Waktu Penyelesaian`, `Status Perbaikan`,
+  `Lampiran` (tombol Unduh/Lihat `btn btn-icon btn-sm
+  btn-subtle-{success,info}`).
+- Kolom **Status**: badge *subtle* `RTL sudah di isi`
+  (`bg-success-subtle text-success-emphasis`) atau `RTL Belum di isi`
+  (`bg-info-subtle text-info-emphasis`) + baris kecil status perbaikan
+  (`Belum diperbaiki`).
+- Kolom **Aksi**: `select.form-select.form-select-sm` + `style="width: 6rem"`
+  berisi **Open** / **Closed** (`data-espmi-validasi`); diubah front-end saja
+  (toast `Validasi auditor diubah menjadi ...`).
+- Jumlah baris tabel mengikuti angka pada kolom Jumlah Temuan baris yang
+  diklik (mis. `3 temuan` -> 3 baris).
+- Footer: satu tombol `btn btn-white` **Tutup**; tombol close header memakai
+  `btn-close` + `aria-label="Tutup"`.
 
 ---
 

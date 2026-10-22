@@ -439,7 +439,7 @@
                     <td class="no">1</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2025"><i class="ti ti-download"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2025"><i class="ti ti-download"></i></a><a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2025"><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">S1 Peternakan</td>
@@ -450,7 +450,7 @@
                     <td class="no">2</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2026"><i class="ti ti-download"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2026"><i class="ti ti-download"></i></a><a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat data-espmi-dokumen="Laporan AMI" data-espmi-auditee="S1 Peternakan" data-espmi-tahun="2026"><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">S1 Peternakan</td>
@@ -461,7 +461,7 @@
                     <td class="no">3</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA JERMAN" data-espmi-tahun="2026"><i class="ti ti-download"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA JERMAN" data-espmi-tahun="2026"><i class="ti ti-download"></i></a><a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA JERMAN" data-espmi-tahun="2026"><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA JERMAN</td>
@@ -472,7 +472,7 @@
                     <td class="no">4</td>
                     <td>
                       <div class="d-flex gap-1">
-                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA INGGRIS" data-espmi-tahun="2025"><i class="ti ti-download"></i></a>
+                        <a href="#!" class="btn btn-icon btn-sm btn-subtle-success" title="Download" aria-label="Download" data-espmi-download data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA INGGRIS" data-espmi-tahun="2025"><i class="ti ti-download"></i></a><a href="#!" class="btn btn-icon btn-sm btn-subtle-info" title="Lihat" aria-label="Lihat" data-espmi-lihat data-espmi-dokumen="Laporan AMI" data-espmi-auditee="SASTRA INGGRIS" data-espmi-tahun="2025"><i class="ti ti-file-search"></i></a>
                       </div>
                     </td>
                     <td class="auditee">SASTRA INGGRIS</td>
@@ -604,16 +604,13 @@
                     </div>
                     <div class="mb-3">
                       <label class="form-label" for="tambahLaporanAmiTahun">Tahun Laporan AMI</label>
-                      <select class="form-select" id="tambahLaporanAmiTahun" required>
-                        <option value="" selected>-- Pilih Tahun --</option>
-                        <option>2025</option>
-                        <option>2026</option>
-                      </select>
-                      <div class="invalid-feedback">Tahun wajib dipilih.</div>
+                      <input type="number" class="form-control" id="tambahLaporanAmiTahun" min="2000" max="2100" step="1" inputmode="numeric" placeholder="Contoh: 2026" required />
+                      <div class="invalid-feedback">Tahun wajib diisi.</div>
                     </div>
                     <div class="mb-3">
                       <label class="form-label" for="tambahLaporanAmiDokumen">Dokumen</label>
                       <input type="file" class="form-control" id="tambahLaporanAmiDokumen" required />
+                      <div class="form-text">File berupa .PDF, Ukuran maksimal 7 MB</div>
                       <div class="invalid-feedback">Dokumen wajib dipilih.</div>
                     </div>
                   </div>
